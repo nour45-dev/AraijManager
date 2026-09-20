@@ -25,23 +25,23 @@
 ## 🚀 خطوات الرفع على GitHub والنشر على ريلوي (Railway)
 
 ### الخطوة 1: الرفع على GitHub
-1. افتح حسابك على [GitHub.com](https://github.com) وأنشئ مستودعاً جديداً (New Repository) باسم AraijManager.
+1. افتح حسابك على [GitHub.com](https://github.com) وأنشئ مستودعاً جديداً (New Repository) باسم `AraijManager`.
 2. شغّل الأوامر التالية من مجلد المشروع لرفع الملفات:
-   `ash
-   git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/AraijManager.git
-   git push -u origin main
-   `
-*(استبدل YOUR_USERNAME باسم المستخدم الخاص بك على GitHub)*.
+```bash
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/AraijManager.git
+git push -u origin main
+```
+*(استبدل `YOUR_USERNAME` باسم المستخدم الخاص بك على GitHub)*.
 
 ---
 
 ### الخطوة 2: النشر على Railway في خطوة واحدة
 1. ادخل على منصة [Railway.com](https://railway.com) وسجّل الدخول بحساب GitHub.
 2. اضغط على **+ New Project** ثم اختر **Deploy from GitHub repo**.
-3. اختر المستودع AraijManager.
+3. اختر المستودع `AraijManager`.
 4. ستتعرف منصة Railway تلقائياً على ملفات المشروع وتشغل السيرفر فورياً.
-5. من إعدادات المشروع (**Settings > Networking**)، اضغط على **Generate Domain** لتحصل على الرابط السحابي الخاص بك (مثال: https://araij-production.up.railway.app).
+5. من إعدادات المشروع (**Settings > Networking**)، اضغط على **Generate Domain** لتحصل على الرابط السحابي الخاص بك (مثال: `https://araij-production.up.railway.app`).
 
 ---
 
@@ -53,14 +53,14 @@
 
 ## 🛠️ التشغيل المحلي على جهاز الكمبيوتر (Local Development)
 
-`ash
+```bash
 # تثبيت الاعتماديات
 npm install
 
 # تشغيل السيرفر المحلي
 npm start
-`
-ثم افتح المتصفح على الرابط: http://localhost:3000
+```
+ثم افتح المتصفح على الرابط: `http://localhost:3000`
 
 ---
 
