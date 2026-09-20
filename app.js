@@ -343,9 +343,10 @@ function parseSubjectsFromSummary(subjectsSummary, teachersSummary, existingAcad
           const parsed = rawSess.map(s => (s === '_' || s === '-' || !s) ? '' : s);
           while (parsed.length < 8) parsed.push('');
 
-          if (tag === 'حصص' || tag === 'شهر 1') {
+          if (tag === 'حصص' || tag === 'شهر 1' || tag === 'شهر 9 (سبتمبر)' || tag === 'شهر 9') {
             parsedSessions = parsed;
-            parsedMonths['شهر 1'] = parsed;
+            parsedMonths['شهر 9 (سبتمبر)'] = [...parsed];
+            parsedMonths['شهر 1'] = [...parsed];
           } else {
             parsedMonths[tag] = parsed;
             if (typeof CENTER_MONTHS !== 'undefined' && !CENTER_MONTHS.includes(tag)) {
@@ -400,7 +401,7 @@ function rebuildStudentSummaries(student) {
     // Extra months tags
     if (subObj.months && typeof subObj.months === 'object') {
       Object.keys(subObj.months).forEach(mName => {
-        if (mName !== 'شهر 1') {
+        if (mName !== 'شهر 1' && mName !== 'شهر 9 (سبتمبر)') {
           const mSess = subObj.months[mName];
           if (Array.isArray(mSess) && mSess.some(s => s && String(s).trim() !== '')) {
             const mStr = mSess.map(s => (s && String(s).trim()) ? String(s).trim() : '_').join(', ');
@@ -422,7 +423,7 @@ function rebuildStudentSummaries(student) {
 // ==========================================
 
 function getStudentSubjectMonthSessions(student, subject, month = null) {
-  const m = month || currentActiveMonth || 'شهر 1';
+  const m = month || currentActiveMonth || 'شهر 9 (سبتمبر)';
   if (!student.academicSubjects) student.academicSubjects = {};
   if (!student.academicSubjects[subject]) {
     const canon = canonicalSubjectName(subject) || subject;
@@ -435,8 +436,8 @@ function getStudentSubjectMonthSessions(student, subject, month = null) {
   const sub = student.academicSubjects[subject];
   if (!sub.months) sub.months = {};
   if (!sub.months[m]) {
-    if (m === 'شهر 1' && Array.isArray(sub.sessions) && sub.sessions.length > 0) {
-      sub.months['شهر 1'] = [...sub.sessions];
+    if ((m === 'شهر 9 (سبتمبر)' || m === 'شهر 1') && Array.isArray(sub.sessions) && sub.sessions.length > 0) {
+      sub.months[m] = [...sub.sessions];
     } else {
       sub.months[m] = ["", "", "", "", "", "", "", ""];
     }
@@ -446,11 +447,11 @@ function getStudentSubjectMonthSessions(student, subject, month = null) {
 }
 
 function setStudentSubjectMonthSession(student, subject, month, sessionIdx, val) {
-  const m = month || currentActiveMonth || 'شهر 1';
+  const m = month || currentActiveMonth || 'شهر 9 (سبتمبر)';
   const sessions = getStudentSubjectMonthSessions(student, subject, m);
   sessions[sessionIdx] = val;
   const sub = student.academicSubjects[subject];
-  if (m === currentActiveMonth || m === 'شهر 1') {
+  if (m === currentActiveMonth || m === 'شهر 9 (سبتمبر)' || m === 'شهر 1') {
     sub.sessions = [...sessions];
   }
   return sessions;
@@ -602,11 +603,37 @@ let activeSessionEdit = null; // { code, subject, sessionIdx, month }
 let currentPdfMode = 'teacher';
 
 // ==========================================
-// MONTHLY ATTENDANCE SYSTEM STATE
+// MONTHLY ATTENDANCE SYSTEM STATE (ACADEMIC YEAR STARTS IN SEPTEMBER)
 // ==========================================
-let currentActiveMonth = localStorage.getItem('araij_active_month') || 'شهر 1';
+const ACADEMIC_MONTHS = [
+  "شهر 9 (سبتمبر)",
+  "شهر 10 (أكتوبر)",
+  "شهر 11 (نوفمبر)",
+  "شهر 12 (ديسمبر)",
+  "شهر 1 (يناير)",
+  "شهر 2 (فبراير)",
+  "شهر 3 (مارس)",
+  "شهر 4 (أبريل)",
+  "شهر 5 (مايو)"
+];
+
+let currentActiveMonth = localStorage.getItem('araij_active_month') || 'شهر 9 (سبتمبر)';
 let activeDetailMonth = currentActiveMonth;
-let CENTER_MONTHS = JSON.parse(localStorage.getItem('araij_center_months') || '["شهر 1", "شهر 2", "شهر 3", "شهر 4", "شهر 5", "شهر 6", "شهر 7", "شهر 8", "شهر 9", "شهر 10"]');
+let CENTER_MONTHS;
+try {
+  const savedMonths = localStorage.getItem('araij_center_months');
+  CENTER_MONTHS = savedMonths ? JSON.parse(savedMonths) : [...ACADEMIC_MONTHS];
+  if (!CENTER_MONTHS.some(m => m.includes('سبتمبر') || m.includes('9'))) {
+    CENTER_MONTHS = [...ACADEMIC_MONTHS];
+    localStorage.setItem('araij_center_months', JSON.stringify(CENTER_MONTHS));
+  }
+} catch(e) {
+  CENTER_MONTHS = [...ACADEMIC_MONTHS];
+}
+if (!CENTER_MONTHS.includes(currentActiveMonth) || currentActiveMonth === 'شهر 1') {
+  currentActiveMonth = 'شهر 9 (سبتمبر)';
+  localStorage.setItem('araij_active_month', currentActiveMonth);
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   try { initIcons(); } catch (e) {}
@@ -1296,6 +1323,10 @@ function initData() {
     
     st._searchString = buildStudentSearchString(st);
   });
+
+  try {
+    updateSuggestedCode();
+  } catch(e) {}
 }
 
 
@@ -2694,7 +2725,7 @@ function initWizard() {
 
 function onWizardGradeChange() {
   const grade = document.getElementById('wizGrade')?.value || 'ث1';
-  updateSuggestedCode();
+  updateSuggestedCode(true);
   renderWizardSubjectsList(grade);
   checkWizardDuplicateStudent();
 }
@@ -2711,29 +2742,39 @@ function onWizardSpecChange() {
   }
 }
 
-function updateSuggestedCode() {
-  const grade = document.getElementById('wizGrade')?.value || 'ث1';
-  const prefix = grade === 'ث1' ? 1000 : grade === 'ث2' ? 2000 : 3000;
-  
+function getNextStudentCodeForGrade(grade) {
+  const normGrade = normalize_grade(grade || 'ث1');
+  const prefix = normGrade === 'ث1' ? 1000 : normGrade === 'ث2' ? 2000 : 3000;
   let maxCode = prefix;
-  allStudents.filter(s => s.grade === grade).forEach(s => {
-    const num = parseInt((s.code || '').replace(/\D/g, ''));
-    if (!isNaN(num) && num >= prefix && num < (prefix + 1000)) {
-      if (num > maxCode) maxCode = num;
-    }
-  });
 
-  const nextCode = maxCode + 1;
-  const codeInput = document.getElementById('wizCode');
-  const label = document.getElementById('wizSuggestedCodeText');
-  // Erase any suggested code text — user requested NO suggested code shown
-  if (label) {
-    label.textContent = '';
-    label.style.display = 'none';
+  if (Array.isArray(allStudents)) {
+    allStudents.forEach(s => {
+      const sGrade = normalize_grade(s.grade);
+      if (sGrade === normGrade) {
+        const num = parseInt(String(s.code || '').replace(/\D/g, ''), 10);
+        if (!isNaN(num) && num >= prefix && num < (prefix + 1000)) {
+          if (num > maxCode) maxCode = num;
+        }
+      }
+    });
   }
+  return maxCode + 1;
+}
+
+function updateSuggestedCode(forceOverwrite = false) {
+  const grade = document.getElementById('wizGrade')?.value || 'ث1';
+  const nextCode = getNextStudentCodeForGrade(grade);
+  const codeInput = document.getElementById('wizCode');
+
   if (codeInput) {
-    codeInput.value = '';
-    codeInput.placeholder = 'اكتب كود الطالب هنا (مثال: 1250)';
+    const currentVal = (codeInput.value || '').trim();
+    const prevSuggested = codeInput.dataset.suggestedCode;
+
+    // Auto-fill if empty, or if forced, or if the value was automatically suggested previously
+    if (forceOverwrite || !currentVal || currentVal === prevSuggested) {
+      codeInput.value = String(nextCode);
+    }
+    codeInput.placeholder = `كود الطالب التلقائي: ${nextCode}`;
     codeInput.dataset.suggestedCode = String(nextCode);
   }
 }
@@ -2788,17 +2829,9 @@ function handleWizardSubmit(e) {
   let code = (codeInput?.value || '').trim();
   const grade = document.getElementById('wizGrade')?.value || 'ث1';
 
-  // If user left code completely empty, quietly assign next code without showing it beforehand
+  // If user left code completely empty, assign next code for the selected grade
   if (!code) {
-    const prefix = grade === 'ث1' ? 1000 : grade === 'ث2' ? 2000 : 3000;
-    let maxCode = prefix;
-    allStudents.filter(s => s.grade === grade).forEach(s => {
-      const num = parseInt((s.code || '').replace(/\D/g, ''));
-      if (!isNaN(num) && num >= prefix && num < (prefix + 1000)) {
-        if (num > maxCode) maxCode = num;
-      }
-    });
-    code = String(maxCode + 1);
+    code = String(getNextStudentCodeForGrade(grade));
   }
 
   const area = document.getElementById('wizArea')?.value.trim();
@@ -2919,16 +2952,13 @@ function handleWizardSubmit(e) {
   hideWizardDuplicateAlert();
   initWizard();
 
-  // Explicitly clear ALL text fields
-  ['wizName', 'wizPhone', 'wizParentPhone', 'wizArea', 'wizCode'].forEach(id => {
+  // Explicitly clear text fields (except wizCode which gets the fresh next code)
+  ['wizName', 'wizPhone', 'wizParentPhone', 'wizArea'].forEach(id => {
     const el = document.getElementById(id);
-    if (el) {
-      el.value = '';
-      el.removeAttribute('data-suggested-code');
-    }
+    if (el) el.value = '';
   });
 
-  updateSuggestedCode();
+  updateSuggestedCode(true);
 
   // Reset filters and search so the new student card is 100% visible on the Students page
   currentGradeFilter = 'all';
