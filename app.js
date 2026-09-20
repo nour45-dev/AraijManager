@@ -3051,10 +3051,15 @@ async function flushOfflineSyncQueue() {
 
   const url = getGoogleAppsScriptUrl();
   const remaining = [];
+  let flushedCount = 0;
 
   for (let i = 0; i < queue.length; i++) {
     const item = queue[i];
     try {
+      // 1. Forward to Railway server
+      sendToRailwayServer(item.action, item.payload);
+
+      // 2. Forward to Google Sheets
       if (url) {
         await fetch(url, {
           method: 'POST',
@@ -3063,19 +3068,15 @@ async function flushOfflineSyncQueue() {
           body: JSON.stringify({ action: item.action, ...item.payload })
         });
       }
-      fetch('/api/sync_local', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: item.action, ...item.payload })
-      }).catch(() => {});
+      flushedCount++;
     } catch(e) {
       remaining.push(item);
     }
   }
 
   localStorage.setItem('araij_offline_sync_queue', JSON.stringify(remaining));
-  if (queue.length > remaining.length) {
-    showToast(`⚡ تم ترحيل ${queue.length - remaining.length} عملية أوفلاين إلى السحابة بنجاح!`);
+  if (flushedCount > 0) {
+    showToast(`⚡ تم ترحيل ${flushedCount} عملية مسجلة أوفلاين إلى السحابة ومزامنتها بنجاح!`);
   }
 }
 
@@ -5025,23 +5026,12 @@ function filterBulkStudentsTable() {
 function saveBulkSessionAttendance() {
   const subject = document.getElementById('bulkSubjectSelect')?.value || 'عربي';
   const sessionIdx = parseInt(document.getElementById('bulkSessionNumSelect')?.value || '0');
-  const targetMonth = document.getElementById('bulkMonthSelect')?.value || currentActiveMonth || 'شهر 1';
-  const saveBtn = document.getElementById('saveBulkBtn');
+  const targetMonth = document.getElementById('bulkMonthSelect')?.value || currentActiveMonth || 'شهر 9 (سبتمبر)';
   const uName = currentUser?.name || 'مشرف';
 
-  if (saveBtn) {
-    saveBtn.disabled = true;
-    saveBtn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> <span>جاري حفظ ورصد ومزامنة الحصة للجميع...</span>`;
-  }
-  initIcons();
-
-  let savedCount = 0;
-  const modifiedStudents = [];
-
+  // Snapshot the inputs from the open bulk modal
+  const capturedEntries = [];
   currentBulkStudents.forEach(st => {
-    const student = allStudents.find(s => String(s.code).trim() === String(st.code).trim());
-    if (!student) return;
-
     const btnP = document.getElementById(`bulk_btn_p_${st.code}`);
     const btnA = document.getElementById(`bulk_btn_a_${st.code}`);
     const gradeInput = document.getElementById(`bulk_grade_input_${st.code}`);
@@ -5056,45 +5046,61 @@ function saveBulkSessionAttendance() {
       finalVal = 'غ';
     }
 
-    setStudentSubjectMonthSession(student, subject, targetMonth, sessionIdx, finalVal);
-
-    // Audit stamp
-    student.lastModifiedBy = uName;
-    student.lastAction = `رصد جماعي: ${subject} (${targetMonth} - حصة ${sessionIdx + 1}: ${finalVal || 'فارغ'})`;
-    student.lastActionTime = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }) + ' ' + new Date().toLocaleDateString('ar-EG');
-
-    rebuildStudentSummaries(student);
-    saveStudentOverride(student);
-    modifiedStudents.push(student);
-    savedCount++;
+    capturedEntries.push({ code: st.code, finalVal });
   });
 
-  // Dual Sync: Dispatch batch to Google Sheets + Railway Server for instant real-time sync across devices
-  if (modifiedStudents.length > 0) {
-    syncBulkStudentsToGoogleSheets(modifiedStudents);
-  }
+  // 1. Close modal immediately so user can continue working with zero delay
+  closeBulkSessionModal();
+  showToast(`⏳ جاري حفظ ورصد الحصة ${sessionIdx + 1} لـ ${capturedEntries.length} طالب في الخلفية...`);
 
-  renderAttendanceMatrix();
-  applyFilters();
-  updateKPIStats();
+  // Show background sync indicator on nav icon
+  const navIcon = document.getElementById('navPullIcon');
+  if (navIcon) navIcon.classList.add('animate-spin');
 
-  try {
-    logActivity('رصد حضور جماعي', `قام ${uName} برصد الحصة ${sessionIdx + 1} (${targetMonth}) لمادة "${subject}" لـ ${savedCount} طالب بنجاح ومزامنتها على كافة الأجهزة`, '', '', {
-      subject,
-      monthOrSession: `${targetMonth} - ح${sessionIdx + 1}`,
-      value: `${savedCount} طالب`
-    });
-  } catch(e) {}
-
-  if (saveBtn) saveBtn.innerHTML = `<i data-lucide="check" class="w-4 h-4"></i> <span>تم الحفظ والمزامنة بنجاح ✅</span>`;
-  initIcons();
-
+  // 2. Perform state update asynchronously in requestAnimationFrame/setTimeout
   setTimeout(() => {
-    closeBulkSessionModal();
-    if (saveBtn) saveBtn.disabled = false;
-  }, 600);
+    let savedCount = 0;
+    const modifiedStudents = [];
+    const timeStamp = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }) + ' ' + new Date().toLocaleDateString('ar-EG');
 
-  showToast(`⚡ تم رصد الحصة ${sessionIdx + 1} (${targetMonth}) بنجاح لـ ${savedCount} طالب وجاري مزامنتها مع كل الأجهزة!`);
+    capturedEntries.forEach(entry => {
+      const student = allStudents.find(s => String(s.code).trim() === String(entry.code).trim());
+      if (!student) return;
+
+      setStudentSubjectMonthSession(student, subject, targetMonth, sessionIdx, entry.finalVal);
+
+      // Audit stamp
+      student.lastModifiedBy = uName;
+      student.lastAction = `رصد جماعي: ${subject} (${targetMonth} - حصة ${sessionIdx + 1}: ${entry.finalVal || 'فارغ'})`;
+      student.lastActionTime = timeStamp;
+
+      rebuildStudentSummaries(student);
+      saveStudentOverride(student);
+      modifiedStudents.push(student);
+      savedCount++;
+    });
+
+    // Dual Sync: Dispatch batch to Google Sheets + Railway Server for instant real-time sync across devices
+    if (modifiedStudents.length > 0) {
+      syncBulkStudentsToGoogleSheets(modifiedStudents);
+    }
+
+    renderAttendanceMatrix();
+    applyFilters();
+    updateKPIStats();
+
+    if (navIcon) navIcon.classList.remove('animate-spin');
+
+    try {
+      logActivity('رصد حضور جماعي', `قام ${uName} برصد الحصة ${sessionIdx + 1} (${targetMonth}) لمادة "${subject}" لـ ${savedCount} طالب بنجاح ومزامنتها على كافة الأجهزة`, '', '', {
+        subject,
+        monthOrSession: `${targetMonth} - ح${sessionIdx + 1}`,
+        value: `${savedCount} طالب`
+      });
+    } catch(e) {}
+
+    showToast(`✅ تم بنجاح حفظ ورصد الحصة ${sessionIdx + 1} (${targetMonth}) لـ ${savedCount} طالب وتعميمها على كافة الأجهزة!`);
+  }, 50);
 }
 
 function showToast(msg) {
