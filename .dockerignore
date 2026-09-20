@@ -1,0 +1,13 @@
+﻿.git
+.gitignore
+*.apk
+*.idsig
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+.idea
+.vscode
+temp
+Araij_App_Offline.html
