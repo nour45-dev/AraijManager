@@ -560,6 +560,8 @@ let currentSearchQuery = '';
 
 let currentUser = null;
 let activeReportStudent = null;
+let selectedStudentCodes = new Set();
+let bulkQueueCurrentIndex = 0;
 
 // ====================================================
 // PERFORMANCE UTILITIES
@@ -1587,6 +1589,7 @@ function renderStudents() {
   cardsContainer.innerHTML = visibleItems.map(st => createStudentCardHtml(st)).join('');
   tableBody.innerHTML = visibleItems.map(st => createStudentTableRowHtml(st)).join('');
   initIcons();
+  updateSelectionToolbarUI();
 }
 
 function loadMoreStudents() {
@@ -1618,6 +1621,7 @@ function toggleViewMode() {
 
 function createStudentCardHtml(student) {
   const m = student._metrics;
+  const isSelected = selectedStudentCodes.has(String(student.code));
   const gradeBadgeBg = student.grade === 'ث1' ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30' :
                        student.grade === 'ث2' ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30' :
                        'bg-amber-500/20 text-amber-300 border-amber-500/30';
@@ -1631,9 +1635,9 @@ function createStudentCardHtml(student) {
   const displayEvaluation = m.hasRecordedData ? m.gradeEvaluation : 'مسجل بالقاعدة';
 
   return `
-    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between space-y-4 hover:border-sky-500/50 transition-all border border-slate-200 shadow-md">
-      <div class="flex items-start justify-between gap-3 cursor-pointer" onclick="openStudentDetailModal('${student.code}')">
-        <div class="flex items-center gap-3">
+    <div class="glass-card rounded-3xl p-5 flex flex-col justify-between space-y-4 hover:border-sky-500/50 transition-all border ${isSelected ? 'border-emerald-500 ring-2 ring-emerald-500/30 bg-emerald-950/10' : 'border-slate-200'} shadow-md relative">
+      <div class="flex items-start justify-between gap-3">
+        <div class="flex items-center gap-3 cursor-pointer flex-1" onclick="openStudentDetailModal('${student.code}')">
           <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky-600 to-indigo-600 flex items-center justify-center text-white font-black text-base shadow border border-sky-400/30 shrink-0">
             ${(student.name || 'ط').charAt(0)}
           </div>
@@ -1648,9 +1652,14 @@ function createStudentCardHtml(student) {
           </div>
         </div>
 
-        <span class="text-[10px] font-bold px-2.5 py-1 rounded-full border ${gradeBadgeBg}">
-          ${student.grade || 'غير محدد'}
-        </span>
+        <div class="flex items-center gap-2 shrink-0">
+          <span class="text-[10px] font-bold px-2.5 py-1 rounded-full border ${gradeBadgeBg}">
+            ${student.grade || 'غير محدد'}
+          </span>
+          <label class="cursor-pointer p-1 rounded-lg hover:bg-slate-100 flex items-center justify-center" title="تحديد لإرسال واتساب جماعي" onclick="event.stopPropagation()">
+            <input type="checkbox" onchange="toggleSelectStudent('${student.code}', this.checked)" ${isSelected ? 'checked' : ''} class="w-5 h-5 rounded-lg text-emerald-600 focus:ring-emerald-500 bg-white border-slate-300 cursor-pointer">
+          </label>
+        </div>
       </div>
 
       <div class="bg-slate-50 rounded-2xl p-3 border border-slate-200 space-y-2.5 cursor-pointer" onclick="openStudentDetailModal('${student.code}')">
@@ -1750,13 +1759,17 @@ function createStudentCardHtml(student) {
 
 function createStudentTableRowHtml(student) {
   const m = student._metrics;
+  const isSelected = selectedStudentCodes.has(String(student.code));
   const evalColor = m.gradeEvaluation === 'ممتاز' ? 'text-purple-400' :
                     m.gradeEvaluation === 'جيد جدًا' ? 'text-emerald-400' :
                     m.gradeEvaluation === 'جيد' ? 'text-sky-400' :
                     m.gradeEvaluation === 'مقبول' ? 'text-amber-400' : 'text-rose-400';
 
   return `
-    <tr class="hover:bg-slate-50 transition-colors">
+    <tr class="hover:bg-slate-50 transition-colors ${isSelected ? 'bg-emerald-500/10' : ''}">
+      <td class="py-3 px-3 text-center">
+        <input type="checkbox" onchange="toggleSelectStudent('${student.code}', this.checked)" ${isSelected ? 'checked' : ''} class="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 bg-white border-slate-300 cursor-pointer">
+      </td>
       <td class="py-3 px-4 font-mono font-bold text-sky-700">#${student.code}</td>
       <td class="py-3 px-4 font-bold text-slate-900 cursor-pointer hover:text-sky-600" style="color: #0f172a !important;" onclick="openStudentDetailModal('${student.code}')">
         <div class="font-bold text-slate-900" style="color: #0f172a !important;">${student.name}</div>
@@ -4411,6 +4424,276 @@ function copyReportText() {
     });
   } else {
     prompt('انسخ نص التقرير:', message);
+  }
+}
+
+// ====================================================
+// BULK WHATSAPP MULTI-STUDENT DISPATCH SYSTEM
+// ====================================================
+
+function toggleSelectStudent(code, isChecked) {
+  const c = String(code).trim();
+  if (isChecked) {
+    selectedStudentCodes.add(c);
+  } else {
+    selectedStudentCodes.delete(c);
+  }
+  updateSelectionToolbarUI();
+  updateCardAndTableRowSelectState(c, isChecked);
+}
+
+function updateCardAndTableRowSelectState(code, isChecked) {
+  // Update checkbox inputs without full list re-render
+  document.querySelectorAll(`input[onchange*="toggleSelectStudent('${code}'"]`).forEach(input => {
+    input.checked = isChecked;
+  });
+}
+
+function toggleSelectAllFilteredStudents(forceState = null) {
+  if (filteredStudents.length === 0) return;
+  
+  // Determine new state
+  let shouldSelectAll;
+  if (forceState !== null) {
+    shouldSelectAll = forceState;
+  } else {
+    // If not all currently visible are selected, select all. Otherwise deselect all.
+    const allSelected = filteredStudents.every(s => selectedStudentCodes.has(String(s.code)));
+    shouldSelectAll = !allSelected;
+  }
+
+  filteredStudents.forEach(s => {
+    const c = String(s.code);
+    if (shouldSelectAll) {
+      selectedStudentCodes.add(c);
+    } else {
+      selectedStudentCodes.delete(c);
+    }
+  });
+
+  renderStudents();
+  updateSelectionToolbarUI();
+
+  if (shouldSelectAll) {
+    showToast(`تم تحديد ${filteredStudents.length} طالب لإرسال تقارير واتساب.`);
+  } else {
+    showToast('تم إلغاء تحديد الطلاب.');
+  }
+}
+
+function clearSelectedStudents() {
+  selectedStudentCodes.clear();
+  renderStudents();
+  updateSelectionToolbarUI();
+  showToast('تم مسح كافة التحديدات.');
+}
+
+function updateSelectionToolbarUI() {
+  const count = selectedStudentCodes.size;
+  const badge = document.getElementById('bulkSelectedCountBadge');
+  if (badge) badge.textContent = String(count);
+
+  const clearBtn = document.getElementById('btnClearSelection');
+  if (clearBtn) {
+    if (count > 0) clearBtn.classList.remove('hidden');
+    else clearBtn.classList.add('hidden');
+  }
+
+  const selectAllBtnText = document.getElementById('selectAllBtnText');
+  const chkTableAll = document.getElementById('chkTableSelectAll');
+  const allFilteredSelected = filteredStudents.length > 0 && filteredStudents.every(s => selectedStudentCodes.has(String(s.code)));
+
+  if (selectAllBtnText) {
+    selectAllBtnText.textContent = allFilteredSelected ? 'إلغاء تحديد الكل' : 'تحديد الكل';
+  }
+  if (chkTableAll) {
+    chkTableAll.checked = allFilteredSelected;
+  }
+}
+
+function openBulkWhatsAppModal() {
+  if (selectedStudentCodes.size === 0) {
+    // If none selected, offer to select all filtered students
+    if (filteredStudents.length > 0) {
+      const confirmSelectAll = confirm(`لم تقم بتحديد أي طالب بعد!\nهل تريد تحديد كافة الطلاب المعروضين حالياً وعددهم (${filteredStudents.length} طالب) لفتح نافذة إرسال تقارير واتساب؟`);
+      if (confirmSelectAll) {
+        toggleSelectAllFilteredStudents(true);
+      } else {
+        return;
+      }
+    } else {
+      alert('لا يوجد أي طالب معروض لتحديده حالياً!');
+      return;
+    }
+  }
+
+  bulkQueueCurrentIndex = 0;
+  const modal = document.getElementById('bulkWhatsAppModal');
+  if (modal) modal.classList.remove('hidden');
+
+  renderBulkWhatsAppQueue();
+  initIcons();
+}
+
+function closeBulkWhatsAppModal() {
+  const modal = document.getElementById('bulkWhatsAppModal');
+  if (modal) modal.classList.add('hidden');
+}
+
+function getSelectedStudentsList() {
+  return allStudents.filter(s => selectedStudentCodes.has(String(s.code)));
+}
+
+function renderBulkWhatsAppQueue() {
+  const container = document.getElementById('bulkQueueContainer');
+  const countBadge = document.getElementById('bulkModalCountBadge');
+  const progressText = document.getElementById('bulkSendProgressText');
+  const progressBar = document.getElementById('bulkSendProgressBar');
+  const btnNextText = document.getElementById('btnSendNextBulkText');
+
+  const selectedList = getSelectedStudentsList();
+  const total = selectedList.length;
+
+  if (countBadge) countBadge.textContent = String(total);
+  if (progressText) progressText.textContent = `${Math.min(bulkQueueCurrentIndex, total)} / ${total} تم إرساله`;
+  
+  const pct = total > 0 ? Math.round((Math.min(bulkQueueCurrentIndex, total) / total) * 100) : 0;
+  if (progressBar) progressBar.style.width = `${pct}%`;
+
+  if (btnNextText) {
+    if (bulkQueueCurrentIndex >= total) {
+      btnNextText.textContent = '🎉 تم إرسال كافة التقارير بنجاح!';
+    } else {
+      const nextSt = selectedList[bulkQueueCurrentIndex];
+      btnNextText.textContent = `إرسال تقرير (${nextSt?.name || 'التالي'}) عبر واتساب (${bulkQueueCurrentIndex + 1}/${total})`;
+    }
+  }
+
+  if (!container) return;
+
+  if (total === 0) {
+    container.innerHTML = '<div class="p-6 text-center text-slate-500">لا يوجد طلاب محددين.</div>';
+    return;
+  }
+
+  container.innerHTML = selectedList.map((st, idx) => {
+    const rawPhone = st.parentPhone || st.phone || '';
+    const hasPhone = Boolean(rawPhone.replace(/\D/g, ''));
+    const isSent = idx < bulkQueueCurrentIndex;
+    const isCurrent = idx === bulkQueueCurrentIndex;
+
+    const rowStatusBadge = isSent ? 
+      '<span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">تم الإرسال ✓</span>' :
+      isCurrent ?
+      '<span class="px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 font-bold border border-sky-500/30 animate-pulse">التالي ➔</span>' :
+      '<span class="px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 border border-slate-700">بالانتظار</span>';
+
+    return `
+      <div class="p-3 flex items-center justify-between gap-3 ${isCurrent ? 'bg-sky-950/20 border-r-4 border-sky-500' : 'hover:bg-slate-900'} transition-colors">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-xl ${isSent ? 'bg-emerald-600 text-white' : 'bg-slate-800 text-slate-300'} flex items-center justify-center font-bold text-xs shrink-0 font-mono">
+            ${idx + 1}
+          </div>
+          <div>
+            <div class="font-bold text-slate-100 flex items-center gap-1.5">
+              <span>${st.name}</span>
+              <span class="text-sky-400 font-mono text-[11px]">#${st.code}</span>
+              <span class="text-slate-400 text-[10px]">(${st.grade})</span>
+            </div>
+            <div class="flex items-center gap-2 text-[11px] text-slate-400">
+              <span class="font-mono text-emerald-400">${rawPhone || 'بدون هاتف مسجل'}</span>
+              <span>• نسبة الحضور: ${st._metrics?.attendanceRate || 0}%</span>
+              <span>• التقدير: ${st._metrics?.gradeEvaluation || '-'}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          ${rowStatusBadge}
+          <button type="button" onclick="sendBulkStudentWhatsApp('${st.code}', ${idx})" class="p-2 rounded-xl bg-emerald-600/30 hover:bg-emerald-600 text-emerald-300 hover:text-white transition-all" title="إرسال فوري لهذا الطالب">
+            <i data-lucide="send" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function sendBulkStudentWhatsApp(code, explicitIndex = null) {
+  const student = allStudents.find(s => s.code === code);
+  if (!student) return;
+
+  const rawPhone = student.parentPhone || student.phone || '';
+  let cleanPhone = rawPhone.replace(/\D/g, '');
+  if (cleanPhone.startsWith('0')) {
+    cleanPhone = '2' + cleanPhone;
+  } else if (!cleanPhone.startsWith('20') && cleanPhone.length === 10) {
+    cleanPhone = '20' + cleanPhone;
+  }
+
+  const message = buildWhatsAppReportMessage(student);
+  const encodedMsg = encodeURIComponent(message);
+
+  let waUrl = `https://wa.me/${cleanPhone}?text=${encodedMsg}`;
+  if (!cleanPhone) {
+    waUrl = `https://wa.me/?text=${encodedMsg}`;
+  }
+
+  logActivity('إرسال تقرير واتساب جماعي', `تم إرسال تقرير المتابعة للطالب "${student.name}" لرقم (${rawPhone || 'غير محدد'})`, student.code, student.name);
+
+  if (explicitIndex !== null && explicitIndex >= bulkQueueCurrentIndex) {
+    bulkQueueCurrentIndex = explicitIndex + 1;
+  }
+
+  window.open(waUrl, '_blank');
+  renderBulkWhatsAppQueue();
+  initIcons();
+  showToast(`تم فتح واتساب للطالب (${student.name}) بنجاح!`);
+}
+
+function sendNextBulkWhatsApp() {
+  const selectedList = getSelectedStudentsList();
+  if (selectedList.length === 0) {
+    alert('يرجى تحديد طلاب أولاً!');
+    return;
+  }
+
+  if (bulkQueueCurrentIndex >= selectedList.length) {
+    const restart = confirm('🎉 لقد تم إرسال التقارير لكافة الطلاب المحددين في هذه الدفعة!\nهل ترغب في البدء من جديد من أول القائمة؟');
+    if (restart) {
+      bulkQueueCurrentIndex = 0;
+      renderBulkWhatsAppQueue();
+      initIcons();
+    }
+    return;
+  }
+
+  const nextSt = selectedList[bulkQueueCurrentIndex];
+  sendBulkStudentWhatsApp(nextSt.code, bulkQueueCurrentIndex);
+}
+
+function copyAllSelectedReportsText() {
+  const selectedList = getSelectedStudentsList();
+  if (selectedList.length === 0) {
+    alert('لا يوجد طلاب محددين لنسخ تقاريرهم!');
+    return;
+  }
+
+  const fullText = selectedList.map((st, i) => {
+    return `=== [تقرير ${i + 1} من ${selectedList.length}] ===\n` + buildWhatsAppReportMessage(st) + `\n\n`;
+  }).join('─────────────────────────────\n\n');
+
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(fullText).then(() => {
+      const btn = document.getElementById('btnCopyAllText');
+      if (btn) {
+        btn.textContent = 'تم نسخ كل التقارير!';
+        setTimeout(() => { btn.textContent = 'نسخ كل التقارير دفعة واحدة'; }, 2500);
+      }
+      showToast(`تم نسخ تقارير ${selectedList.length} طالب بالكامل إلى الحافظة بنجاح!`);
+    });
+  } else {
+    prompt('انسخ جميع التقارير:', fullText);
   }
 }
 

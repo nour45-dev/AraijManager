@@ -1012,13 +1012,34 @@
               </div>
             </div>
 
-            <!-- View Mode & Results Count Bar -->
-            <div class="flex items-center justify-between pt-1 border-t border-slate-800/60 text-xs">
-              <button onclick="toggleViewMode()" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 font-semibold active:scale-95 transition-all">
-                <i id="viewModeIcon" data-lucide="layout-grid" class="w-3.5 h-3.5 text-sky-400"></i>
-                <span id="viewModeText">عرض البطاقات</span>
-              </button>
-              <span id="resultsCountText" class="text-sky-400 font-bold font-mono">عرض 0 من 0 طالب</span>
+            <!-- View Mode & Bulk WhatsApp Actions Bar -->
+            <div class="flex flex-wrap items-center justify-between gap-2.5 pt-2 border-t border-slate-800/60 text-xs">
+              <div class="flex items-center gap-2">
+                <button onclick="toggleViewMode()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 font-semibold active:scale-95 transition-all">
+                  <i id="viewModeIcon" data-lucide="layout-grid" class="w-3.5 h-3.5 text-sky-400"></i>
+                  <span id="viewModeText">عرض البطاقات</span>
+                </button>
+
+                <!-- Bulk Selection Checkbox Button -->
+                <button type="button" onclick="toggleSelectAllFilteredStudents()" id="btnToggleSelectAll" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 flex items-center gap-1.5 font-semibold active:scale-95 transition-all" title="تحديد أو إلغاء تحديد كافة الطلاب المعروضين">
+                  <i data-lucide="check-square" class="w-3.5 h-3.5 text-emerald-400"></i>
+                  <span id="selectAllBtnText">تحديد الكل</span>
+                </button>
+
+                <button type="button" onclick="clearSelectedStudents()" id="btnClearSelection" class="hidden px-2.5 py-1.5 rounded-xl bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 border border-rose-800/50 font-semibold active:scale-95 transition-all text-[11px]" title="إلغاء كل التحديدات">
+                  إلغاء التحديد
+                </button>
+              </div>
+
+              <div class="flex items-center gap-2.5">
+                <button type="button" onclick="openBulkWhatsAppModal()" id="btnBulkWhatsApp" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold flex items-center gap-1.5 shadow-md shadow-emerald-600/30 active:scale-95 transition-all cursor-pointer">
+                  <i data-lucide="send" class="w-3.5 h-3.5 text-emerald-100"></i>
+                  <span>إرسال تقارير واتساب للمحددين</span>
+                  <span id="bulkSelectedCountBadge" class="bg-emerald-950/60 text-emerald-200 text-[10px] px-2 py-0.5 rounded-full font-mono font-black border border-emerald-400/40">0</span>
+                </button>
+
+                <span id="resultsCountText" class="text-sky-400 font-bold font-mono">عرض 0 من 0 طالب</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1031,6 +1052,9 @@
             <table class="w-full text-right text-xs">
               <thead class="bg-slate-900/90 text-slate-400 font-bold border-b border-slate-800">
                 <tr>
+                  <th class="py-3.5 px-3 w-10 text-center">
+                    <input type="checkbox" id="chkTableSelectAll" onchange="toggleSelectAllFilteredStudents(this.checked)" class="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 bg-slate-800 border-slate-700 cursor-pointer">
+                  </th>
                   <th class="py-3.5 px-4">الكود</th>
                   <th class="py-3.5 px-4">اسم الطالب</th>
                   <th class="py-3.5 px-4">الصف</th>
@@ -2445,6 +2469,93 @@
           <i data-lucide="check" class="w-4 h-4"></i>
           <span>حفظ ومزامنة نتائج الكشف المصور في السنتر</span>
         </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- MODAL: BULK WHATSAPP DISPATCH -->
+  <!-- ============================================================ -->
+  <div id="bulkWhatsAppModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="relative w-full max-w-2xl bg-slate-900 rounded-3xl border border-emerald-500/30 shadow-2xl overflow-hidden my-6 max-h-[90vh] flex flex-col">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 bg-gradient-to-r from-slate-950 via-emerald-950 to-slate-950 border-b border-emerald-500/20 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
+            <i data-lucide="send" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <span>إرسال تقارير المتابعة عبر واتساب</span>
+              <span id="bulkModalCountBadge" class="bg-emerald-600 text-white text-xs px-2 py-0.5 rounded-full font-mono font-bold">0</span>
+            </h3>
+            <p class="text-xs text-emerald-400/80">إرسال تقرير المتابعة الأكاديمية والدرجات لأولياء الأمور</p>
+          </div>
+        </div>
+        <button onclick="closeBulkWhatsAppModal()" class="p-2 rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 overflow-y-auto space-y-5 flex-1 text-xs">
+
+        <!-- Tips & Guidance Card -->
+        <div class="p-3.5 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 flex items-start gap-3">
+          <i data-lucide="info" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
+          <div class="space-y-1 text-slate-300 leading-relaxed">
+            <p class="font-bold text-emerald-300">كيف تعمل خاصية الإرسال المتعدد لأولياء الأمور؟</p>
+            <p>سيقوم النظام بتجهيز التقرير الأكاديمي الشامل لكل طالب برقم ولي أمره. يمكنك النقر على <strong class="text-emerald-300">«إرسال التالي»</strong> لفتح محادثة واتساب المجهزة بنص التقرير مباشرة وتأكيد الإرسال بنقرة واحدة.</p>
+          </div>
+        </div>
+
+        <!-- Progress Bar & Active Counter -->
+        <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2.5">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-slate-400">حالة الإرسال:</span>
+            <span id="bulkSendProgressText" class="font-bold text-emerald-400 font-mono">0 / 0 تم إرساله</span>
+          </div>
+          <div class="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
+            <div id="bulkSendProgressBar" class="bg-gradient-to-r from-emerald-500 to-teal-400 h-2 rounded-full transition-all duration-300" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Selected Students Queue List -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-slate-200 flex items-center gap-1.5">
+              <i data-lucide="users" class="w-4 h-4 text-emerald-400"></i>
+              <span>قائمة الطلاب الجاهزين للإرسال:</span>
+            </h4>
+            <span class="text-[11px] text-slate-400">انقر على أي طالب للمعاينة أو الإرسال الفردي</span>
+          </div>
+
+          <div class="max-h-64 overflow-y-auto rounded-2xl border border-slate-800 divide-y divide-slate-800 bg-slate-950" id="bulkQueueContainer">
+            <!-- Dynamically populated rows -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-4 bg-slate-950 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs">
+        <button onclick="closeBulkWhatsAppModal()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold transition-colors">
+          إغلاق
+        </button>
+        
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="copyAllSelectedReportsText()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold flex items-center gap-2 border border-slate-700 active:scale-95 transition-all">
+            <i data-lucide="copy" class="w-4 h-4 text-sky-400"></i>
+            <span id="btnCopyAllText">نسخ كل التقارير دفعة واحدة</span>
+          </button>
+
+          <button type="button" onclick="sendNextBulkWhatsApp()" id="btnSendNextBulk" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold flex items-center gap-2 shadow-lg shadow-emerald-600/30 active:scale-95 transition-all">
+            <i data-lucide="send" class="w-4 h-4"></i>
+            <span id="btnSendNextBulkText">بدء إرسال التقارير (التالي)</span>
+          </button>
+        </div>
       </div>
 
     </div>
