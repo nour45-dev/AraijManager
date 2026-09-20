@@ -1,0 +1,2553 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>سنتر الأرائج التعليمي - Araij Manager Pro v2.0</title>
+  
+  <!-- Google Fonts: Cairo & Tajawal -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- PWA Manifest & Mobile App Meta Tags -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0284c7">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="سنتر الأرائج التعليمي">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+  
+  <!-- Tailwind CSS Engine (100% Offline Local Copy) -->
+  <script src="tailwind.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif'],
+            tajawal: ['Tajawal', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0284c7',
+              600: '#0369a1',
+              700: '#075985',
+              800: '#0c4a6e',
+              900: '#082f49',
+              emerald: '#10b981',
+              gold: '#f59e0b',
+              ruby: '#ef4444'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- ===== INSTANT AUTHENTICATION & CACHE PURGE ENGINE ===== -->
+  <script>
+    // Automatically purge old offline caches when updated
+    try {
+      if ('caches' in window) {
+        caches.keys().then(function(keys) {
+          keys.forEach(function(k) {
+            if (k !== 'araij-manager-v3.5') {
+              console.log('[PWA] Purging outdated cache:', k);
+              caches.delete(k);
+            }
+          });
+        });
+      }
+    } catch(e) {}
+
+    var APPROVED_ACCOUNTS = [
+      { name: "م. وفاء ناصر",  phone: "01040581954", password: "0123",   role: "المدير العام (أدمن)" },
+      { name: "م. وفاء ناصر",  phone: "01002169889", password: "0123",   role: "المدير العام (أدمن)" },
+      { name: "منار ناصر",     phone: "01006825206", password: "010068", role: "مشرف" },
+      { name: "Asmaa Hamed",   phone: "01205726935", password: "01205",  role: "مشرف" },
+      { name: "كريمة",         phone: "01096029369", password: "01096",  role: "مشرف" },
+      { name: "نادية",         phone: "01275820862", password: "01275",  role: "مشرف" }
+    ];
+
+    function convertDigits(s) {
+      if (!s && s !== 0) return "";
+      return s.toString().trim()
+        .replace(/[\u0660\u06F0]/g, '0')
+        .replace(/[\u0661\u06F1]/g, '1')
+        .replace(/[\u0662\u06F2]/g, '2')
+        .replace(/[\u0663\u06F3]/g, '3')
+        .replace(/[\u0664\u06F4]/g, '4')
+        .replace(/[\u0665\u06F5]/g, '5')
+        .replace(/[\u0666\u06F6]/g, '6')
+        .replace(/[\u0667\u06F7]/g, '7')
+        .replace(/[\u0668\u06F8]/g, '8')
+        .replace(/[\u0669\u06F9]/g, '9');
+    }
+
+    function handleLogin(e) {
+      if (e && e.preventDefault) e.preventDefault();
+      var phoneEl = document.getElementById('loginPhone');
+      var passEl  = document.getElementById('loginPassword');
+      var errEl   = document.getElementById('loginErrorMsg');
+
+      var rawPhone = phoneEl ? phoneEl.value : '';
+      var rawPass  = passEl  ? passEl.value  : '';
+
+      var cleanPhone = convertDigits(rawPhone).replace(/\D/g, '');
+      var cleanPass  = convertDigits(rawPass).trim();
+
+      if (!cleanPass) {
+        if (errEl) {
+          errEl.textContent = 'يرجى كتابة كلمة المرور الخاصة بحسابك!';
+          errEl.classList.remove('hidden');
+        }
+        return false;
+      }
+
+      var found = null;
+      for (var i = 0; i < APPROVED_ACCOUNTS.length; i++) {
+        var acc = APPROVED_ACCOUNTS[i];
+        var accPhone = acc.phone.replace(/\D/g, '');
+        if (acc.password.trim() !== cleanPass) continue;
+
+        if (cleanPhone.length === 0) {
+          found = acc;
+          break;
+        }
+
+        var minL = Math.min(cleanPhone.length, 8);
+        if (accPhone === cleanPhone || accPhone.slice(-minL) === cleanPhone.slice(-minL) || cleanPhone.slice(-minL) === accPhone.slice(-minL)) {
+          found = acc;
+          break;
+        }
+      }
+
+      if (!found) {
+        var byPass = APPROVED_ACCOUNTS.filter(function(a) { return a.password.trim() === cleanPass; });
+        if (byPass.length === 1) {
+          found = byPass[0];
+        } else if (byPass.length > 1) {
+          found = byPass[0];
+        }
+      }
+
+      if (found) {
+        window.currentUser = { name: found.name, phone: found.phone, role: found.role };
+        try { localStorage.setItem('araij_session', JSON.stringify(window.currentUser)); } catch (e) {}
+
+        var ls = document.getElementById('loginScreen');
+        var ac = document.getElementById('appContainer');
+        if (ls) {
+          ls.style.setProperty('display', 'none', 'important');
+          ls.classList.add('hidden');
+        }
+        if (ac) {
+          ac.style.removeProperty('display');
+          ac.style.display = 'flex';
+          ac.classList.remove('hidden');
+        }
+
+        var un = document.getElementById('headerUserName');
+        var ur = document.getElementById('headerUserRole');
+        if (un) un.textContent = window.currentUser.name;
+        if (ur) ur.textContent = window.currentUser.role + ' (' + window.currentUser.phone + ')';
+        if (errEl) errEl.classList.add('hidden');
+
+        try { if (typeof applyRolePermissions === 'function') applyRolePermissions(); } catch (e) {}
+        try { if (typeof initData === 'function') initData(); } catch (e) {}
+        try { if (typeof applyFilters === 'function') applyFilters(); } catch (e) {}
+        try { if (typeof updateKPIStats === 'function') updateKPIStats(); } catch (e) {}
+        try { if (typeof renderAttendanceMatrix === 'function') renderAttendanceMatrix(); } catch (e) {}
+        try { if (typeof fetchLatestStudentsFromCentralServer === 'function') fetchLatestStudentsFromCentralServer(true); } catch(e) {}
+        try { if (typeof logActivity === 'function') logActivity('تسجيل الدخول', 'تم تسجيل الدخول بواسطة ' + window.currentUser.name); } catch (e) {}
+        try { if (typeof showToast === 'function') showToast('مرحباً بك ' + window.currentUser.name + '! تم الدخول بنجاح.'); } catch (e) {}
+        return false;
+      } else {
+        if (errEl) {
+          errEl.textContent = 'رقم الموبايل أو كلمة المرور غير صحيحة. يرجى التأكد من البيانات.';
+          errEl.classList.remove('hidden');
+        }
+        return false;
+      }
+    }
+
+    function checkAuth() {
+      var ls = document.getElementById('loginScreen');
+      var ac = document.getElementById('appContainer');
+      var session = null;
+      try { session = localStorage.getItem('araij_session'); } catch (e) {}
+
+      if (session) {
+        try {
+          window.currentUser = JSON.parse(session);
+          if (window.currentUser && window.currentUser.name) {
+            if (ls) {
+              ls.style.setProperty('display', 'none', 'important');
+              ls.classList.add('hidden');
+            }
+            if (ac) {
+              ac.style.removeProperty('display');
+              ac.style.display = 'flex';
+              ac.classList.remove('hidden');
+            }
+            var un = document.getElementById('headerUserName');
+            var ur = document.getElementById('headerUserRole');
+            if (un) un.textContent = window.currentUser.name;
+            if (ur) ur.textContent = window.currentUser.role + ' (' + window.currentUser.phone + ')';
+            try { if (typeof applyRolePermissions === 'function') applyRolePermissions(); } catch (e) {}
+            try { if (typeof initData === 'function') initData(); } catch (e) {}
+            try { if (typeof applyFilters === 'function') applyFilters(); } catch (e) {}
+            try { if (typeof updateKPIStats === 'function') updateKPIStats(); } catch (e) {}
+            try { if (typeof renderAttendanceMatrix === 'function') renderAttendanceMatrix(); } catch (e) {}
+            try { if (typeof fetchLatestStudentsFromCentralServer === 'function') fetchLatestStudentsFromCentralServer(true); } catch(e) {}
+            return;
+          }
+        } catch (e) {}
+      }
+
+      // Not authenticated: strictly show login and hide appContainer
+      if (ls) {
+        ls.style.removeProperty('display');
+        ls.style.display = 'flex';
+        ls.classList.remove('hidden');
+      }
+      if (ac) {
+        ac.style.setProperty('display', 'none', 'important');
+        ac.classList.add('hidden');
+      }
+    }
+
+    function handleLogout() {
+      try { localStorage.removeItem('araij_session'); } catch (e) {}
+      window.currentUser = null;
+      var ls = document.getElementById('loginScreen');
+      var ac = document.getElementById('appContainer');
+      if (ls) {
+        ls.style.removeProperty('display');
+        ls.style.display = 'flex';
+        ls.classList.remove('hidden');
+      }
+      if (ac) {
+        ac.style.setProperty('display', 'none', 'important');
+        ac.classList.add('hidden');
+      }
+      var p = document.getElementById('loginPhone');
+      var w = document.getElementById('loginPassword');
+      if (p) p.value = '';
+      if (w) w.value = '';
+      var errEl = document.getElementById('loginErrorMsg');
+      if (errEl) errEl.classList.add('hidden');
+    }
+
+    // Run auth check as early as possible
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', checkAuth);
+    } else {
+      checkAuth();
+    }
+
+    window.checkAuth = checkAuth;
+    window.handleLogin = handleLogin;
+    window._doLogin = handleLogin;
+    window.handleLogout = handleLogout;
+    window._doLogout = handleLogout;
+
+    window.handleLogin = handleLogin;
+    window._doLogin = handleLogin;
+    window.handleLogout = handleLogout;
+    window._doLogout = handleLogout;
+  </script>
+
+  <!-- Local Offline Libraries (Lucide Icons, Chart.js, html2pdf) -->
+  <script src="lucide.min.js"></script>
+  <script src="chart.min.js"></script>
+  <script src="html2pdf.bundle.min.js"></script>
+
+  <style>
+    /* 100% Offline Local Cairo Font Definitions */
+    @font-face {
+      font-family: 'Cairo';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('cairo-regular.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Cairo';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('cairo-semibold.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Cairo';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url('cairo-bold.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Cairo';
+      font-style: normal;
+      font-weight: 800;
+      font-display: swap;
+      src: url('cairo-bold.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'Cairo';
+      font-style: normal;
+      font-weight: 900;
+      font-display: swap;
+      src: url('cairo-bold.ttf') format('truetype');
+    }
+
+    *, html, body, button, input, select, textarea {
+      font-family: 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    }
+
+    body {
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    
+    ::-webkit-scrollbar { width: 7px; height: 7px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.94) !important;
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(226, 232, 240, 0.9) !important;
+      box-shadow: 0 4px 15px -2px rgba(0, 0, 0, 0.04) !important;
+    }
+
+    .glass-card {
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05) !important;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(2, 132, 199, 0.4) !important;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    .active-nav-btn {
+      background: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%) !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+    }
+
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+      width: 100% !important;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #appContainer, #loginScreen, main, nav, header {
+      max-width: 100vw !important;
+      box-sizing: border-box;
+    }
+
+    /* Active bottom nav indicator */
+    .mobile-nav-btn.active {
+      color: #0284c7 !important;
+    }
+    .mobile-nav-btn.active .nav-icon-wrapper {
+      background: rgba(2, 132, 199, 0.12) !important;
+      border-color: rgba(2, 132, 199, 0.3) !important;
+      transform: translateY(-2px);
+    }
+
+    /* ========================================================= */
+    /* MODERN WHITE / LIGHT THEME ENGINE (PRESERVING ACCENT COLORS) */
+    /* ========================================================= */
+    .bg-slate-950,
+    .bg-slate-950\/95,
+    .bg-slate-950\/90,
+    .bg-slate-950\/80,
+    .bg-slate-950\/70,
+    .bg-slate-950\/60,
+    .bg-slate-900,
+    .bg-slate-900\/95,
+    .bg-slate-900\/90,
+    .bg-slate-900\/80,
+    .bg-slate-900\/70,
+    .bg-slate-900\/60,
+    .bg-slate-900\/50,
+    .bg-slate-900\/40 {
+      background-color: #ffffff !important;
+    }
+
+    .bg-slate-850,
+    .bg-slate-800,
+    .bg-slate-800\/90,
+    .bg-slate-800\/80,
+    .bg-slate-800\/70,
+    .bg-slate-800\/60,
+    .bg-slate-800\/50,
+    .bg-slate-800\/40,
+    .bg-slate-800\/30,
+    .bg-slate-800\/20 {
+      background-color: #f8fafc !important;
+    }
+
+    .hover\:bg-slate-800:hover,
+    .hover\:bg-slate-800\/60:hover,
+    .hover\:bg-slate-800\/50:hover,
+    .hover\:bg-slate-800\/40:hover,
+    .hover\:bg-slate-700:hover {
+      background-color: #f1f5f9 !important;
+    }
+
+    .border-slate-800,
+    .border-slate-800\/80,
+    .border-slate-800\/60,
+    .border-slate-700,
+    .border-slate-700\/80,
+    .border-slate-700\/60,
+    .border-slate-600 {
+      border-color: #e2e8f0 !important;
+    }
+
+    .divide-slate-800 > :not([hidden]) ~ :not([hidden]),
+    .divide-slate-700 > :not([hidden]) ~ :not([hidden]) {
+      border-color: #e2e8f0 !important;
+    }
+
+    /* Text on Light Surfaces */
+    .text-slate-100,
+    .text-slate-200 {
+      color: #0f172a !important;
+    }
+    .text-slate-300 {
+      color: #334155 !important;
+    }
+    .text-slate-400 {
+      color: #64748b !important;
+    }
+    .text-slate-500 {
+      color: #94a3b8 !important;
+    }
+
+    /* Preserve white text on buttons, badges, gradients, and nav */
+    /* Primary Typography on Light Surfaces */
+    h1, h2, h3, h4, h5, h6, 
+    th, td, p, label, 
+    .text-white {
+      color: #0f172a;
+    }
+
+    #statTotalStudents {
+      color: #0284c7 !important;
+    }
+
+    .glass-card, .glass-panel, table, tbody tr td {
+      color: #0f172a !important;
+    }
+    .glass-card h2, .glass-card h3, .glass-card h4, 
+    .glass-panel h2, .glass-panel h3, .glass-panel h4 {
+      color: #0f172a !important;
+    }
+
+    /* Buttons with solid dark or gradient backgrounds keep crisp white text & icons */
+    button.bg-sky-600, button.bg-sky-600 *,
+    button.bg-sky-500, button.bg-sky-500 *,
+    button.bg-emerald-600, button.bg-emerald-600 *,
+    button.bg-emerald-500, button.bg-emerald-500 *,
+    button.bg-rose-600, button.bg-rose-600 *,
+    button.bg-rose-500, button.bg-rose-500 *,
+    button.bg-indigo-600, button.bg-indigo-600 *,
+    button.bg-teal-600, button.bg-teal-600 *,
+    button.bg-purple-600, button.bg-purple-600 *,
+    button.bg-amber-600, button.bg-amber-600 *,
+    .active-nav-btn, .active-nav-btn *,
+    a[class*="bg-gradient-"], a[class*="bg-gradient-"] *,
+    button[class*="bg-gradient-"], button[class*="bg-gradient-"] * {
+      color: #ffffff !important;
+    }
+    button.bg-sky-600 svg, button.bg-emerald-600 svg, button.bg-rose-600 svg,
+    button[class*="bg-gradient-"] svg, a[class*="bg-gradient-"] svg, .active-nav-btn svg {
+      stroke: #ffffff !important;
+    }
+
+    /* Mobile Bottom Navigation Bar: crystal clear icons & labels */
+    nav.fixed.bottom-0 {
+      background: #ffffff !important;
+      border-top: 1px solid #e2e8f0 !important;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08) !important;
+      z-index: 50 !important;
+    }
+    .mobile-nav-btn {
+      color: #64748b !important;
+      background: transparent !important;
+    }
+    .mobile-nav-btn span {
+      color: #64748b !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+    }
+    .mobile-nav-btn svg {
+      stroke: #64748b !important;
+      width: 22px !important;
+      height: 22px !important;
+    }
+    .mobile-nav-btn .nav-icon-wrapper {
+      padding: 5px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    .mobile-nav-btn.active,
+    .mobile-nav-btn.active span {
+      color: #0284c7 !important;
+      font-weight: 800 !important;
+    }
+    .mobile-nav-btn.active svg {
+      stroke: #0284c7 !important;
+    }
+    .mobile-nav-btn.active .nav-icon-wrapper {
+      background-color: #e0f2fe !important;
+      border: 1px solid #bae6fd !important;
+      transform: translateY(-2px);
+    }
+
+    /* Header Light Action Buttons: perfectly visible text & stroke */
+    header button.bg-teal-50, 
+    header button.bg-teal-50 * {
+      color: #0f766e !important;
+    }
+    header button.bg-teal-50 svg {
+      stroke: #0f766e !important;
+    }
+    header button.bg-indigo-50, 
+    header button.bg-indigo-50 * {
+      color: #4338ca !important;
+    }
+    header button.bg-indigo-50 svg {
+      stroke: #4338ca !important;
+    }
+    header button.bg-rose-50, 
+    header button.bg-rose-50 * {
+      color: #e11d48 !important;
+    }
+    header button.bg-rose-50 svg {
+      stroke: #e11d48 !important;
+    }
+    header button#btnPwaInstall,
+    header button#btnPwaInstall * {
+      color: #ffffff !important;
+    }
+    header button#btnPwaInstall svg {
+      stroke: #ffffff !important;
+    }
+
+    /* Desktop Navigation Tabs */
+    nav .nav-btn:not(.active-nav-btn) {
+      color: #475569 !important;
+    }
+    nav .nav-btn:not(.active-nav-btn) svg {
+      stroke: #475569 !important;
+    }
+    nav .nav-btn.active-nav-btn {
+      color: #ffffff !important;
+    }
+    nav .nav-btn.active-nav-btn svg {
+      stroke: #ffffff !important;
+    }
+
+    /* Rich Vivid Text Colors for High Contrast on White */
+    .text-sky-400 { color: #0284c7 !important; }
+    .text-sky-300 { color: #0369a1 !important; }
+    .text-emerald-400 { color: #059669 !important; }
+    .text-emerald-300 { color: #047857 !important; }
+    .text-amber-400 { color: #d97706 !important; }
+    .text-amber-300 { color: #b45309 !important; }
+    .text-rose-400 { color: #e11d48 !important; }
+    .text-rose-300 { color: #be123c !important; }
+    .text-indigo-400 { color: #4f46e5 !important; }
+    .text-indigo-300 { color: #4338ca !important; }
+    .text-teal-400 { color: #0d9488 !important; }
+    .text-teal-300 { color: #0f766e !important; }
+    .text-purple-400 { color: #9333ea !important; }
+    .text-purple-300 { color: #7e22ce !important; }
+
+    /* Inputs, Selects, and Textareas */
+    input:not([type="checkbox"]):not([type="radio"]), 
+    select, 
+    textarea {
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+      border-color: #cbd5e1 !important;
+    }
+    input::placeholder, textarea::placeholder {
+      color: #94a3b8 !important;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #0284c7 !important;
+      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2) !important;
+    }
+
+    /* Modals Backdrop & Container */
+    .bg-slate-950\/95,
+    .bg-black\/85,
+    .bg-black\/80,
+    .bg-black\/75 {
+      background-color: rgba(15, 23, 42, 0.55) !important;
+    }
+
+    /* Dashboard Welcome Banner */
+    #tabContent_dashboard .glass-panel.bg-gradient-to-r {
+      background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 50%, #f5f3ff 100%) !important;
+      border-color: #bae6fd !important;
+    }
+
+    /* Print Styles */
+    @media print {
+      body { background: #fff !important; color: #000 !important; }
+      body * { visibility: hidden !important; }
+      #printableArea, #printableArea *,
+      #studentPrintCardArea, #studentPrintCardArea * {
+        visibility: visible !important;
+      }
+      #printableArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        color: #000 !important;
+        background: #fff !important;
+        padding: 15px;
+      }
+      #parentReportModal {
+        position: fixed !important;
+        inset: 0 !important;
+        background: #fff !important;
+        display: block !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        z-index: 999999 !important;
+      }
+      #parentReportModal > div {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        background: #fff !important;
+      }
+      #studentPrintCardArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: #fff !important;
+        color: #000 !important;
+        padding: 20px;
+        border: none !important;
+      }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-sky-500 selection:text-white bg-slate-50 text-slate-900 overflow-x-hidden w-full max-w-full">
+
+  <!-- ============================================================ -->
+  <!-- 1. LOGIN SCREEN OVERLAY (AUTHENTICATION) -->
+  <!-- ============================================================ -->
+  <div id="loginScreen" class="fixed inset-0 z-[100] bg-slate-900/50 backdrop-blur-xl flex items-center justify-center p-4 overflow-y-auto w-full max-w-full">
+    <div class="relative w-full max-w-sm sm:max-w-md mx-auto bg-white rounded-3xl border border-slate-200 shadow-2xl p-6 sm:p-8 space-y-6 my-auto">
+      
+      <!-- Logo & Title -->
+      <div class="text-center space-y-2">
+        <div class="w-20 h-20 rounded-3xl overflow-hidden bg-white shadow-xl shadow-sky-500/15 mx-auto ring-4 ring-sky-400/20 p-1 flex items-center justify-center">
+          <img src="logo.png" alt="سنتر الأرائج التعليمي" class="w-full h-full object-contain">
+        </div>
+        <h2 class="text-2xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-indigo-600 to-teal-600">
+          سنتر الأرائج التعليمي
+        </h2>
+        <p class="text-xs text-slate-500 font-medium">بوابة الدخول الإدارية والأكاديمية الموحدة</p>
+      </div>
+
+      <!-- Login Form -->
+      <div class="space-y-4 text-xs">
+        
+        <div>
+          <label class="block text-slate-700 font-bold mb-1.5 flex items-center gap-1.5">
+            <i data-lucide="phone" class="w-3.5 h-3.5 text-emerald-600"></i> رقم الموبايل
+          </label>
+          <input 
+            type="tel" 
+            id="loginPhone" 
+            placeholder="01xxxxxxxxx"
+            autocomplete="tel"
+            onkeydown="if(event.key==='Enter') handleLogin()"
+            class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-3 text-slate-900 font-mono placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
+          >
+        </div>
+
+        <div>
+          <label class="block text-slate-700 font-bold mb-1.5 flex items-center gap-1.5">
+            <i data-lucide="lock" class="w-3.5 h-3.5 text-amber-600"></i> كلمة المرور
+          </label>
+          <input 
+            type="password" 
+            id="loginPassword" 
+            placeholder="••••"
+            autocomplete="current-password"
+            onkeydown="if(event.key==='Enter') handleLogin()"
+            class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-3 text-slate-900 font-mono placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
+          >
+        </div>
+
+        <div id="loginErrorMsg" class="hidden p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 text-xs font-bold text-center">
+          رقم الموبايل أو كلمة المرور غير صحيحة.
+        </div>
+
+        <button 
+          type="button"
+          onclick="handleLogin()"
+          class="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-500 via-indigo-600 to-sky-600 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-sky-600/30 transition-all flex items-center justify-center gap-2 active:scale-95 cursor-pointer"
+        >
+          <i data-lucide="log-in" class="w-4 h-4"></i>
+          <span>تسجيل الدخول</span>
+        </button>
+
+        <!-- Android APK Download -->
+        <div class="pt-3 border-t border-slate-200 space-y-2 text-center">
+          <a 
+            href="Araij_Center.apk" 
+            download="Araij_Center.apk"
+            class="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-xs shadow-lg shadow-emerald-600/30 transition-all flex items-center justify-center gap-2 active:scale-95"
+          >
+            <i data-lucide="smartphone" class="w-4 h-4 text-emerald-100"></i>
+            <span>تنزيل تطبيق أندرويد الرسمي (Araij_Center.apk) 📲</span>
+          </a>
+          <p class="text-[10px] text-emerald-700 font-semibold">تطبيق أندرويد حقيقي يثبت على هاتفك مع أيقونة مستقلة ويعمل بدون إنترنت 100%</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ============================================================ -->
+  <!-- MAIN APP WRAPPER (SHOWN AFTER AUTH) -->
+  <!-- ============================================================ -->
+  <div id="appContainer" class="hidden min-h-screen flex flex-col" style="display: none;">
+    
+    <!-- TOP NAVBAR -->
+    <header class="sticky top-0 z-40 glass-panel border-b border-slate-200 bg-white/95">
+      <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
+        
+        <!-- Brand Logo & Title -->
+        <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+          <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl overflow-hidden bg-white flex items-center justify-center shadow-lg shadow-sky-500/15 ring-2 ring-sky-400/20 p-0.5 shrink-0">
+            <img src="logo.png" alt="سنتر الأرائج التعليمي" class="w-full h-full object-contain">
+          </div>
+          <div class="min-w-0">
+            <div class="flex items-center gap-1.5 sm:gap-2">
+              <h1 class="text-sm sm:text-lg md:text-xl font-black tracking-tight text-sky-800 truncate" style="color: #0369a1 !important;">
+                سنتر الأرائج التعليمي
+              </h1>
+              <span class="hidden sm:inline-block text-[10px] font-bold px-2 py-0.5 rounded-full bg-sky-50 text-sky-700 border border-sky-200 shrink-0">PRO v2</span>
+            </div>
+            <p class="text-[11px] text-slate-500 font-medium hidden md:block truncate">لإعداد الأوائل • نظام المتابعة والتسجيل وكشوف الحضور</p>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs (Desktop / Tablet) -->
+        <nav class="hidden md:flex items-center gap-1 bg-slate-100 p-1.5 rounded-2xl border border-slate-200">
+          <button onclick="switchTab('dashboard')" id="nav_dashboard" class="nav-btn active-nav-btn px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5">
+            <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+            <span>الرئيسية</span>
+          </button>
+          <button onclick="switchTab('students')" id="nav_students" class="nav-btn text-slate-600 hover:text-slate-900 px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5">
+            <i data-lucide="users" class="w-4 h-4"></i>
+            <span>الطلاب والبحث</span>
+          </button>
+          <button onclick="switchTab('attendance_matrix')" id="nav_attendance_matrix" class="nav-btn text-slate-600 hover:text-slate-900 px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5">
+            <i data-lucide="calendar-check" class="w-4 h-4 text-emerald-600"></i>
+            <span>رصد الحضور</span>
+          </button>
+          <button onclick="switchTab('register')" id="nav_register" class="nav-btn text-slate-600 hover:text-slate-900 px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5">
+            <i data-lucide="user-plus" class="w-4 h-4 text-sky-600"></i>
+            <span>تسجيل طالب</span>
+          </button>
+          <button onclick="switchTab('pdf_reports')" id="nav_pdf_reports" class="nav-btn text-slate-600 hover:text-slate-900 px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5">
+            <i data-lucide="file-text" class="w-4 h-4 text-amber-600"></i>
+            <span>تقارير PDF</span>
+          </button>
+          <button onclick="switchTab('users_mgmt')" id="nav_users_mgmt" class="nav-btn text-slate-600 hover:text-slate-900 px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5">
+            <i data-lucide="shield-check" class="w-4 h-4 text-indigo-600"></i>
+            <span>المستخدمين</span>
+          </button>
+        </nav>
+
+        <!-- Current User Info & Action Buttons -->
+        <div class="flex items-center gap-1 sm:gap-1.5 md:gap-2 shrink-0">
+          <!-- Instant Central Universal Sync Button (Real-time update) -->
+          <button onclick="triggerUniversalSync(false)" class="p-2 sm:px-3 sm:py-2 rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-700 border border-teal-200 text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95" title="مزامنة وتحديث البيانات لحظياً بين كافة الأجهزة والسحابة">
+            <i data-lucide="refresh-cw" class="w-3.5 h-3.5" id="navPullIcon"></i>
+            <span class="hidden xl:inline">مزامنة فورية 🔄</span>
+          </button>
+
+          <!-- PWA Install App Button -->
+          <button onclick="installPWAApp()" id="btnPwaInstall" class="p-2 sm:px-3 sm:py-2 rounded-xl bg-gradient-to-r from-sky-600 via-indigo-600 to-purple-600 hover:from-sky-500 hover:to-indigo-500 text-white shadow-lg shadow-indigo-600/20 text-xs font-bold transition-all flex items-center gap-1 active:scale-95 animate-pulse" title="تثبيت التطبيق على الموبايل">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            <span class="hidden 2xl:inline">تثبيت 📲</span>
+          </button>
+
+          <!-- Camera scan button -->
+          <button onclick="openCameraScanModal()" class="p-2 sm:px-3 sm:py-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95" title="تصوير ومسح كشف الحضور بالكاميرا">
+            <i data-lucide="camera" class="w-3.5 h-3.5 text-amber-600"></i>
+            <span class="hidden 2xl:inline">مسح بالكاميرا</span>
+          </button>
+
+          <!-- Railway Live Sync button -->
+          <button onclick="openSheetsSyncModal()" class="p-2 sm:px-3 sm:py-2 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer" title="حالة الربط المباشر اللحظي عبر ريلوي (Railway Live Sync)">
+            <span id="railwayStatusDot" class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span id="railwayStatusBadgeText" class="hidden 2xl:inline">ريلوي متصل ⚡</span>
+          </button>
+
+          <!-- Sheets button -->
+          <button onclick="openSheetsSyncModal()" class="p-2 sm:px-3 sm:py-2 rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-700 border border-teal-200 text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95" title="إعدادات الربط المباشر مع Google Sheets">
+            <i data-lucide="link-2" class="w-3.5 h-3.5"></i>
+            <span id="sheetsStatusBadgeText" class="hidden 2xl:inline">ربط Google Sheets</span>
+            <span id="sheetsStatusDot" class="w-2 h-2 rounded-full bg-amber-500"></span>
+          </button>
+
+          <div class="text-left hidden lg:block">
+            <div id="headerUserName" class="text-xs font-bold text-slate-800">م. وفاء</div>
+            <div id="headerUserRole" class="text-[10px] text-sky-600 font-bold">المدير العام</div>
+          </div>
+
+          <button onclick="handleLogout()" class="p-2 sm:p-2.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 text-xs font-bold transition-all flex items-center gap-1 active:scale-95" title="تسجيل الخروج">
+            <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+            <span class="hidden sm:inline">خروج</span>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- MAIN BODY -->
+    <main class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 mt-4 sm:mt-6 flex-1 w-full pb-32 md:pb-12">
+
+      <!-- ============================================================ -->
+      <!-- TAB 1: DASHBOARD -->
+      <!-- ============================================================ -->
+      <section id="tabContent_dashboard" class="space-y-6">
+        
+        <!-- Welcome Hero Banner -->
+        <div class="glass-panel p-6 rounded-3xl relative overflow-hidden bg-gradient-to-r from-sky-50 via-white to-indigo-50 border border-sky-100">
+          <div class="relative z-10 space-y-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-100 text-sky-800 border border-sky-200 text-xs font-bold">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-sky-600"></i> لوحة التحكم والبيانات الحية
+            </div>
+            <h2 class="text-xl sm:text-2xl font-black text-slate-900" style="color: #0f172a !important;">
+              مرحباً بك في منصة سنتر الأرائج التعليمي
+            </h2>
+            <p class="text-xs max-w-2xl" style="color: #334155 !important; font-weight: 600; line-height: 1.6;">
+              إدارة شاملة لبيانات الطلاب ودرجات الامتحانات وسجلات الحضور والغياب، مع إمكانية إصدار كشوف وتقارير PDF رسمية وإرسال تقارير أولياء الأمور عبر واتساب بنقرة واحدة.
+            </p>
+          </div>
+        </div>
+
+        <!-- KPI STATS CARDS -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Total Students -->
+          <div class="glass-card p-5 rounded-2xl relative overflow-hidden group">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-slate-500">إجمالي الطلاب</span>
+              <div class="p-2.5 rounded-xl bg-sky-50 text-sky-600"><i data-lucide="users" class="w-5 h-5"></i></div>
+            </div>
+            <div class="text-3xl font-black text-sky-600 font-mono" id="statTotalStudents" style="color: #0284c7 !important;">0</div>
+            <div class="text-xs text-sky-600 font-bold mt-1">طالب مقيد بالقاعدة</div>
+          </div>
+
+          <!-- Grade 1 -->
+          <div class="glass-card p-5 rounded-2xl relative overflow-hidden group cursor-pointer hover:border-emerald-500/50 transition-all" onclick="switchTab('students'); setGradeFilter('ث1');">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-slate-400">أولى ثانوي (ث1)</span>
+              <div class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400"><i data-lucide="book-open" class="w-5 h-5"></i></div>
+            </div>
+            <div class="text-3xl font-black text-emerald-400" id="statGrade1">0</div>
+            <div class="text-xs text-slate-400 font-medium mt-1">كود 1000+</div>
+          </div>
+
+          <!-- Grade 2 -->
+          <div class="glass-card p-5 rounded-2xl relative overflow-hidden group cursor-pointer hover:border-indigo-500/50 transition-all" onclick="switchTab('students'); setGradeFilter('ث2');">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-slate-400">ثانية ثانوي (ث2)</span>
+              <div class="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400"><i data-lucide="layers" class="w-5 h-5"></i></div>
+            </div>
+            <div class="text-3xl font-black text-indigo-400" id="statGrade2">0</div>
+            <div class="text-xs text-slate-400 font-medium mt-1">كود 2000+</div>
+          </div>
+
+          <!-- Grade 3 -->
+          <div class="glass-card p-5 rounded-2xl relative overflow-hidden group cursor-pointer hover:border-amber-500/50 transition-all" onclick="switchTab('students'); setGradeFilter('ث3');">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-slate-400">ثالثة ثانوي (ث3)</span>
+              <div class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400"><i data-lucide="award" class="w-5 h-5"></i></div>
+            </div>
+            <div class="text-3xl font-black text-amber-400" id="statGrade3">0</div>
+            <div class="text-xs text-slate-400 font-medium mt-1">كود 3000+</div>
+          </div>
+        </div>
+
+        <!-- Quick Action Shortcuts -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div onclick="switchTab('register')" class="glass-panel p-5 rounded-2xl border border-sky-500/30 hover:border-sky-500 cursor-pointer transition-all flex items-center gap-4 group">
+            <div class="w-12 h-12 rounded-2xl bg-sky-500/20 text-sky-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <i data-lucide="user-plus" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-slate-900">تسجيل طالب جديد</h4>
+              <p class="text-xs text-slate-400">نفس النموذج والمراحل كما في المشروع الأصلي</p>
+            </div>
+          </div>
+
+          <div onclick="switchTab('pdf_reports')" class="glass-panel p-5 rounded-2xl border border-emerald-500/30 hover:border-emerald-500 cursor-pointer transition-all flex items-center gap-4 group">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <i data-lucide="file-spreadsheet" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-slate-900">كشوف حضور وغياب المدرسين</h4>
+              <p class="text-xs text-slate-400">توليد وطباعة كشوف الـ PDF الرسمية للمدرسين</p>
+            </div>
+          </div>
+
+          <div onclick="switchTab('students')" class="glass-panel p-5 rounded-2xl border border-indigo-500/30 hover:border-indigo-500 cursor-pointer transition-all flex items-center gap-4 group">
+            <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <i data-lucide="search" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="text-sm font-bold text-slate-900">البحث الفوري وتقارير أولياء الأمور</h4>
+              <p class="text-xs text-slate-400">إرسال واتساب وطباعة بطاقات التقييم للطلاب</p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- TAB 2: STUDENTS SEARCH & LIST -->
+      <!-- ============================================================ -->
+      <section id="tabContent_students" class="hidden space-y-6">
+        
+        <!-- Search & Filter Controls -->
+        <div class="glass-panel p-5 rounded-3xl space-y-4">
+          <div class="flex flex-col md:flex-row gap-3 items-stretch md:items-center justify-between">
+            
+            <!-- Search Bar -->
+            <div class="relative flex-1">
+              <div class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-slate-400">
+                <i data-lucide="search" class="w-5 h-5"></i>
+              </div>
+              <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="ابحث بالاسم، الكود (مثل 2001)، رقم التليفون، المنطقة، أو اسم المدرس..." 
+                class="w-full bg-slate-900/90 text-slate-100 placeholder-slate-400 text-xs sm:text-sm font-medium rounded-2xl pr-11 pl-4 py-3 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-all shadow-inner"
+                oninput="handleSearchInput()"
+              >
+              <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400 hover:text-slate-200">
+                <i data-lucide="x" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <!-- Grade Quick Tabs -->
+            <div class="grid grid-cols-4 gap-1 bg-slate-900/80 p-1.5 rounded-2xl border border-slate-700/60 w-full md:w-auto text-center shrink-0">
+              <button onclick="setGradeFilter('all')" id="tab_grade_all" class="grade-tab px-2 sm:px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-sky-600 text-white shadow truncate">الكل</button>
+              <button onclick="setGradeFilter('ث1')" id="tab_grade_1" class="grade-tab px-2 sm:px-3.5 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white transition-all truncate">أولى (ث1)</button>
+              <button onclick="setGradeFilter('ث2')" id="tab_grade_2" class="grade-tab px-2 sm:px-3.5 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white transition-all truncate">ثانية (ث2)</button>
+              <button onclick="setGradeFilter('ث3')" id="tab_grade_3" class="grade-tab px-2 sm:px-3.5 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white transition-all truncate">ثالثة (ث3)</button>
+            </div>
+
+          </div>
+
+          <!-- Secondary Filters Row (Responsive Grid - No Staircase) -->
+          <div class="pt-3 border-t border-slate-800 space-y-3 text-xs">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+              <div>
+                <label class="block text-[11px] text-slate-400 font-bold mb-1 flex items-center gap-1">
+                  <i data-lucide="award" class="w-3.5 h-3.5 text-purple-400"></i> التقدير الأكاديمي
+                </label>
+                <select id="filterEvaluation" onchange="applyFilters()" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3 py-2 text-slate-200 font-medium focus:outline-none focus:ring-1 focus:ring-sky-500 text-xs">
+                  <option value="all">كل التقديرات الأكاديمية</option>
+                  <option value="excellent">ممتاز (85% فأكثر)</option>
+                  <option value="very_good">جيد جداً (75% - 84%)</option>
+                  <option value="good">جيد (65% - 74%)</option>
+                  <option value="pass">مقبول (50% - 64%)</option>
+                  <option value="needs_followup">يحتاج متابعة (أقل من 50%)</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-[11px] text-slate-400 font-bold mb-1 flex items-center gap-1">
+                  <i data-lucide="calendar" class="w-3.5 h-3.5 text-teal-400"></i> نسبة الحضور
+                </label>
+                <select id="filterAttendance" onchange="applyFilters()" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3 py-2 text-slate-200 font-medium focus:outline-none focus:ring-1 focus:ring-sky-500 text-xs">
+                  <option value="all">كل نسب الحضور</option>
+                  <option value="high">حضور منتظم (80% فأكثر)</option>
+                  <option value="medium">حضور متوسط (50% - 79%)</option>
+                  <option value="low">غياب متكرر (أقل من 50%)</option>
+                </select>
+              </div>
+
+              <div class="sm:col-span-2 lg:col-span-1">
+                <label class="block text-[11px] text-slate-400 font-bold mb-1 flex items-center gap-1">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5 text-sky-400"></i> المنطقة / المركز
+                </label>
+                <select id="filterArea" onchange="applyFilters()" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-3 py-2 text-slate-200 font-medium focus:outline-none focus:ring-1 focus:ring-sky-500 text-xs">
+                  <option value="all">كل المناطق والمراكز</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- View Mode & Results Count Bar -->
+            <div class="flex items-center justify-between pt-1 border-t border-slate-800/60 text-xs">
+              <button onclick="toggleViewMode()" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 font-semibold active:scale-95 transition-all">
+                <i id="viewModeIcon" data-lucide="layout-grid" class="w-3.5 h-3.5 text-sky-400"></i>
+                <span id="viewModeText">عرض البطاقات</span>
+              </button>
+              <span id="resultsCountText" class="text-sky-400 font-bold font-mono">عرض 0 من 0 طالب</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Render View Containers -->
+        <div id="cardsViewContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+        <div id="tableViewContainer" class="hidden glass-panel rounded-3xl overflow-hidden border border-slate-700/60">
+          <div class="overflow-x-auto">
+            <table class="w-full text-right text-xs">
+              <thead class="bg-slate-900/90 text-slate-400 font-bold border-b border-slate-800">
+                <tr>
+                  <th class="py-3.5 px-4">الكود</th>
+                  <th class="py-3.5 px-4">اسم الطالب</th>
+                  <th class="py-3.5 px-4">الصف</th>
+                  <th class="py-3.5 px-4">المنطقة</th>
+                  <th class="py-3.5 px-4">ولي الأمر</th>
+                  <th class="py-3.5 px-4">الحضور</th>
+                  <th class="py-3.5 px-4">التقدير</th>
+                  <th class="py-3.5 px-4 text-center">الإجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="tableRowsBody" class="divide-y divide-slate-800/80 text-slate-200"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Empty Results -->
+        <div id="emptyResultsState" class="hidden glass-panel p-12 rounded-3xl text-center space-y-4">
+          <div class="w-16 h-16 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center mx-auto">
+            <i data-lucide="search-x" class="w-8 h-8"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">لم يتم العثور على نتائج</h3>
+          <p class="text-xs text-slate-400">جرب البحث بكلمات أخرى أو أزل الفلاتر المحددة.</p>
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex items-center justify-center" id="paginationContainer">
+          <button onclick="loadMoreStudents()" class="px-6 py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs border border-slate-700 flex items-center gap-2">
+            <i data-lucide="chevron-down" class="w-4 h-4"></i> عرض المزيد من الطلاب
+          </button>
+        </div>
+
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- TAB 2.5: LIVE ATTENDANCE & GRADES MATRIX -->
+      <!-- ============================================================ -->
+      <section id="tabContent_attendance_matrix" class="hidden space-y-6">
+        
+        <div class="glass-panel p-6 rounded-3xl space-y-6 border border-slate-700/80">
+          
+          <div class="border-b border-slate-800 pb-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white shadow-lg shadow-emerald-500/20">
+                <i data-lucide="calendar-check" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-900">رصد الحضور والغياب والدرجات السريع (Live Matrix)</h3>
+                <p class="text-xs text-slate-400">سجل حضور الحصص من 1 إلى 8 بنقرة واحدة لجميع طلاب المادة</p>
+              </div>
+            </div>
+
+            <!-- Controls: Stage, Subject, Teacher, Instant Search & Bulk Action -->
+            <div class="space-y-3">
+              <div class="grid grid-cols-1 sm:grid-cols-4 gap-2.5">
+                <select id="matrixGradeSelect" onchange="onMatrixFilterChange()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-bold text-xs focus:ring-1 focus:ring-emerald-500">
+                  <option value="ث1">الصف الأول الثانوي (ث1)</option>
+                  <option value="ث2">الصف الثاني الثانوي (ث2)</option>
+                  <option value="ث3">الصف الثالث الثانوي (ث3)</option>
+                </select>
+
+                <div class="flex items-center gap-1">
+                  <select id="matrixMonthSelect" onchange="onMatrixMonthChange(this.value)" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-2 text-emerald-300 font-bold text-xs focus:ring-1 focus:ring-emerald-500" title="اختر الشهر الدراسي المطلوب رصده">
+                    <!-- Populated dynamically: شهر 1, شهر 2... -->
+                  </select>
+                  <button type="button" onclick="openNewMonthModal()" class="px-2.5 py-2 bg-emerald-600/30 hover:bg-emerald-600 border border-emerald-500/40 text-emerald-300 hover:text-white rounded-xl text-xs font-bold whitespace-nowrap transition-colors flex items-center gap-1 cursor-pointer" title="فتح شهر دراسي جديد">
+                    <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                    <span class="hidden sm:inline">شهر جديد</span>
+                  </button>
+                </div>
+
+                <select id="matrixSubjectSelect" onchange="onMatrixSubjectChange()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-bold text-xs focus:ring-1 focus:ring-emerald-500">
+                  <!-- Dynamically populated based on selected grade -->
+                </select>
+
+                <select id="matrixTeacherSelect" onchange="renderAttendanceMatrix()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-bold text-xs focus:ring-1 focus:ring-emerald-500">
+                  <!-- Dynamically populated with teachers of selected subject -->
+                </select>
+              </div>
+
+              <!-- Quick Bulk Action Buttons Side-by-Side -->
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                <button type="button" onclick="openBulkSessionModal()" class="flex-1 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-emerald-600/30 active:scale-95 transition-all">
+                  <i data-lucide="zap" class="w-4 h-4 text-amber-300"></i>
+                  <span>⚡ الرصد الجماعي للحصة (40+ طالب)</span>
+                </button>
+
+                <button type="button" onclick="openCameraScanModal()" class="flex-1 px-4 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 via-indigo-600 to-teal-600 hover:from-sky-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-sky-600/30 active:scale-95 transition-all">
+                  <i data-lucide="camera" class="w-4 h-4 text-amber-300 animate-pulse"></i>
+                  <span>📸 مسح الكشف بكاميرا الموبايل (AI)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search Bar & Quick Action Banner -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+            <div class="relative flex-1">
+              <div class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-slate-400">
+                <i data-lucide="search" class="w-4 h-4"></i>
+              </div>
+              <input 
+                type="text" 
+                id="matrixSearchInput" 
+                placeholder="ابحث بالاسم أو الكود (مثال: 1001 أو نور الدين)..." 
+                class="w-full bg-slate-900 text-slate-100 placeholder-slate-400 text-xs rounded-xl pr-10 pl-4 py-2.5 border border-slate-700 focus:ring-1 focus:ring-emerald-500"
+                oninput="renderAttendanceMatrix()"
+              >
+            </div>
+
+            <div class="p-2.5 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center gap-2 text-xs text-emerald-300">
+              <i data-lucide="check-circle" class="w-4 h-4"></i>
+              <span>انقر على مربع الحصة لتسجيل الحضور، الغياب، أو كتابة درجة الامتحان (مثل 10/10).</span>
+            </div>
+          </div>
+
+          <!-- Matrix Table -->
+          <div class="rounded-2xl border border-slate-800 overflow-x-auto">
+            <table class="w-full text-right text-xs">
+              <thead class="bg-slate-900/90 text-slate-400 font-bold border-b border-slate-800">
+                <tr>
+                  <th class="p-3.5 w-12 text-center">م</th>
+                  <th class="p-3.5 w-20 text-center">الكود</th>
+                  <th class="p-3.5 min-w-[160px]">اسم الطالب</th>
+                  <th class="p-3.5 w-24">الشعبة</th>
+                  <th class="p-3.5 text-center">حصة 1</th>
+                  <th class="p-3.5 text-center">حصة 2</th>
+                  <th class="p-3.5 text-center">حصة 3</th>
+                  <th class="p-3.5 text-center">حصة 4</th>
+                  <th class="p-3.5 text-center">حصة 5</th>
+                  <th class="p-3.5 text-center">حصة 6</th>
+                  <th class="p-3.5 text-center">حصة 7</th>
+                  <th class="p-3.5 text-center">حصة 8</th>
+                  <th class="p-3.5 w-20 text-center">النسبة</th>
+                </tr>
+              </thead>
+              <tbody id="attendanceMatrixTableBody" class="divide-y divide-slate-800 text-slate-200">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- TAB 3: NEW STUDENT REGISTRATION WIZARD (OLD PROJECT FLOW) -->
+      <!-- ============================================================ -->
+      <section id="tabContent_register" class="hidden space-y-6">
+        
+        <div class="glass-panel p-6 rounded-3xl max-w-3xl mx-auto space-y-6 border border-slate-700/80">
+          
+          <div class="border-b border-slate-800 pb-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-sky-500/20 text-white">
+                <i data-lucide="user-plus" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-900">نموذج تسجيل طالب جديد (النموذج الرسمي)</h3>
+                <p class="text-xs text-slate-400">تسجيل كامل مع تحديد الشعبة والمواد والمدرسين المشرفين</p>
+              </div>
+            </div>
+          </div>
+
+          <form id="wizardStudentForm" onsubmit="handleWizardSubmit(event)" class="space-y-6 text-xs">
+            
+            <!-- Step 1: Grade & Specialization -->
+            <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800 space-y-4">
+              <h4 class="font-bold text-sky-400 flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-sky-500/20 flex items-center justify-center text-[10px]">1</span>
+                المرحلة الدراسية والتخصص
+              </h4>
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <label class="block text-slate-400 font-bold mb-1.5">السنة الدراسية *</label>
+                  <select id="wizGrade" required onchange="onWizardGradeChange()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-white font-bold focus:ring-1 focus:ring-sky-500">
+                    <option value="ث1">الصف الأول الثانوي (ث1)</option>
+                    <option value="ث2">الصف الثاني الثانوي (ث2)</option>
+                    <option value="ث3">الصف الثالث الثانوي (ث3)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-slate-400 font-bold mb-1.5">التخصص الرئيسي *</label>
+                  <select id="wizSpecMain" required onchange="onWizardSpecChange()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-white font-bold focus:ring-1 focus:ring-sky-500">
+                    <option value="عام">عام</option>
+                    <option value="أزهر">أزهر</option>
+                    <option value="بكالوريا">بكالوريا</option>
+                  </select>
+                </div>
+
+                <div id="wizBaccalaureateGroup" class="hidden">
+                  <label class="block text-slate-400 font-bold mb-1.5">شعبة البكالوريا *</label>
+                  <select id="wizSpecBac" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2.5 text-white font-bold focus:ring-1 focus:ring-sky-500">
+                    <option value="طب">بكالوريا - طب</option>
+                    <option value="هندسة">بكالوريا - هندسة</option>
+                    <option value="الاداب">بكالوريا - الاداب</option>
+                    <option value="الاعمال">بكالوريا - الاعمال</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Personal Details & Code -->
+            <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800 space-y-4">
+              <h4 class="font-bold text-sky-400 flex items-center gap-2">
+                <span class="w-5 h-5 rounded-full bg-sky-500/20 flex items-center justify-center text-[10px]">2</span>
+                البيانات الشخصية وأرقام التواصل
+              </h4>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="sm:col-span-2">
+                  <label class="block text-slate-400 font-bold mb-1.5">اسم الطالب رباعي *</label>
+                  <input type="text" id="wizName" required placeholder="أدخل اسم الطالب بالكامل" oninput="checkWizardDuplicateStudent()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white focus:ring-1 focus:ring-sky-500">
+                </div>
+
+                <!-- Live Duplicate Detection Banner & Details -->
+                <div id="wizDuplicateAlert" class="hidden sm:col-span-2 p-4 rounded-2xl bg-gradient-to-r from-amber-950/80 via-slate-900 to-rose-950/80 border border-amber-500/50 shadow-2xl space-y-3 animate-fade-in">
+                  <div class="flex items-start justify-between gap-3">
+                    <div class="flex items-center gap-2 text-amber-400 font-bold text-xs sm:text-sm">
+                      <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-400 shrink-0 animate-bounce"></i>
+                      <span id="wizDuplicateTitle">تنبيه: تم العثور على طالب مسجل مسبقاً بنفس الاسم أو الكود!</span>
+                    </div>
+                    <button type="button" onclick="hideWizardDuplicateAlert()" class="text-slate-400 hover:text-white text-xs font-bold px-2 py-1 rounded-lg hover:bg-slate-800">
+                      ✕ إخفاء
+                    </button>
+                  </div>
+
+                  <!-- Existing Student Card Details -->
+                  <div id="wizDuplicateDetails" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs bg-slate-950/80 p-3 rounded-xl border border-slate-800">
+                    <!-- Populated dynamically -->
+                  </div>
+
+                  <!-- Duplicate Quick Actions -->
+                  <div class="flex flex-wrap items-center gap-2 pt-1">
+                    <button type="button" id="wizDupEditBtn" class="px-3 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs flex items-center gap-1 shadow-md shadow-amber-600/20 active:scale-95">
+                      <i data-lucide="edit" class="w-3.5 h-3.5"></i>
+                      <span>تعديل بيانات هذا الطالب</span>
+                    </button>
+                    <button type="button" id="wizDupViewBtn" class="px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs flex items-center gap-1 shadow-md shadow-sky-600/20 active:scale-95">
+                      <i data-lucide="user-check" class="w-3.5 h-3.5"></i>
+                      <span>عرض بطاقة الطالب الكاملة</span>
+                    </button>
+                    <button type="button" id="wizDupFillBtn" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs flex items-center gap-1">
+                      <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                      <span>ملء النموذج ببياناته</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-slate-400 font-bold mb-1.5 flex items-center justify-between">
+                    <span>كود الطالب</span>
+                    <span class="text-[10px] text-slate-500">اختياري أو اتركه فارغاً للترقيم التلقائي</span>
+                  </label>
+                  <input type="text" id="wizCode" placeholder="اكتب كود الطالب هنا (مثال: 1250)" oninput="checkWizardDuplicateStudent()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white font-mono focus:ring-1 focus:ring-sky-500">
+                </div>
+
+                <div>
+                  <label class="block text-slate-400 font-bold mb-1.5">المنطقة / المركز *</label>
+                  <input type="text" id="wizArea" required placeholder="مثال: بلقس، السلمانية..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white focus:ring-1 focus:ring-sky-500">
+                </div>
+
+                <div>
+                  <label class="block text-slate-400 font-bold mb-1.5">هاتف الطالب</label>
+                  <input type="tel" id="wizPhone" placeholder="01xxxxxxxxx" oninput="checkWizardDuplicateStudent()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white font-mono focus:ring-1 focus:ring-sky-500">
+                </div>
+
+                <div>
+                  <label class="block text-slate-400 font-bold mb-1.5">هاتف ولي الأمر *</label>
+                  <input type="tel" id="wizParentPhone" required placeholder="01xxxxxxxxx" oninput="checkWizardDuplicateStudent()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white font-mono focus:ring-1 focus:ring-emerald-500">
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Subjects & Teachers Selection -->
+            <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800 space-y-4">
+              <div class="flex items-center justify-between">
+                <h4 class="font-bold text-sky-400 flex items-center gap-2">
+                  <span class="w-5 h-5 rounded-full bg-sky-500/20 flex items-center justify-center text-[10px]">3</span>
+                  المواد الدراسية واختيار المدرسين المشرفين
+                </h4>
+                <span class="text-[11px] text-slate-400">حدد المواد واشترط المدرس لكل مادة</span>
+              </div>
+
+              <div id="wizSubjectsTeachersList" class="space-y-3">
+                <!-- Populated dynamically based on chosen Grade -->
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="pt-3 flex items-center justify-end gap-3">
+              <button type="reset" class="px-5 py-2.5 rounded-xl bg-slate-800 text-slate-400 hover:bg-slate-700 font-bold">إفراغ النموذج</button>
+              <button type="submit" class="px-7 py-3 rounded-xl bg-gradient-to-r from-sky-500 via-indigo-600 to-teal-500 hover:from-sky-400 hover:to-indigo-500 text-white font-bold text-xs shadow-xl shadow-sky-600/30 flex items-center gap-2 active:scale-95">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                <span>حفظ وتسجيل الطالب في النظام</span>
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- TAB 4: PDF REPORTS & TEACHERS ROSTERS -->
+      <!-- ============================================================ -->
+      <section id="tabContent_pdf_reports" class="hidden space-y-6">
+        
+        <div class="glass-panel p-6 rounded-3xl space-y-6">
+          
+          <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
+                <i data-lucide="file-spreadsheet" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-900">مركز تقارير الـ PDF وكشوف الحضور الرسمية</h3>
+                <p class="text-xs text-slate-400">توليد وطباعة تقارير المدرسين وكشوف الحضور والغياب للسنتر</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Report Type Selector -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <button onclick="setPdfReportMode('teacher')" id="pdf_btn_teacher" class="p-4 rounded-2xl bg-sky-600 text-white font-bold text-xs text-right space-y-1 shadow-lg transition-all border border-sky-400/30">
+              <div class="flex items-center justify-between">
+                <span class="text-sm">1. تقرير كشف طلاب المدرس</span>
+                <i data-lucide="user-check" class="w-4 h-4"></i>
+              </div>
+              <p class="text-[11px] opacity-80 font-normal">قائمة بجميع طلاب مدرس معين مع التخصصات وأرقام الهواتف</p>
+            </button>
+
+            <button onclick="setPdfReportMode('attendance_roster')" id="pdf_btn_roster" class="p-4 rounded-2xl bg-slate-800/80 hover:bg-slate-800 text-slate-300 font-bold text-xs text-right space-y-1 transition-all border border-slate-700">
+              <div class="flex items-center justify-between">
+                <span class="text-sm">2. كشف حضور وغياب الحصص (1-8)</span>
+                <i data-lucide="clipboard-list" class="w-4 h-4"></i>
+              </div>
+              <p class="text-[11px] text-slate-400 font-normal">كشف تفصيلي جاهز لرصد الغياب والدرجات لكل حصة</p>
+            </button>
+
+            <button onclick="setPdfReportMode('grade_summary')" id="pdf_btn_summary" class="p-4 rounded-2xl bg-slate-800/80 hover:bg-slate-800 text-slate-300 font-bold text-xs text-right space-y-1 transition-all border border-slate-700">
+              <div class="flex items-center justify-between">
+                <span class="text-sm">3. كشف طلاب مرحلة كاملة</span>
+                <i data-lucide="layers" class="w-4 h-4"></i>
+              </div>
+              <p class="text-[11px] text-slate-400 font-normal">تصدير جميع طلاب الصف (ث1 أو ث2 أو ث3) بكامل بياناتهم</p>
+            </button>
+          </div>
+
+          <!-- Controls Bar for Teacher / Grade / Month Selection -->
+          <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs items-end">
+            
+            <div id="pdfTeacherSelectGroup" class="w-full">
+              <label class="block text-slate-400 font-bold mb-1">اختر المدرس المشرف:</label>
+              <select id="pdfTeacherSelect" onchange="generateSelectedPdfReport()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-bold focus:ring-1 focus:ring-sky-500">
+                <!-- Populated dynamically with official teachers -->
+              </select>
+            </div>
+
+            <div id="pdfMonthSelectGroup" class="w-full">
+              <label class="block text-slate-400 font-bold mb-1">الشهر الدراسي للتقرير:</label>
+              <select id="pdfMonthSelect" onchange="generateSelectedPdfReport()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-emerald-300 font-bold focus:ring-1 focus:ring-sky-500">
+                <!-- Populated dynamically -->
+              </select>
+            </div>
+
+            <div class="w-full">
+              <label class="block text-slate-400 font-bold mb-1">السنة الدراسية:</label>
+              <select id="pdfGradeSelect" onchange="generateSelectedPdfReport()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-bold focus:ring-1 focus:ring-sky-500">
+                <option value="all">كل المراحل</option>
+                <option value="ث1">الصف الأول الثانوي (ث1)</option>
+                <option value="ث2">الصف الثاني الثانوي (ث2)</option>
+                <option value="ث3">الصف الثالث الثانوي (ث3)</option>
+              </select>
+            </div>
+
+            <div class="w-full sm:col-span-2 lg:col-span-1">
+              <button onclick="printGeneratedReport()" class="w-full py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold flex items-center justify-center gap-2 shadow-lg shadow-sky-600/30 active:scale-95 transition-all">
+                <i data-lucide="printer" class="w-4 h-4"></i>
+                <span>طباعة / حفظ PDF</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Printable Preview Area -->
+          <div class="bg-slate-950 p-6 rounded-3xl border border-slate-800 overflow-x-auto" id="printableReportContainer">
+            <div id="printableArea" class="bg-white text-slate-900 p-8 rounded-2xl shadow-xl max-w-4xl mx-auto space-y-6" style="min-height: 800px; color: #0f172a !important;">
+              <!-- Generated Report HTML will be rendered here -->
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- TAB 5: USER MANAGEMENT (ADMIN ONLY) -->
+      <!-- ============================================================ -->
+      <section id="tabContent_users_mgmt" class="hidden space-y-6">
+        
+        <div class="glass-panel p-6 rounded-3xl space-y-6">
+          
+          <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center border border-indigo-500/30">
+                <i data-lucide="shield-check" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-900">إدارة مستخدمي النظام والصلاحيات</h3>
+                <p class="text-xs text-slate-400">إضافة وتعديل بيانات الدخول للمشرفين والمساعدين والمدرسين</p>
+              </div>
+            </div>
+
+            <button onclick="openAddUserModal()" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-lg shadow-indigo-600/30 flex items-center gap-2">
+              <i data-lucide="user-plus" class="w-4 h-4"></i>
+              <span>إضافة مستخدم جديد</span>
+            </button>
+          </div>
+
+          <!-- Users Table -->
+          <div class="rounded-2xl border border-slate-800 overflow-hidden">
+            <table class="w-full text-right text-xs">
+              <thead class="bg-slate-900 text-slate-400 font-bold border-b border-slate-800">
+                <tr>
+                  <th class="p-3.5">الاسم</th>
+                  <th class="p-3.5">رقم الموبايل</th>
+                  <th class="p-3.5">كلمة المرور</th>
+                  <th class="p-3.5">الصلاحية / الدور</th>
+                  <th class="p-3.5 text-center">الإجراء</th>
+                </tr>
+              </thead>
+              <tbody id="usersListTableBody" class="divide-y divide-slate-800 text-slate-200">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          <!-- Activity & Audit Logs Section (Admin Only) -->
+          <div class="pt-6 border-t border-slate-800 space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <i data-lucide="history" class="w-5 h-5 text-amber-400"></i>
+                <h4 class="text-sm font-bold text-slate-900">سجل نشاطات وعمليات المستخدمين المباشر (Audit Log)</h4>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="clearActivityLogs()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs font-semibold">مسح السجل</button>
+                <button onclick="renderActivityLogs()" class="px-3 py-1.5 rounded-xl bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 text-xs font-bold flex items-center gap-1">
+                  <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                  <span>تحديث السجل</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-slate-800 overflow-hidden">
+              <table class="w-full text-right text-xs">
+                <thead class="bg-slate-900 text-slate-400 font-bold border-b border-slate-800">
+                  <tr>
+                    <th class="p-3">الوقت والتاريخ</th>
+                    <th class="p-3">المستخدم المنفذ</th>
+                    <th class="p-3">نوع العملية</th>
+                    <th class="p-3">الطالب والكود</th>
+                    <th class="p-3">تفاصيل الإجراء</th>
+                  </tr>
+                </thead>
+                <tbody id="activityLogsTableBody" class="divide-y divide-slate-800 text-slate-200">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- MODAL: PARENT REPORT CARD & WHATSAPP SENDER -->
+  <!-- ============================================================ -->
+  <div id="parentReportModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="relative w-full max-w-3xl bg-slate-900 rounded-3xl border border-slate-700 shadow-2xl overflow-hidden my-6 max-h-[90vh] flex flex-col">
+      
+      <div class="px-6 py-4 bg-gradient-to-r from-slate-900 via-sky-950 to-slate-900 border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="p-2 rounded-xl bg-sky-500/20 text-sky-400 border border-sky-500/30">
+            <i data-lucide="file-badge" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-900">بطاقة التقرير الأكاديمي لولي الأمر</h3>
+            <p class="text-xs text-sky-400 font-medium">جاهز للإرسال الفوري عبر واتساب أو الطباعة</p>
+          </div>
+        </div>
+        <button onclick="closeParentReportModal()" class="p-2 rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6 overflow-y-auto flex-1" id="studentPrintCardWrapper">
+        <div id="studentPrintCardArea" style="border: 3px double #0284c7; outline: 1px solid #93c5fd; border-radius: 18px; padding: 22px; background: #ffffff; color: #0f172a; box-shadow: 0 4px 20px rgba(0,0,0,0.06); margin: 0 auto; max-width: 780px;">
+          
+          <!-- Header Banner -->
+          <div style="border-bottom: 2px solid #0284c7; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #0284c7, #4f46e5); display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 900; font-size: 22px; box-shadow: 0 4px 10px rgba(2,132,199,0.3);">
+                أ
+              </div>
+              <div>
+                <h2 style="font-size: 20px; font-weight: 900; color: #0284c7; margin: 0; line-height: 1.2;">سنتر الأرائج التعليمي</h2>
+                <p style="font-size: 11px; color: #64748b; margin: 3px 0 0 0; font-weight: bold;">تقرير المتابعة والتقييم الأكاديمي الشامل</p>
+              </div>
+            </div>
+            <div style="text-align: left; font-size: 11px; color: #475569;">
+              <div><strong>تاريخ التقرير:</strong> <span id="reportPrintDate" style="font-weight: bold; color: #0f172a;">-</span></div>
+              <div><strong>كود الطالب:</strong> <span id="reportStudentCode" style="font-family: monospace; font-weight: 900; color: #0284c7; font-size: 13px;">-</span></div>
+            </div>
+          </div>
+
+          <!-- Student Basic Info -->
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 16px; margin-bottom: 16px;">
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; font-size: 11px;">
+              <div>
+                <span style="color: #64748b; display: block; margin-bottom: 2px;">اسم الطالب:</span>
+                <strong id="reportStudentName" style="color: #0f172a; font-size: 13px; font-weight: 900; display: block;">-</strong>
+              </div>
+              <div>
+                <span style="color: #64748b; display: block; margin-bottom: 2px;">الصف الدراسي:</span>
+                <strong id="reportStudentGrade" style="color: #0284c7; font-size: 13px; font-weight: bold; display: block;">-</strong>
+              </div>
+              <div>
+                <span style="color: #64748b; display: block; margin-bottom: 2px;">المنطقة:</span>
+                <strong id="reportStudentArea" style="color: #334155; font-size: 12px; font-weight: bold; display: block;">-</strong>
+              </div>
+              <div>
+                <span style="color: #64748b; display: block; margin-bottom: 2px;">هاتف ولي الأمر:</span>
+                <strong id="reportParentPhone" style="color: #059669; font-size: 12px; font-family: monospace; font-weight: bold; display: block;">-</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Performance Summary Metrics (التقدير العام ونسبة الحضور فقط) -->
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; text-align: center;">
+            <div style="background: #fdf4ff; border: 1px solid #f0abfc; border-radius: 12px; padding: 12px;">
+              <span style="font-size: 11px; color: #86198f; font-weight: bold; display: block; margin-bottom: 2px;">التقدير العام للطالب</span>
+              <div id="reportOverallGradeBadge" style="font-size: 17px; font-weight: 900; color: #701a75;">
+                ممتاز
+              </div>
+            </div>
+
+            <div style="background: #f0f9ff; border: 1px solid #7dd3fc; border-radius: 12px; padding: 12px;">
+              <span style="font-size: 11px; color: #0369a1; font-weight: bold; display: block; margin-bottom: 2px;">نسبة الحضور والالتزام</span>
+              <div id="reportAttendanceRate" style="font-size: 17px; font-weight: 900; color: #0284c7;">
+                0%
+              </div>
+            </div>
+          </div>
+
+          <!-- Subjects Breakdown Table -->
+          <div style="margin-bottom: 16px;">
+            <h4 style="font-size: 12px; font-weight: bold; color: #1e293b; margin: 0 0 6px 0; display: flex; align-items: center; gap: 6px;">
+              <span>📝</span> تفاصيل المواد ودرجات الحصص والامتحانات:
+            </h4>
+            <div style="border: 1px solid #cbd5e1; border-radius: 10px; overflow: hidden;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 11px; text-align: right;">
+                <thead>
+                  <tr style="background: #f1f5f9; color: #1e293b; border-bottom: 1px solid #cbd5e1; font-weight: bold;">
+                    <th style="padding: 7px 10px; border-left: 1px solid #cbd5e1;">المادة</th>
+                    <th style="padding: 7px 10px; border-left: 1px solid #cbd5e1;">المدرس المشرف</th>
+                    <th style="padding: 7px 10px; border-left: 1px solid #cbd5e1; text-align: center;">سجل الحصص والامتحانات (1 - 8)</th>
+                    <th style="padding: 7px 10px; border-left: 1px solid #cbd5e1; text-align: center;">حالة الحضور</th>
+                    <th style="padding: 7px 10px; text-align: center;">الدرجة والتقييم</th>
+                  </tr>
+                </thead>
+                <tbody id="reportSubjectsTableBody" style="color: #334155;"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Admin Note Box -->
+          <div style="background: #eff6ff; border: 1px solid #93c5fd; border-radius: 12px; padding: 12px; margin-bottom: 16px; font-size: 11px;">
+            <strong style="color: #1d4ed8; font-weight: bold; display: block; margin-bottom: 4px;">📌 ملاحظة إدارة المركز:</strong>
+            <p id="reportAdminNotes" style="color: #1e3a8a; margin: 0; line-height: 1.5;">
+              نشكركم على حرصكم واهتمامكم بمستقبل الطالب. نرجو الاستمرار في المتابعة الدورية للحفاظ على أعلى مستويات التفوق.
+            </p>
+          </div>
+
+          <!-- Signatures & Official Stamp -->
+          <div style="border-top: 1px dashed #cbd5e1; padding-top: 12px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #475569;">
+            <div><strong>إدارة السنتر:</strong> م. وفاء ناصر</div>
+            <div><strong>توقيع المشرف:</strong> ___________________</div>
+            <div><strong>ختم المركز الرسمي:</strong> ___________________</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="p-4 bg-slate-950 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3 no-print">
+        <div class="flex items-center gap-2">
+          <button onclick="sendParentReportViaWhatsApp()" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-600/30">
+            <i data-lucide="send" class="w-4 h-4"></i>
+            <span>إرسال واتساب لولي الأمر</span>
+          </button>
+          <button onclick="copyReportText()" class="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center gap-2 border border-slate-700">
+            <i data-lucide="copy" class="w-4 h-4"></i>
+            <span id="copyBtnText">نسخ النص</span>
+          </button>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="printStudentCardReport()" class="px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-sky-600/20">
+            <i data-lucide="printer" class="w-4 h-4"></i>
+            <span>طباعة التقرير (PDF)</span>
+          </button>
+          <button onclick="closeParentReportModal()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs font-semibold">إغلاق</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- MODAL: DETAILED STUDENT ACADEMIC PROFILE -->
+  <!-- ============================================================ -->
+  <div id="studentDetailModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="relative w-full max-w-3xl bg-slate-900 rounded-3xl border border-slate-700 shadow-2xl overflow-hidden my-6 max-h-[90vh] flex flex-col">
+      
+      <div class="px-6 py-4 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-sky-600 flex items-center justify-center text-white font-bold" id="detailStudentAvatar">
+            ط
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+              <span id="detailStudentName" class="text-slate-900 font-extrabold" style="color: #0f172a !important;">-</span>
+              <span id="detailStudentCodeBadge" class="text-xs px-2 py-0.5 rounded-md bg-sky-50 text-sky-700 font-mono font-bold border border-sky-200">-</span>
+            </h3>
+            <p class="text-xs text-slate-500 font-medium" id="detailStudentSub">-</p>
+          </div>
+        </div>
+        <button onclick="closeStudentDetailModal()" class="p-2 rounded-xl hover:bg-slate-100 text-slate-400 hover:text-slate-700">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6 overflow-y-auto flex-1 space-y-6">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+          <div class="glass-card p-3 rounded-xl border border-slate-800">
+            <span class="text-slate-400 block mb-1">هاتف الطالب</span>
+            <div id="detailPhone" class="font-mono font-bold text-slate-200">-</div>
+          </div>
+          <div class="glass-card p-3 rounded-xl border border-slate-800">
+            <span class="text-slate-400 block mb-1">هاتف ولي الأمر</span>
+            <div id="detailParentPhone" class="font-mono font-bold text-emerald-400">-</div>
+          </div>
+          <div class="glass-card p-3 rounded-xl border border-slate-800">
+            <span class="text-slate-400 block mb-1">المنطقة</span>
+            <div id="detailArea" class="font-bold text-slate-200">-</div>
+          </div>
+          <div class="glass-card p-3 rounded-xl border border-slate-800">
+            <span class="text-slate-400 block mb-1">تاريخ التسجيل</span>
+            <div id="detailRegDate" class="font-bold text-slate-200">-</div>
+          </div>
+        </div>
+
+        <!-- Audit Hint Banner (Who added/edited this student) -->
+        <div id="detailAuditHint" class="hidden"></div>
+
+        <div class="space-y-3">
+          <div class="p-3 bg-slate-950/80 border border-slate-800 rounded-2xl space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-300 flex items-center gap-1.5">
+                <i data-lucide="calendar" class="w-4 h-4 text-emerald-400"></i>
+                <span>اختر شهر الرصد:</span>
+              </span>
+              <button type="button" onclick="openNewMonthModal()" class="text-[11px] text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1 cursor-pointer">
+                <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i>
+                <span>+ فتح شهر جديد</span>
+              </button>
+            </div>
+            <div id="detailMonthTabsContainer" class="flex items-center gap-1.5 overflow-x-auto pb-1"></div>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs font-bold text-slate-300 flex items-center gap-1.5">
+              <i data-lucide="book-marked" class="w-4 h-4 text-sky-400"></i> المواد الدراسية وسجل الحصص
+            </h4>
+            <span id="detailSubjectCount" class="text-[11px] text-slate-400 font-medium">0 مادة مسجلة</span>
+          </div>
+          <div id="detailSubjectsContainer" class="space-y-3"></div>
+        </div>
+      </div>
+
+      <div class="p-4 bg-slate-950 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
+          <button id="openReportFromDetailBtn" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs flex items-center gap-1.5">
+            <i data-lucide="file-text" class="w-4 h-4"></i>
+            <span>تقرير ولي الأمر</span>
+          </button>
+          <button id="openEditFromDetailBtn" onclick="openEditStudentModalFromDetail()" class="px-3.5 py-2 rounded-xl bg-amber-600/20 hover:bg-amber-600/30 text-amber-300 font-bold text-xs flex items-center gap-1.5 border border-amber-500/30">
+            <i data-lucide="edit-3" class="w-4 h-4"></i>
+            <span>تعديل البيانات / مسح الرقم</span>
+          </button>
+          <button id="deleteFromDetailBtn" onclick="confirmDeleteStudentFromDetail()" class="px-3 py-2 rounded-xl bg-rose-600/20 hover:bg-rose-600/30 text-rose-300 font-bold text-xs flex items-center gap-1.5 border border-rose-500/30">
+            <i data-lucide="trash-2" class="w-4 h-4"></i>
+            <span>حذف</span>
+          </button>
+        </div>
+        <button onclick="closeStudentDetailModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold">إغلاق</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- MODAL: EDIT STUDENT (FULL DATA, SUBJECTS & TEACHERS) -->
+  <!-- ============================================================ -->
+  <div id="editStudentModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="relative w-full max-w-2xl bg-slate-900 rounded-3xl border border-slate-700 p-6 space-y-4 shadow-2xl my-6 max-h-[90vh] flex flex-col">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+          <i data-lucide="user-cog" class="w-5 h-5 text-amber-400"></i>
+          <span>تعديل بيانات الطالب والمواد الدراسية</span>
+        </h3>
+        <button onclick="closeEditStudentModal()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <form id="editStudentForm" onsubmit="handleSaveEditStudent(event)" class="space-y-4 text-xs overflow-y-auto flex-1 pr-1">
+        <input type="hidden" id="editCodeHidden">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="sm:col-span-2">
+            <label class="block text-slate-400 font-bold mb-1">اسم الطالب رباعي *</label>
+            <input type="text" id="editName" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white font-bold focus:ring-1 focus:ring-amber-500">
+          </div>
+
+          <div>
+            <label class="block text-slate-400 font-bold mb-1">كود الطالب</label>
+            <input type="text" id="editCodeDisplay" readonly class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sky-400 font-mono font-bold">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-400 font-bold mb-1 flex items-center justify-between">
+              <span>رقم هاتف الطالب</span>
+              <button type="button" onclick="clearEditStudentPhone()" class="text-[10px] text-rose-400 hover:underline">مسح الرقم</button>
+            </label>
+            <input type="tel" id="editPhone" placeholder="01xxxxxxxxx" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2 text-white font-mono focus:ring-1 focus:ring-amber-500">
+          </div>
+
+          <div>
+            <label class="block text-slate-400 font-bold mb-1 flex items-center justify-between">
+              <span>رقم ولي الأمر</span>
+              <button type="button" onclick="clearEditParentPhone()" class="text-[10px] text-rose-400 hover:underline">مسح الرقم</button>
+            </label>
+            <input type="tel" id="editParentPhone" placeholder="01xxxxxxxxx" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2 text-white font-mono focus:ring-1 focus:ring-amber-500">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-slate-400 font-bold mb-1">المنطقة</label>
+            <input type="text" id="editArea" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white focus:ring-1 focus:ring-amber-500">
+          </div>
+
+          <div>
+            <label class="block text-slate-400 font-bold mb-1">الصف الدراسي</label>
+            <select id="editGrade" onchange="onEditGradeChange()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-bold focus:ring-1 focus:ring-amber-500">
+              <option value="ث1">الصف الأول الثانوي (ث1)</option>
+              <option value="ث2">الصف الثاني الثانوي (ث2)</option>
+              <option value="ث3">الصف الثالث الثانوي (ث3)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-slate-400 font-bold mb-1">التخصص</label>
+            <input type="text" id="editSpec" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white focus:ring-1 focus:ring-amber-500">
+          </div>
+        </div>
+
+        <!-- Subjects & Teachers Selection in Edit Modal -->
+        <div class="bg-slate-950/80 p-4 rounded-2xl border border-slate-800 space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs font-bold text-amber-300 flex items-center gap-1.5">
+              <i data-lucide="book-open" class="w-4 h-4"></i>
+              <span>المواد الدراسية والمدرسين المشرفين للطالب:</span>
+            </h4>
+            <span class="text-[10px] text-slate-400">حدد المواد التي يحضرها الطالب</span>
+          </div>
+
+          <div id="editSubjectsTeachersList" class="space-y-2.5 max-h-48 overflow-y-auto pr-1">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
+          <button type="button" onclick="deleteStudentDirectly()" class="px-3.5 py-2 rounded-xl bg-rose-600/20 hover:bg-rose-600/30 text-rose-400 font-bold border border-rose-500/30 flex items-center gap-1">
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            <span>حذف الطالب نهائياً</span>
+          </button>
+          
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="closeEditStudentModal()" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 font-semibold">إلغاء</button>
+            <button type="submit" class="px-5 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold">حفظ كل التعديلات</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- MODAL: SESSION ATTENDANCE & GRADE RECORDER -->
+  <!-- ============================================================ -->
+  <div id="sessionGradeModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="relative w-full max-w-sm bg-slate-900 rounded-3xl border border-slate-700 p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div>
+          <h3 class="text-sm font-bold text-slate-900" id="sessionModalTitle">تسجيل الحصة</h3>
+          <p class="text-[11px] text-slate-400" id="sessionModalSub">-</p>
+        </div>
+        <button onclick="closeSessionGradeModal()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="setQuickSessionState('✓')" class="p-3 rounded-2xl bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 font-bold border border-emerald-500/30 flex items-center justify-center gap-1.5 transition-all">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>حاضر (✓)</span>
+          </button>
+          <button onclick="setQuickSessionState('غ')" class="p-3 rounded-2xl bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 font-bold border border-rose-500/30 flex items-center justify-center gap-1.5 transition-all">
+            <i data-lucide="x" class="w-4 h-4"></i>
+            <span>غائب (غ)</span>
+          </button>
+        </div>
+
+        <div class="bg-slate-800/80 p-3 rounded-2xl border border-slate-700/60 space-y-2">
+          <label class="block text-slate-300 font-bold">أو تسجيل درجة الامتحان:</label>
+          <div class="flex items-center gap-2">
+            <input type="text" id="customExamGradeInput" placeholder="مثال: 10/20 أو 8/10" class="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono text-center font-bold focus:ring-1 focus:ring-sky-500">
+            <button onclick="saveCustomExamGrade()" class="px-3 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold">حفظ الدرجة</button>
+          </div>
+        </div>
+
+        <div class="pt-2 flex items-center justify-between border-t border-slate-800">
+          <button onclick="setQuickSessionState('')" class="text-slate-400 hover:text-slate-200 text-[11px] underline">مسح / تفريغ الحصة</button>
+          <button onclick="closeSessionGradeModal()" class="px-3 py-1.5 rounded-xl bg-slate-800 text-slate-400 font-semibold text-xs">إلغاء</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- MODAL: OPEN NEW CENTER MONTH (شهور الحضور) -->
+  <!-- ============================================================ -->
+  <div id="newMonthModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="relative w-full max-w-sm bg-slate-900 rounded-3xl border border-slate-700 p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-base font-bold text-slate-100 flex items-center gap-2">
+          <i data-lucide="calendar-plus" class="w-5 h-5 text-emerald-400"></i>
+          <span>فتح شهر دراسي جديد للرصد</span>
+        </h3>
+        <button onclick="closeNewMonthModal()" class="text-slate-400 hover:text-white cursor-pointer"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <p class="text-slate-300">اكتب اسم أو رقم الشهر الجديد لفتحه وتمكين رصد 8 حصص جديدة لكافة الطلاب والمدرسين:</p>
+        <input type="text" id="newMonthNameInput" placeholder="مثال: شهر 2 أو شهر أكتوبر" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white font-bold text-xs focus:ring-1 focus:ring-emerald-500">
+        <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-800">
+          <button type="button" onclick="closeNewMonthModal()" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 font-semibold cursor-pointer">إلغاء</button>
+          <button type="button" onclick="saveNewCenterMonth()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold flex items-center gap-1.5 cursor-pointer">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>تأكيد وفتح الشهر</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- MODAL: ADD USER MODAL (ADMIN ONLY) -->
+  <!-- ============================================================ -->
+  <div id="addUserModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="relative w-full max-w-md bg-slate-900 rounded-3xl border border-slate-700 p-6 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+          <i data-lucide="user-plus" class="w-5 h-5 text-indigo-400"></i>
+          <span>إضافة مستخدم جديد للنظام</span>
+        </h3>
+        <button onclick="closeAddUserModal()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <form id="addUserForm" onsubmit="handleSaveNewUser(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-400 font-bold mb-1">الاسم الكامل *</label>
+          <input type="text" id="newUserName" required placeholder="أدخل اسم المستخدم" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white focus:ring-1 focus:ring-indigo-500">
+        </div>
+        <div>
+          <label class="block text-slate-400 font-bold mb-1">رقم الموبايل (لتسجيل الدخول) *</label>
+          <input type="tel" id="newUserPhone" required placeholder="01xxxxxxxxx" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono focus:ring-1 focus:ring-indigo-500">
+        </div>
+        <div>
+          <label class="block text-slate-400 font-bold mb-1">كلمة المرور (الباسورد) *</label>
+          <input type="text" id="newUserPassword" required placeholder="••••" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono focus:ring-1 focus:ring-indigo-500">
+        </div>
+        <div>
+          <label class="block text-slate-400 font-bold mb-1">الصلاحية / الدور *</label>
+          <select id="newUserRole" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-white focus:ring-1 focus:ring-indigo-500">
+            <option value="مشرف">مشرف / مسؤول سنتر</option>
+            <option value="مساعد">مساعد / سكرتارية</option>
+            <option value="مدرس">مدرس</option>
+            <option value="أدمن">أدمن كامل الصلاحيات</option>
+          </select>
+        </div>
+
+        <div class="pt-3 border-t border-slate-800 flex items-center justify-end gap-2">
+          <button type="button" onclick="closeAddUserModal()" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 font-semibold">إلغاء</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold">حفظ المستخدم</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- MODAL: GOOGLE SHEETS LIVE SYNC SETTINGS -->
+  <!-- ============================================================ -->
+  <div id="sheetsSyncModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="relative w-full max-w-lg bg-slate-900 rounded-3xl border border-slate-700 p-6 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+          <i data-lucide="link-2" class="w-5 h-5 text-teal-400"></i>
+          <span>إعدادات الربط اللحظي مع Google Sheets</span>
+        </h3>
+        <button onclick="closeSheetsSyncModal()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <div class="space-y-4 text-xs">
+        <div class="p-3 bg-teal-500/10 border border-teal-500/20 rounded-2xl space-y-1.5 text-teal-300">
+          <div class="font-bold flex items-center gap-1.5">
+            <i data-lucide="sheet" class="w-4 h-4"></i>
+            <span>ملف Google Sheets الرئيسي:</span>
+          </div>
+          <p class="text-[11px] text-slate-300 break-all font-mono">
+            https://docs.google.com/spreadsheets/d/13J9pKu0dnL4rcyhYDTh3lQY2upe2yCc7jaV16AhTCpI
+          </p>
+        </div>
+
+        <!-- Railway Live Sync Configuration -->
+        <div class="p-3.5 bg-sky-500/10 border border-sky-500/20 rounded-2xl space-y-2 text-xs">
+          <div class="flex items-center justify-between">
+            <div class="font-bold flex items-center gap-1.5 text-sky-300">
+              <i data-lucide="radio" class="w-4 h-4"></i>
+              <span>سيرفر ريلوي للمزامنة الفورية اللحظية (Railway Live):</span>
+            </div>
+            <div class="flex items-center gap-1.5 text-[11px] font-bold">
+              <span id="railwayModalStatusDot" class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span id="railwayModalStatusText" class="text-sky-300">متصل لحظياً ⚡</span>
+            </div>
+          </div>
+          <input 
+            type="url" 
+            id="railwayServerUrlInput" 
+            placeholder="https://your-app.up.railway.app (أو اتركه فارغاً للاكتشاف التلقائي)" 
+            class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2 text-white font-mono text-xs focus:ring-1 focus:ring-sky-500"
+          >
+          <p class="text-[10px] text-slate-400">عند رفع التطبيق على Railway يعمل السيرفر تلقائياً. ويمكن وضع الرابط هنا لربط تطبيق الأوفلاين ونسخة الأندرويد APK بالسيرفر السحابي فورياً.</p>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-bold mb-1.5">رابط الـ Web App (Apps Script Webhook URL) *</label>
+          <input 
+            type="url" 
+            id="sheetsWebhookInput" 
+            placeholder="https://script.google.com/macros/s/AKfycb.../exec" 
+            class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white font-mono text-xs focus:ring-1 focus:ring-teal-500"
+          >
+          <p class="text-[10px] text-slate-400 mt-1">الرابط الناتج بعد نشر الكود من: Extensions -> Apps Script -> Deploy as Web app.</p>
+        </div>
+
+        <div class="bg-slate-950 p-3 rounded-2xl border border-slate-800 space-y-2">
+          <div class="text-[11px] font-bold text-slate-300 flex items-center justify-between">
+            <span>كود الربط (Google Apps Script):</span>
+            <button onclick="copyAppsScriptCode()" class="text-sky-400 hover:underline flex items-center gap-1">
+              <i data-lucide="copy" class="w-3 h-3"></i>
+              <span id="copyScriptBtnText">نسخ الكود</span>
+            </button>
+          </div>
+          <p class="text-[10px] text-slate-400 leading-relaxed">
+            تم تجهيز الكود ليتصل تلقائياً مع الشيت ويقوم بحفظ أي طالب، تعديله، أو حذفه فوراً.
+          </p>
+        </div>
+
+        <div id="sheetsSyncStatusBox" class="hidden p-3 rounded-xl border text-xs font-bold flex items-center gap-2"></div>
+
+        <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
+          <button type="button" onclick="testAndSaveSheetsWebhook()" id="saveSheetsBtn" class="px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-bold flex items-center gap-2 shadow-lg shadow-teal-600/30">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>حفظ واختبار الاتصال اللحظي</span>
+          </button>
+          <button type="button" onclick="closeSheetsSyncModal()" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-400 font-semibold">إغلاق</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- MODAL: BULK SESSION ATTENDANCE & GRADES RECORDER (40+ STUDENTS) -->
+  <!-- ============================================================ -->
+  <!-- ============================================================ -->
+  <!-- MODAL: BULK SESSION ATTENDANCE & GRADES RECORDER (40+ STUDENTS) -->
+  <!-- ============================================================ -->
+  <div id="bulkSessionModal" class="fixed inset-0 z-[100] bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
+    <div class="relative w-full max-w-4xl bg-white rounded-3xl border border-slate-200 shadow-2xl overflow-hidden my-auto max-h-[95vh] h-full sm:h-auto flex flex-col">
+      
+      <!-- Modal Header -->
+      <div class="px-4 sm:px-6 py-3.5 bg-slate-50 border-b border-slate-200 flex items-center justify-between gap-2 shrink-0">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600 flex items-center justify-center text-white font-bold shadow-lg shadow-emerald-600/30 shrink-0">
+            <i data-lucide="zap" class="w-5 h-5 text-amber-300"></i>
+          </div>
+          <div class="min-w-0">
+            <h3 class="text-sm sm:text-base font-bold text-slate-800 flex items-center gap-2 truncate">
+              <span>الرصد الجماعي السريع للحصة</span>
+              <span id="bulkSessionCountBadge" class="text-xs px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 font-mono font-bold">0 طالب</span>
+            </h3>
+            <p class="text-[11px] text-slate-500 hidden sm:block truncate">حدد المرحلة والمادة ورقم الحصة، ثم قم بتحضير الطلاب ورصد درجاتهم بنقرة واحدة</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <!-- Quick Save Button in Header (Always visible at top!) -->
+          <button onclick="saveBulkSessionAttendance()" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-emerald-600/25 active:scale-95 transition-all cursor-pointer">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>حفظ الحصة 💾</span>
+          </button>
+          <button onclick="closeBulkSessionModal()" class="p-1.5 sm:p-2 rounded-xl hover:bg-slate-200 text-slate-400 hover:text-slate-700 cursor-pointer">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Scrollable Body: Controls + Students Table -->
+      <div class="overflow-y-auto flex-1 p-3 sm:p-4 space-y-3">
+        
+        <!-- Controls & Filter Bar -->
+        <div class="p-3 sm:p-4 bg-slate-50/90 border border-slate-200 rounded-2xl space-y-3 text-xs">
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+            <div>
+              <label class="block text-slate-600 font-bold mb-1">الشهر المستهدف</label>
+              <select id="bulkMonthSelect" onchange="renderBulkStudentsList()" class="w-full bg-emerald-50 border border-emerald-300 rounded-xl px-2.5 py-2 text-emerald-800 font-bold focus:ring-1 focus:ring-emerald-500">
+                <!-- Dynamically populated -->
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-slate-600 font-bold mb-1">الصف الدراسي</label>
+              <select id="bulkGradeSelect" onchange="onBulkGradeChange()" class="w-full bg-white border border-slate-300 rounded-xl px-2.5 py-2 text-slate-800 font-bold focus:ring-1 focus:ring-emerald-500">
+                <option value="ث1">الصف الأول الثانوي (ث1)</option>
+                <option value="ث2">الصف الثاني الثانوي (ث2)</option>
+                <option value="ث3">الصف الثالث الثانوي (ث3)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-slate-600 font-bold mb-1">المادة</label>
+              <select id="bulkSubjectSelect" onchange="onBulkSubjectChange()" class="w-full bg-white border border-slate-300 rounded-xl px-2.5 py-2 text-slate-800 font-bold focus:ring-1 focus:ring-emerald-500">
+                <!-- Dynamically populated -->
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-slate-600 font-bold mb-1">المدرس</label>
+              <select id="bulkTeacherSelect" onchange="renderBulkStudentsList()" class="w-full bg-white border border-slate-300 rounded-xl px-2.5 py-2 text-slate-800 font-bold focus:ring-1 focus:ring-emerald-500">
+                <!-- Dynamically populated -->
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-slate-600 font-bold mb-1">رقم الحصة المطلوب رصدها</label>
+              <select id="bulkSessionNumSelect" onchange="renderBulkStudentsList()" class="w-full bg-emerald-50 border border-emerald-500/40 rounded-xl px-2.5 py-2 text-emerald-800 font-bold focus:ring-1 focus:ring-emerald-500">
+                <option value="0">الحصة الأولى (حصة 1)</option>
+                <option value="1">الحصة الثانية (حصة 2)</option>
+                <option value="2">الحصة الثالثة (حصة 3)</option>
+                <option value="3">الحصة الرابعة (حصة 4)</option>
+                <option value="4">الحصة الخامسة (حصة 5)</option>
+                <option value="5">الحصة السادسة (حصة 6)</option>
+                <option value="6">الحصة السابعة (حصة 7)</option>
+                <option value="7">الحصة الثامنة (حصة 8)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 1-Click Mass Actions Toolbar -->
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-200">
+            <div class="flex flex-wrap items-center gap-1.5">
+              <button onclick="setAllBulkAttendance('✓')" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold flex items-center gap-1 shadow-sm active:scale-95 cursor-pointer">
+                <i data-lucide="check-check" class="w-3.5 h-3.5"></i>
+                <span>تحضير الكل (حاضر ✓)</span>
+              </button>
+
+              <button onclick="setAllBulkAttendance('غ')" class="px-3 py-1.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold flex items-center gap-1 shadow-sm active:scale-95 cursor-pointer">
+                <i data-lucide="user-x" class="w-3.5 h-3.5"></i>
+                <span>تغييب الكل (غائب غ)</span>
+              </button>
+
+              <button onclick="setAllBulkAttendance('')" class="px-2.5 py-1.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold flex items-center gap-1 cursor-pointer">
+                <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                <span>تفريغ الكل</span>
+              </button>
+            </div>
+
+            <!-- Mass Exam Grade Input -->
+            <div class="flex items-center gap-1.5 bg-white px-2.5 py-1 rounded-xl border border-slate-200 shadow-sm">
+              <span class="text-slate-600 text-[11px] font-bold">درجة امتحان للكل:</span>
+              <input type="text" id="bulkCommonGradeInput" placeholder="مثال: 10/10" class="w-20 bg-slate-50 border border-slate-200 rounded-lg px-2 py-1 text-slate-800 font-mono text-center text-xs">
+              <button onclick="applyCommonGradeToAll()" class="px-2.5 py-1 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs cursor-pointer">تطبيق</button>
+            </div>
+
+            <!-- Fast Live Search in Modal -->
+            <div class="w-full sm:w-48">
+              <input 
+                type="text" 
+                id="bulkSearchInput" 
+                placeholder="🔍 بحث سريع..." 
+                oninput="filterBulkStudentsTable()"
+                class="w-full bg-white border border-slate-200 rounded-xl px-2.5 py-1.5 text-slate-800 text-xs placeholder-slate-400 focus:ring-1 focus:ring-emerald-500 shadow-sm"
+              >
+            </div>
+          </div>
+
+          <!-- SMART RAPID ABSENCE BY CODES -->
+          <div class="p-3 bg-gradient-to-r from-rose-50 via-white to-indigo-50 border border-rose-200 rounded-2xl space-y-2">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center font-bold text-xs">
+                  <i data-lucide="user-x" class="w-3.5 h-3.5"></i>
+                </span>
+                <span class="font-bold text-slate-800 text-xs">الرصد السريع للغياب بالأكواد (تسجيل الغائبين وتحضير باقي الفصل تلقائياً):</span>
+              </div>
+              <span class="text-[11px] text-slate-500">اكتب أو الصق أكواد الغياب مفصولة بمسافة أو فاصلة</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <div class="flex-1">
+                <input 
+                  type="text" 
+                  id="bulkAbsentCodesInput" 
+                  placeholder="أدخل أكواد الغائبين هنا (مثال: 1002 1015 1044 1058)..." 
+                  class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-rose-600 font-mono font-bold text-xs placeholder-slate-400 focus:ring-1 focus:ring-rose-500"
+                >
+              </div>
+
+              <button 
+                type="button" 
+                onclick="applySmartAbsentCodes()" 
+                class="px-4 py-2 rounded-xl bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-rose-600/20 active:scale-95 transition-all whitespace-nowrap cursor-pointer"
+              >
+                <i data-lucide="zap" class="w-4 h-4 text-amber-300"></i>
+                <span>تطبيق الغياب وتحضير الباقي فوراً ⚡</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Students Checklist Table Container -->
+        <div class="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <table class="w-full text-right text-xs">
+            <thead class="bg-slate-50 text-slate-700 font-bold border-b border-slate-200 sticky top-0 z-10">
+              <tr>
+                <th class="p-2.5 w-10 text-center">م</th>
+                <th class="p-2.5 w-20 text-center">الكود</th>
+                <th class="p-2.5 min-w-[150px]">اسم الطالب</th>
+                <th class="p-2.5 w-36">المدرس المشرف</th>
+                <th class="p-2.5 text-center min-w-[200px]">حالة الحضور السريع</th>
+                <th class="p-2.5 text-center w-36">درجة الامتحان (اختياري)</th>
+              </tr>
+            </thead>
+            <tbody id="bulkStudentsTableBody" class="divide-y divide-slate-100 text-slate-800">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Modal Footer (Sticky Pinned at Bottom) -->
+      <div class="sticky bottom-0 z-30 px-4 sm:px-6 py-3 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] flex flex-wrap items-center justify-between gap-3 text-xs shrink-0">
+        <div class="flex items-center gap-3 sm:gap-4 text-slate-600 font-bold">
+          <span>الإجمالي: <strong id="bulkStatTotal" class="text-slate-900 font-mono">0</strong></span>
+          <span class="text-emerald-600">حاضر: <strong id="bulkStatPresent" class="font-mono">0</strong></span>
+          <span class="text-rose-600">غائب: <strong id="bulkStatAbsent" class="font-mono">0</strong></span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="closeBulkSessionModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold cursor-pointer">إلغاء</button>
+          <button onclick="saveBulkSessionAttendance()" id="saveBulkBtn" class="px-5 sm:px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold shadow-lg shadow-emerald-600/30 flex items-center gap-2 active:scale-95 transition-all cursor-pointer">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>حفظ ومزامنة الحصة للجميع (دفعة واحدة)</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- MODAL: AI SMART CAMERA SCANNER FOR ATTENDANCE SHEETS -->
+  <!-- ============================================================ -->
+  <div id="cameraScanModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="relative w-full max-w-4xl bg-slate-900 rounded-3xl border border-slate-700 shadow-2xl overflow-hidden my-4 max-h-[94vh] flex flex-col">
+      
+      <!-- Header -->
+      <div class="px-6 py-4 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center text-white font-bold shadow-lg shadow-sky-500/25">
+            <i data-lucide="camera" class="w-5 h-5 text-amber-300"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+              <span>المسح الذكي لكشوف الحضور بالكاميرا (AI OCR Scanner)</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/30">ذكي وفوري</span>
+            </h3>
+            <p class="text-xs text-slate-400">التقط صورة لكشف الحضور الورقي وسيقوم الذكاء الاصطناعي بالتعرف على الطلاب ورصد درجاتهم وحضورهم تلقائياً</p>
+          </div>
+        </div>
+
+        <button onclick="closeCameraScanModal()" class="p-2 rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Controls & Session Target -->
+      <div class="p-4 bg-slate-900 border-b border-slate-800 space-y-3 text-xs">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          <div>
+            <label class="block text-slate-400 font-bold mb-1">الصف الدراسي</label>
+            <select id="scanGradeSelect" onchange="onScanGradeChange()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-2 text-white font-bold focus:ring-1 focus:ring-sky-500">
+              <option value="ث1">الصف الأول الثانوي (ث1)</option>
+              <option value="ث2">الصف الثاني الثانوي (ث2)</option>
+              <option value="ث3">الصف الثالث الثانوي (ث3)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-slate-400 font-bold mb-1">المادة</label>
+            <select id="scanSubjectSelect" onchange="onScanSubjectChange()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-2 text-white font-bold focus:ring-1 focus:ring-sky-500">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-slate-400 font-bold mb-1">المدرس المشرف</label>
+            <select id="scanTeacherSelect" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-2.5 py-2 text-white font-bold focus:ring-1 focus:ring-sky-500">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-slate-400 font-bold mb-1">رقم الحصة المطلوب رصدها</label>
+            <select id="scanSessionNumSelect" class="w-full bg-sky-600/20 border border-sky-500/40 rounded-xl px-2.5 py-2 text-sky-300 font-bold focus:ring-1 focus:ring-sky-500">
+              <option value="0">الحصة الأولى (حصة 1)</option>
+              <option value="1">الحصة الثانية (حصة 2)</option>
+              <option value="2">الحصة الثالثة (حصة 3)</option>
+              <option value="3">الحصة الرابعة (حصة 4)</option>
+              <option value="4">الحصة الخامسة (حصة 5)</option>
+              <option value="5">الحصة السادسة (حصة 6)</option>
+              <option value="6">الحصة السابعة (حصة 7)</option>
+              <option value="7">الحصة الثامنة (حصة 8)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Body: Camera Viewfinder & Extracted Data -->
+      <div class="flex-1 overflow-y-auto p-4 space-y-4">
+        
+        <!-- Viewfinder / Image Preview Container -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+          <!-- Left: Camera/Upload Viewport -->
+          <div class="bg-slate-950 rounded-2xl border border-slate-800 p-3 space-y-3 flex flex-col justify-between">
+            <div class="relative w-full rounded-xl overflow-hidden bg-black flex items-center justify-center min-h-[220px] max-h-[280px]">
+              <video id="cameraVideo" autoplay playsinline class="w-full h-full object-contain hidden"></video>
+              <img id="cameraPreviewImg" class="w-full h-full object-contain hidden" alt="كشف الحضور المصور">
+              <canvas id="cameraCanvas" class="hidden"></canvas>
+              
+              <div id="cameraEmptyPlaceholder" class="p-6 text-center text-slate-500 space-y-2">
+                <i data-lucide="camera" class="w-12 h-12 mx-auto text-slate-600"></i>
+                <p class="text-xs font-semibold">اضغط على زر الكاميرا للالتقاط أو اختر صورة من المعرض</p>
+              </div>
+            </div>
+
+            <!-- Capture Controls -->
+            <div class="flex flex-wrap items-center gap-2 text-xs">
+              <button type="button" onclick="startCameraStream()" id="btnStartCam" class="flex-1 py-2.5 px-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold flex items-center justify-center gap-1.5 shadow-md shadow-sky-600/20 active:scale-95">
+                <i data-lucide="video" class="w-4 h-4"></i>
+                <span>فتح الكاميرا الحية</span>
+              </button>
+
+              <button type="button" onclick="captureCameraSnapshot()" id="btnSnapCam" class="hidden py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold flex items-center justify-center gap-1.5 shadow-md shadow-emerald-600/20 active:scale-95">
+                <i data-lucide="camera" class="w-4 h-4"></i>
+                <span>التقاط الصورة 📸</span>
+              </button>
+
+              <button type="button" onclick="triggerCameraFileInput()" class="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold flex items-center justify-center gap-1.5 border border-slate-700 active:scale-95">
+                <i data-lucide="image" class="w-4 h-4 text-teal-400"></i>
+                <span>اختيار صورة من الهاتف</span>
+              </button>
+
+              <input type="file" id="cameraFileInput" accept="image/*" capture="environment" class="hidden" onchange="onCameraFileSelected(event)">
+            </div>
+          </div>
+
+          <!-- Right: AI Processing & Recognition Action -->
+          <div class="bg-slate-950 rounded-2xl border border-slate-800 p-4 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <h4 class="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                  <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i>
+                  <span>محرك التعرف البصري (AI OCR Engine)</span>
+                </h4>
+                <span id="scanStatusBadge" class="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-400">جاهز للفحص</span>
+              </div>
+
+              <p class="text-[11px] text-slate-400 leading-relaxed">
+                يقوم النظام بتحليل سطور الكشف، استخراج أسماء وأكواد الطلاب، ومطابقتها تلقائياً مع قاعدة بيانات السنتر، ثم رصد علامات الحضور والغياب والدرجات المدونة.
+              </p>
+
+              <!-- Progress Bar -->
+              <div id="ocrProgressContainer" class="hidden space-y-1.5 p-3 rounded-xl bg-sky-500/10 border border-sky-500/20">
+                <div class="flex items-center justify-between text-[11px] font-bold text-sky-300">
+                  <span id="ocrProgressLabel">جاري معالجة الكشف بالذكاء الاصطناعي...</span>
+                  <span id="ocrProgressPercent" class="font-mono">0%</span>
+                </div>
+                <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                  <div id="ocrProgressBar" class="h-full bg-gradient-to-r from-sky-500 to-indigo-500 transition-all duration-300 w-0"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Run OCR Button -->
+            <button type="button" onclick="runAiOcrOnCapturedImage()" id="btnRunOcr" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 via-emerald-600 to-teal-600 hover:from-amber-400 hover:to-teal-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 active:scale-95 transition-all">
+              <i data-lucide="scan-text" class="w-4 h-4"></i>
+              <span>⚡ بدء الفحص الذكي واستخراج بيانات الحضور الآن</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Recognized Students Review Table -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+              <i data-lucide="check-square" class="w-4 h-4 text-emerald-400"></i>
+              <span>مراجعة وتأكيد نتائج الكشف المصور قبل الحفظ:</span>
+            </h4>
+            <span id="scanMatchCountBadge" class="text-xs text-slate-400 font-mono">0 طالب تم التعرف عليه</span>
+          </div>
+
+          <div class="rounded-2xl border border-slate-800 overflow-hidden">
+            <table class="w-full text-right text-xs">
+              <thead class="bg-slate-950 text-slate-400 font-bold border-b border-slate-800">
+                <tr>
+                  <th class="p-2.5 w-10 text-center">م</th>
+                  <th class="p-2.5 w-20 text-center">الكود</th>
+                  <th class="p-2.5 min-w-[150px]">اسم الطالب المتطابق</th>
+                  <th class="p-2.5 min-w-[120px]">النص المقروء من الورقة</th>
+                  <th class="p-2.5 text-center min-w-[180px]">الحالة المرصودة</th>
+                  <th class="p-2.5 text-center w-28">الدرجة</th>
+                </tr>
+              </thead>
+              <tbody id="scanResultsTableBody" class="divide-y divide-slate-800 text-slate-200">
+                <tr>
+                  <td colspan="6" class="p-6 text-center text-slate-500">
+                    التقط صورة الكشف واضغط على «بدء الفحص الذكي» لعرض النتائج هنا.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-3.5 bg-slate-950 border-t border-slate-800 flex items-center justify-between text-xs">
+        <button onclick="closeCameraScanModal()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold">إغلاق</button>
+        
+        <button onclick="saveCameraScannedAttendance()" id="btnSaveScanned" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold shadow-lg shadow-emerald-600/30 flex items-center gap-2 active:scale-95 transition-all">
+          <i data-lucide="check" class="w-4 h-4"></i>
+          <span>حفظ ومزامنة نتائج الكشف المصور في السنتر</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- NATIVE MOBILE BOTTOM APP BAR -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-t border-slate-200 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] px-1 pt-1.5 flex items-center justify-around" style="padding-bottom: max(0.65rem, env(safe-area-inset-bottom, 12px));">
+    <button onclick="switchTab('dashboard')" id="mob_nav_dashboard" class="mobile-nav-btn active flex-1 flex flex-col items-center justify-center py-1 text-sky-600 font-bold transition-all">
+      <div class="nav-icon-wrapper p-1 rounded-xl transition-all"><i data-lucide="layout-dashboard" class="w-5 h-5"></i></div>
+      <span class="text-[10px] mt-0.5 font-bold">الرئيسية</span>
+    </button>
+    <button onclick="switchTab('students')" id="mob_nav_students" class="mobile-nav-btn flex-1 flex flex-col items-center justify-center py-1 text-slate-500 hover:text-slate-900 transition-all">
+      <div class="nav-icon-wrapper p-1 rounded-xl transition-all"><i data-lucide="users" class="w-5 h-5"></i></div>
+      <span class="text-[10px] mt-0.5 font-bold">الطلاب</span>
+    </button>
+    <button onclick="switchTab('attendance_matrix')" id="mob_nav_attendance_matrix" class="mobile-nav-btn flex-1 flex flex-col items-center justify-center py-1 text-slate-500 hover:text-slate-900 transition-all">
+      <div class="nav-icon-wrapper p-1 rounded-xl transition-all"><i data-lucide="calendar-check" class="w-5 h-5 text-emerald-600"></i></div>
+      <span class="text-[10px] mt-0.5 font-bold">الحضور</span>
+    </button>
+    <button onclick="switchTab('register')" id="mob_nav_register" class="mobile-nav-btn flex-1 flex flex-col items-center justify-center py-1 text-slate-500 hover:text-slate-900 transition-all">
+      <div class="nav-icon-wrapper p-1 rounded-xl transition-all"><i data-lucide="user-plus" class="w-5 h-5 text-sky-600"></i></div>
+      <span class="text-[10px] mt-0.5 font-bold">تسجيل</span>
+    </button>
+    <button onclick="switchTab('pdf_reports')" id="mob_nav_pdf_reports" class="mobile-nav-btn flex-1 flex flex-col items-center justify-center py-1 text-slate-500 hover:text-slate-900 transition-all">
+      <div class="nav-icon-wrapper p-1 rounded-xl transition-all"><i data-lucide="file-text" class="w-5 h-5 text-amber-600"></i></div>
+      <span class="text-[10px] mt-0.5 font-bold">التقارير</span>
+    </button>
+    <button onclick="switchTab('users_mgmt')" id="mob_nav_users_mgmt" class="mobile-nav-btn hidden flex-1 flex flex-col items-center justify-center py-1 text-slate-500 hover:text-slate-900 transition-all">
+      <div class="nav-icon-wrapper p-1 rounded-xl transition-all"><i data-lucide="shield-check" class="w-5 h-5 text-indigo-600"></i></div>
+      <span class="text-[10px] mt-0.5 font-bold">المستخدمين</span>
+    </button>
+  </nav>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-20 md:bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-2 bg-emerald-600 text-white px-4 py-3 rounded-2xl shadow-xl border border-emerald-400/30 text-xs font-bold">
+    <i data-lucide="check-circle" class="w-4 h-4"></i>
+    <span id="toastMsg">تم الإجراء بنجاح</span>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="data.js?v=20260909_v1"></script>
+  <script src="app.js?v=20260909_v12"></script>
+
+  <!-- PWA & OFFLINE ENGINE SCRIPT -->
+  <script>
+    // 1. Service Worker Registration & Auto-Update
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('./sw.js?v=20260909_v24')
+          .then(function(reg) {
+            console.log('[PWA] Service Worker registered successfully! Scope:', reg.scope);
+            try { reg.update(); } catch(e) {}
+          })
+          .catch(function(err) {
+            console.warn('[PWA] Service Worker registration note:', err);
+          });
+      });
+
+      var refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', function() {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
+        }
+      });
+    }
+
+    // 2. PWA Install Prompt Handler
+    var deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', function(e) {
+      e.preventDefault();
+      deferredPrompt = e;
+      var btn = document.getElementById('btnPwaInstall');
+      if (btn) {
+        btn.classList.remove('hidden');
+        btn.style.display = 'flex';
+      }
+    });
+
+    function installPWAApp() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(function(choiceResult) {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('[PWA] User accepted the install prompt');
+            if (typeof showToast === 'function') {
+              showToast('🎉 جاري تثبيت تطبيق سنتر الأرائج التعليمي على هاتفك بنجاح!');
+            }
+          }
+          deferredPrompt = null;
+        });
+      } else {
+        // Fallback instructions for iOS or desktop browsers
+        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        if (isIOS) {
+          alert("📱 لتثبيت التطبيق على الآيفون:\n1. اضغط على زر المشاركة (Share ⎋) في أسفل متصفح Safari.\n2. اختر 'إضافة إلى الشاشة الرئيسية' (Add to Home Screen ➕).\n3. سيتم تثبيت تطبيق سنتر الأرائج التعليمي والعمل بدون إنترنت!");
+        } else {
+          alert("📲 لتثبيت التطبيق على هاتفك:\nاضغط على قائمة خيارات المتصفح (⋮) ثم اختر 'تثبيت التطبيق' أو 'إضافة إلى الشاشة الرئيسية'.\nسيعمل التطبيق بدون إنترنت في أي وقت!");
+        }
+      }
+    }
+
+    window.addEventListener('appinstalled', function() {
+      console.log('[PWA] Araij Manager App installed successfully!');
+      var btn = document.getElementById('btnPwaInstall');
+      if (btn) btn.style.display = 'none';
+      if (typeof showToast === 'function') {
+        showToast('✨ تم تثبيت تطبيق سنتر الأرائج التعليمي على جهازك بنجاح!');
+      }
+    });
+  </script>
+</body>
+</html>

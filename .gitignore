@@ -1,0 +1,13 @@
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+*.apk
+*.idsig
+.env
+.idea/
+.vscode/
+debug.keystore
+temp/
+Araij_App_Offline.html

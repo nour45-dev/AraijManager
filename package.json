@@ -1,0 +1,23 @@
+﻿{
+  "name": "araij-manager-pro",
+  "version": "4.0.0",
+  "description": "ظ…ظ†طµط© ط³ظ†طھط± ط§ظ„ط£ط±ط§ط¦ط¬ ط§ظ„طھط¹ظ„ظٹظ…ظٹ - ظ†ط¸ط§ظ… ط§ظ„ظ…طھط§ط¨ط¹ط© ظˆط§ظ„طھط³ط¬ظٹظ„ ظˆظƒط´ظˆظپ ط§ظ„ط­ط¶ظˆط± ظˆط§ظ„ظ…ط²ط§ظ…ظ†ط© ط§ظ„ظ„ط­ط¸ظٹط©",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "ws": "^8.18.0"
+  },
+  "keywords": [
+    "araij",
+    "center",
+    "education",
+    "attendance",
+    "railway"
+  ],
+  "author": "ط³ظ†طھط± ط§ظ„ط£ط±ط§ط¦ط¬ ط§ظ„طھط¹ظ„ظٹظ…ظٹ",
+  "license": "ISC"
+}
