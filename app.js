@@ -3171,7 +3171,9 @@ function updateRailwayStatusBadge(connected, text) {
 }
 
 function handleIncomingLiveUpdate(msg) {
-  const { action, data, sender } = msg;
+  const action = msg.action;
+  const data = msg.data || msg.payload || {};
+  const sender = msg.sender || msg.byUser || '';
   console.log(`[Railway Live Sync] Received ${action} from ${sender || 'system'}`);
 
   const myName = currentUser ? currentUser.name : '';
@@ -3197,37 +3199,54 @@ function handleIncomingLiveUpdate(msg) {
 
     try {
       const overrides = JSON.parse(localStorage.getItem('araij_students_overrides') || '{}');
-      overrides[student.code] = student;
+      overrides[student.code] = allStudents[idx >= 0 ? idx : 0];
       localStorage.setItem('araij_students_overrides', JSON.stringify(overrides));
+      localStorage.setItem('araij_full_students_db', JSON.stringify(allStudents));
     } catch(e) {}
 
     renderAttendanceMatrix();
     applyFilters();
     updateKPIStats();
 
-    showToast(`⚡ مزامنة فورية: تحديث بيانات الطالب (${student.name}) بواسطة ${sender || 'مشرف'}`);
+    if (activeDetailStudentCode === targetCode) {
+      openStudentDetailModal(targetCode);
+    }
+
+    showToast(`⚡ مزامنة فورية: تم رصد/تحديث بيانات (${student.name}) بواسطة ${sender || 'مشرف'}`);
 
   } else if (action === 'batch_update_students' || action === 'bulk_session') {
-    const list = data?.students || [];
+    const list = data?.students || data?.modifiedStudents || (Array.isArray(data) ? data : []);
     if (Array.isArray(list) && list.length > 0) {
-      list.forEach(st => {
-        if (!st || !st.code) return;
-        st.academicSubjects = parseSubjectsFromSummary(st.subjectsSummary, st.teachersSummary, st.academicSubjects);
-        st._metrics = calculateStudentMetrics(st);
-        st._searchString = buildStudentSearchString(st);
+      try {
+        const overrides = JSON.parse(localStorage.getItem('araij_students_overrides') || '{}');
+        list.forEach(st => {
+          if (!st || !st.code) return;
+          st.academicSubjects = parseSubjectsFromSummary(st.subjectsSummary, st.teachersSummary, st.academicSubjects);
+          st._metrics = calculateStudentMetrics(st);
+          st._searchString = buildStudentSearchString(st);
 
-        const targetCode = String(st.code).trim();
-        const idx = allStudents.findIndex(s => String(s.code).trim() === targetCode);
-        if (idx >= 0) {
-          allStudents[idx] = { ...allStudents[idx], ...st };
-        } else {
-          allStudents.unshift(st);
-        }
-      });
+          const targetCode = String(st.code).trim();
+          const idx = allStudents.findIndex(s => String(s.code).trim() === targetCode);
+          if (idx >= 0) {
+            allStudents[idx] = { ...allStudents[idx], ...st };
+            overrides[st.code] = allStudents[idx];
+          } else {
+            allStudents.unshift(st);
+            overrides[st.code] = st;
+          }
+        });
+        localStorage.setItem('araij_students_overrides', JSON.stringify(overrides));
+        localStorage.setItem('araij_full_students_db', JSON.stringify(allStudents));
+      } catch(e) {}
 
       renderAttendanceMatrix();
       applyFilters();
       updateKPIStats();
+
+      if (activeDetailStudentCode) {
+        openStudentDetailModal(activeDetailStudentCode);
+      }
+
       showToast(`⚡ مزامنة فورية: استلام رصد جماعي لـ ${list.length} طالب من ${sender || 'مشرف'}`);
     }
 
@@ -3235,6 +3254,12 @@ function handleIncomingLiveUpdate(msg) {
     const code = String(data?.code || '').trim();
     if (code) {
       allStudents = allStudents.filter(s => String(s.code).trim() !== code);
+      try {
+        const overrides = JSON.parse(localStorage.getItem('araij_students_overrides') || '{}');
+        delete overrides[code];
+        localStorage.setItem('araij_students_overrides', JSON.stringify(overrides));
+        localStorage.setItem('araij_full_students_db', JSON.stringify(allStudents));
+      } catch(e) {}
       renderAttendanceMatrix();
       applyFilters();
       updateKPIStats();
@@ -3261,12 +3286,15 @@ function sendToRailwayServer(action, payload) {
   if (_railwaySocket && _railwaySocket.readyState === WebSocket.OPEN) {
     try {
       _railwaySocket.send(JSON.stringify({
-        type: 'DATA_UPDATE',
+        type: 'SYNC_ACTION',
         action,
+        payload,
         data: payload,
+        byUser: userName,
         sender: userName,
         timestamp: Date.now()
       }));
+      console.log(`[Railway Live Sync] Sent ${action} over WebSocket ⚡`);
       return true;
     } catch(e) {
       console.warn('[Railway Live Sync] WebSocket send error, falling back to HTTP:', e);
@@ -3279,7 +3307,7 @@ function sendToRailwayServer(action, payload) {
   fetch(targetUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ action, sender: userName, ...payload })
+    body: JSON.stringify({ action, payload, data: payload, byUser: userName, sender: userName, ...payload })
   }).catch(err => {
     console.warn('[Railway Live Sync] HTTP sync failed, queueing offline:', err);
     addToOfflineSyncQueue(action, payload);

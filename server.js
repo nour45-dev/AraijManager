@@ -106,8 +106,11 @@ wss.on('connection', (ws, req) => {
       const msg = JSON.parse(message);
       if (msg.type === 'PING') {
         ws.send(JSON.stringify({ type: 'PONG', timestamp: Date.now() }));
-      } else if (msg.type === 'SYNC_ACTION') {
-        handleSyncAction(msg.action, msg.payload, msg.byUser, ws);
+      } else if (msg.type === 'SYNC_ACTION' || msg.type === 'DATA_UPDATE') {
+        const action = msg.action;
+        const payload = msg.payload || msg.data || msg;
+        const byUser = msg.byUser || msg.sender || 'مشرف';
+        handleSyncAction(action, payload, byUser, ws);
       }
     } catch (e) {
       console.warn('[WS] Error processing message:', e);
@@ -229,7 +232,9 @@ function handleSyncAction(action, payload, byUser = 'ظ…ط³طھط®ط¯ظ…'
     type: 'DATA_UPDATE',
     action,
     payload,
+    data: payload,
     byUser,
+    sender: byUser,
     timestamp: Date.now(),
     studentsCount: students.length
   }, sourceWs);
@@ -300,11 +305,13 @@ app.get('/api/audit', (req, res) => {
 });
 
 app.post('/api/sync', (req, res) => {
-  const { action, payload, byUser } = req.body;
+  const action = req.body.action;
+  const payload = req.body.payload || req.body.data || req.body;
+  const byUser = req.body.byUser || req.body.sender || 'مشرف';
   if (!action) {
     return res.status(400).json({ status: 'error', message: 'Action required' });
   }
-  const result = handleSyncAction(action, payload || req.body, byUser || 'ظ…ط³طھط®ط¯ظ…');
+  const result = handleSyncAction(action, payload, byUser);
   res.json(result);
 });
 
