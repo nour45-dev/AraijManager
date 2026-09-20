@@ -2,21 +2,15 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy dependency files
-COPY package.json ./
+COPY package.json package-lock.json* ./
 
-# Install dependencies cleanly
-RUN npm install --production
+RUN npm install --omit=dev --no-audit --no-fund
 
-# Copy all application source code
 COPY . .
 
-# Expose server port
 EXPOSE 3000
 
-# Set environment variables
-ENV NODE_ENV=production
 ENV PORT=3000
+ENV NODE_ENV=production
 
-# Start server
 CMD ["node", "server.js"]
