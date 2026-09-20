@@ -1223,16 +1223,42 @@ function initData() {
     } catch(e) {}
   }
 
-  allStudents = merged.filter(s => !deletedCodes.includes(s.code));
+  // Self-heal: purge any blank or unnamed student entries in overrides and fullDb
+  try {
+    if (localOverrides) {
+      const ov = JSON.parse(localOverrides);
+      let ovCleaned = false;
+      Object.keys(ov).forEach(c => {
+        const item = ov[c];
+        const nm = String(item?.name || '').trim();
+        if (!nm || nm.length < 2 || nm.includes('غير مسمى')) {
+          delete ov[c];
+          ovCleaned = true;
+        }
+      });
+      if (ovCleaned) localStorage.setItem('araij_students_overrides', JSON.stringify(ov));
+    }
+  } catch(e) {}
+
+  allStudents = merged.filter(s => {
+    if (!s) return false;
+    if (deletedCodes.includes(s.code)) return false;
+    const name = String(s.name || '').trim();
+    if (!name || name.length < 2 || name.includes('غير مسمى')) return false;
+    return true;
+  });
 
   // ✅ DEDUPLICATION: if same code appears twice, keep only the first (most recent)
   const seenCodes = new Set();
   allStudents = allStudents.filter(s => {
-    const key = String(s.code).trim();
+    const key = String(s.code || '').trim();
     if (!key || seenCodes.has(key)) return false;
     seenCodes.add(key);
     return true;
   });
+
+  // Update cached full DB with cleaned students
+  try { localStorage.setItem('araij_full_students_db', JSON.stringify(allStudents)); } catch(e) {}
 
   allStudents.sort((a, b) => (a.name || '').localeCompare(b.name || '', 'ar', { numeric: true, sensitivity: 'base' }));
 
@@ -2427,7 +2453,13 @@ async function fetchLatestStudentsFromCentralServer(isSilent = false) {
           merged = [...serverStudents];
         }
 
-        allStudents = merged.filter(s => !deletedCodes.includes(s.code));
+        allStudents = merged.filter(s => {
+          if (!s) return false;
+          if (deletedCodes.includes(s.code)) return false;
+          const name = String(s.name || '').trim();
+          if (!name || name.length < 2 || name.includes('غير مسمى')) return false;
+          return true;
+        });
         const seenCentralCodes = new Set();
         allStudents = allStudents.filter(s => {
           const key = String(s.code || '').trim();
@@ -3012,26 +3044,49 @@ let _railwaySocket = null;
 let _railwayReconnectTimeout = null;
 let _isRailwayConnected = false;
 
-const DEFAULT_RAILWAY_URL = ''; // يمكنك وضع رابط سيرفر Railway هنا ليعمل الـ APK فورياً
+const DEFAULT_RAILWAY_URL = 'https://araijmanager.up.railway.app';
+
+function sanitizeRailwayUrl(raw) {
+  if (!raw) return '';
+  let s = String(raw).trim();
+  // Remove leading slashes or whitespace e.g. /https://...
+  s = s.replace(/^[\/\s]+/, '');
+  if (!/^https?:\/\//i.test(s)) {
+    s = 'https://' + s;
+  }
+  // Remove trailing slashes
+  s = s.replace(/\/+$/, '');
+  return s;
+}
 
 function getRailwayServerUrl() {
   const custom = localStorage.getItem('araij_railway_url');
-  if (custom && custom.trim()) return custom.trim().replace(/\/+$/, '');
+  if (custom && custom.trim()) return sanitizeRailwayUrl(custom);
   if (typeof DEFAULT_RAILWAY_URL === 'string' && DEFAULT_RAILWAY_URL.trim()) {
-    return DEFAULT_RAILWAY_URL.trim().replace(/\/+$/, '');
+    return sanitizeRailwayUrl(DEFAULT_RAILWAY_URL);
   }
   if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
     try { localStorage.setItem('araij_railway_url', window.location.origin); } catch (e) {}
-    return window.location.origin;
+    return sanitizeRailwayUrl(window.location.origin);
   }
   return '';
 }
 
+function onRailwayUrlInputChanged(val) {
+  const clean = sanitizeRailwayUrl(val);
+  if (clean) {
+    try { localStorage.setItem('araij_railway_url', clean); } catch (e) {}
+    updateRailwayStatusBadge(false, 'جاري الاتصال ⚡');
+    initLiveRailwaySync();
+  }
+}
+window.onRailwayUrlInputChanged = onRailwayUrlInputChanged;
+
 function initLiveRailwaySync() {
   const srvUrl = getRailwayServerUrl();
   const inputEl = document.getElementById('railwayServerUrlInput');
-  if (inputEl && !inputEl.value && localStorage.getItem('araij_railway_url')) {
-    inputEl.value = localStorage.getItem('araij_railway_url');
+  if (inputEl) {
+    inputEl.value = srvUrl;
   }
 
   if (!srvUrl) {
@@ -3233,16 +3288,17 @@ function sendToRailwayServer(action, payload) {
 
 function saveRailwaySettings() {
   const input = document.getElementById('railwayServerUrlInput');
-  const url = (input?.value || '').trim().replace(/\/+$/, '');
+  const url = sanitizeRailwayUrl(input?.value || '');
   if (url) {
     localStorage.setItem('araij_railway_url', url);
-    showToast(`تم حفظ رابط سيرفر ريلوي (${url}) وجاري الاتصال...`);
+    showToast(`تم حفظ وتفعيل رابط ريلوي (${url}) ⚡`);
   } else {
     localStorage.removeItem('araij_railway_url');
-    showToast('تم ضبط السيرفر على الاكتشاف التلقائي.');
+    showToast('تم ضبط السيرفر على الرابط الافتراضي.');
   }
   initLiveRailwaySync();
 }
+window.saveRailwaySettings = saveRailwaySettings;
 
 // Send ONLY to LAN local server (not Google Sheets)
 function sendToLanServer(action, payload) {
@@ -3400,7 +3456,7 @@ async function pullFromGoogleSheets(isAuto = false) {
       });
 
       uniqueSheetStudents.forEach(sheetStudent => {
-        if (!sheetStudent.code && !sheetStudent.name) return;
+        if (!sheetStudent || !sheetStudent.name || String(sheetStudent.name).trim().length < 2 || String(sheetStudent.name).includes('غير مسمى')) return;
         const code = String(sheetStudent.code || '').trim();
         // Match by code only
         const existingLocal = allStudents.find(s => String(s.code).trim() === code);
@@ -3588,6 +3644,8 @@ function updateSheetsStatusIndicator() {
 function openSheetsSyncModal() {
   const input = document.getElementById('sheetsWebhookInput');
   if (input) input.value = getGoogleAppsScriptUrl();
+  const rwInput = document.getElementById('railwayServerUrlInput');
+  if (rwInput) rwInput.value = getRailwayServerUrl();
   document.getElementById('sheetsSyncModal')?.classList.remove('hidden');
   initIcons();
 }
@@ -3612,6 +3670,8 @@ function copyAppsScriptCode() {
 }
 
 function testAndSaveSheetsWebhook() {
+  try { saveRailwaySettings(); } catch(e) {}
+
   const urlInput = document.getElementById('sheetsWebhookInput');
   const url = (urlInput?.value || '').trim();
   const statusBox = document.getElementById('sheetsSyncStatusBox');

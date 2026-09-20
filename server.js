@@ -1,4 +1,4 @@
-﻿const http = require('http');
+const http = require('http');
 const path = require('path');
 const fs = require('fs');
 const express = require('express');
@@ -29,8 +29,9 @@ function initDatabase() {
   try {
     if (fs.existsSync(DB_FILE)) {
       const raw = fs.readFileSync(DB_FILE, 'utf8');
-      students = JSON.parse(raw);
-      console.log(`[DB] Loaded ${students.length} students from students_db.json`);
+      const loaded = JSON.parse(raw);
+      students = (Array.isArray(loaded) ? loaded : []).filter(s => s && s.name && s.name.trim() && s.name.trim().length >= 2 && !s.name.includes('غير مسمى'));
+      console.log(`[DB] Loaded ${students.length} valid students from students_db.json`);
     } else {
       // Seed from data.js if exists
       const dataJsPath = path.join(__dirname, 'data.js');
@@ -38,9 +39,10 @@ function initDatabase() {
         const content = fs.readFileSync(dataJsPath, 'utf8');
         const match = content.match(/window\.STUDENTS_DATA\s*=\s*(\[[\s\S]*?\]);/);
         if (match) {
-          students = JSON.parse(match[1]);
+          const rawParsed = JSON.parse(match[1]);
+          students = (Array.isArray(rawParsed) ? rawParsed : []).filter(s => s && s.name && s.name.trim() && s.name.trim().length >= 2 && !s.name.includes('غير مسمى'));
           saveDatabase();
-          console.log(`[DB] Seeded ${students.length} students from data.js`);
+          console.log(`[DB] Seeded ${students.length} valid students from data.js`);
         }
       }
     }
