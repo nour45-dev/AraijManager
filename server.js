@@ -110,7 +110,8 @@ wss.on('connection', (ws, req) => {
         const action = msg.action;
         const payload = msg.payload || msg.data || msg;
         const byUser = msg.byUser || msg.sender || 'مشرف';
-        handleSyncAction(action, payload, byUser, ws);
+        const clientId = msg.clientId || '';
+        handleSyncAction(action, payload, byUser, ws, clientId);
       }
     } catch (e) {
       console.warn('[WS] Error processing message:', e);
@@ -123,7 +124,7 @@ wss.on('connection', (ws, req) => {
 });
 
 // Central Handler for Sync Actions (both REST & WS)
-function handleSyncAction(action, payload, byUser = 'ظ…ط³طھط®ط¯ظ…', sourceWs = null) {
+function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null, clientId = '') {
   let updatedCount = 0;
   const now = new Date();
   const dateStr = now.toLocaleDateString('ar-EG');
@@ -143,8 +144,8 @@ function handleSyncAction(action, payload, byUser = 'ظ…ط³طھط®ط¯ظ…'
     auditLogs.unshift({
       id: 'log_' + Date.now(),
       userName: byUser,
-      actionType: 'طھط³ط¬ظٹظ„ ط·ط§ظ„ط¨ ط¬ط¯ظٹط¯',
-      details: `طھط³ط¬ظٹظ„ ط§ظ„ط·ط§ظ„ط¨ "${newSt.name}" ط¨ط§ظ„ظƒظˆط¯ #${code}`,
+      actionType: 'تسجيل طالب جديد',
+      details: `تسجيل الطالب "${newSt.name}" بالكود #${code}`,
       studentCode: code,
       studentName: newSt.name,
       dateStr,
@@ -166,8 +167,8 @@ function handleSyncAction(action, payload, byUser = 'ظ…ط³طھط®ط¯ظ…'
     auditLogs.unshift({
       id: 'log_' + Date.now(),
       userName: byUser,
-      actionType: 'طھط¹ط¯ظٹظ„ ط¨ظٹط§ظ†ط§طھ ط·ط§ظ„ط¨',
-      details: `طھط¹ط¯ظٹظ„ ط¨ظٹط§ظ†ط§طھ/ط­طµطµ ط§ظ„ط·ط§ظ„ط¨ "${updated.name}" (#${code})`,
+      actionType: 'تعديل بيانات طالب',
+      details: `تعديل بيانات/حصص الطالب "${updated.name}" (#${code})`,
       studentCode: code,
       studentName: updated.name,
       dateStr,
@@ -185,8 +186,8 @@ function handleSyncAction(action, payload, byUser = 'ظ…ط³طھط®ط¯ظ…'
     auditLogs.unshift({
       id: 'log_' + Date.now(),
       userName: byUser,
-      actionType: 'ط­ط°ظپ ط·ط§ظ„ط¨',
-      details: `ط­ط°ظپ ط§ظ„ط·ط§ظ„ط¨ "${targetName}" (#${code}) ظ†ظ‡ط§ط¦ظٹط§ظ‹`,
+      actionType: 'حذف طالب',
+      details: `حذف الطالب "${targetName}" (#${code}) نهائياً`,
       studentCode: code,
       studentName: targetName,
       dateStr,
@@ -210,8 +211,8 @@ function handleSyncAction(action, payload, byUser = 'ظ…ط³طھط®ط¯ظ…'
     auditLogs.unshift({
       id: 'log_' + Date.now(),
       userName: byUser,
-      actionType: 'ط±طµط¯ ط¬ظ…ط§ط¹ظٹ ظ„ظ„ط­ط¶ظˆط±',
-      details: `ط±طµط¯ ظˆطھط­ط¯ظٹط« ط­ط¶ظˆط± ${batchList.length} ط·ط§ظ„ط¨ ط¯ظپط¹ط© ظˆط§ط­ط¯ط©`,
+      actionType: 'رصد جماعي للحضور',
+      details: `رصد وتحديث حضور ${batchList.length} طالب دفعة واحدة`,
       studentCode: '',
       studentName: '',
       dateStr,
@@ -235,6 +236,7 @@ function handleSyncAction(action, payload, byUser = 'ظ…ط³طھط®ط¯ظ…'
     data: payload,
     byUser,
     sender: byUser,
+    clientId,
     timestamp: Date.now(),
     studentsCount: students.length
   }, sourceWs);
@@ -308,18 +310,19 @@ app.post('/api/sync', (req, res) => {
   const action = req.body.action;
   const payload = req.body.payload || req.body.data || req.body;
   const byUser = req.body.byUser || req.body.sender || 'مشرف';
+  const clientId = req.body.clientId || '';
   if (!action) {
     return res.status(400).json({ status: 'error', message: 'Action required' });
   }
-  const result = handleSyncAction(action, payload, byUser);
+  const result = handleSyncAction(action, payload, byUser, null, clientId);
   res.json(result);
 });
 
 // Backward compatibility for old local server sync
 app.post('/api/sync_local', (req, res) => {
-  const { action, student, code, byUser } = req.body;
+  const { action, student, code, byUser, clientId } = req.body;
   const payload = { student: student || req.body, code: code || (student && student.code) };
-  const result = handleSyncAction(action || 'update_student', payload, byUser || 'ظ…ط³طھط®ط¯ظ…');
+  const result = handleSyncAction(action || 'update_student', payload, byUser || 'مشرف', null, clientId || '');
   res.json(result);
 });
 

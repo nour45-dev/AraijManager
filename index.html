@@ -2596,15 +2596,15 @@
   </div>
 
   <!-- SCRIPTS -->
-  <script src="data.js?v=20260909_v1"></script>
-  <script src="app.js?v=20260909_v12"></script>
+  <script src="data.js?v=20260922_v15"></script>
+  <script src="app.js?v=20260922_v15"></script>
 
   <!-- PWA & OFFLINE ENGINE SCRIPT -->
   <script>
     // 1. Service Worker Registration & Auto-Update
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-        navigator.serviceWorker.register('./sw.js?v=20260909_v24')
+        navigator.serviceWorker.register('./sw.js?v=20260922_v15')
           .then(function(reg) {
             console.log('[PWA] Service Worker registered successfully! Scope:', reg.scope);
             try { reg.update(); } catch(e) {}

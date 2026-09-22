@@ -2,7 +2,7 @@
  * Araij Manager Pro - PWA Service Worker (100% Offline Engine)
  */
 
-const CACHE_NAME = 'araij-manager-v4.0';
+const CACHE_NAME = 'araij-manager-v4.1';
 const CORE_ASSETS = [
   './',
   './index.html',

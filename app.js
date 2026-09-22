@@ -2,6 +2,17 @@
  * AraijManager Pro v2.0 - Complete Google Sheets & Telegram Bot Feature Replica + Live Sync Hub
  */
 
+// Unique Client Session ID to differentiate devices and avoid self-echoes while ensuring multi-device sync
+if (!window.ARAIJ_CLIENT_ID) {
+  let savedId = '';
+  try { savedId = sessionStorage.getItem('araij_client_id') || ''; } catch(e) {}
+  if (!savedId) {
+    savedId = 'client_' + Date.now().toString(36) + '_' + Math.random().toString(36).substring(2, 9);
+    try { sessionStorage.setItem('araij_client_id', savedId); } catch(e) {}
+  }
+  window.ARAIJ_CLIENT_ID = savedId;
+}
+
 // ====================================================
 // 1. CONFIGURATION & CONSTANTS (from config.py)
 // ====================================================
@@ -2360,6 +2371,7 @@ function handleSaveEditStudent(e) {
 
   saveStudentOverride(student);
   syncToGoogleSheets('update_student', { student: student }, true);
+  sendToRailwayServer('update_student', { student: student });
 
   try {
     logActivity('تعديل بيانات طالب', `قام ${uName} بتعديل بيانات الطالب "${student.name}" (#${student.code})`);
@@ -2476,26 +2488,40 @@ async function fetchLatestStudentsFromCentralServer(isSilent = false) {
       if (Array.isArray(serverStudents) && serverStudents.length > 0) {
         window.STUDENTS_DATA = serverStudents;
         
-        // Re-init with freshly fetched data
+        // Re-init with freshly fetched central server data
+        const pendingQueue = getOfflineSyncQueue();
+        const pendingCodes = new Set(pendingQueue.map(q => String(q.payload?.student?.code || q.payload?.code || '').trim()).filter(Boolean));
+
         const localOverrides = localStorage.getItem('araij_students_overrides');
         const deletedCodes = JSON.parse(localStorage.getItem('araij_deleted_students') || '[]');
         
-        let merged = [];
+        let overridesMap = {};
         if (localOverrides) {
-          try {
-            const overridesMap = JSON.parse(localOverrides);
-            merged = serverStudents.map(st => overridesMap[st.code] ? { ...st, ...overridesMap[st.code] } : st);
-            Object.keys(overridesMap).forEach(code => {
-              if (!merged.find(s => s.code === code)) {
-                merged.unshift(overridesMap[code]);
-              }
-            });
-          } catch (e) {
-            merged = [...serverStudents];
-          }
-        } else {
-          merged = [...serverStudents];
+          try { overridesMap = JSON.parse(localOverrides); } catch (e) {}
         }
+
+        let merged = serverStudents.map(serverSt => {
+          const code = String(serverSt.code || '').trim();
+          // If there is an unsynced offline edit for this student on THIS device, keep local changes until synced
+          if (pendingCodes.has(code) && overridesMap[code]) {
+            return { ...serverSt, ...overridesMap[code] };
+          }
+          // Otherwise, server data is canonical and authoritative!
+          overridesMap[code] = serverSt;
+          return serverSt;
+        });
+
+        // Also preserve newly added students created offline that are not yet on the server
+        Object.keys(overridesMap).forEach(code => {
+          if (pendingCodes.has(code) && !merged.find(s => String(s.code).trim() === code)) {
+            merged.unshift(overridesMap[code]);
+          }
+        });
+
+        try {
+          localStorage.setItem('araij_students_overrides', JSON.stringify(overridesMap));
+          localStorage.setItem('araij_full_students_db', JSON.stringify(merged));
+        } catch(e) {}
 
         allStudents = merged.filter(s => {
           if (!s) return false;
@@ -2759,6 +2785,7 @@ function getNextStudentCodeForGrade(grade) {
   const normGrade = normalize_grade(grade || 'ث1');
   const prefix = normGrade === 'ث1' ? 1000 : normGrade === 'ث2' ? 2000 : 3000;
   let maxCode = prefix;
+  let foundInPrefixRange = false;
 
   if (Array.isArray(allStudents)) {
     allStudents.forEach(s => {
@@ -2767,9 +2794,22 @@ function getNextStudentCodeForGrade(grade) {
         const num = parseInt(String(s.code || '').replace(/\D/g, ''), 10);
         if (!isNaN(num) && num >= prefix && num < (prefix + 1000)) {
           if (num > maxCode) maxCode = num;
+          foundInPrefixRange = true;
         }
       }
     });
+
+    // Fallback: If no student matches the prefix range, find absolute highest number in this grade
+    if (!foundInPrefixRange) {
+      let anyMax = 0;
+      allStudents.forEach(s => {
+        if (normalize_grade(s.grade) === normGrade) {
+          const num = parseInt(String(s.code || '').replace(/\D/g, ''), 10);
+          if (!isNaN(num) && num > anyMax) anyMax = num;
+        }
+      });
+      if (anyMax > 0) return anyMax + 1;
+    }
   }
   return maxCode + 1;
 }
@@ -3040,7 +3080,15 @@ function getOfflineSyncQueue() {
 
 function addToOfflineSyncQueue(action, payload) {
   const queue = getOfflineSyncQueue();
-  queue.push({ action, payload, timestamp: Date.now() });
+  const code = String(payload?.student?.code || payload?.code || '').trim();
+  const now = Date.now();
+  // Avoid duplicate queue entries for the same action & code within 3 seconds
+  const existingIdx = queue.findIndex(q => q.action === action && String(q.payload?.student?.code || q.payload?.code || '').trim() === code && (now - q.timestamp < 3000));
+  if (existingIdx >= 0) {
+    queue[existingIdx] = { action, payload, timestamp: now };
+  } else {
+    queue.push({ action, payload, timestamp: now });
+  }
   localStorage.setItem('araij_offline_sync_queue', JSON.stringify(queue));
 }
 
@@ -3050,33 +3098,58 @@ async function flushOfflineSyncQueue() {
   if (!queue || queue.length === 0) return;
 
   const url = getGoogleAppsScriptUrl();
+  const srvUrl = getRailwayServerUrl();
   const remaining = [];
   let flushedCount = 0;
 
   for (let i = 0; i < queue.length; i++) {
     const item = queue[i];
-    try {
-      // 1. Forward to Railway server
-      sendToRailwayServer(item.action, item.payload);
+    let ok = false;
+    // 1. Forward to Railway REST API
+    if (srvUrl) {
+      try {
+        const resp = await fetch(`${srvUrl}/api/sync`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: item.action,
+            payload: item.payload,
+            data: item.payload,
+            byUser: currentUser?.name || 'مشرف',
+            sender: currentUser?.name || 'مشرف',
+            clientId: window.ARAIJ_CLIENT_ID,
+            ...item.payload
+          })
+        });
+        if (resp.ok) ok = true;
+      } catch(e) {}
+    } else {
+      ok = true;
+    }
 
-      // 2. Forward to Google Sheets
-      if (url) {
+    // 2. Forward to Google Sheets
+    if (url) {
+      try {
         await fetch(url, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ action: item.action, ...item.payload })
         });
-      }
+        ok = true;
+      } catch(e) {}
+    }
+
+    if (ok) {
       flushedCount++;
-    } catch(e) {
+    } else {
       remaining.push(item);
     }
   }
 
   localStorage.setItem('araij_offline_sync_queue', JSON.stringify(remaining));
   if (flushedCount > 0) {
-    showToast(`⚡ تم ترحيل ${flushedCount} عملية مسجلة أوفلاين إلى السحابة ومزامنتها بنجاح!`);
+    showToast(`⚡ تم ترحيل ${flushedCount} عملية مسجلة أوفلاين إلى السحابة ومزامنتها بنجاح مع كافة المشرفين!`);
   }
 }
 
@@ -3218,11 +3291,12 @@ function handleIncomingLiveUpdate(msg) {
   const action = msg.action;
   const data = msg.data || msg.payload || {};
   const sender = msg.sender || msg.byUser || '';
-  console.log(`[Railway Live Sync] Received ${action} from ${sender || 'system'}`);
+  const clientId = msg.clientId || '';
+  console.log(`[Railway Live Sync] Received ${action} from ${sender || 'system'} (client: ${clientId})`);
 
-  const myName = currentUser ? currentUser.name : '';
-  if (sender && myName && sender === myName) {
-    return; // Don't re-apply my own echoed updates
+  // Only ignore if the message was echoed back to THIS EXACT browser session
+  if (clientId && window.ARAIJ_CLIENT_ID && clientId === window.ARAIJ_CLIENT_ID) {
+    return;
   }
 
   if (action === 'update_student' || action === 'add_student') {
@@ -3254,6 +3328,11 @@ function handleIncomingLiveUpdate(msg) {
 
     if (activeDetailStudentCode === targetCode) {
       openStudentDetailModal(targetCode);
+    }
+
+    const bulkModal = document.getElementById('bulkSessionModal');
+    if (bulkModal && !bulkModal.classList.contains('hidden')) {
+      renderBulkStudentsList();
     }
 
     showToast(`⚡ مزامنة فورية: تم رصد/تحديث بيانات (${student.name}) بواسطة ${sender || 'مشرف'}`);
@@ -3291,6 +3370,15 @@ function handleIncomingLiveUpdate(msg) {
         openStudentDetailModal(activeDetailStudentCode);
       }
 
+      const bulkModal = document.getElementById('bulkSessionModal');
+      if (bulkModal && !bulkModal.classList.contains('hidden')) {
+        renderBulkStudentsList();
+      }
+
+      try { playSuccessChime(); } catch(e) {}
+      try {
+        showBulkProgressBanner('info', '⚡ استلام رصد جماعي فوري', `قام (${sender || 'مشرف'}) برصد وتحديث حضور ${list.length} طالب - تم تحديث شاشتك تلقائياً!`, 5500);
+      } catch(e) {}
       showToast(`⚡ مزامنة فورية: استلام رصد جماعي لـ ${list.length} طالب من ${sender || 'مشرف'}`);
     }
 
@@ -3336,6 +3424,7 @@ function sendToRailwayServer(action, payload) {
         data: payload,
         byUser: userName,
         sender: userName,
+        clientId: window.ARAIJ_CLIENT_ID,
         timestamp: Date.now()
       }));
       console.log(`[Railway Live Sync] Sent ${action} over WebSocket ⚡`);
@@ -3351,7 +3440,15 @@ function sendToRailwayServer(action, payload) {
   fetch(targetUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ action, payload, data: payload, byUser: userName, sender: userName, ...payload })
+    body: JSON.stringify({ 
+      action, 
+      payload, 
+      data: payload, 
+      byUser: userName, 
+      sender: userName, 
+      clientId: window.ARAIJ_CLIENT_ID, 
+      ...payload 
+    })
   }).catch(err => {
     console.warn('[Railway Live Sync] HTTP sync failed, queueing offline:', err);
     addToOfflineSyncQueue(action, payload);
@@ -3434,45 +3531,44 @@ function syncToGoogleSheets(action, payload, force = false) {
 // Bulk / Batch sync to Google Sheets (fast dual batch + background sequential queue)
 function syncBulkStudentsToGoogleSheets(studentsList) {
   if (!studentsList || !Array.isArray(studentsList) || studentsList.length === 0) return;
-  const url = getGoogleAppsScriptUrl();
-  if (!url) return;
 
-  // 1. Dispatch full batch to Google Apps Script (single request)
-  syncToGoogleSheets('batch_update_students', { students: studentsList }, true);
-  syncToGoogleSheets('bulk_session', { students: studentsList }, true);
-
-  // 2. Also send to LAN server and Live Railway Server
+  // 1. Send immediately to Live Railway Server (PRIMARY 0ms CROSS-DEVICE HUB)
   sendToRailwayServer('batch_update_students', { students: studentsList });
   studentsList.forEach(st => {
     sendToLanServer('update_student', { student: st });
   });
 
-  // 3. Sequentially dispatch individual update_student calls in small chunks of 3
-  // to ensure 100% sync even if the Google Apps Script deployment hasn't been upgraded to handle batches yet
-  if (navigator.onLine) {
-    let idx = 0;
-    const chunkSize = 3;
-    function sendNextSlice() {
-      if (idx >= studentsList.length) return;
-      const slice = studentsList.slice(idx, idx + chunkSize);
-      idx += chunkSize;
-      slice.forEach(st => {
-        fetch(url, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'update_student', student: st })
-        }).catch(() => {
-          addToOfflineSyncQueue('update_student', { student: st });
+  // 2. Secondary dispatch to Google Sheets if configured
+  const url = getGoogleAppsScriptUrl();
+  if (url) {
+    syncToGoogleSheets('batch_update_students', { students: studentsList }, true);
+    syncToGoogleSheets('bulk_session', { students: studentsList }, true);
+
+    if (navigator.onLine) {
+      let idx = 0;
+      const chunkSize = 3;
+      function sendNextSlice() {
+        if (idx >= studentsList.length) return;
+        const slice = studentsList.slice(idx, idx + chunkSize);
+        idx += chunkSize;
+        slice.forEach(st => {
+          fetch(url, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'update_student', student: st })
+          }).catch(() => {
+            addToOfflineSyncQueue('update_student', { student: st });
+          });
         });
+        setTimeout(sendNextSlice, 250);
+      }
+      sendNextSlice();
+    } else {
+      studentsList.forEach(st => {
+        addToOfflineSyncQueue('update_student', { student: st });
       });
-      setTimeout(sendNextSlice, 250);
     }
-    sendNextSlice();
-  } else {
-    studentsList.forEach(st => {
-      addToOfflineSyncQueue('update_student', { student: st });
-    });
   }
 }
 
@@ -4755,6 +4851,11 @@ function openBulkSessionModal() {
   const gSel = document.getElementById('bulkGradeSelect');
   if (gSel) gSel.value = curGrade;
 
+  const mSel = document.getElementById('bulkMonthSelect');
+  if (mSel) {
+    mSel.value = currentActiveMonth || 'شهر 9 (سبتمبر)';
+  }
+
   populateBulkSubjects(curGrade, curSubject, curTeacher);
   document.getElementById('bulkSessionModal')?.classList.remove('hidden');
   initIcons();
@@ -4807,6 +4908,7 @@ function renderBulkStudentsList() {
   const subject = document.getElementById('bulkSubjectSelect')?.value || 'عربي';
   const teacher = document.getElementById('bulkTeacherSelect')?.value || 'all';
   const sessionIdx = parseInt(document.getElementById('bulkSessionNumSelect')?.value || '0');
+  const targetMonth = document.getElementById('bulkMonthSelect')?.value || currentActiveMonth || 'شهر 9 (سبتمبر)';
 
   let list = allStudents.filter(s => s.grade === grade);
 
@@ -4841,8 +4943,8 @@ function renderBulkStudentsList() {
   }
 
   tbody.innerHTML = list.map((st, idx) => {
-    const subData = getEnrolledSubjectData(st.academicSubjects, subject) || { teacher: 'مدرس المادة', sessions: ["","","","","","","",""] };
-    const sessions = subData.sessions || ["","","","","","","",""];
+    const subData = getEnrolledSubjectData(st.academicSubjects, subject) || { teacher: 'مدرس المادة' };
+    const sessions = getStudentSubjectMonthSessions(st, subject, targetMonth);
     const curVal = (sessions[sessionIdx] || '').trim();
 
     const isPresent = curVal === '✓' || curVal === 'حاضر';
@@ -5023,6 +5125,69 @@ function filterBulkStudentsTable() {
   });
 }
 
+function playSuccessChime() {
+  try {
+    if (window.navigator && window.navigator.vibrate) {
+      window.navigator.vibrate([100, 50, 150]);
+    }
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return;
+    const ctx = new AudioContextClass();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(587.33, ctx.currentTime); // D5
+    osc.frequency.setValueAtTime(880, ctx.currentTime + 0.1); // A5
+    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.35);
+  } catch(e) {}
+}
+
+function showBulkProgressBanner(type, title, subtitle, duration = 4500) {
+  let banner = document.getElementById('bulkGlobalNotifyBanner');
+  if (!banner) {
+    banner = document.createElement('div');
+    banner.id = 'bulkGlobalNotifyBanner';
+    document.body.appendChild(banner);
+  }
+
+  clearTimeout(banner._dismissTimer);
+
+  let bgClasses = 'bg-emerald-950/95 border border-emerald-500 text-white';
+  let iconHtml = '<div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0"><i data-lucide="check-circle-2" class="w-6 h-6"></i></div>';
+
+  if (type === 'saving') {
+    bgClasses = 'bg-sky-950/95 border border-sky-500 text-white';
+    iconHtml = '<div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center shrink-0"><i data-lucide="loader-2" class="w-6 h-6 animate-spin"></i></div>';
+  } else if (type === 'info') {
+    bgClasses = 'bg-indigo-950/95 border border-indigo-500 text-white';
+    iconHtml = '<div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0"><i data-lucide="refresh-cw" class="w-6 h-6 animate-spin"></i></div>';
+  }
+
+  banner.className = `fixed top-5 left-1/2 -translate-x-1/2 z-[99999] max-w-lg w-[92%] sm:w-auto shadow-2xl rounded-2xl p-4 flex items-center gap-3 backdrop-blur-md transition-all duration-300 transform opacity-100 translate-y-0 ${bgClasses}`;
+  banner.innerHTML = `
+    ${iconHtml}
+    <div class="flex-1 text-right">
+      <div class="font-black text-sm tracking-tight">${title}</div>
+      <div class="text-xs text-slate-200 font-medium mt-0.5">${subtitle}</div>
+    </div>
+    <button type="button" onclick="this.parentElement.classList.add('opacity-0', 'pointer-events-none')" class="p-1 rounded-lg text-slate-400 hover:text-white cursor-pointer shrink-0">
+      <i data-lucide="x" class="w-4 h-4"></i>
+    </button>
+  `;
+  try { initIcons(); } catch(e) {}
+
+  if (duration > 0) {
+    banner._dismissTimer = setTimeout(() => {
+      banner.classList.add('opacity-0', 'pointer-events-none');
+    }, duration);
+  }
+}
+
 function saveBulkSessionAttendance() {
   const subject = document.getElementById('bulkSubjectSelect')?.value || 'عربي';
   const sessionIdx = parseInt(document.getElementById('bulkSessionNumSelect')?.value || '0');
@@ -5051,7 +5216,7 @@ function saveBulkSessionAttendance() {
 
   // 1. Close modal immediately so user can continue working with zero delay
   closeBulkSessionModal();
-  showToast(`⏳ جاري حفظ ورصد الحصة ${sessionIdx + 1} لـ ${capturedEntries.length} طالب في الخلفية...`);
+  showBulkProgressBanner('saving', `⏳ جاري رصد الحصة ${sessionIdx + 1} (${targetMonth})...`, `جاري حفظ ورصد ${capturedEntries.length} طالب لمادة "${subject}" وتعميمها عبر السيرفر... يمكنك متابعة العمل بحرية.`, 0);
 
   // Show background sync indicator on nav icon
   const navIcon = document.getElementById('navPullIcon');
@@ -5099,6 +5264,8 @@ function saveBulkSessionAttendance() {
       });
     } catch(e) {}
 
+    playSuccessChime();
+    showBulkProgressBanner('success', '🎉 اكتمل الرصد الجماعي بنجاح!', `تم حفظ ورصد الحصة ${sessionIdx + 1} (${targetMonth}) لمادة "${subject}" لـ ${savedCount} طالب وتعميمها فورياً على كافة الأجهزة! ⚡`, 6000);
     showToast(`✅ تم بنجاح حفظ ورصد الحصة ${sessionIdx + 1} (${targetMonth}) لـ ${savedCount} طالب وتعميمها على كافة الأجهزة!`);
   }, 50);
 }
