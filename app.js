@@ -2580,6 +2580,7 @@ async function fetchLatestStudentsFromCentralServer(isSilent = false) {
               const canon = canonicalSubjectName(sub) || sub;
               st.academicSubjects[sub].teacher = cleanTeacherName(st.academicSubjects[sub].teacher, canon);
             });
+          }
           rebuildStudentSummaries(st);
         });
 
