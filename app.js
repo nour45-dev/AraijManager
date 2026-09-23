@@ -1239,7 +1239,12 @@ function initData() {
 
   if (fullDb) {
     try {
-      merged = JSON.parse(fullDb);
+      const parsed = JSON.parse(fullDb);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        merged = parsed;
+      } else {
+        merged = [...baseData];
+      }
     } catch(e) {
       merged = [...baseData];
     }
@@ -1257,6 +1262,23 @@ function initData() {
     }
   } else {
     merged = [...baseData];
+  }
+
+  // Safety: If merged is still empty, force fallback to baseData
+  if (merged.length === 0 && baseData.length > 0) {
+    merged = [...baseData];
+  }
+
+  // If baseData has students missing in merged, merge them in
+  if (baseData.length > merged.length) {
+    const existing = new Set(merged.map(s => String(s.code || '').trim()));
+    baseData.forEach(s => {
+      const c = String(s.code || '').trim();
+      if (c && !existing.has(c) && !deletedCodes.includes(c)) {
+        merged.push(s);
+        existing.add(c);
+      }
+    });
   }
 
   // Also apply overrides on top to guarantee persistence
@@ -1291,6 +1313,11 @@ function initData() {
     if (!name || name.length < 2 || name.includes('غير مسمى')) return false;
     return true;
   });
+
+  // Guarantee that if allStudents ended up empty but baseData exists, restore baseData!
+  if (allStudents.length === 0 && baseData.length > 0) {
+    allStudents = baseData.filter(s => s && s.name && !deletedCodes.includes(s.code));
+  }
 
   // ✅ DEDUPLICATION: if same code appears twice, keep only the first (most recent)
   const seenCodes = new Set();
@@ -3176,16 +3203,22 @@ function sanitizeRailwayUrl(raw) {
 }
 
 function getRailwayServerUrl() {
-  const custom = localStorage.getItem('araij_railway_url');
-  if (custom && custom.trim()) return sanitizeRailwayUrl(custom);
-  if (typeof DEFAULT_RAILWAY_URL === 'string' && DEFAULT_RAILWAY_URL.trim()) {
-    return sanitizeRailwayUrl(DEFAULT_RAILWAY_URL);
-  }
+  // 1. If currently loaded via https or http on the web (e.g. Railway domain), use current origin!
   if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
-    try { localStorage.setItem('araij_railway_url', window.location.origin); } catch (e) {}
-    return sanitizeRailwayUrl(window.location.origin);
+    const host = window.location.hostname || '';
+    if (host && !host.includes('localhost') && !host.includes('127.0.0.1')) {
+      return sanitizeRailwayUrl(window.location.origin);
+    }
   }
-  return '';
+
+  // 2. Otherwise (e.g. file:/// in Android APK or offline html), check localStorage
+  const custom = localStorage.getItem('araij_railway_url');
+  if (custom && custom.trim() && !custom.includes('192.168.')) {
+    return sanitizeRailwayUrl(custom);
+  }
+
+  // 3. Fallback to official Railway server URL
+  return sanitizeRailwayUrl(DEFAULT_RAILWAY_URL || 'https://araijmanager.up.railway.app');
 }
 
 function onRailwayUrlInputChanged(val) {
