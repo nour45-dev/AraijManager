@@ -1230,6 +1230,14 @@ function renderUsersList() {
 // ====================================================
 
 function initData() {
+  const CURRENT_DB_VERSION = 'v4.3_google_sheets_live_attendance';
+  const savedVersion = localStorage.getItem('araij_db_schema_version');
+  if (savedVersion !== CURRENT_DB_VERSION) {
+    // Purge outdated 0-attendance cache so real Google Sheets attendance loads
+    localStorage.removeItem('araij_full_students_db');
+    localStorage.setItem('araij_db_schema_version', CURRENT_DB_VERSION);
+  }
+
   const localOverrides = localStorage.getItem('araij_students_overrides');
   const fullDb = localStorage.getItem('araij_full_students_db');
   const deletedCodes = JSON.parse(localStorage.getItem('araij_deleted_students') || '[]');
@@ -1267,6 +1275,28 @@ function initData() {
   // Safety: If merged is still empty, force fallback to baseData
   if (merged.length === 0 && baseData.length > 0) {
     merged = [...baseData];
+  }
+
+  // Merge real attendance sessions from baseData if local cached student has empty sessions
+  if (baseData.length > 0) {
+    const baseMap = new Map();
+    baseData.forEach(bs => {
+      if (bs && bs.code) baseMap.set(String(bs.code).trim(), bs);
+    });
+
+    merged.forEach(st => {
+      const c = String(st.code || '').trim();
+      const baseSt = baseMap.get(c);
+      if (baseSt) {
+        const baseHasSessions = baseSt.academicSubjects && Object.values(baseSt.academicSubjects).some(sub => sub.sessions && sub.sessions.some(s => s && String(s).trim() !== ''));
+        const localHasSessions = st.academicSubjects && Object.values(st.academicSubjects).some(sub => sub.sessions && sub.sessions.some(s => s && String(s).trim() !== ''));
+        if (baseHasSessions && !localHasSessions) {
+          st.academicSubjects = baseSt.academicSubjects;
+          st.teachersSummary = baseSt.teachersSummary;
+          st.subjectsSummary = baseSt.subjectsSummary;
+        }
+      }
+    });
   }
 
   // If baseData has students missing in merged, merge them in
