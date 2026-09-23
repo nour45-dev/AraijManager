@@ -660,10 +660,14 @@ document.addEventListener('DOMContentLoaded', () => {
   try { initMatrixSelects(); } catch (e) {}
   try { renderUsersList(); } catch (e) {}
   try { applyFilters(); } catch (e) {}
+  try { renderAttendanceMatrix(); } catch (e) {}
   try { generateSelectedPdfReport(); } catch (e) {}
   try { updateSheetsStatusIndicator(); } catch (e) {}
   try { initLiveRailwaySync(); } catch (e) {}
   
+  // Instant fetch from Railway Central Server on startup (< 300ms)
+  try { fetchLatestStudentsFromCentralServer(false); } catch (e) {}
+
   // Auto-pull fresh students from Google Sheets on startup
   try { pullFromGoogleSheets(true); } catch (e) {}
   
@@ -2549,14 +2553,7 @@ async function fetchLatestStudentsFromCentralServer(isSilent = false) {
               const canon = canonicalSubjectName(sub) || sub;
               st.academicSubjects[sub].teacher = cleanTeacherName(st.academicSubjects[sub].teacher, canon);
             });
-          }
-          if (st.academicSubjects && Object.keys(st.academicSubjects).length > 0) {
-            const subKeys = Object.keys(st.academicSubjects);
-            st.subjectsSummary = subKeys.join(', ');
-            st.teachersSummary = subKeys.map(k => `${k}/${st.academicSubjects[k].teacher || (TEACHERS[canonicalSubjectName(k)] && TEACHERS[canonicalSubjectName(k)][0]) || 'مدرس المادة'}`).join(' | ');
-          }
-          st._metrics = calculateStudentMetrics(st);
-          st._searchString = buildStudentSearchString(st);
+          rebuildStudentSummaries(st);
         });
 
         applyFilters();
@@ -2585,7 +2582,7 @@ window.addEventListener('focus', () => {
   fetchLatestStudentsFromCentralServer(true);
 });
 
-function saveStudentOverride(student) {
+function saveStudentOverride(student, skipSync = false) {
   student._metrics = calculateStudentMetrics(student);
 
   const targetCode = String(student.code || '').trim();
@@ -2621,9 +2618,11 @@ function saveStudentOverride(student) {
     localStorage.setItem('araij_full_students_db', JSON.stringify(allStudents));
   } catch (e) {}
 
-  // 5. Send to LAN server & Railway live server for instant real-time sync
-  sendToLanServer('update_student', { student });
-  sendToRailwayServer('update_student', { student });
+  // 5. Send to LAN server & Railway live server for instant real-time sync (skipped during batch operations)
+  if (!skipSync) {
+    sendToLanServer('update_student', { student });
+    sendToRailwayServer('update_student', { student });
+  }
 }
 
 // ====================================================
@@ -3303,9 +3302,12 @@ function handleIncomingLiveUpdate(msg) {
     const student = data?.student || data;
     if (!student || !student.code) return;
 
-    student.academicSubjects = parseSubjectsFromSummary(student.subjectsSummary, student.teachersSummary, student.academicSubjects);
-    student._metrics = calculateStudentMetrics(student);
-    student._searchString = buildStudentSearchString(student);
+    if (!student.academicSubjects || Object.keys(student.academicSubjects).length === 0) {
+      if (student.teachersSummary || student.subjectsSummary) {
+        student.academicSubjects = parseSubjectsFromSummary(student.subjectsSummary, student.teachersSummary);
+      }
+    }
+    rebuildStudentSummaries(student);
 
     const targetCode = String(student.code).trim();
     const idx = allStudents.findIndex(s => String(s.code).trim() === targetCode);
@@ -3344,9 +3346,12 @@ function handleIncomingLiveUpdate(msg) {
         const overrides = JSON.parse(localStorage.getItem('araij_students_overrides') || '{}');
         list.forEach(st => {
           if (!st || !st.code) return;
-          st.academicSubjects = parseSubjectsFromSummary(st.subjectsSummary, st.teachersSummary, st.academicSubjects);
-          st._metrics = calculateStudentMetrics(st);
-          st._searchString = buildStudentSearchString(st);
+          if (!st.academicSubjects || Object.keys(st.academicSubjects).length === 0) {
+            if (st.teachersSummary || st.subjectsSummary) {
+              st.academicSubjects = parseSubjectsFromSummary(st.subjectsSummary, st.teachersSummary);
+            }
+          }
+          rebuildStudentSummaries(st);
 
           const targetCode = String(st.code).trim();
           const idx = allStudents.findIndex(s => String(s.code).trim() === targetCode);
@@ -5240,7 +5245,7 @@ function saveBulkSessionAttendance() {
       student.lastActionTime = timeStamp;
 
       rebuildStudentSummaries(student);
-      saveStudentOverride(student);
+      saveStudentOverride(student, true);
       modifiedStudents.push(student);
       savedCount++;
     });
@@ -5741,7 +5746,7 @@ function saveCameraScannedAttendance() {
     student.lastActionTime = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }) + ' ' + new Date().toLocaleDateString('ar-EG');
 
     rebuildStudentSummaries(student);
-    saveStudentOverride(student);
+    saveStudentOverride(student, true);
     modifiedStudents.push(student);
     count++;
   });
