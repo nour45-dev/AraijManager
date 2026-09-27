@@ -5257,25 +5257,62 @@ function filterBulkStudentsTable() {
   });
 }
 
+let _sharedAudioCtx = null;
+function getUnlockedAudioContext() {
+  try {
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContextClass) return null;
+    if (!_sharedAudioCtx) {
+      _sharedAudioCtx = new AudioContextClass();
+    }
+    if (_sharedAudioCtx.state === 'suspended') {
+      _sharedAudioCtx.resume().catch(() => {});
+    }
+    return _sharedAudioCtx;
+  } catch(e) {
+    return null;
+  }
+}
+
+// Unlock audio on first touch/click on screen
+if (typeof window !== 'undefined') {
+  ['click', 'touchstart', 'keydown'].forEach(evt => {
+    window.addEventListener(evt, () => {
+      getUnlockedAudioContext();
+    }, { once: true, passive: true });
+  });
+}
+
 function playSuccessChime() {
   try {
     if (window.navigator && window.navigator.vibrate) {
       window.navigator.vibrate([100, 50, 150]);
     }
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContextClass) return;
-    const ctx = new AudioContextClass();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(587.33, ctx.currentTime); // D5
-    osc.frequency.setValueAtTime(880, ctx.currentTime + 0.1); // A5
-    gain.gain.setValueAtTime(0.15, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start();
-    osc.stop(ctx.currentTime + 0.35);
+    const ctx = getUnlockedAudioContext();
+    if (!ctx) return;
+
+    const playTone = () => {
+      try {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        const now = ctx.currentTime;
+        osc.frequency.setValueAtTime(587.33, now); // D5
+        osc.frequency.setValueAtTime(880, now + 0.1); // A5
+        gain.gain.setValueAtTime(0.2, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.35);
+      } catch(e) {}
+    };
+
+    if (ctx.state === 'suspended') {
+      ctx.resume().then(playTone).catch(() => {});
+    } else {
+      playTone();
+    }
   } catch(e) {}
 }
 

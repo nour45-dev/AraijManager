@@ -11,3 +11,7 @@ yarn-error.log*
 debug.keystore
 temp/
 Araij_App_Offline.html
+android/app/build/
+android/.gradle/
+.gradle/
+www/
