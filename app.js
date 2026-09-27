@@ -304,20 +304,53 @@ function parseSubjectsFromSummary(subjectsSummary, teachersSummary, existingAcad
     const finalTeacher = cleanTeacherName(explicitTeacher || oldTeacher, canon);
 
     let sessions = ["", "", "", "", "", "", "", ""];
+    if (old && Array.isArray(old.sessions) && old.sessions.length > 0) {
+      for (let i = 0; i < 8; i++) {
+        sessions[i] = (old.sessions[i] !== undefined && old.sessions[i] !== null) ? String(old.sessions[i]).trim() : "";
+      }
+    }
     if (explicitSessions && Array.isArray(explicitSessions) && explicitSessions.length > 0) {
       for (let i = 0; i < 8; i++) {
-        sessions[i] = (explicitSessions[i] !== undefined) ? explicitSessions[i] : "";
+        const val = (explicitSessions[i] !== undefined && explicitSessions[i] !== null) ? String(explicitSessions[i]).trim() : "";
+        if (val !== "" && val !== "_" && val !== "-") {
+          sessions[i] = val;
+        }
       }
-    } else if (old && Array.isArray(old.sessions) && old.sessions.length > 0) {
-      sessions = [...old.sessions];
     }
 
-    const mergedMonths = (old && old.months) ? { ...old.months } : {};
+    const mergedMonths = {};
+    if (old && old.months && typeof old.months === 'object') {
+      Object.keys(old.months).forEach(mName => {
+        if (Array.isArray(old.months[mName])) {
+          mergedMonths[mName] = [...old.months[mName]];
+          while (mergedMonths[mName].length < 8) mergedMonths[mName].push("");
+        }
+      });
+    }
+
     if (explicitMonths && typeof explicitMonths === 'object') {
-      Object.assign(mergedMonths, explicitMonths);
+      Object.keys(explicitMonths).forEach(mName => {
+        const incomingM = explicitMonths[mName];
+        if (Array.isArray(incomingM)) {
+          if (!mergedMonths[mName] || !Array.isArray(mergedMonths[mName])) {
+            mergedMonths[mName] = [...incomingM];
+            while (mergedMonths[mName].length < 8) mergedMonths[mName].push("");
+          } else {
+            for (let i = 0; i < 8; i++) {
+              const val = (incomingM[i] !== undefined && incomingM[i] !== null) ? String(incomingM[i]).trim() : "";
+              if (val !== "" && val !== "_" && val !== "-") {
+                mergedMonths[mName][i] = val;
+              }
+            }
+          }
+        }
+      });
     }
     if (!mergedMonths['شهر 1'] || mergedMonths['شهر 1'].every(s => !s)) {
       mergedMonths['شهر 1'] = [...sessions];
+    }
+    if (!mergedMonths['شهر 9 (سبتمبر)'] || mergedMonths['شهر 9 (سبتمبر)'].every(s => !s)) {
+      mergedMonths['شهر 9 (سبتمبر)'] = [...sessions];
     }
 
     if (!result[canon]) {
@@ -328,7 +361,7 @@ function parseSubjectsFromSummary(subjectsSummary, teachersSummary, existingAcad
       };
     } else {
       if (explicitTeacher) result[canon].teacher = finalTeacher;
-      if (explicitSessions) result[canon].sessions = sessions;
+      result[canon].sessions = sessions;
       result[canon].months = Object.assign(result[canon].months || {}, mergedMonths);
     }
   }
@@ -1243,11 +1276,12 @@ function renderUsersList() {
 // ====================================================
 
 function initData() {
-  const CURRENT_DB_VERSION = 'v4.3_google_sheets_live_attendance';
+  const CURRENT_DB_VERSION = 'v4.5_non_destructive_master';
   const savedVersion = localStorage.getItem('araij_db_schema_version');
   if (savedVersion !== CURRENT_DB_VERSION) {
-    // Purge outdated 0-attendance cache so real Google Sheets attendance loads
+    // Purge outdated cache so clean non-destructive data loads seamlessly
     localStorage.removeItem('araij_full_students_db');
+    localStorage.removeItem('araij_students_overrides');
     localStorage.setItem('araij_db_schema_version', CURRENT_DB_VERSION);
   }
 
@@ -1290,7 +1324,7 @@ function initData() {
     merged = [...baseData];
   }
 
-  // Merge real attendance sessions from baseData if local cached student has empty sessions
+  // Merge real attendance sessions from baseData slot-by-slot so no recorded sessions are lost
   if (baseData.length > 0) {
     const baseMap = new Map();
     baseData.forEach(bs => {
@@ -1300,14 +1334,33 @@ function initData() {
     merged.forEach(st => {
       const c = String(st.code || '').trim();
       const baseSt = baseMap.get(c);
-      if (baseSt) {
-        const baseHasSessions = baseSt.academicSubjects && Object.values(baseSt.academicSubjects).some(sub => sub.sessions && sub.sessions.some(s => s && String(s).trim() !== ''));
-        const localHasSessions = st.academicSubjects && Object.values(st.academicSubjects).some(sub => sub.sessions && sub.sessions.some(s => s && String(s).trim() !== ''));
-        if (baseHasSessions && !localHasSessions) {
-          st.academicSubjects = baseSt.academicSubjects;
-          st.teachersSummary = baseSt.teachersSummary;
-          st.subjectsSummary = baseSt.subjectsSummary;
-        }
+      if (baseSt && baseSt.academicSubjects && st.academicSubjects) {
+        Object.keys(baseSt.academicSubjects).forEach(subK => {
+          const canon = canonicalSubjectName(subK) || subK;
+          const bSub = baseSt.academicSubjects[subK];
+          const lSub = getEnrolledSubjectData(st.academicSubjects, canon);
+          if (lSub && bSub && Array.isArray(bSub.sessions)) {
+            if (!lSub.sessions || !Array.isArray(lSub.sessions)) lSub.sessions = ["", "", "", "", "", "", "", ""];
+            while (lSub.sessions.length < 8) lSub.sessions.push("");
+            for (let i = 0; i < 8; i++) {
+              const bVal = (bSub.sessions[i] || '').trim();
+              if (bVal && !lSub.sessions[i]) {
+                lSub.sessions[i] = bVal;
+              }
+            }
+            if (!lSub.months) lSub.months = {};
+            if (!lSub.months['شهر 9 (سبتمبر)']) lSub.months['شهر 9 (سبتمبر)'] = [...lSub.sessions];
+            else {
+              for (let i = 0; i < 8; i++) {
+                if (lSub.sessions[i] && !lSub.months['شهر 9 (سبتمبر)'][i]) {
+                  lSub.months['شهر 9 (سبتمبر)'][i] = lSub.sessions[i];
+                }
+              }
+            }
+            if (!lSub.months['شهر 1']) lSub.months['شهر 1'] = [...lSub.sessions];
+          }
+        });
+        rebuildStudentSummaries(st);
       }
     });
   }
@@ -2580,7 +2633,31 @@ async function fetchLatestStudentsFromCentralServer(isSilent = false) {
           if (pendingCodes.has(code) && overridesMap[code]) {
             return { ...serverSt, ...overridesMap[code] };
           }
-          // Otherwise, server data is canonical and authoritative!
+          // Non-destructive merge of local recorded sessions with central server
+          if (overridesMap[code]) {
+            const localSt = overridesMap[code];
+            if (localSt.academicSubjects && serverSt.academicSubjects) {
+              Object.keys(localSt.academicSubjects).forEach(subK => {
+                const canon = canonicalSubjectName(subK) || subK;
+                const lSub = localSt.academicSubjects[subK];
+                const sSub = getEnrolledSubjectData(serverSt.academicSubjects, canon);
+                if (sSub && lSub && Array.isArray(lSub.sessions)) {
+                  if (!sSub.sessions || !Array.isArray(sSub.sessions)) sSub.sessions = ["", "", "", "", "", "", "", ""];
+                  while (sSub.sessions.length < 8) sSub.sessions.push("");
+                  for (let i = 0; i < 8; i++) {
+                    const lVal = (lSub.sessions[i] || '').trim();
+                    if (lVal && (!sSub.sessions[i] || !sSub.sessions[i].trim())) {
+                      sSub.sessions[i] = lVal;
+                    }
+                  }
+                  if (!sSub.months) sSub.months = {};
+                  sSub.months['شهر 9 (سبتمبر)'] = [...sSub.sessions];
+                  sSub.months['شهر 1'] = [...sSub.sessions];
+                }
+              });
+              rebuildStudentSummaries(serverSt);
+            }
+          }
           overridesMap[code] = serverSt;
           return serverSt;
         });
@@ -3698,26 +3775,18 @@ function syncBulkStudentsToGoogleSheets(studentsList) {
   const url = getGoogleAppsScriptUrl();
   if (url) {
     if (navigator.onLine) {
-      // إرسال فوري بالـ chunks لعدم تحميل الشبكة دفعة واحدة
-      let idx = 0;
-      const chunkSize = 3;
-      function sendNextSlice() {
-        if (idx >= studentsList.length) return;
-        const slice = studentsList.slice(idx, idx + chunkSize);
-        idx += chunkSize;
-        slice.forEach(st => {
-          fetch(url, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'update_student', student: st })
-          }).catch(() => {});
-        });
-        setTimeout(sendNextSlice, 250);
-      }
-      sendNextSlice();
+      // إرسال كـ batch_update_students دفعة واحدة
+      fetch(url, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'batch_update_students', students: studentsList })
+      }).catch(err => {
+        console.warn('[Google Sheets Sync] Batch error, queuing offline:', err);
+        addToOfflineSyncQueue('batch_update_students', { students: studentsList });
+      });
     } else {
-      // ✅ FIX: حفظ الـ batch كـ item واحد في الـ offline queue
+      // حفظ الـ batch كـ item واحد في الـ offline queue
       addToOfflineSyncQueue('batch_update_students', { students: studentsList });
     }
   }
@@ -3806,10 +3875,10 @@ async function pullFromGoogleSheets(isAuto = false) {
           newCount++;
         } else {
           let changed = false;
-          ['name', 'phone', 'parentPhone', 'area', 'grade', 'specialization', 'subjectsSummary', 'teachersSummary'].forEach(k => {
+          ['name', 'phone', 'parentPhone', 'area', 'grade', 'specialization'].forEach(k => {
             const incomingVal = String(sheetStudent[k] || '').trim();
             const currentVal = String(existingLocal[k] || '').trim();
-            if (incomingVal !== currentVal) {
+            if (incomingVal && incomingVal !== currentVal) {
               existingLocal[k] = sheetStudent[k];
               changed = true;
             }
@@ -3820,12 +3889,15 @@ async function pullFromGoogleSheets(isAuto = false) {
             existingLocal.grade = normalize_grade(existingLocal.grade);
           }
 
-          // ✅ Reconstruct and sync academic subjects while preserving past attendance sessions
+          // ✅ Reconstruct and sync academic subjects while strictly preserving past attendance sessions
           const syncedAcademic = parseSubjectsFromSummary(sheetStudent.subjectsSummary, sheetStudent.teachersSummary, existingLocal.academicSubjects);
           if (JSON.stringify(syncedAcademic) !== JSON.stringify(existingLocal.academicSubjects || {})) {
             existingLocal.academicSubjects = syncedAcademic;
             changed = true;
           }
+
+          // Rebuild canonical summaries from merged academicSubjects so local sessions are NEVER lost
+          rebuildStudentSummaries(existingLocal);
 
           if (changed) {
             existingLocal._metrics = calculateStudentMetrics(existingLocal);

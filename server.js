@@ -443,6 +443,22 @@ function computeStudentMetrics(academicSubjects) {
   return { totalScore, totalMax, totalPresent, totalAbsent, totalRecordedSessions: totalRecorded, attendanceRate, averageScore };
 }
 
+function rebuildStudentSummary(st) {
+  if (!st || !st.academicSubjects) return;
+  const subs = Object.keys(st.academicSubjects);
+  st.subjectsSummary = subs.join(', ');
+  st.teachersSummary = subs.map(k => {
+    const subObj = st.academicSubjects[k] || {};
+    const tName = subObj.teacher || 'مدرس المادة';
+    let p = `${k}/${tName}`;
+    if (subObj.sessions && Array.isArray(subObj.sessions) && subObj.sessions.some(s => s && String(s).trim())) {
+      const sessStr = subObj.sessions.map(s => (s && String(s).trim()) ? String(s).trim() : '_').join(', ');
+      p += ` [حصص: ${sessStr}]`;
+    }
+    return p;
+  }).join(' | ');
+}
+
 // Automatic Live Pull from Google Sheets
 let _isSyncingSheets = false;
 async function syncFromGoogleSheets() {
@@ -556,9 +572,13 @@ async function syncFromGoogleSheets() {
                     }
                   });
                 }
+                if (!exSub.months) exSub.months = {};
+                exSub.months['شهر 9 (سبتمبر)'] = [...exSub.sessions];
+                exSub.months['شهر 1'] = [...exSub.sessions];
               }
             });
             existing._metrics = computeStudentMetrics(existing.academicSubjects);
+            rebuildStudentSummary(existing);
           } else if (!existing.academicSubjects) {
             existing.academicSubjects = {};
             existing._metrics = computeStudentMetrics(existing.academicSubjects);
