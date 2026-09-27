@@ -7,7 +7,9 @@ const WebSocket = require('ws');
 
 const app = express();
 const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
+
+// ✅ FIX 1: تحديد مسار /ws بشكل صريح لضمان عمل الـ reverse proxy على Railway
+const wss = new WebSocket.Server({ server, path: '/ws' });
 
 const PORT = process.env.PORT || 3000;
 const GOOGLE_APPS_SCRIPT_URL = process.env.SHEETS_URL || 'https://script.google.com/macros/s/AKfycbymmlVQKxkdXpLlsE0Z7DuhizyHHGlEKHesCAj0FJ4lfKlSBJRLThN0GFfISbi5CabmAg/exec';
@@ -79,19 +81,51 @@ function saveAuditLogs() {
 
 initDatabase();
 
-// WebSocket Real-time Broadcast
+// ✅ FIX 2: WebSocket Real-time Broadcast مع sound flag
 function broadcast(data, excludeWs = null) {
   const payload = JSON.stringify(data);
   wss.clients.forEach(client => {
     if (client !== excludeWs && client.readyState === WebSocket.OPEN) {
-      client.send(payload);
+      try {
+        client.send(payload);
+      } catch (e) {
+        console.warn('[WS] Failed to send to client:', e.message);
+      }
     }
   });
 }
 
+// ✅ FIX 3: Server-side Heartbeat — يمنع Railway من قفل الـ connections بعد 30 ثانية
+const HEARTBEAT_INTERVAL = 20000; // كل 20 ثانية
+
+function heartbeat() {
+  this.isAlive = true;
+}
+
+const heartbeatTimer = setInterval(() => {
+  wss.clients.forEach(ws => {
+    if (ws.isAlive === false) {
+      console.log('[WS] Terminating dead connection');
+      return ws.terminate();
+    }
+    ws.isAlive = false;
+    try {
+      ws.ping();
+    } catch (e) {}
+  });
+}, HEARTBEAT_INTERVAL);
+
+wss.on('close', () => {
+  clearInterval(heartbeatTimer);
+});
+
 wss.on('connection', (ws, req) => {
   const ip = req.socket.remoteAddress;
   console.log(`[WS] Client connected from ${ip}. Total connected: ${wss.clients.size}`);
+
+  // Mark as alive for heartbeat
+  ws.isAlive = true;
+  ws.on('pong', heartbeat.bind(ws));
 
   // Send initial welcome & count
   ws.send(JSON.stringify({
@@ -106,6 +140,7 @@ wss.on('connection', (ws, req) => {
       const msg = JSON.parse(message);
       if (msg.type === 'PING') {
         ws.send(JSON.stringify({ type: 'PONG', timestamp: Date.now() }));
+        ws.isAlive = true; // Reset heartbeat on client ping too
       } else if (msg.type === 'SYNC_ACTION' || msg.type === 'DATA_UPDATE') {
         const action = msg.action;
         const payload = msg.payload || msg.data || msg;
@@ -120,6 +155,10 @@ wss.on('connection', (ws, req) => {
 
   ws.on('close', () => {
     console.log(`[WS] Client disconnected. Remaining: ${wss.clients.size}`);
+  });
+
+  ws.on('error', (err) => {
+    console.warn('[WS] Socket error:', err.message);
   });
 });
 
@@ -228,7 +267,7 @@ function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null,
   saveDatabase();
   saveAuditLogs();
 
-  // 1. Broadcast instant real-time update to all connected clients
+  // ✅ FIX 4: Broadcast مع sound: true لتشغيل الصوت عند كل المشرفين
   broadcast({
     type: 'DATA_UPDATE',
     action,
@@ -238,10 +277,11 @@ function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null,
     sender: byUser,
     clientId,
     timestamp: Date.now(),
-    studentsCount: students.length
+    studentsCount: students.length,
+    sound: true   // 🔔 علامة تشغيل الصوت عند المستلمين
   }, sourceWs);
 
-  // 2. Forward to Google Sheets Webhook asynchronously in background
+  // Forward to Google Sheets Webhook asynchronously in background
   if (GOOGLE_APPS_SCRIPT_URL) {
     forwardToGoogleSheets(action, payload, byUser);
   }
@@ -437,10 +477,10 @@ async function syncFromGoogleSheets() {
         console.log(`[Google Sheets Sync] Successfully fetched ${fetchedStudents.length} students from Apps Script API`);
       }
     } catch (apiErr) {
-      console.warn('[Google Sheets Sync] Apps Script API failed or timed out, trying CSV export:', apiErr.message);
+      console.warn('[Google Sheets Sync] Apps Script API failed, trying CSV:', apiErr.message);
     }
 
-    // 2. Fallback to direct Google Sheets CSV export if Apps Script didn't return students
+    // 2. Fallback to direct Google Sheets CSV export
     if (fetchedStudents.length === 0) {
       try {
         const csvRaw = await fetchUrl(GOOGLE_SHEET_CSV_URL);
@@ -448,7 +488,7 @@ async function syncFromGoogleSheets() {
         for (let i = 1; i < lines.length; i++) {
           const line = lines[i].trim();
           if (!line) continue;
-          const tokens = line.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
+          const tokens = line.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
           if (tokens.length < 2) continue;
           const code = tokens[0].trim().replace(/^"|"$/g, '');
           const name = tokens[1].trim().replace(/^"|"$/g, '');
@@ -463,7 +503,7 @@ async function syncFromGoogleSheets() {
           const regDate = tokens.length > 9 ? tokens[9].trim().replace(/^"|"$/g, '') : '';
           fetchedStudents.push({ code, name, area, phone, parentPhone, grade, specialization, subjectsSummary, teachersSummary, regDate });
         }
-        console.log(`[Google Sheets Sync] Successfully fetched ${fetchedStudents.length} students from CSV export`);
+        console.log(`[Google Sheets Sync] Successfully fetched ${fetchedStudents.length} students from CSV`);
       } catch (csvErr) {
         console.warn('[Google Sheets Sync] CSV export also failed:', csvErr.message);
       }
@@ -482,12 +522,10 @@ async function syncFromGoogleSheets() {
 
         const existingIdx = students.findIndex(s => String(s.code).trim() === code);
         if (existingIdx >= 0) {
-          // Merge sheet updates into existing record
           const existing = students[existingIdx];
           const hasNewSess = academic && Object.values(academic).some(sub => sub.sessions && sub.sessions.some(s => s && s.trim() !== ''));
           const existingHasSess = existing.academicSubjects && Object.values(existing.academicSubjects).some(sub => sub.sessions && sub.sessions.some(s => s && s.trim() !== ''));
 
-          // Update data
           existing.name = st.name;
           existing.grade = normG;
           if (st.phone) existing.phone = st.phone;
@@ -524,20 +562,19 @@ async function syncFromGoogleSheets() {
         }
       });
 
-      // Save database
       saveDatabase();
-      console.log(`[Google Sheets Sync] Sync Complete: ${students.length} total students in memory (${newCount} new, ${updatedCount} updated).`);
+      console.log(`[Google Sheets Sync] Complete: ${students.length} total (${newCount} new, ${updatedCount} updated).`);
 
-      // Broadcast update to all connected clients
       broadcast({
         type: 'DATA_UPDATE',
         action: 'google_sheets_live_sync',
         timestamp: Date.now(),
-        studentsCount: students.length
+        studentsCount: students.length,
+        sound: false  // لا نشغل صوت عند مزامنة الـ Google Sheets التلقائية
       });
     }
   } catch (err) {
-    console.error('[Google Sheets Sync] Error during sync:', err.message);
+    console.error('[Google Sheets Sync] Error:', err.message);
   } finally {
     _isSyncingSheets = false;
   }
@@ -553,7 +590,7 @@ app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
     app: 'Araij Manager Pro',
-    version: '4.0.0',
+    version: '4.1.0',
     clientsCount: wss.clients.size,
     studentsCount: students.length,
     time: new Date().toISOString()
@@ -627,9 +664,9 @@ app.get('*', (req, res) => {
 // Start Server
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`====================================================`);
-  console.log(`ًںڑ€ Araij Manager Live Server running on port ${PORT}`);
-  console.log(`ًںŒگ Web App: http://localhost:${PORT}`);
-  console.log(`âڑ، WebSocket Server: Ready for live cross-device sync`);
-  console.log(`ًں‘¥ Loaded ${students.length} students into memory`);
+  console.log(`🚀 Araij Manager Live Server running on port ${PORT}`);
+  console.log(`🌐 Web App: http://localhost:${PORT}`);
+  console.log(`⚡ WebSocket Server: Ready at ws://localhost:${PORT}/ws`);
+  console.log(`💥 Loaded ${students.length} students into memory`);
   console.log(`====================================================`);
 });

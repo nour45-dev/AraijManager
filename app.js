@@ -3137,17 +3137,33 @@ function getOfflineSyncQueue() {
 
 function addToOfflineSyncQueue(action, payload) {
   const queue = getOfflineSyncQueue();
-  const code = String(payload?.student?.code || payload?.code || '').trim();
   const now = Date.now();
-  // Avoid duplicate queue entries for the same action & code within 3 seconds
-  const existingIdx = queue.findIndex(q => q.action === action && String(q.payload?.student?.code || q.payload?.code || '').trim() === code && (now - q.timestamp < 3000));
-  if (existingIdx >= 0) {
-    queue[existingIdx] = { action, payload, timestamp: now };
-  } else {
-    queue.push({ action, payload, timestamp: now });
+
+  // ✅ FIX: الـ batch operations تُحفَظ دائماً بدون تحقق من التكرار
+  const isBatch = action === 'batch_update_students' || action === 'bulk_session';
+  if (!isBatch) {
+    const code = String(payload?.student?.code || payload?.code || '').trim();
+    // تجنب التكرار للعمليات الفردية في 3 ثوانٍ فقط
+    const existingIdx = queue.findIndex(q =>
+      q.action === action &&
+      !['batch_update_students', 'bulk_session'].includes(q.action) &&
+      String(q.payload?.student?.code || q.payload?.code || '').trim() === code &&
+      (now - q.timestamp < 3000)
+    );
+    if (existingIdx >= 0) {
+      queue[existingIdx] = { action, payload, timestamp: now };
+      localStorage.setItem('araij_offline_sync_queue', JSON.stringify(queue));
+      return;
+    }
   }
+
+  queue.push({ action, payload, timestamp: now });
   localStorage.setItem('araij_offline_sync_queue', JSON.stringify(queue));
+
+  // ✅ تسجيل Background Sync ليُرسَل لما يرجع النت حتى لو التطبيق مغلق
+  registerBackgroundSync();
 }
+
 
 async function flushOfflineSyncQueue() {
   if (!navigator.onLine) return;
@@ -3162,7 +3178,8 @@ async function flushOfflineSyncQueue() {
   for (let i = 0; i < queue.length; i++) {
     const item = queue[i];
     let ok = false;
-    // 1. Forward to Railway REST API
+
+    // 1. Forward to Railway REST API (يُسبِّب broadcast بـ sound:true لكل المشرفين)
     if (srvUrl) {
       try {
         const resp = await fetch(`${srvUrl}/api/sync`, {
@@ -3184,7 +3201,7 @@ async function flushOfflineSyncQueue() {
       ok = true;
     }
 
-    // 2. Forward to Google Sheets
+    // 2. Forward to Google Sheets (في الخلفية)
     if (url) {
       try {
         await fetch(url, {
@@ -3205,10 +3222,18 @@ async function flushOfflineSyncQueue() {
   }
 
   localStorage.setItem('araij_offline_sync_queue', JSON.stringify(remaining));
+
   if (flushedCount > 0) {
-    showToast(`⚡ تم ترحيل ${flushedCount} عملية مسجلة أوفلاين إلى السحابة ومزامنتها بنجاح مع كافة المشرفين!`);
+    // ✅ FIX: تشغيل الصوت محلياً عند نجاح الإرسال بعد رجوع النت
+    try { playSuccessChime(); } catch(e) {}
+    showToast(`⚡ تم ترحيل ${flushedCount} عملية أوفلاين إلى السحابة ومزامنتها فورياً مع كافة المشرفين!`);
+    try {
+      showBulkProgressBanner('success', '🔄 تمت مزامنة العمليات الأوفلاين!',
+        `تم إرسال ${flushedCount} عملية مسجلة أثناء انقطاع النت وتعميمها فورياً على كافة الأجهزة ⚡`, 6000);
+    } catch(e) {}
   }
 }
+
 
 // ====================================================
 // RAILWAY LIVE CLOUD SYNC & WEBSOCKET ENGINE (0ms SYNC)
@@ -3262,6 +3287,9 @@ function onRailwayUrlInputChanged(val) {
 }
 window.onRailwayUrlInputChanged = onRailwayUrlInputChanged;
 
+// ✅ FIX: Client-side WebSocket ping timer
+let _wsPingTimer = null;
+
 function initLiveRailwaySync() {
   const srvUrl = getRailwayServerUrl();
   const inputEl = document.getElementById('railwayServerUrlInput');
@@ -3286,6 +3314,9 @@ function initLiveRailwaySync() {
       } catch(e) {}
     }
 
+    // ✅ إيقاف الـ ping القديم قبل إنشاء الاتصال الجديد
+    if (_wsPingTimer) { clearInterval(_wsPingTimer); _wsPingTimer = null; }
+
     console.log(`[Railway Live Sync] Connecting to ${wsUrl}...`);
     _railwaySocket = new WebSocket(wsUrl);
 
@@ -3293,6 +3324,19 @@ function initLiveRailwaySync() {
       console.log(`[Railway Live Sync] Connected successfully!`);
       _isRailwayConnected = true;
       updateRailwayStatusBadge(true, 'ريلوي متصل ⚡');
+
+      // ✅ FIX: Client heartbeat — يُرسل ping كل 20 ثانية لمنع Railway Idle Timeout
+      _wsPingTimer = setInterval(() => {
+        if (_railwaySocket && _railwaySocket.readyState === WebSocket.OPEN) {
+          try {
+            _railwaySocket.send(JSON.stringify({ type: 'PING', timestamp: Date.now() }));
+          } catch(e) {}
+        } else {
+          clearInterval(_wsPingTimer);
+          _wsPingTimer = null;
+        }
+      }, 20000);
+
       flushOfflineSyncQueue();
       fetchLatestStudentsFromCentralServer(true);
     };
@@ -3300,6 +3344,10 @@ function initLiveRailwaySync() {
     _railwaySocket.onmessage = (event) => {
       try {
         const msg = JSON.parse(event.data);
+        if (msg.type === 'PONG') {
+          // heartbeat response — connection alive
+          return;
+        }
         if (msg.type === 'DATA_UPDATE') {
           handleIncomingLiveUpdate(msg);
         }
@@ -3310,6 +3358,7 @@ function initLiveRailwaySync() {
 
     _railwaySocket.onclose = () => {
       _isRailwayConnected = false;
+      if (_wsPingTimer) { clearInterval(_wsPingTimer); _wsPingTimer = null; }
       updateRailwayStatusBadge(false, 'إعادة الاتصال...');
       scheduleRailwayReconnect();
     };
@@ -3355,6 +3404,7 @@ function handleIncomingLiveUpdate(msg) {
   const data = msg.data || msg.payload || {};
   const sender = msg.sender || msg.byUser || '';
   const clientId = msg.clientId || '';
+  const shouldPlaySound = msg.sound !== false; // ✅ افتراضياً يشغل الصوت
   console.log(`[Railway Live Sync] Received ${action} from ${sender || 'system'} (client: ${clientId})`);
 
   // Only ignore if the message was echoed back to THIS EXACT browser session
@@ -3385,7 +3435,7 @@ function handleIncomingLiveUpdate(msg) {
       const overrides = JSON.parse(localStorage.getItem('araij_students_overrides') || '{}');
       overrides[student.code] = allStudents[idx >= 0 ? idx : 0];
       localStorage.setItem('araij_students_overrides', JSON.stringify(overrides));
-      localStorage.setItem('araij_full_students_db', JSON.stringify(allStudents));
+      safeSetLocalStorage('araij_full_students_db', JSON.stringify(allStudents));
     } catch(e) {}
 
     renderAttendanceMatrix();
@@ -3401,7 +3451,14 @@ function handleIncomingLiveUpdate(msg) {
       renderBulkStudentsList();
     }
 
-    showToast(`⚡ مزامنة فورية: تم رصد/تحديث بيانات (${student.name}) بواسطة ${sender || 'مشرف'}`);
+    // ✅ FIX: تشغيل الصوت والإشعار لكل update/add
+    if (shouldPlaySound) {
+      try { playSuccessChime(); } catch(e) {}
+      try { triggerNativeNotification(action, sender, student.name); } catch(e) {}
+    }
+
+    const actionLabel = action === 'add_student' ? 'تسجيل طالب جديد' : 'تعديل بيانات';
+    showToast(`⚡ مزامنة فورية: ${actionLabel} (${student.name}) بواسطة ${sender || 'مشرف'}`);
 
   } else if (action === 'batch_update_students' || action === 'bulk_session') {
     const list = data?.students || data?.modifiedStudents || (Array.isArray(data) ? data : []);
@@ -3427,8 +3484,8 @@ function handleIncomingLiveUpdate(msg) {
             overrides[st.code] = st;
           }
         });
-        localStorage.setItem('araij_students_overrides', JSON.stringify(overrides));
-        localStorage.setItem('araij_full_students_db', JSON.stringify(allStudents));
+        safeSetLocalStorage('araij_students_overrides', JSON.stringify(overrides));
+        safeSetLocalStorage('araij_full_students_db', JSON.stringify(allStudents));
       } catch(e) {}
 
       renderAttendanceMatrix();
@@ -3444,7 +3501,11 @@ function handleIncomingLiveUpdate(msg) {
         renderBulkStudentsList();
       }
 
-      try { playSuccessChime(); } catch(e) {}
+      // ✅ FIX: تشغيل الصوت والإشعار للرصد الجماعي
+      if (shouldPlaySound) {
+        try { playSuccessChime(); } catch(e) {}
+        try { triggerNativeNotification('batch_update_students', sender, `${list.length} طالب`); } catch(e) {}
+      }
       try {
         showBulkProgressBanner('info', '⚡ استلام رصد جماعي فوري', `قام (${sender || 'مشرف'}) برصد وتحديث حضور ${list.length} طالب - تم تحديث شاشتك تلقائياً!`, 5500);
       } catch(e) {}
@@ -3458,12 +3519,18 @@ function handleIncomingLiveUpdate(msg) {
       try {
         const overrides = JSON.parse(localStorage.getItem('araij_students_overrides') || '{}');
         delete overrides[code];
-        localStorage.setItem('araij_students_overrides', JSON.stringify(overrides));
-        localStorage.setItem('araij_full_students_db', JSON.stringify(allStudents));
+        safeSetLocalStorage('araij_students_overrides', JSON.stringify(overrides));
+        safeSetLocalStorage('araij_full_students_db', JSON.stringify(allStudents));
       } catch(e) {}
       renderAttendanceMatrix();
       applyFilters();
       updateKPIStats();
+
+      // ✅ FIX: تشغيل الصوت للحذف أيضاً
+      if (shouldPlaySound) {
+        try { playSuccessChime(); } catch(e) {}
+        try { triggerNativeNotification('delete_student', sender, `#${code}`); } catch(e) {}
+      }
       showToast(`⚡ مزامنة فورية: قام ${sender || 'مشرف'} بحذف الطالب #${code}`);
     }
 
@@ -3473,12 +3540,14 @@ function handleIncomingLiveUpdate(msg) {
         const logs = JSON.parse(localStorage.getItem('araij_activity_logs') || '[]');
         logs.unshift(data.log);
         if (logs.length > 500) logs.pop();
-        localStorage.setItem('araij_activity_logs', JSON.stringify(logs));
+        safeSetLocalStorage('araij_activity_logs', JSON.stringify(logs));
         renderActivityLogs();
       } catch(e) {}
     }
   }
 }
+
+
 
 function sendToRailwayServer(action, payload) {
   const userName = currentUser ? currentUser.name : 'مشرف';
@@ -3602,18 +3671,14 @@ function syncBulkStudentsToGoogleSheets(studentsList) {
   if (!studentsList || !Array.isArray(studentsList) || studentsList.length === 0) return;
 
   // 1. Send immediately to Live Railway Server (PRIMARY 0ms CROSS-DEVICE HUB)
+  // هذا يُسبِّب broadcast بـ sound:true لكل المشرفين المتصلين
   sendToRailwayServer('batch_update_students', { students: studentsList });
-  studentsList.forEach(st => {
-    sendToLanServer('update_student', { student: st });
-  });
 
   // 2. Secondary dispatch to Google Sheets if configured
   const url = getGoogleAppsScriptUrl();
   if (url) {
-    syncToGoogleSheets('batch_update_students', { students: studentsList }, true);
-    syncToGoogleSheets('bulk_session', { students: studentsList }, true);
-
     if (navigator.onLine) {
+      // إرسال فوري بالـ chunks لعدم تحميل الشبكة دفعة واحدة
       let idx = 0;
       const chunkSize = 3;
       function sendNextSlice() {
@@ -3626,20 +3691,18 @@ function syncBulkStudentsToGoogleSheets(studentsList) {
             mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ action: 'update_student', student: st })
-          }).catch(() => {
-            addToOfflineSyncQueue('update_student', { student: st });
-          });
+          }).catch(() => {});
         });
         setTimeout(sendNextSlice, 250);
       }
       sendNextSlice();
     } else {
-      studentsList.forEach(st => {
-        addToOfflineSyncQueue('update_student', { student: st });
-      });
+      // ✅ FIX: حفظ الـ batch كـ item واحد في الـ offline queue
+      addToOfflineSyncQueue('batch_update_students', { students: studentsList });
     }
   }
 }
+
 
 
 
@@ -5214,6 +5277,122 @@ function playSuccessChime() {
     osc.start();
     osc.stop(ctx.currentTime + 0.35);
   } catch(e) {}
+}
+
+// ====================================================
+// ✅ STORAGE MANAGER — يمنع فقدان البيانات بسبب localStorage overflow
+// ====================================================
+function safeSetLocalStorage(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch (e) {
+    if (e.name === 'QuotaExceededError' || e.code === 22) {
+      console.warn('[Storage] localStorage quota exceeded, cleaning old logs...');
+      // حذف الـ activity logs القديمة أولاً لتوفير مساحة
+      try {
+        const logs = JSON.parse(localStorage.getItem('araij_activity_logs') || '[]');
+        if (logs.length > 50) {
+          localStorage.setItem('araij_activity_logs', JSON.stringify(logs.slice(0, 50)));
+        } else {
+          localStorage.removeItem('araij_activity_logs');
+        }
+      } catch(e2) {
+        localStorage.removeItem('araij_activity_logs');
+      }
+      // حذف الـ offline sync queue القديمة (أكثر من ساعة)
+      try {
+        const queue = JSON.parse(localStorage.getItem('araij_offline_sync_queue') || '[]');
+        const oneHourAgo = Date.now() - 3600000;
+        const filtered = queue.filter(q => q.timestamp > oneHourAgo);
+        localStorage.setItem('araij_offline_sync_queue', JSON.stringify(filtered));
+      } catch(e3) {}
+      // إعادة المحاولة
+      try {
+        localStorage.setItem(key, value);
+      } catch(e4) {
+        console.error('[Storage] Still cannot save after cleanup:', key);
+      }
+    }
+  }
+}
+
+// ====================================================
+// ✅ NATIVE NOTIFICATION — إشعارات عند وصول sync (APK + Browser)
+// ====================================================
+async function triggerNativeNotification(action, sender, extra) {
+  try {
+    const actionLabels = {
+      'add_student': 'تسجيل طالب جديد',
+      'update_student': 'تعديل بيانات طالب',
+      'delete_student': 'حذف طالب',
+      'batch_update_students': 'رصد جماعي',
+      'bulk_session': 'رصد جماعي'
+    };
+    const label = actionLabels[action] || 'تحديث';
+    const title = '⚡ سنتر الارائج — مزامنة فورية';
+    const body = `قام ${sender || 'مشرف'} بـ${label}` + (extra ? ` (${extra})` : '');
+
+    // ✅ Capacitor APK Native Notification
+    if (window.Capacitor && window.Capacitor.isNativePlatform()) {
+      try {
+        const { LocalNotifications } = await import('@capacitor/local-notifications');
+        await LocalNotifications.schedule({
+          notifications: [{
+            title,
+            body,
+            id: Math.floor(Date.now() / 1000) % 2147483647,
+            sound: 'default',
+            smallIcon: 'ic_stat_icon',
+            channelId: 'araij_sync'
+          }]
+        });
+      } catch(capErr) {}
+      return;
+    }
+
+    // ✅ Browser Push Notification (للمتصفح)
+    if ('Notification' in window && Notification.permission === 'granted') {
+      new Notification(title, {
+        body,
+        icon: './icon-192.png',
+        badge: './icon-192.png',
+        dir: 'rtl',
+        tag: 'araij-sync-' + action
+      });
+    } else if ('Notification' in window && Notification.permission !== 'denied') {
+      // طلب الإذن لأول مرة
+      Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+          new Notification(title, { body, icon: './icon-192.png', dir: 'rtl' });
+        }
+      });
+    }
+  } catch(e) {}
+}
+
+// ====================================================
+// ✅ BACKGROUND SYNC — يضمن إرسال العمليات حتى بعد إغلاق التطبيق
+// ====================================================
+async function registerBackgroundSync() {
+  try {
+    if ('serviceWorker' in navigator && 'SyncManager' in window) {
+      const reg = await navigator.serviceWorker.ready;
+      await reg.sync.register('araij-offline-sync');
+      console.log('[Background Sync] Registered araij-offline-sync tag');
+    }
+  } catch(e) {
+    // Background Sync غير متاح في بعض المتصفحات — مش مشكلة
+  }
+}
+
+// الاستماع لرسائل الـ Service Worker (يُشغَّل Background Sync من الـ SW)
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'BACKGROUND_SYNC_TRIGGER') {
+      console.log('[Background Sync] SW triggered flush');
+      flushOfflineSyncQueue();
+    }
+  });
 }
 
 function showBulkProgressBanner(type, title, subtitle, duration = 4500) {

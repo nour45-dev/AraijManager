@@ -1,0 +1,30 @@
+{
+  "appId": "com.araij.manager",
+  "appName": "سنتر الارائج",
+  "webDir": ".",
+  "server": {
+    "url": "https://araijmanager.up.railway.app",
+    "cleartext": false,
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": false,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": false,
+    "backgroundColor": "#0b1120"
+  },
+  "plugins": {
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_icon",
+      "iconColor": "#0284c7",
+      "sound": "default"
+    },
+    "SplashScreen": {
+      "launchShowDuration": 1500,
+      "backgroundColor": "#0b1120",
+      "showSpinner": false,
+      "androidSpinnerStyle": "small",
+      "spinnerColor": "#0284c7"
+    }
+  }
+}

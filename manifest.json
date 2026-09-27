@@ -2,7 +2,8 @@
   "name": "سنتر الارائج التعليمي",
   "short_name": "سنتر الارائج",
   "description": "منصة إدارة ومتابعة الطلاب ورصد الحضور والغياب والتقارير الأكاديمية",
-  "start_url": "./index.html",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#0b1120",
   "theme_color": "#0284c7",
@@ -10,6 +11,7 @@
   "lang": "ar",
   "dir": "rtl",
   "categories": ["education", "productivity", "management"],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "icon-192.png",
@@ -28,6 +30,22 @@
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "الطلاب",
+      "short_name": "الطلاب",
+      "description": "عرض قائمة الطلاب",
+      "url": "/?tab=students",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "رصد الحضور",
+      "short_name": "الحضور",
+      "description": "رصد الحضور والغياب الجماعي",
+      "url": "/?tab=attendance",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
     }
   ]
 }
