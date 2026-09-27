@@ -523,8 +523,6 @@ async function syncFromGoogleSheets() {
         const existingIdx = students.findIndex(s => String(s.code).trim() === code);
         if (existingIdx >= 0) {
           const existing = students[existingIdx];
-          const hasNewSess = academic && Object.values(academic).some(sub => sub.sessions && sub.sessions.some(s => s && s.trim() !== ''));
-          const existingHasSess = existing.academicSubjects && Object.values(existing.academicSubjects).some(sub => sub.sessions && sub.sessions.some(s => s && s.trim() !== ''));
 
           existing.name = st.name;
           existing.grade = normG;
@@ -534,11 +532,36 @@ async function syncFromGoogleSheets() {
           if (st.specialization) existing.specialization = st.specialization;
           if (st.regDate) existing.regDate = st.regDate;
 
-          if (hasNewSess || !existingHasSess) {
-            existing.academicSubjects = academic;
-            existing.teachersSummary = st.teachersSummary;
-            existing.subjectsSummary = st.subjectsSummary;
-            existing._metrics = metrics;
+          // ✅ FIX: دمج غير إتلافي — لا نمسح الحصص المسجلة حياً في السيستم بحصص فارغة من الشيت
+          if (academic && Object.keys(academic).length > 0) {
+            if (!existing.academicSubjects) existing.academicSubjects = {};
+            Object.keys(academic).forEach(subKey => {
+              if (!existing.academicSubjects[subKey]) {
+                existing.academicSubjects[subKey] = academic[subKey];
+              } else {
+                const exSub = existing.academicSubjects[subKey];
+                const shSub = academic[subKey];
+                if (shSub.teacher && (!exSub.teacher || exSub.teacher === 'مدرس المادة')) {
+                  exSub.teacher = shSub.teacher;
+                }
+                if (shSub.sessions && Array.isArray(shSub.sessions)) {
+                  if (!exSub.sessions || !Array.isArray(exSub.sessions)) {
+                    exSub.sessions = ['', '', '', '', '', '', '', ''];
+                  }
+                  while (exSub.sessions.length < 8) exSub.sessions.push('');
+                  shSub.sessions.forEach((val, sIdx) => {
+                    // فقط إذا كانت الحصة في السيرفر فارغة والشيت فيه قيمة نأخذها
+                    if (val && val.trim() && (!exSub.sessions[sIdx] || !exSub.sessions[sIdx].trim())) {
+                      exSub.sessions[sIdx] = val.trim();
+                    }
+                  });
+                }
+              }
+            });
+            existing._metrics = computeStudentMetrics(existing.academicSubjects);
+          } else if (!existing.academicSubjects) {
+            existing.academicSubjects = {};
+            existing._metrics = computeStudentMetrics(existing.academicSubjects);
           }
           updatedCount++;
         } else {

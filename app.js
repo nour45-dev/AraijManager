@@ -436,15 +436,19 @@ function rebuildStudentSummaries(student) {
 function getStudentSubjectMonthSessions(student, subject, month = null) {
   const m = month || currentActiveMonth || 'شهر 9 (سبتمبر)';
   if (!student.academicSubjects) student.academicSubjects = {};
-  if (!student.academicSubjects[subject]) {
-    const canon = canonicalSubjectName(subject) || subject;
-    student.academicSubjects[subject] = {
+  const canon = canonicalSubjectName(subject) || subject;
+
+  // البحث عن المادة سواء بالاسم المباشر أو الكانونيكال
+  let sub = getEnrolledSubjectData(student.academicSubjects, subject);
+  if (!sub) {
+    sub = {
       teacher: (TEACHERS[canon] && TEACHERS[canon][0]) || "مدرس المادة",
       sessions: ["", "", "", "", "", "", "", ""],
       months: {}
     };
+    student.academicSubjects[canon] = sub;
   }
-  const sub = student.academicSubjects[subject];
+
   if (!sub.months) sub.months = {};
   if (!sub.months[m]) {
     if ((m === 'شهر 9 (سبتمبر)' || m === 'شهر 1') && Array.isArray(sub.sessions) && sub.sessions.length > 0) {
@@ -454,6 +458,11 @@ function getStudentSubjectMonthSessions(student, subject, month = null) {
     }
   }
   while (sub.months[m].length < 8) sub.months[m].push("");
+
+  // مزامنة مستمرة مع sessions
+  if (m === currentActiveMonth || m === 'شهر 9 (سبتمبر)' || m === 'شهر 1') {
+    sub.sessions = sub.months[m];
+  }
   return sub.months[m];
 }
 
@@ -461,9 +470,13 @@ function setStudentSubjectMonthSession(student, subject, month, sessionIdx, val)
   const m = month || currentActiveMonth || 'شهر 9 (سبتمبر)';
   const sessions = getStudentSubjectMonthSessions(student, subject, m);
   sessions[sessionIdx] = val;
-  const sub = student.academicSubjects[subject];
-  if (m === currentActiveMonth || m === 'شهر 9 (سبتمبر)' || m === 'شهر 1') {
-    sub.sessions = [...sessions];
+  const sub = getEnrolledSubjectData(student.academicSubjects, subject);
+  if (sub) {
+    if (!sub.months) sub.months = {};
+    sub.months[m] = sessions;
+    if (m === currentActiveMonth || m === 'شهر 9 (سبتمبر)' || m === 'شهر 1') {
+      sub.sessions = [...sessions];
+    }
   }
   return sessions;
 }
@@ -3451,14 +3464,18 @@ function handleIncomingLiveUpdate(msg) {
       renderBulkStudentsList();
     }
 
-    // ✅ FIX: تشغيل الصوت والإشعار لكل update/add
-    if (shouldPlaySound) {
+    const isFromOtherUser = !currentUser || !currentUser.name || (sender && sender.trim() !== currentUser.name.trim());
+
+    // ✅ FIX: تشغيل الصوت والإشعار فقط إذا كان التحديث قادماً من مشرف آخر
+    if (shouldPlaySound && isFromOtherUser) {
       try { playSuccessChime(); } catch(e) {}
       try { triggerNativeNotification(action, sender, student.name); } catch(e) {}
     }
 
-    const actionLabel = action === 'add_student' ? 'تسجيل طالب جديد' : 'تعديل بيانات';
-    showToast(`⚡ مزامنة فورية: ${actionLabel} (${student.name}) بواسطة ${sender || 'مشرف'}`);
+    if (isFromOtherUser) {
+      const actionLabel = action === 'add_student' ? 'تسجيل طالب جديد' : 'تعديل بيانات';
+      showToast(`⚡ مزامنة فورية: ${actionLabel} (${student.name}) بواسطة ${sender || 'مشرف'}`);
+    }
 
   } else if (action === 'batch_update_students' || action === 'bulk_session') {
     const list = data?.students || data?.modifiedStudents || (Array.isArray(data) ? data : []);
@@ -3501,15 +3518,18 @@ function handleIncomingLiveUpdate(msg) {
         renderBulkStudentsList();
       }
 
-      // ✅ FIX: تشغيل الصوت والإشعار للرصد الجماعي
-      if (shouldPlaySound) {
+      const isFromOtherUser = !currentUser || !currentUser.name || (sender && sender.trim() !== currentUser.name.trim());
+      // ✅ FIX: تشغيل الصوت والإشعار للرصد الجماعي فقط للأجهزة الأخرى
+      if (shouldPlaySound && isFromOtherUser) {
         try { playSuccessChime(); } catch(e) {}
         try { triggerNativeNotification('batch_update_students', sender, `${list.length} طالب`); } catch(e) {}
       }
-      try {
-        showBulkProgressBanner('info', '⚡ استلام رصد جماعي فوري', `قام (${sender || 'مشرف'}) برصد وتحديث حضور ${list.length} طالب - تم تحديث شاشتك تلقائياً!`, 5500);
-      } catch(e) {}
-      showToast(`⚡ مزامنة فورية: استلام رصد جماعي لـ ${list.length} طالب من ${sender || 'مشرف'}`);
+      if (isFromOtherUser) {
+        try {
+          showBulkProgressBanner('info', '⚡ استلام رصد جماعي فوري', `قام (${sender || 'مشرف'}) برصد وتحديث حضور ${list.length} طالب - تم تحديث شاشتك تلقائياً!`, 4500);
+        } catch(e) {}
+        showToast(`⚡ مزامنة فورية: استلام رصد جماعي لـ ${list.length} طالب من ${sender || 'مشرف'}`);
+      }
     }
 
   } else if (action === 'delete_student') {
@@ -5432,6 +5452,22 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+function dismissBulkProgressBanner() {
+  const banner = document.getElementById('bulkGlobalNotifyBanner');
+  if (banner) {
+    clearTimeout(banner._dismissTimer);
+    banner.style.transition = 'all 0.3s ease';
+    banner.style.opacity = '0';
+    banner.style.transform = 'translate(-50%, -20px)';
+    banner.style.pointerEvents = 'none';
+    setTimeout(() => {
+      banner.style.display = 'none';
+      banner.classList.add('hidden');
+    }, 320);
+  }
+}
+window.dismissBulkProgressBanner = dismissBulkProgressBanner;
+
 function showBulkProgressBanner(type, title, subtitle, duration = 4500) {
   let banner = document.getElementById('bulkGlobalNotifyBanner');
   if (!banner) {
@@ -5453,24 +5489,30 @@ function showBulkProgressBanner(type, title, subtitle, duration = 4500) {
     iconHtml = '<div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0"><i data-lucide="refresh-cw" class="w-6 h-6 animate-spin"></i></div>';
   }
 
-  banner.className = `fixed top-5 left-1/2 -translate-x-1/2 z-[99999] max-w-lg w-[92%] sm:w-auto shadow-2xl rounded-2xl p-4 flex items-center gap-3 backdrop-blur-md transition-all duration-300 transform opacity-100 translate-y-0 ${bgClasses}`;
+  banner.style.display = 'flex';
+  banner.style.opacity = '1';
+  banner.style.transform = 'translate(-50%, 0)';
+  banner.style.pointerEvents = 'auto';
+  banner.classList.remove('hidden');
+
+  banner.className = `fixed top-5 left-1/2 -translate-x-1/2 z-[99999] max-w-lg w-[92%] sm:w-auto shadow-2xl rounded-2xl p-4 flex items-center gap-3 backdrop-blur-md transition-all duration-300 ${bgClasses}`;
   banner.innerHTML = `
     ${iconHtml}
     <div class="flex-1 text-right">
       <div class="font-black text-sm tracking-tight">${title}</div>
       <div class="text-xs text-slate-200 font-medium mt-0.5">${subtitle}</div>
     </div>
-    <button type="button" onclick="this.parentElement.classList.add('opacity-0', 'pointer-events-none')" class="p-1 rounded-lg text-slate-400 hover:text-white cursor-pointer shrink-0">
+    <button type="button" onclick="window.dismissBulkProgressBanner()" class="p-2 rounded-xl text-slate-300 hover:text-white bg-white/10 hover:bg-white/20 transition-all cursor-pointer shrink-0" title="إغلاق التنبيه">
       <i data-lucide="x" class="w-4 h-4"></i>
     </button>
   `;
   try { initIcons(); } catch(e) {}
 
-  if (duration > 0) {
-    banner._dismissTimer = setTimeout(() => {
-      banner.classList.add('opacity-0', 'pointer-events-none');
-    }, duration);
-  }
+  // إغلاق تلقائي مضمون بعد المدة المحددة (بحد أقصى 6 ثوانٍ لمنع التعليق)
+  const actualDuration = duration > 0 ? duration : 5000;
+  banner._dismissTimer = setTimeout(() => {
+    dismissBulkProgressBanner();
+  }, actualDuration);
 }
 
 function saveBulkSessionAttendance() {
