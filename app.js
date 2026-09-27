@@ -3461,7 +3461,7 @@ function handleIncomingLiveUpdate(msg) {
 
     const bulkModal = document.getElementById('bulkSessionModal');
     if (bulkModal && !bulkModal.classList.contains('hidden')) {
-      renderBulkStudentsList();
+      // Keep active modal intact so user's selections and focus are not disrupted
     }
 
     const isFromOtherUser = !currentUser || !currentUser.name || (sender && sender.trim() !== currentUser.name.trim());
@@ -3515,7 +3515,7 @@ function handleIncomingLiveUpdate(msg) {
 
       const bulkModal = document.getElementById('bulkSessionModal');
       if (bulkModal && !bulkModal.classList.contains('hidden')) {
-        renderBulkStudentsList();
+        // Keep active modal intact so user's selections and focus are not disrupted
       }
 
       const isFromOtherUser = !currentUser || !currentUser.name || (sender && sender.trim() !== currentUser.name.trim());
@@ -4994,8 +4994,10 @@ function exportFullDatabaseToCSV() {
 // ====================================================
 
 let currentBulkStudents = [];
+window._bulkAttendanceState = {};
 
 function openBulkSessionModal() {
+  window._bulkAttendanceState = {}; // Reset state for fresh load
   const curGrade = document.getElementById('matrixGradeSelect')?.value || 'ث1';
   const curSubject = document.getElementById('matrixSubjectSelect')?.value || 'عربي';
   const curTeacher = document.getElementById('matrixTeacherSelect')?.value || 'all';
@@ -5018,6 +5020,7 @@ function closeBulkSessionModal() {
 }
 
 function onBulkGradeChange() {
+  window._bulkAttendanceState = {};
   const grade = document.getElementById('bulkGradeSelect')?.value || 'ث1';
   populateBulkSubjects(grade);
 }
@@ -5036,6 +5039,7 @@ function populateBulkSubjects(grade, defaultSubj, defaultTeacher) {
 }
 
 function onBulkSubjectChange(defaultTeacher) {
+  window._bulkAttendanceState = {};
   const subject = document.getElementById('bulkSubjectSelect')?.value || 'عربي';
   const teacherSelect = document.getElementById('bulkTeacherSelect');
   if (!teacherSelect) return;
@@ -5069,7 +5073,6 @@ function renderBulkStudentsList() {
   list = list.filter(s => {
     const subData = getEnrolledSubjectData(s.academicSubjects, subject);
     if (!subData) {
-      // If no specific subject mapping, check summary
       const sumNorm = normalize_arabic(s.subjectsSummary || '');
       if (!sumNorm.includes(normalize_arabic(subject))) return false;
     }
@@ -5082,9 +5085,7 @@ function renderBulkStudentsList() {
     return true;
   });
 
-  // Sort students alphabetically by Arabic name
   list.sort((a, b) => (a.name || '').localeCompare(b.name || '', 'ar', { numeric: true, sensitivity: 'base' }));
-
   currentBulkStudents = list;
   if (countBadge) countBadge.textContent = `${list.length} طالب`;
 
@@ -5094,19 +5095,37 @@ function renderBulkStudentsList() {
     return;
   }
 
+  // ✅ In-memory state initialization:
+  // Auto-reset state when session/grade/subject/teacher/month changes
+  const bulkKey = `${grade}:${subject}:${teacher}:${targetMonth}:${sessionIdx}`;
+  if (window._bulkAttendanceLastKey !== bulkKey) {
+    window._bulkAttendanceState = {};
+    window._bulkAttendanceLastKey = bulkKey;
+  }
+
+  // If student has previous record for this session, keep it; otherwise DEFAULT TO '✓' (حاضر)
+  list.forEach(st => {
+    const c = String(st.code || '').trim();
+    if (window._bulkAttendanceState[c] === undefined) {
+      const sessions = getStudentSubjectMonthSessions(st, subject, targetMonth);
+      const existingVal = (sessions[sessionIdx] || '').trim();
+      window._bulkAttendanceState[c] = existingVal ? existingVal : '✓';
+    }
+  });
+
   tbody.innerHTML = list.map((st, idx) => {
+    const c = String(st.code || '').trim();
     const subData = getEnrolledSubjectData(st.academicSubjects, subject) || { teacher: 'مدرس المادة' };
-    const sessions = getStudentSubjectMonthSessions(st, subject, targetMonth);
-    const curVal = (sessions[sessionIdx] || '').trim();
+    const curVal = window._bulkAttendanceState[c] || '✓';
 
     const isPresent = curVal === '✓' || curVal === 'حاضر';
     const isAbsent = curVal === 'غ' || curVal === 'غائب';
     const isCustomScore = curVal && !isPresent && !isAbsent;
 
     return `
-      <tr class="hover:bg-slate-50 transition-colors bulk-student-row" id="bulk_row_${st.code}">
+      <tr class="hover:bg-slate-50 transition-colors bulk-student-row" id="bulk_row_${c}">
         <td class="p-2.5 text-center text-slate-400">${idx + 1}</td>
-        <td class="p-2.5 text-center font-mono font-bold text-sky-600">#${st.code}</td>
+        <td class="p-2.5 text-center font-mono font-bold text-sky-600">#${c}</td>
         <td class="p-2.5 font-bold text-slate-800">
           <div>${st.name}</div>
           <div class="text-[10px] text-slate-400 font-normal">${st.area || 'المنطقة'}</div>
@@ -5114,13 +5133,13 @@ function renderBulkStudentsList() {
         <td class="p-2.5 text-slate-600 text-xs">${subData.teacher || 'مدرس المادة'}</td>
         <td class="p-2.5 text-center">
           <div class="inline-flex items-center gap-1.5 p-1 bg-slate-50 rounded-xl border border-slate-200 shadow-sm">
-            <button type="button" onclick="setSingleBulkAttendance('${st.code}', '✓')" id="bulk_btn_p_${st.code}" class="px-3 py-1 rounded-lg text-xs font-bold transition-all ${isPresent ? 'bg-emerald-600 text-white shadow-md' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-slate-900'} cursor-pointer">
+            <button type="button" onclick="setSingleBulkAttendance('${c}', '✓')" id="bulk_btn_p_${c}" class="px-3 py-1 rounded-lg text-xs font-bold transition-all ${(isPresent || isCustomScore) ? 'bg-emerald-600 text-white shadow-md' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-slate-900'} cursor-pointer">
               ✓ حاضر
             </button>
-            <button type="button" onclick="setSingleBulkAttendance('${st.code}', 'غ')" id="bulk_btn_a_${st.code}" class="px-3 py-1 rounded-lg text-xs font-bold transition-all ${isAbsent ? 'bg-rose-600 text-white shadow-md' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-slate-900'} cursor-pointer">
+            <button type="button" onclick="setSingleBulkAttendance('${c}', 'غ')" id="bulk_btn_a_${c}" class="px-3 py-1 rounded-lg text-xs font-bold transition-all ${isAbsent ? 'bg-rose-600 text-white shadow-md' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-slate-900'} cursor-pointer">
               غ غائب
             </button>
-            <button type="button" onclick="setSingleBulkAttendance('${st.code}', '')" class="px-2 py-1 rounded-lg text-[11px] text-slate-400 hover:text-slate-700 cursor-pointer" title="تفريغ">
+            <button type="button" onclick="setSingleBulkAttendance('${c}', '')" class="px-2 py-1 rounded-lg text-[11px] text-slate-400 hover:text-slate-700 cursor-pointer" title="تفريغ">
               ✕
             </button>
           </div>
@@ -5128,10 +5147,10 @@ function renderBulkStudentsList() {
         <td class="p-2.5 text-center">
           <input 
             type="text" 
-            id="bulk_grade_input_${st.code}" 
+            id="bulk_grade_input_${c}" 
             value="${isCustomScore ? curVal : ''}" 
             placeholder="مثال: 10/10" 
-            oninput="onBulkGradeInput('${st.code}')"
+            oninput="onBulkGradeInput('${c}')"
             class="w-24 bg-white border border-slate-300 rounded-xl px-2 py-1 text-center text-slate-900 font-mono text-xs focus:ring-1 focus:ring-emerald-500 shadow-sm"
           >
         </td>
@@ -5143,40 +5162,50 @@ function renderBulkStudentsList() {
   initIcons();
 }
 
-function setSingleBulkAttendance(code, val) {
-  const btnP = document.getElementById(`bulk_btn_p_${code}`);
-  const btnA = document.getElementById(`bulk_btn_a_${code}`);
-  const gradeInput = document.getElementById(`bulk_grade_input_${code}`);
+function setSingleBulkAttendance(code, val, isGradeUpdate = false) {
+  const c = String(code || '').trim();
+  window._bulkAttendanceState[c] = val;
 
+  const btnP = document.getElementById(`bulk_btn_p_${c}`);
+  const btnA = document.getElementById(`bulk_btn_a_${c}`);
+  const gradeInput = document.getElementById(`bulk_grade_input_${c}`);
+
+  const activeGreen = 'px-3 py-1 rounded-lg text-xs font-bold transition-all bg-emerald-600 text-white shadow-md cursor-pointer';
+  const activeRed = 'px-3 py-1 rounded-lg text-xs font-bold transition-all bg-rose-600 text-white shadow-md cursor-pointer';
   const inactiveCls = 'px-3 py-1 rounded-lg text-xs font-bold transition-all bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 hover:text-slate-900 cursor-pointer';
 
-  if (val === '✓') {
-    if (btnP) btnP.className = 'px-3 py-1 rounded-lg text-xs font-bold transition-all bg-emerald-600 text-white shadow-md cursor-pointer';
-    if (btnA) btnA.className = inactiveCls;
-  } else if (val === 'غ') {
+  if (val === 'غ' || val === 'غائب') {
     if (btnP) btnP.className = inactiveCls;
-    if (btnA) btnA.className = 'px-3 py-1 rounded-lg text-xs font-bold transition-all bg-rose-600 text-white shadow-md cursor-pointer';
-    if (gradeInput) gradeInput.value = '';
+    if (btnA) btnA.className = activeRed;
+    if (gradeInput && !isGradeUpdate) gradeInput.value = '';
+  } else if (val) {
+    if (btnP) btnP.className = activeGreen;
+    if (btnA) btnA.className = inactiveCls;
+    if (gradeInput && !isGradeUpdate && val === '✓') gradeInput.value = '';
   } else {
     if (btnP) btnP.className = inactiveCls;
     if (btnA) btnA.className = inactiveCls;
-    if (gradeInput) gradeInput.value = '';
+    if (gradeInput && !isGradeUpdate) gradeInput.value = '';
   }
 
   updateBulkStats();
 }
 
 function onBulkGradeInput(code) {
-  const input = document.getElementById(`bulk_grade_input_${code}`);
-  if (input && input.value.trim() !== '') {
-    // If exam grade is typed, automatically mark student as present
-    setSingleBulkAttendance(code, '✓');
+  const c = String(code || '').trim();
+  const input = document.getElementById(`bulk_grade_input_${c}`);
+  const val = input ? input.value.trim() : '';
+  if (val) {
+    setSingleBulkAttendance(c, val, true);
+  } else {
+    setSingleBulkAttendance(c, '✓', true);
   }
 }
 
 function setAllBulkAttendance(val) {
   currentBulkStudents.forEach(st => {
-    setSingleBulkAttendance(st.code, val);
+    const c = String(st.code || '').trim();
+    setSingleBulkAttendance(c, val);
   });
   updateBulkStats();
 }
@@ -5194,7 +5223,7 @@ function applySmartAbsentCodes() {
   
   // Extract all digit sequences (codes)
   const matches = engInput.match(/\b\d+\b/g) || [];
-  const absentCodesSet = new Set(matches.map(c => c.trim()));
+  const absentCodesSet = new Set(matches.map(c => String(c).trim()));
 
   if (absentCodesSet.size === 0) {
     alert('لم يتم العثور على أرقام أكواد صحيحة في النص المدخل.');
@@ -5205,11 +5234,12 @@ function applySmartAbsentCodes() {
   let presentMarked = 0;
 
   currentBulkStudents.forEach(st => {
-    if (absentCodesSet.has(st.code)) {
-      setSingleBulkAttendance(st.code, 'غ');
+    const c = String(st.code || '').trim();
+    if (absentCodesSet.has(c)) {
+      setSingleBulkAttendance(c, 'غ');
       absentMarked++;
     } else {
-      setSingleBulkAttendance(st.code, '✓');
+      setSingleBulkAttendance(c, '✓');
       presentMarked++;
     }
   });
@@ -5226,9 +5256,10 @@ function applyCommonGradeToAll() {
   }
 
   currentBulkStudents.forEach(st => {
-    const input = document.getElementById(`bulk_grade_input_${st.code}`);
+    const c = String(st.code || '').trim();
+    const input = document.getElementById(`bulk_grade_input_${c}`);
     if (input) input.value = commonGrade;
-    setSingleBulkAttendance(st.code, '✓');
+    setSingleBulkAttendance(c, commonGrade, true);
   });
 
   updateBulkStats();
@@ -5241,10 +5272,16 @@ function updateBulkStats() {
   let absent = 0;
 
   currentBulkStudents.forEach(st => {
-    const btnP = document.getElementById(`bulk_btn_p_${st.code}`);
-    const btnA = document.getElementById(`bulk_btn_a_${st.code}`);
-    if (btnP && btnP.classList.contains('bg-emerald-600')) present++;
-    else if (btnA && btnA.classList.contains('bg-rose-600')) absent++;
+    const c = String(st.code || '').trim();
+    const val = (window._bulkAttendanceState && window._bulkAttendanceState[c] !== undefined)
+      ? window._bulkAttendanceState[c]
+      : (document.getElementById(`bulk_btn_p_${st.code}`)?.classList.contains('bg-emerald-600') ? '✓' : '');
+    
+    if (val === 'غ' || val === 'غائب') {
+      absent++;
+    } else if (val) {
+      present++;
+    }
   });
 
   const elT = document.getElementById('bulkStatTotal');
@@ -5524,18 +5561,25 @@ function saveBulkSessionAttendance() {
   // Snapshot the inputs from the open bulk modal
   const capturedEntries = [];
   currentBulkStudents.forEach(st => {
-    const btnP = document.getElementById(`bulk_btn_p_${st.code}`);
-    const btnA = document.getElementById(`bulk_btn_a_${st.code}`);
+    const cStr = String(st.code || '').trim();
     const gradeInput = document.getElementById(`bulk_grade_input_${st.code}`);
     const customGrade = (gradeInput?.value || '').trim();
 
     let finalVal = '';
     if (customGrade) {
       finalVal = customGrade;
-    } else if (btnP && btnP.classList.contains('bg-emerald-600')) {
-      finalVal = '✓';
-    } else if (btnA && btnA.classList.contains('bg-rose-600')) {
-      finalVal = 'غ';
+    } else if (window._bulkAttendanceState && window._bulkAttendanceState[cStr] !== undefined) {
+      finalVal = window._bulkAttendanceState[cStr];
+    } else {
+      const btnP = document.getElementById(`bulk_btn_p_${st.code}`);
+      const btnA = document.getElementById(`bulk_btn_a_${st.code}`);
+      if (btnP && btnP.classList.contains('bg-emerald-600')) {
+        finalVal = '✓';
+      } else if (btnA && btnA.classList.contains('bg-rose-600')) {
+        finalVal = 'غ';
+      } else {
+        finalVal = '✓'; // Default all enrolled students to attended
+      }
     }
 
     capturedEntries.push({ code: st.code, finalVal });

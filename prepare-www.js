@@ -10,6 +10,7 @@ const assets = [
   'index.html',
   'app.js',
   'data.js',
+  'students_db.json',
   'sw.js',
   'manifest.json',
   'tailwind.min.js',
