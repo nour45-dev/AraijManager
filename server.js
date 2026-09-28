@@ -81,6 +81,90 @@ function saveAuditLogs() {
 
 initDatabase();
 
+// ====================================================
+// 🧹 تنضيف الحروف التالفة (U+FFFD) في قاعدة البيانات — بيشتغل عند كل تشغيل ومبيعملش حاجة لو القاعدة نضيفة
+// ====================================================
+const BAD_RE = /\uFFFD/;
+const TOKEN_RE = /[\u0600-\u06FF\uFFFD0-9A-Za-z]+/g;
+const FORCE_FIX = { 'عل?م': 'علوم' };              // "?" = الحرف الضايع (كلمات فيها أكتر من احتمال)
+const REMOVE_PLACEHOLDER = process.env.CLEANUP_REMOVE_PLACEHOLDER === '1';  // شيل مواد "مدرس المادة" الفاضية (اختياري)
+const hasBad = v => typeof v === 'string' && BAD_RE.test(v);
+
+function mergeSlots(target, extra) {                 // بيملا الخانات الفاضية بس (دمج غير إتلافي)
+  if (!Array.isArray(extra)) return target;
+  const t = Array.isArray(target) ? target : [];
+  while (t.length < 8) t.push('');
+  extra.forEach((v, i) => { if (v && String(v).trim() && !String(t[i] || '').trim()) t[i] = v; });
+  return t;
+}
+
+function isEmptySub(sub) {
+  const empty = a => !Array.isArray(a) || !a.some(v => v && String(v).trim());
+  return empty(sub && sub.sessions) && Object.values((sub && sub.months) || {}).every(empty);
+}
+
+function cleanCorruptedData() {
+  const dict = {};
+  const addTokens = str => (String(str).match(TOKEN_RE) || []).forEach(t => { if (!BAD_RE.test(t)) dict[t] = (dict[t] || 0) + 1; });
+  students.forEach(s => {
+    ['name', 'area', 'specialization', 'subjectsSummary', 'teachersSummary'].forEach(k => { if (typeof s[k] === 'string') addTokens(s[k]); });
+    Object.keys(s.academicSubjects || {}).forEach(k => { addTokens(k); addTokens((s.academicSubjects[k] || {}).teacher || ''); });
+  });
+  const dictWords = Object.keys(dict);
+  const guess = tok => {
+    const key = tok.replace(/\uFFFD+/g, '?');
+    if (FORCE_FIX[key]) return FORCE_FIX[key];
+    const re = new RegExp('^' + tok.replace(/\uFFFD+/g, '.') + '$');
+    const c = dictWords.filter(w => re.test(w)).sort((a, b) => dict[b] - dict[a]);
+    if (c.length === 1) return c[0];
+    if (c.length > 1 && dict[c[0]] >= 3 * dict[c[1]]) return c[0];
+    return null;
+  };
+  const fix = str => String(str).replace(TOKEN_RE, t => BAD_RE.test(t) ? (guess(t) || t) : t);
+
+  let fixedStudents = 0, mergedDupes = 0, renamed = 0, removedPlaceholders = 0, unresolved = 0;
+  students.forEach(s => {
+    let touched = false;
+    ['name', 'area', 'specialization'].forEach(k => {
+      if (hasBad(s[k])) { const f = fix(s[k]); if (f !== s[k]) { s[k] = f; touched = true; } if (hasBad(f)) unresolved++; }
+    });
+    const subs = s.academicSubjects;
+    if (subs) {
+      Object.keys(subs).forEach(key => {
+        if (!hasBad(key)) return;
+        const f = fix(key);
+        if (hasBad(f)) { unresolved++; return; }
+        if (subs[f]) {                                   // نسخة زيادة: ادمج الحصص الفاضية في الأصلية واحذف التالفة
+          const good = subs[f], bad = subs[key] || {};
+          good.sessions = mergeSlots(good.sessions, bad.sessions);
+          good.months = good.months || {};
+          Object.keys(bad.months || {}).forEach(m => { good.months[m] = mergeSlots(good.months[m], bad.months[m]); });
+          delete subs[key]; mergedDupes++;
+        } else { subs[f] = subs[key]; delete subs[key]; renamed++; }   // مفيش أصلية: صلّح الاسم بس
+        touched = true;
+      });
+      Object.keys(subs).forEach(key => {
+        const sub = subs[key] || {};
+        if (hasBad(sub.teacher)) { sub.teacher = fix(sub.teacher); touched = true; }
+        if (REMOVE_PLACEHOLDER && sub.teacher === 'مدرس المادة' && isEmptySub(sub)) { delete subs[key]; removedPlaceholders++; touched = true; }
+      });
+    }
+    if (touched || hasBad(s.subjectsSummary) || hasBad(s.teachersSummary) || hasBad(s._searchString)) {
+      if (subs) { rebuildStudentSummary(s); s._metrics = computeStudentMetrics(subs); }
+      else {
+        if (hasBad(s.subjectsSummary)) s.subjectsSummary = fix(s.subjectsSummary);
+        if (hasBad(s.teachersSummary)) s.teachersSummary = fix(s.teachersSummary);
+      }
+      s._searchString = `${s.code} ${s.name} ${s.phone || ''} ${s.parentPhone || ''} ${s.area || ''} ${s.grade || ''} ${s.specialization || ''}`.toLowerCase();
+      fixedStudents++;
+    }
+  });
+  if (fixedStudents) saveDatabase();
+  console.log(`[Cleanup] students fixed: ${fixedStudents}, duplicate subjects merged: ${mergedDupes}, subjects renamed: ${renamed}, placeholders removed: ${removedPlaceholders}, unresolved: ${unresolved}`);
+}
+
+cleanCorruptedData();
+
 // ✅ FIX 2: WebSocket Real-time Broadcast مع sound flag
 function broadcast(data, excludeWs = null) {
   const payload = JSON.stringify(data);
@@ -355,7 +439,7 @@ function parseAcademicSubjectsFromSummary(subjectsSummary, teachersSummary) {
       if (slash > -1) {
         const rawSub = p.substring(0, slash).trim();
         const canon = canonicalSubject(rawSub);
-        if (!canon) return;
+        if (!canon || hasBad(canon)) return;
         let tPart = p.substring(slash + 1).trim();
         let sessions = ['', '', '', '', '', '', '', ''];
         const sessMatch = tPart.match(/\[(شهر\s*[^:]+|حصص):\s*([^\]]*)\]/);
@@ -382,7 +466,7 @@ function parseAcademicSubjectsFromSummary(subjectsSummary, teachersSummary) {
     const subs = subjectsSummary.split(/[,،|\n;]/).map(s => s.trim()).filter(Boolean);
     subs.forEach(s => {
       const canon = canonicalSubject(s);
-      if (canon && !result[canon]) {
+      if (canon && !hasBad(canon) && !result[canon]) {
         result[canon] = {
           teacher: 'مدرس المادة',
           sessions: ['', '', '', '', '', '', '', ''],
@@ -474,8 +558,11 @@ async function syncFromGoogleSheets() {
         if (depth > 5) return reject(new Error('Too many redirects'));
         https.get(url, (res) => {
           if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+            res.resume();
             return get(res.headers.location, depth + 1);
           }
+          // ✅ FIX: بدون setEncoding كل chunk بيتفك لوحده، وأي حرف عربي (بايتين) بيتقطع بين chunk وchunk بيتحول لـ ��
+          res.setEncoding('utf8');
           let data = '';
           res.on('data', chunk => data += chunk);
           res.on('end', () => resolve(data));
@@ -532,6 +619,7 @@ async function syncFromGoogleSheets() {
       fetchedStudents.forEach(st => {
         const code = String(st.code || '').trim();
         if (!code || !st.name) return;
+        if (hasBad(st.name)) { console.warn('[Google Sheets Sync] Skipped corrupted name for code', code); return; }
         const normG = normalizeGrade(st.grade);
         const academic = parseAcademicSubjectsFromSummary(st.subjectsSummary, st.teachersSummary);
         const metrics = computeStudentMetrics(academic);
@@ -540,12 +628,12 @@ async function syncFromGoogleSheets() {
         if (existingIdx >= 0) {
           const existing = students[existingIdx];
 
-          existing.name = st.name;
+          if (!hasBad(st.name)) existing.name = st.name;
           existing.grade = normG;
           if (st.phone) existing.phone = st.phone;
           if (st.parentPhone) existing.parentPhone = st.parentPhone;
-          if (st.area) existing.area = st.area;
-          if (st.specialization) existing.specialization = st.specialization;
+          if (st.area && !hasBad(st.area)) existing.area = st.area;
+          if (st.specialization && !hasBad(st.specialization)) existing.specialization = st.specialization;
           if (st.regDate) existing.regDate = st.regDate;
 
           // ✅ FIX: دمج غير إتلافي — لا نمسح الحصص المسجلة حياً في السيستم بحصص فارغة من الشيت
