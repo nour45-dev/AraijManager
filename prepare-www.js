@@ -27,12 +27,21 @@ const assets = [
   'cairo-semibold.ttf'
 ];
 
+const androidPublicDir = path.join(__dirname, 'android', 'app', 'src', 'main', 'assets', 'public');
+if (!fs.existsSync(androidPublicDir)) {
+  try { fs.mkdirSync(androidPublicDir, { recursive: true }); } catch(e) {}
+}
+
 assets.forEach(file => {
   const src = path.join(__dirname, file);
   const dest = path.join(wwwDir, file);
   if (fs.existsSync(src)) {
     fs.copyFileSync(src, dest);
   }
+  if (fs.existsSync(androidPublicDir)) {
+    const androidDest = path.join(androidPublicDir, file);
+    try { fs.copyFileSync(src, androidDest); } catch(e) {}
+  }
 });
 
-console.log('✅ www directory prepared successfully with web assets for Capacitor.');
+console.log('✅ www & android/public directories prepared successfully with web assets for Capacitor.');

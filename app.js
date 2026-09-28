@@ -747,7 +747,7 @@ function switchTab(tabId) {
     }
   }
 
-  const allTabs = ['dashboard', 'students', 'attendance_matrix', 'register', 'pdf_reports', 'users_mgmt'];
+  const allTabs = ['dashboard', 'students', 'attendance_matrix', 'register', 'analytics', 'pdf_reports', 'users_mgmt'];
   allTabs.forEach(t => {
     const sec = document.getElementById(`tabContent_${t}`);
     const navBtn = document.getElementById(`nav_${t}`);
@@ -790,8 +790,13 @@ function switchTab(tabId) {
       renderActivityLogs();
     } else if (tabId === 'students') {
       applyFilters();
+    } else if (tabId === 'analytics') {
+      renderAnalyticsDashboard();
     } else if (tabId === 'dashboard') {
       updateKPIStats();
+      if (typeof updateDashboardAnalyticsMini === 'function') {
+        updateDashboardAnalyticsMini();
+      }
     }
   } catch (err) {
     console.warn('Error on tab switch:', err);
@@ -1559,6 +1564,12 @@ function updateKPIStats() {
   if (elG1) elG1.textContent = g1.toLocaleString('ar-EG');
   if (elG2) elG2.textContent = g2.toLocaleString('ar-EG');
   if (elG3) elG3.textContent = g3.toLocaleString('ar-EG');
+
+  try {
+    if (typeof updateDashboardAnalyticsMini === 'function') {
+      updateDashboardAnalyticsMini();
+    }
+  } catch (e) {}
 }
 
 function populateAreaFilter() {
@@ -3357,13 +3368,22 @@ function getRailwayServerUrl() {
     }
   }
 
-  // 2. Otherwise (e.g. file:/// in Android APK or offline html), check localStorage
+  // 2. Capacitor APK (capacitor://localhost or ionic://) — always use Railway
+  if (window.location.protocol === 'capacitor:' || window.location.protocol === 'ionic:' || window.location.protocol === 'file:') {
+    const custom = localStorage.getItem('araij_railway_url');
+    if (custom && custom.trim() && !custom.includes('192.168.')) {
+      return sanitizeRailwayUrl(custom);
+    }
+    return sanitizeRailwayUrl(DEFAULT_RAILWAY_URL || 'https://araijmanager.up.railway.app');
+  }
+
+  // 3. Otherwise check localStorage
   const custom = localStorage.getItem('araij_railway_url');
   if (custom && custom.trim() && !custom.includes('192.168.')) {
     return sanitizeRailwayUrl(custom);
   }
 
-  // 3. Fallback to official Railway server URL
+  // 4. Fallback to official Railway server URL
   return sanitizeRailwayUrl(DEFAULT_RAILWAY_URL || 'https://araijmanager.up.railway.app');
 }
 
@@ -6211,5 +6231,911 @@ function saveCameraScannedAttendance() {
 
   showToast(`⚡ تم حفظ ومزامنة نتائج الكشف المصور لـ ${count} طالب في الحصة ${sessionIdx + 1}!`);
 }
+
+// ====================================================
+// 22. SMART ANALYTICS & ADVANCED STATISTICS ENGINE
+// ====================================================
+
+let _currentAnalyticsGradeFilter = 'all';
+let _currentAnalyticsSubjectFilter = 'all';
+let _currentAnalyticsLeaderboardTab = 'attendance';
+let _analyticsGenderChart = null;
+let _analyticsTeachersChart = null;
+
+// Egyptian Arabic Female Names Dictionary & Exceptions
+const ARABIC_FEMALE_NAMES_SET = new Set([
+  'فاطمه', 'فاطمة', 'مريم', 'ايه', 'آيه', 'اية', 'آية', 'ساره', 'سارة', 'نورهان', 'حبيبه', 'حبيبة', 'سلمى', 'هاجر', 'منه', 'منة',
+  'روان', 'رنا', 'شهد', 'ندى', 'ندي', 'اسراء', 'إسراء', 'ريم', 'ياسمين', 'بسمله', 'بسملة', 'جنى', 'جني', 'ملك', 'اسماء', 'أسماء',
+  'ميار', 'هدير', 'رقيه', 'رقية', 'خديجه', 'خديجة', 'عائشه', 'عائشة', 'تقى', 'تقي', 'جنات', 'رحمه', 'رحمة', 'شروق', 'دنيا', 'نيره', 'نيرة',
+  'اروى', 'أروى', 'اماني', 'أماني', 'ايمان', 'إيمان', 'رتاج', 'تغريد', 'دعاء', 'شيماء', 'هدى', 'هدي', 'لبنى', 'لبني', 'لمياء', 'رضوى', 'رضوي',
+  'تسنيم', 'هبه', 'هبة', 'مريهان', 'ريناد', 'فرح', 'هنا', 'كارما', 'كنزى', 'كنزي', 'نورا', 'نورين', 'بوسي', 'سهيله', 'سهيلة',
+  'نوران', 'مروة', 'مروه', 'زينب', 'اميره', 'أميرة', 'خلود', 'بسنت', 'يارا', 'ولاء', 'وفاء', 'صابرين', 'شرين', 'شيرين',
+  'ريهام', 'رويدة', 'رويده', 'جميلة', 'جميله', 'نرمين', 'مي', 'مى', 'منى', 'مني', 'سما', 'نجلاء', 'حنان', 'سناء', 'صفاء',
+  'نهى', 'نهي', 'داليا', 'دينا', 'رانيا', 'غادة', 'غاده', 'عبير', 'عزة', 'عزه', 'عفاف', 'علا', 'فتنة', 'كوثر', 'ماجدة', 'ماجده',
+  'مرفت', 'ميرفت', 'ناهد', 'نبيلة', 'نبيله', 'نجوى', 'نجوي', 'نادية', 'ناديه', 'هيام', 'وجدان', 'يسرا', 'جودي',
+  'تالين', 'ريماس', 'كارمن', 'سيلين', 'ساندي', 'جاسمين', 'فريدة', 'فريده', 'حنين', 'جوري', 'ريتال', 'لوجين', 'لجين', 'سدرة', 'سدره',
+  'أشرقت', 'اشرقت', 'سجى', 'سجي', 'رغد', 'رهف', 'ضحى', 'ضحي', 'إكرام', 'اكرم', 'شذى', 'شذي', 'تيا', 'لارا', 'مهرة', 'مهره', 'شادية', 'فدوى'
+]);
+const ARABIC_MALE_WITH_TA = new Set(['اسامه', 'حمزه', 'طلحه', 'عنتره', 'عكرمه', 'قتاده', 'عبيده', 'معاويه', 'حذيفه', 'جمعه', 'سلامه']);
+
+function detectStudentGender(fullName) {
+  if (!fullName) return 'male';
+  const clean = fullName.trim().replace(/^[أإآ]/g, 'ا');
+  const parts = clean.split(/\s+/);
+  const first = parts[0] || '';
+  const firstNorm = first.replace(/ة$/g, 'ه').replace(/ى$/g, 'ي');
+
+  for (let f of ARABIC_FEMALE_NAMES_SET) {
+    const fNorm = f.replace(/ة$/g, 'ه').replace(/ى$/g, 'ي');
+    if (first === f || firstNorm === fNorm) return 'female';
+  }
+
+  if ((first.endsWith('ة') || first.endsWith('ه')) && !ARABIC_MALE_WITH_TA.has(firstNorm)) {
+    return 'female';
+  }
+
+  if (first.endsWith('اء') && !['علاء', 'بهاء', 'ضياء'].includes(first)) {
+    return 'female';
+  }
+
+  return 'male';
+}
+window.detectStudentGender = detectStudentGender;
+
+function setAnalyticsGradeFilter(grade) {
+  _currentAnalyticsGradeFilter = grade;
+  const tabs = ['all', '1', '2', '3'];
+  tabs.forEach(t => {
+    const btn = document.getElementById(`analytics_grade_${t}`);
+    if (!btn) return;
+    const isTarget = (t === 'all' && grade === 'all') || (grade === `ث${t}`);
+    if (isTarget) {
+      btn.className = 'analytics-grade-tab px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-purple-600 text-white shadow';
+    } else {
+      btn.className = 'analytics-grade-tab px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white transition-all';
+    }
+  });
+  renderAnalyticsDashboard();
+}
+window.setAnalyticsGradeFilter = setAnalyticsGradeFilter;
+
+function onAnalyticsFilterChange() {
+  const sel = document.getElementById('analyticsSubjectFilter');
+  _currentAnalyticsSubjectFilter = sel?.value || 'all';
+  renderAnalyticsDashboard();
+}
+window.onAnalyticsFilterChange = onAnalyticsFilterChange;
+
+function setAnalyticsLeaderboardTab(tabType) {
+  _currentAnalyticsLeaderboardTab = tabType;
+  const allTabs = ['attendance', 'academic', 'followup'];
+  allTabs.forEach(t => {
+    const btn = document.getElementById(`btnLeadTab_${t}`);
+    if (!btn) return;
+    if (t === tabType) {
+      if (t === 'attendance') btn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-emerald-600 text-white shadow flex items-center gap-1.5';
+      else if (t === 'academic') btn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-amber-600 text-white shadow flex items-center gap-1.5';
+      else btn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-rose-600 text-white shadow flex items-center gap-1.5';
+    } else {
+      btn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white flex items-center gap-1.5';
+    }
+  });
+  renderAnalyticsLeaderboard();
+  try { initIcons(); } catch(e) {}
+}
+window.setAnalyticsLeaderboardTab = setAnalyticsLeaderboardTab;
+
+function scrollToTeachersTable() {
+  const sec = document.getElementById('sectionTeachersTable');
+  if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+}
+window.scrollToTeachersTable = scrollToTeachersTable;
+
+function updateDashboardAnalyticsMini() {
+  if (!allStudents || allStudents.length === 0) return;
+  let boys = 0, girls = 0;
+  const teacherMap = {};
+
+  allStudents.forEach(st => {
+    if (!st || !st.name) return;
+    const g = detectStudentGender(st.name);
+    if (g === 'female') girls++; else boys++;
+
+    const subs = st.academicSubjects || {};
+    Object.keys(subs).forEach(subK => {
+      const data = subs[subK];
+      if (data && data.teacher) {
+        const t = data.teacher.trim();
+        if (t && t !== 'مدرس آخر' && !t.includes('غير محدد')) {
+          teacherMap[t] = (teacherMap[t] || 0) + 1;
+        }
+      }
+    });
+  });
+
+  const total = allStudents.length || 1;
+  const boyPct = Math.round((boys / total) * 100);
+  const girlPct = Math.round((girls / total) * 100);
+
+  const sortedT = Object.entries(teacherMap).sort((a, b) => b[1] - a[1]);
+  const topT = sortedT[0] ? sortedT[0][0] : 'لا يوجد';
+
+  const elBoys = document.getElementById('dashMiniBoys');
+  const elGirls = document.getElementById('dashMiniGirls');
+  const elTopT = document.getElementById('dashMiniTopTeacher');
+
+  if (elBoys) elBoys.textContent = `${boys.toLocaleString('ar-EG')} (${boyPct}%)`;
+  if (elGirls) elGirls.textContent = `${girls.toLocaleString('ar-EG')} (${girlPct}%)`;
+  if (elTopT) elTopT.textContent = topT;
+}
+window.updateDashboardAnalyticsMini = updateDashboardAnalyticsMini;
+
+function calculateStudentCompleteMetrics(student, targetSubject = 'all') {
+  let totalScore = 0;
+  let totalMax = 0;
+  let totalPresent = 0;
+  let totalAbsent = 0;
+  let totalSessions = 0;
+
+  const subjects = student.academicSubjects || {};
+  Object.keys(subjects).forEach(subK => {
+    if (targetSubject !== 'all' && subK !== targetSubject) return;
+    const sub = subjects[subK];
+    (sub.sessions || []).forEach(val => {
+      if (!val || !val.trim()) return;
+      const v = val.trim();
+      totalSessions++;
+      if (v === 'غ' || v === 'غايب' || v === 'غياب') {
+        totalAbsent++;
+      } else if (v === '✓' || v === 'حاضر' || v === 'حضر') {
+        totalPresent++;
+      } else if (v.includes('/')) {
+        totalPresent++;
+        const p = v.split('/');
+        const e = parseFloat(p[0]);
+        const m = parseFloat(p[1]);
+        if (!isNaN(e) && !isNaN(m) && m > 0) {
+          totalScore += e;
+          totalMax += m;
+        }
+      } else {
+        const n = parseFloat(v);
+        if (!isNaN(n)) {
+          totalPresent++;
+          totalScore += n;
+          totalMax += 20;
+        } else {
+          totalPresent++;
+        }
+      }
+    });
+  });
+
+  const attRate = totalSessions > 0 ? Math.round((totalPresent / totalSessions) * 100) : 0;
+  const scorePct = totalMax > 0 ? Math.round((totalScore / totalMax) * 100) : null;
+
+  return {
+    totalPresent,
+    totalAbsent,
+    totalSessions,
+    attRate,
+    scorePct,
+    totalScore,
+    totalMax
+  };
+}
+
+let _analyticsDataCache = null;
+
+function renderAnalyticsDashboard() {
+  if (!allStudents || allStudents.length === 0) return;
+
+  // 1. Filter students according to Grade
+  let filteredList = allStudents.filter(s => s && s.name && s.name.trim());
+  if (_currentAnalyticsGradeFilter !== 'all') {
+    filteredList = filteredList.filter(s => s.grade === _currentAnalyticsGradeFilter);
+  }
+
+  // 2. Gender Calculation & Grade Breakdown
+  let boys = 0, girls = 0;
+  const gradeGender = {
+    'ث1': { b: 0, g: 0 },
+    'ث2': { b: 0, g: 0 },
+    'ث3': { b: 0, g: 0 }
+  };
+
+  filteredList.forEach(st => {
+    const g = detectStudentGender(st.name);
+    const gr = st.grade;
+    if (g === 'female') {
+      girls++;
+      if (gradeGender[gr]) gradeGender[gr].g++;
+    } else {
+      boys++;
+      if (gradeGender[gr]) gradeGender[gr].b++;
+    }
+  });
+
+  const totalFiltered = filteredList.length || 1;
+  const boyPct = Math.round((boys / totalFiltered) * 100);
+  const girlPct = Math.round((girls / totalFiltered) * 100);
+
+  // Update Boys Card
+  const elCountBoys = document.getElementById('analyticsCountBoys');
+  const elPctBoys = document.getElementById('analyticsPctBoys');
+  const elBarBoys = document.getElementById('analyticsBarBoys');
+  const elGradeBoys = document.getElementById('analyticsGradeBoysBreakdown');
+
+  if (elCountBoys) elCountBoys.textContent = boys.toLocaleString('ar-EG');
+  if (elPctBoys) elPctBoys.textContent = `(${boyPct}%)`;
+  if (elBarBoys) elBarBoys.style.width = `${boyPct}%`;
+  if (elGradeBoys) {
+    elGradeBoys.innerHTML = `<span>ث1: <b>${gradeGender['ث1'].b}</b></span> • <span>ث2: <b>${gradeGender['ث2'].b}</b></span> • <span>ث3: <b>${gradeGender['ث3'].b}</b></span>`;
+  }
+
+  // Update Girls Card
+  const elCountGirls = document.getElementById('analyticsCountGirls');
+  const elPctGirls = document.getElementById('analyticsPctGirls');
+  const elBarGirls = document.getElementById('analyticsBarGirls');
+  const elGradeGirls = document.getElementById('analyticsGradeGirlsBreakdown');
+
+  if (elCountGirls) elCountGirls.textContent = girls.toLocaleString('ar-EG');
+  if (elPctGirls) elPctGirls.textContent = `(${girlPct}%)`;
+  if (elBarGirls) elBarGirls.style.width = `${girlPct}%`;
+  if (elGradeGirls) {
+    elGradeGirls.innerHTML = `<span>ث1: <b>${gradeGender['ث1'].g}</b></span> • <span>ث2: <b>${gradeGender['ث2'].g}</b></span> • <span>ث3: <b>${gradeGender['ث3'].g}</b></span>`;
+  }
+
+  // 3. Teachers Analytics
+  const teacherMap = {};
+  filteredList.forEach(st => {
+    const subs = st.academicSubjects || {};
+    Object.keys(subs).forEach(subK => {
+      if (_currentAnalyticsSubjectFilter !== 'all' && subK !== _currentAnalyticsSubjectFilter) return;
+      const subData = subs[subK];
+      if (subData && subData.teacher) {
+        const tName = subData.teacher.trim();
+        if (!tName || tName === 'مدرس آخر' || tName.includes('غير محدد')) return;
+        const key = `${subK}:::${tName}`;
+        if (!teacherMap[key]) {
+          teacherMap[key] = {
+            teacher: tName,
+            subject: subK,
+            count: 0,
+            grades: { 'ث1': 0, 'ث2': 0, 'ث3': 0 }
+          };
+        }
+        teacherMap[key].count++;
+        if (st.grade && teacherMap[key].grades[st.grade] !== undefined) {
+          teacherMap[key].grades[st.grade]++;
+        }
+      }
+    });
+  });
+
+  const sortedTeachers = Object.values(teacherMap).sort((a, b) => b.count - a.count);
+  const topTeacher = sortedTeachers[0] || null;
+
+  // Update Top Teacher Card
+  const elTopTName = document.getElementById('analyticsTopTeacherName');
+  const elTopTSub = document.getElementById('analyticsTopTeacherSubCount');
+  const elTopTShare = document.getElementById('analyticsTopTeacherShare');
+
+  if (topTeacher) {
+    if (elTopTName) elTopTName.textContent = topTeacher.teacher;
+    if (elTopTSub) elTopTSub.innerHTML = `<span class="px-2 py-0.5 rounded-lg bg-amber-500/20 text-amber-300 font-bold">${topTeacher.subject}</span> <span>${topTeacher.count.toLocaleString('ar-EG')} طالب</span>`;
+    const share = Math.round((topTeacher.count / totalFiltered) * 100);
+    if (elTopTShare) elTopTShare.innerHTML = `<span>النسبة: <b>${share}%</b> من طلاب المرحلة</span> <span>ث3: ${topTeacher.grades['ث3']} طالب</span>`;
+  } else {
+    if (elTopTName) elTopTName.textContent = 'لا توجد بيانات';
+    if (elTopTSub) elTopTSub.textContent = '0 طالب';
+    if (elTopTShare) elTopTShare.textContent = 'النسبة: 0%';
+  }
+
+  // 4. Attendance & Commitment Performance
+  let sumAttendance = 0;
+  let attendanceCount = 0;
+  let perfectAttendanceCount = 0;
+  const evaluatedStudents = [];
+
+  filteredList.forEach(st => {
+    const m = calculateStudentCompleteMetrics(st, _currentAnalyticsSubjectFilter);
+    if (m.totalSessions > 0) {
+      sumAttendance += m.attRate;
+      attendanceCount++;
+      if (m.attRate === 100 && m.totalAbsent === 0) perfectAttendanceCount++;
+      evaluatedStudents.push({
+        code: st.code,
+        name: st.name,
+        grade: st.grade,
+        phone: st.phone,
+        parentPhone: st.parentPhone,
+        area: st.area,
+        m
+      });
+    }
+  });
+
+  const avgAttendance = attendanceCount > 0 ? Math.round(sumAttendance / attendanceCount) : 0;
+  const elAvgAtt = document.getElementById('analyticsAvgAttendance');
+  const elBarAvgAtt = document.getElementById('analyticsBarAvgAttendance');
+  const elAttExtra = document.getElementById('analyticsAttendanceExtra');
+
+  if (elAvgAtt) elAvgAtt.textContent = `${avgAttendance}%`;
+  if (elBarAvgAtt) elBarAvgAtt.style.width = `${avgAttendance}%`;
+  if (elAttExtra) {
+    elAttExtra.innerHTML = `<span>الملتزمون 100%: <b>${perfectAttendanceCount.toLocaleString('ar-EG')} طالب</b></span> <span>مجموع الحصص: ${attendanceCount}</span>`;
+  }
+
+  // Donut total badge & legend
+  const elDonutBadge = document.getElementById('analyticsDonutTotalBadge');
+  const elLegBoys = document.getElementById('legendBoys');
+  const elLegGirls = document.getElementById('legendGirls');
+  if (elDonutBadge) elDonutBadge.textContent = `${totalFiltered.toLocaleString('ar-EG')} طالب`;
+  if (elLegBoys) elLegBoys.textContent = `${boys.toLocaleString('ar-EG')} (${boyPct}%)`;
+  if (elLegGirls) elLegGirls.textContent = `${girls.toLocaleString('ar-EG')} (${girlPct}%)`;
+
+  // 5. Render Charts using Chart.js
+  renderAnalyticsCharts(boys, girls, sortedTeachers.slice(0, 10));
+
+  // 6. Cache data and render Leaderboard & Teachers Table
+  _analyticsDataCache = {
+    filteredList,
+    sortedTeachers,
+    evaluatedStudents
+  };
+
+  renderAnalyticsLeaderboard();
+  renderAnalyticsTeachersTable();
+
+  try { initIcons(); } catch(e) {}
+}
+window.renderAnalyticsDashboard = renderAnalyticsDashboard;
+
+function renderAnalyticsCharts(boys, girls, topTeachers) {
+  if (typeof Chart === 'undefined') {
+    console.warn('[Analytics] Chart.js not loaded yet.');
+    return;
+  }
+
+  // 1. Gender Doughnut Chart
+  const ctxDonut = document.getElementById('canvasGenderDonut')?.getContext('2d');
+  if (ctxDonut) {
+    if (_analyticsGenderChart) {
+      _analyticsGenderChart.destroy();
+    }
+
+    _analyticsGenderChart = new Chart(ctxDonut, {
+      type: 'doughnut',
+      data: {
+        labels: ['بنين (ذكور)', 'بنات (إناث)'],
+        datasets: [{
+          data: [boys, girls],
+          backgroundColor: ['#0284c7', '#ec4899'],
+          hoverBackgroundColor: ['#38bdf8', '#f472b6'],
+          borderWidth: 3,
+          borderColor: '#0f172a',
+          hoverOffset: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '72%',
+        animation: { duration: 800 },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            rtl: true,
+            callbacks: {
+              label: function(ctx) {
+                const total = boys + girls || 1;
+                const val = ctx.raw || 0;
+                const pct = Math.round((val / total) * 100);
+                return ` ${ctx.label}: ${val} طالب (${pct}%)`;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+
+  // 2. Top Teachers Horizontal Bar Chart
+  const ctxTeachers = document.getElementById('canvasTopTeachers')?.getContext('2d');
+  if (ctxTeachers) {
+    if (_analyticsTeachersChart) {
+      _analyticsTeachersChart.destroy();
+    }
+
+    const labels = topTeachers.map(t => `${t.teacher} (${t.subject})`);
+    const counts = topTeachers.map(t => t.count);
+    const colors = [
+      '#8b5cf6', '#a855f7', '#06b6d4', '#0ea5e9', '#10b981', 
+      '#f59e0b', '#ec4899', '#6366f1', '#14b8a6', '#f97316'
+    ];
+
+    _analyticsTeachersChart = new Chart(ctxTeachers, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'عدد الطلاب',
+          data: counts,
+          backgroundColor: colors.slice(0, counts.length),
+          borderRadius: 8,
+          borderSkipped: false,
+          maxBarThickness: 24
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: { duration: 800 },
+        scales: {
+          x: {
+            grid: { color: 'rgba(255, 255, 255, 0.06)' },
+            ticks: { color: '#94a3b8', font: { family: 'Cairo', weight: 'bold' } }
+          },
+          y: {
+            grid: { display: false },
+            ticks: { color: '#cbd5e1', font: { family: 'Cairo', weight: 'bold', size: 11 } }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            rtl: true,
+            callbacks: {
+              label: function(ctx) {
+                return ` عدد الطلاب المقيدين: ${ctx.raw} طالب`;
+              }
+            }
+          }
+        }
+      }
+    });
+  }
+}
+
+function renderAnalyticsLeaderboard() {
+  const container = document.getElementById('analyticsLeaderboardContainer');
+  if (!container || !_analyticsDataCache) return;
+
+  const evaluated = _analyticsDataCache.evaluatedStudents || [];
+
+  if (evaluated.length === 0) {
+    container.innerHTML = `
+      <div class="glass-card p-8 rounded-2xl text-center text-slate-400 space-y-2">
+        <i data-lucide="info" class="w-8 h-8 mx-auto text-slate-500"></i>
+        <p class="font-bold text-sm">لا توجد بيانات حضور أو درجات مسجلة للمرحلة أو المادة المحددة حتى الآن.</p>
+        <p class="text-xs">قم برصد الحصص أولاً عبر قسم رصد الحضور لتظهر النتائج هنا فوراً.</p>
+      </div>
+    `;
+    try { initIcons(); } catch(e) {}
+    return;
+  }
+
+  let listToDisplay = [];
+  if (_currentAnalyticsLeaderboardTab === 'attendance') {
+    listToDisplay = [...evaluated].sort((a, b) => {
+      if (b.m.attRate !== a.m.attRate) return b.m.attRate - a.m.attRate;
+      return b.m.totalPresent - a.m.totalPresent;
+    }).slice(0, 20);
+  } else if (_currentAnalyticsLeaderboardTab === 'academic') {
+    listToDisplay = evaluated
+      .filter(s => s.m.scorePct !== null)
+      .sort((a, b) => b.m.scorePct - a.m.scorePct || b.m.totalScore - a.m.totalScore)
+      .slice(0, 20);
+  } else {
+    // Followup (high absence)
+    listToDisplay = evaluated
+      .filter(s => s.m.totalAbsent >= 2 || s.m.attRate < 60)
+      .sort((a, b) => b.m.totalAbsent - a.m.totalAbsent || a.m.attRate - b.m.attRate)
+      .slice(0, 20);
+  }
+
+  if (listToDisplay.length === 0) {
+    const emptyMsg = _currentAnalyticsLeaderboardTab === 'academic' 
+      ? 'لا توجد درجات امتحانات مسجلة بعد (يتم تسجيل الدرجات أثناء رصد الحصص مثل 10/10).'
+      : (_currentAnalyticsLeaderboardTab === 'followup' 
+        ? '🎉 رائع جداً! لا يوجد أي طالب يعاني من غياب متكرر في هذه المرحلة.' 
+        : 'لا توجد بيانات متاحة.');
+    container.innerHTML = `
+      <div class="glass-card p-8 rounded-2xl text-center text-slate-400 space-y-2">
+        <i data-lucide="check-circle-2" class="w-8 h-8 mx-auto text-emerald-400"></i>
+        <p class="font-bold text-sm">${emptyMsg}</p>
+      </div>
+    `;
+    try { initIcons(); } catch(e) {}
+    return;
+  }
+
+  const medals = ['🥇', '🥈', '🥉'];
+
+  container.innerHTML = listToDisplay.map((st, idx) => {
+    const rankBadge = idx < 3 
+      ? `<span class="text-xl sm:text-2xl">${medals[idx]}</span>`
+      : `<span class="w-7 h-7 rounded-xl bg-slate-800 text-slate-300 font-mono font-bold flex items-center justify-center text-xs">#${idx + 1}</span>`;
+
+    let badgeHtml = '';
+    if (_currentAnalyticsLeaderboardTab === 'attendance') {
+      const isPerfect = st.m.attRate === 100 && st.m.totalAbsent === 0;
+      badgeHtml = isPerfect
+        ? `<span class="px-2.5 py-1 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold flex items-center gap-1">
+             <i data-lucide="star" class="w-3.5 h-3.5 text-amber-400 fill-amber-400"></i> 100% التزام تام
+           </span>`
+        : `<span class="px-2.5 py-1 rounded-xl bg-teal-500/20 text-teal-300 text-xs font-bold font-mono">
+             ${st.m.attRate}% حضور (${st.m.totalPresent} ح)
+           </span>`;
+    } else if (_currentAnalyticsLeaderboardTab === 'academic') {
+      badgeHtml = `
+        <span class="px-2.5 py-1 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-bold font-mono flex items-center gap-1">
+          <i data-lucide="award" class="w-3.5 h-3.5 text-amber-400"></i> ${st.m.scorePct}% (${st.m.totalScore}/${st.m.totalMax})
+        </span>
+      `;
+    } else {
+      badgeHtml = `
+        <span class="px-2.5 py-1 rounded-xl bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-bold font-mono flex items-center gap-1">
+          <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-rose-400"></i> غياب ${st.m.totalAbsent} حصة (${st.m.attRate}%)
+        </span>
+      `;
+    }
+
+    const genderIcon = detectStudentGender(st.name) === 'female'
+      ? '<span class="text-pink-400" title="أنثى">👧</span>'
+      : '<span class="text-sky-400" title="ذكر">👦</span>';
+
+    const actionBtnLabel = _currentAnalyticsLeaderboardTab === 'followup' ? 'متابعة واتساب 💬' : 'إرسال تهنئة 💬';
+    const actionBtnClass = _currentAnalyticsLeaderboardTab === 'followup'
+      ? 'bg-rose-600/90 hover:bg-rose-500 text-white'
+      : 'bg-emerald-600/90 hover:bg-emerald-500 text-white';
+
+    return `
+      <div class="glass-card p-3 sm:p-4 rounded-2xl border border-slate-800 hover:border-slate-700 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 group">
+        <div class="flex items-center gap-3">
+          <div class="shrink-0 flex items-center justify-center w-8">
+            ${rankBadge}
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-white group-hover:text-purple-300 transition-colors">${st.name}</span>
+              ${genderIcon}
+              <span class="px-1.5 py-0.5 rounded-md bg-slate-800 text-[10px] font-mono text-slate-400">#${st.code}</span>
+              <span class="px-1.5 py-0.5 rounded-md bg-purple-500/10 text-[10px] font-bold text-purple-300">${st.grade}</span>
+            </div>
+            <div class="text-[11px] text-slate-400 mt-1 flex flex-wrap items-center gap-2">
+              <span>حضور: <b class="text-emerald-400">${st.m.totalPresent}</b></span>
+              <span>غياب: <b class="${st.m.totalAbsent > 0 ? 'text-rose-400' : 'text-slate-300'}">${st.m.totalAbsent}</b></span>
+              ${st.area ? `<span>المنطقة: <b>${st.area}</b></span>` : ''}
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 self-end sm:self-auto shrink-0">
+          ${badgeHtml}
+          <button type="button" onclick="sendHonorWhatsApp('${st.code}', '${_currentAnalyticsLeaderboardTab}')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all shadow-md active:scale-95 flex items-center gap-1.5 ${actionBtnClass}" title="مراسلة ولي الأمر مباشرة عبر واتساب">
+            <span>${actionBtnLabel}</span>
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  try { initIcons(); } catch(e) {}
+}
+
+function renderAnalyticsTeachersTable() {
+  const tbody = document.getElementById('analyticsTeachersTableBody');
+  if (!tbody || !_analyticsDataCache) return;
+
+  const teachers = _analyticsDataCache.sortedTeachers || [];
+  const totalStudents = _analyticsDataCache.filteredList?.length || 1;
+
+  if (teachers.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="9" class="p-8 text-center text-slate-400">
+          لا توجد بيانات مدرسين للمادة أو المرحلة المختارة.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML = teachers.map((t, idx) => {
+    const share = Math.round((t.count / totalStudents) * 100);
+    const topRankColor = idx === 0 
+      ? 'bg-amber-500 text-slate-950 font-black' 
+      : (idx === 1 ? 'bg-slate-300 text-slate-900 font-bold' : (idx === 2 ? 'bg-amber-700 text-white font-bold' : 'bg-slate-800 text-slate-300'));
+
+    return `
+      <tr class="hover:bg-slate-800/40 transition-colors teacher-row" data-search="${t.teacher} ${t.subject}">
+        <td class="p-3 text-center">
+          <span class="inline-flex items-center justify-center w-6 h-6 rounded-lg text-xs font-mono ${topRankColor}">
+            ${idx + 1}
+          </span>
+        </td>
+        <td class="p-3 font-bold text-white flex items-center gap-2">
+          <i data-lucide="user" class="w-3.5 h-3.5 text-purple-400"></i>
+          <span>${t.teacher}</span>
+        </td>
+        <td class="p-3">
+          <span class="px-2 py-0.5 rounded-lg bg-sky-500/10 text-sky-300 font-bold text-[11px] border border-sky-500/20">
+            ${t.subject}
+          </span>
+        </td>
+        <td class="p-3 text-center font-black text-amber-400 font-mono text-sm">
+          ${t.count.toLocaleString('ar-EG')}
+        </td>
+        <td class="p-3 text-center font-mono font-bold text-emerald-400">
+          ${t.grades['ث1'] || 0}
+        </td>
+        <td class="p-3 text-center font-mono font-bold text-indigo-400">
+          ${t.grades['ث2'] || 0}
+        </td>
+        <td class="p-3 text-center font-mono font-bold text-amber-400">
+          ${t.grades['ث3'] || 0}
+        </td>
+        <td class="p-3 text-center">
+          <div class="flex items-center justify-center gap-2">
+            <span class="font-mono text-xs text-slate-300 font-bold">${share}%</span>
+            <div class="w-16 bg-slate-800 rounded-full h-1.5 overflow-hidden">
+              <div class="bg-gradient-to-r from-purple-500 to-indigo-500 h-1.5 rounded-full" style="width: ${Math.min(100, share)}%"></div>
+            </div>
+          </div>
+        </td>
+        <td class="p-3 text-center">
+          <button type="button" onclick="filterStudentsByTeacher('${t.teacher.replace(/'/g, "\\'")}', '${t.subject}')" class="px-2.5 py-1 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-[11px] font-bold transition-all flex items-center gap-1 mx-auto active:scale-95" title="عرض جميع طلاب هذا المدرس في قائمة الطلاب">
+            <i data-lucide="search" class="w-3 h-3 text-sky-400"></i>
+            <span>الطلاب</span>
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+
+  try { initIcons(); } catch(e) {}
+}
+
+function filterAnalyticsTeachersTable() {
+  const query = (document.getElementById('searchAnalyticsTeacherInput')?.value || '').trim().toLowerCase();
+  const rows = document.querySelectorAll('#analyticsTeachersTableBody tr.teacher-row');
+  rows.forEach(r => {
+    const text = (r.getAttribute('data-search') || '').toLowerCase();
+    if (!query || text.includes(query)) {
+      r.style.display = '';
+    } else {
+      r.style.display = 'none';
+    }
+  });
+}
+window.filterAnalyticsTeachersTable = filterAnalyticsTeachersTable;
+
+function filterStudentsByTeacher(teacherName, subjectName) {
+  switchTab('students');
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput) {
+    searchInput.value = teacherName;
+    handleSearchInput();
+  }
+  showToast(`🔍 تم الانتقال وتصفية قائمة الطلاب للمدرس: ${teacherName} (${subjectName})`);
+}
+window.filterStudentsByTeacher = filterStudentsByTeacher;
+
+function sendHonorWhatsApp(studentCode, type) {
+  const st = allStudents.find(s => String(s.code).trim() === String(studentCode).trim());
+  if (!st) {
+    showToast('⚠️ لم يتم العثور على بيانات الطالب.');
+    return;
+  }
+
+  const phone = (st.parentPhone || st.phone || '').trim().replace(/\D/g, '');
+  if (!phone) {
+    showToast('⚠️ لا يوجد رقم هاتف مسجل لهذا الطالب.');
+    return;
+  }
+
+  let formattedPhone = phone;
+  if (!formattedPhone.startsWith('20') && formattedPhone.startsWith('01')) {
+    formattedPhone = '20' + formattedPhone.substring(1);
+  }
+
+  let msg = '';
+  const uName = currentUser?.name || 'إدارة سنتر الأرائج';
+
+  if (type === 'attendance') {
+    msg = `🌟 *تهنئة وتكريم خاص من سنتر الأرائج التعليمي* 🌟\n\n`
+        + `تحية طيبة لولي أمر الطالب/ة المتميز/ة: *${st.name}* (كود: ${st.code})\n\n`
+        + `يسر إدارة السنتر بقيادة *المهندسة وفاء ناصر* أن تتقدم لكم بأسمى آيات التقدير لانضباط الطالب وحصوله على:\n`
+        + `🏆 *لوحة شرف الأوائل والأكثر التزاماً بالحضور بنسبة 100%*\n\n`
+        + `نتمنى له دوام التوفيق والتميز والتفوق الأكاديمي دائماً! 👏💐\n`
+        + `مع تحيات: *${uName}* - سنتر الأرائج التعليمي`;
+  } else if (type === 'academic') {
+    msg = `🎖️ *شهادة تميز وتفوق أكاديمي من سنتر الأرائج* 🎖️\n\n`
+        + `إلى ولي أمر الطالب/ة المتفوق/ة: *${st.name}* (كود: ${st.code})\n\n`
+        + `يسعدنا إبلاغكم بإدراج اسم الطالب ضمن:\n`
+        + `🌟 *لوحة شرف الأوائل أصحاب أعلى الدرجات والتقييمات بالسنتر*\n\n`
+        + `مستوى مشرف واجتهاد يستحق كل الإشادة والتكريم! أطيب التمنيات بمستقبل مشرق دائماً. 🌟✨\n`
+        + `مع تحيات: *${uName}* - سنتر الأرائج التعليمي`;
+  } else {
+    // Followup
+    msg = `⚠️ *تنبيه ومتابعة هامة من سنتر الأرائج التعليمي* ⚠️\n\n`
+        + `عناية ولي أمر الطالب/ة: *${st.name}* (كود: ${st.code})\n\n`
+        + `نحيطكم علماً بأن الطالب قد تغيب عن حضور بعض الحصص التعليمية مؤخراً، وحرصاً منا على مستواه الدراسي ومستقبله التعليمي، نرجو التواصل معنا أو مع المشرف المسؤول لتدارك ما فاته ومتابعة انتظامه.\n\n`
+        + `مع خالص الشكر لتعاونكم معنا،\n`
+        + `مع تحيات: *${uName}* - سنتر الأرائج التعليمي`;
+  }
+
+  const url = `https://wa.me/${formattedPhone}?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+}
+window.sendHonorWhatsApp = sendHonorWhatsApp;
+
+function printAnalyticsReport() {
+  if (!_analyticsDataCache) {
+    showToast('⚠️ جاري تجهيز التقرير، يرجى المحاولة بعد لحظات...');
+    return;
+  }
+
+  const { filteredList, sortedTeachers, evaluatedStudents } = _analyticsDataCache;
+  const gradeLabel = _currentAnalyticsGradeFilter === 'all' ? 'جميع المراحل (ث1، ث2، ث3)' : _currentAnalyticsGradeFilter;
+  const subjectLabel = _currentAnalyticsSubjectFilter === 'all' ? 'جميع المواد الدراسية' : _currentAnalyticsSubjectFilter;
+
+  // Compute summary numbers
+  let boys = 0, girls = 0;
+  filteredList.forEach(st => {
+    if (detectStudentGender(st.name) === 'female') girls++; else boys++;
+  });
+  const total = filteredList.length || 1;
+  const boyPct = Math.round((boys / total) * 100);
+  const girlPct = Math.round((girls / total) * 100);
+
+  const topCommitted = [...evaluatedStudents].sort((a, b) => b.m.attRate - a.m.attRate || b.m.totalPresent - a.m.totalPresent).slice(0, 10);
+  const topAcademic = evaluatedStudents.filter(s => s.m.scorePct !== null).sort((a, b) => b.m.scorePct - a.m.scorePct).slice(0, 10);
+
+  const printWindow = window.open('', '_blank');
+  if (!printWindow) {
+    showToast('⚠️ يرجى السماح بالنوافذ المنبثقة لطباعة التقرير.');
+    return;
+  }
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="ar" dir="rtl">
+    <head>
+      <meta charset="UTF-8">
+      <title>التقرير الإحصائي الشامل - سنتر الأرائج التعليمي</title>
+      <style>
+        body { font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif; margin: 25px; color: #0f172a; direction: rtl; }
+        .header { text-align: center; border-bottom: 2px solid #0284c7; padding-bottom: 15px; margin-bottom: 20px; }
+        .title { font-size: 22px; font-weight: 900; color: #0369a1; margin: 0; }
+        .subtitle { font-size: 13px; color: #475569; margin-top: 5px; }
+        .meta-box { display: flex; justify-content: space-between; background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px 20px; border-radius: 12px; margin-bottom: 20px; font-size: 13px; font-weight: bold; }
+        .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 25px; }
+        .kpi-card { border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px; text-align: center; background: #fff; }
+        .kpi-val { font-size: 20px; font-weight: 900; margin: 5px 0; }
+        .kpi-lbl { font-size: 12px; color: #64748b; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 25px; font-size: 12px; }
+        th, td { border: 1px solid #cbd5e1; padding: 8px 10px; text-align: center; }
+        th { background: #f1f5f9; color: #334155; font-weight: 800; }
+        .section-title { font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 10px; border-right: 4px solid #0284c7; padding-right: 10px; }
+        .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #94a3b8; border-top: 1px dashed #cbd5e1; padding-top: 10px; }
+        @media print {
+          body { margin: 10mm; }
+          button { display: none; }
+        }
+      </style>
+    </head>
+    <body>
+      <div class="header">
+        <h1 class="title">سنتر الأرائج التعليمي لإعداد الأوائل</h1>
+        <div class="subtitle">التقرير الإحصائي الرسمي والتحليلات الأكاديمية • إشراف: المهندسة وفاء ناصر</div>
+      </div>
+
+      <div class="meta-box">
+        <span>المرحلة المستهدفة: <b>${gradeLabel}</b></span>
+        <span>المادة: <b>${subjectLabel}</b></span>
+        <span>تاريخ التقرير: <b>${new Date().toLocaleDateString('ar-EG')}</b></span>
+        <span>المشرف المسؤول: <b>${currentUser?.name || 'إدارة السنتر'}</b></span>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-lbl">إجمالي الطلاب</div>
+          <div class="kpi-val" style="color: #0284c7;">${total}</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-lbl">الطلاب (بنين 👦)</div>
+          <div class="kpi-val" style="color: #0284c7;">${boys} (${boyPct}%)</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-lbl">الطالبات (بنات 👧)</div>
+          <div class="kpi-val" style="color: #ec4899;">${girls} (${girlPct}%)</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-lbl">المدرس الأكثر كثافة</div>
+          <div class="kpi-val" style="font-size: 14px; color: #b45309;">${sortedTeachers[0]?.teacher || 'لا يوجد'}</div>
+        </div>
+      </div>
+
+      <div class="section-title">أولاً: كشف كثافة المدرسين وتوزيع الطلاب</div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>اسم المدرس</th>
+            <th>المادة</th>
+            <th>إجمالي الطلاب</th>
+            <th>ث1</th>
+            <th>ث2</th>
+            <th>ث3</th>
+            <th>النسبة من السنتر</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${sortedTeachers.slice(0, 15).map((t, i) => `
+            <tr>
+              <td>${i + 1}</td>
+              <td style="text-align: right; font-weight: bold;">${t.teacher}</td>
+              <td>${t.subject}</td>
+              <td style="font-weight: bold; color: #0284c7;">${t.count}</td>
+              <td>${t.grades['ث1'] || 0}</td>
+              <td>${t.grades['ث2'] || 0}</td>
+              <td>${t.grades['ث3'] || 0}</td>
+              <td>${Math.round((t.count / total) * 100)}%</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+
+      <div class="section-title">ثانياً: لوحة شرف الأوائل والأكثر التزاماً بالحضور</div>
+      <table>
+        <thead>
+          <tr>
+            <th>المركز</th>
+            <th>الكود</th>
+            <th>اسم الطالب</th>
+            <th>المرحلة</th>
+            <th>نسبة الحضور</th>
+            <th>الحصص المحضورة</th>
+            <th>الغياب</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${topCommitted.map((st, i) => `
+            <tr>
+              <td>${i === 0 ? '🥇 الأول' : (i === 1 ? '🥈 الثاني' : (i === 2 ? '🥉 الثالث' : `#${i + 1}`))}</td>
+              <td>${st.code}</td>
+              <td style="text-align: right; font-weight: bold;">${st.name}</td>
+              <td>${st.grade}</td>
+              <td style="font-weight: bold; color: #059669;">${st.m.attRate}%</td>
+              <td>${st.m.totalPresent}</td>
+              <td>${st.m.totalAbsent}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+
+      <div class="footer">
+        تم استخراج هذا التقرير آلياً عبر منظومة سنتر الأرائج التعليمي الذكية Araij Manager Pro v4.5
+      </div>
+
+      <script>
+        window.onload = function() {
+          window.print();
+        }
+      </script>
+    </body>
+    </html>
+  `;
+
+  printWindow.document.open();
+  printWindow.document.write(html);
+  printWindow.document.close();
+}
+window.printAnalyticsReport = printAnalyticsReport;
+
 
 

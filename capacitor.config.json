@@ -2,11 +2,6 @@
   "appId": "com.araij.manager",
   "appName": "سنتر الارائج",
   "webDir": "www",
-  "server": {
-    "url": "https://araijmanager.up.railway.app",
-    "cleartext": false,
-    "androidScheme": "https"
-  },
   "android": {
     "allowMixedContent": false,
     "captureInput": true,
