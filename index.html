@@ -987,18 +987,19 @@
       <section id="tabContent_analytics" class="hidden space-y-6">
 
         <!-- Header Card with Filters & Actions -->
-        <div class="glass-panel p-5 sm:p-6 rounded-3xl border border-slate-700/50 shadow-xl space-y-5 bg-gradient-to-br from-slate-900/95 via-slate-900/85 to-slate-950/95">
+        <!-- Header Banner & Action Bar -->
+        <div class="glass-panel p-5 sm:p-6 rounded-3xl border border-slate-200 shadow-sm space-y-5 bg-white">
           <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div class="space-y-1">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs font-bold">
-                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-purple-400"></i>
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 text-purple-800 border border-purple-200 text-xs font-bold">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-purple-600"></i>
                 <span>ذكاء الأعمال والتحليلات الإحصائية المتقدمة</span>
               </div>
-              <h2 class="text-xl sm:text-2xl font-black text-white flex items-center gap-2.5">
-                <i data-lucide="bar-chart-3" class="w-6 h-6 text-purple-400"></i>
+              <h2 class="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2.5">
+                <i data-lucide="bar-chart-3" class="w-6 h-6 text-purple-600"></i>
                 <span>مركز الإحصائيات والتحليلات الأكاديمية</span>
               </h2>
-              <p class="text-xs text-slate-300 font-medium max-w-2xl leading-relaxed">
+              <p class="text-xs text-slate-600 font-medium max-w-2xl leading-relaxed">
                 تحليل دقيق لكثافة المدرسين، نسب توزيع الطلاب بين البنين والبنات، مع لوحة شرف تكريمية للطلاب الأكثر التزاماً بالحضور والأعلى تفوقاً في الدرجات.
               </p>
             </div>
@@ -1006,15 +1007,15 @@
             <!-- Controls: Filter by Grade, Subject & Actions -->
             <div class="flex flex-wrap items-center gap-2">
               <!-- Grade Filter Tabs -->
-              <div class="grid grid-cols-4 gap-1 bg-slate-800/90 p-1 rounded-2xl border border-slate-700/60 text-center">
+              <div class="grid grid-cols-4 gap-1 bg-slate-100 p-1 rounded-2xl border border-slate-200 text-center">
                 <button type="button" onclick="setAnalyticsGradeFilter('all')" id="analytics_grade_all" class="analytics-grade-tab px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-purple-600 text-white shadow">الكل</button>
-                <button type="button" onclick="setAnalyticsGradeFilter('ث1')" id="analytics_grade_1" class="analytics-grade-tab px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white transition-all">أولى (ث1)</button>
-                <button type="button" onclick="setAnalyticsGradeFilter('ث2')" id="analytics_grade_2" class="analytics-grade-tab px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white transition-all">ثانية (ث2)</button>
-                <button type="button" onclick="setAnalyticsGradeFilter('ث3')" id="analytics_grade_3" class="analytics-grade-tab px-2.5 py-1.5 rounded-xl text-xs font-medium text-slate-300 hover:text-white transition-all">ثالثة (ث3)</button>
+                <button type="button" onclick="setAnalyticsGradeFilter('ث1')" id="analytics_grade_1" class="analytics-grade-tab px-2.5 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 transition-all">أولى (ث1)</button>
+                <button type="button" onclick="setAnalyticsGradeFilter('ث2')" id="analytics_grade_2" class="analytics-grade-tab px-2.5 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 transition-all">ثانية (ث2)</button>
+                <button type="button" onclick="setAnalyticsGradeFilter('ث3')" id="analytics_grade_3" class="analytics-grade-tab px-2.5 py-1.5 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 transition-all">ثالثة (ث3)</button>
               </div>
 
               <!-- Subject Filter -->
-              <select id="analyticsSubjectFilter" onchange="onAnalyticsFilterChange()" class="bg-slate-800/90 border border-slate-700 rounded-xl px-3 py-2 text-slate-200 font-medium focus:outline-none focus:ring-1 focus:ring-purple-500 text-xs">
+              <select id="analyticsSubjectFilter" onchange="onAnalyticsFilterChange()" class="bg-white border border-slate-300 rounded-xl px-3 py-2 text-slate-800 font-bold focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs shadow-sm">
                 <option value="all">كل المواد الدراسية</option>
                 <option value="عربي">عربي</option>
                 <option value="رياضة">رياضة</option>
@@ -1034,13 +1035,13 @@
               </select>
 
               <!-- Refresh Button -->
-              <button type="button" onclick="renderAnalyticsDashboard()" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95" title="إعادة تحميل الأرقام والإحصائيات">
-                <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-purple-400"></i>
+              <button type="button" onclick="renderAnalyticsDashboard()" class="px-3 py-2 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95 shadow-sm" title="إعادة تحميل الأرقام والإحصائيات">
+                <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-purple-600"></i>
                 <span class="hidden sm:inline">تحديث</span>
               </button>
 
               <!-- Print/Export Button -->
-              <button type="button" onclick="printAnalyticsReport()" class="px-3 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition-all flex items-center gap-1.5 shadow-lg shadow-purple-600/20 active:scale-95">
+              <button type="button" onclick="printAnalyticsReport()" class="px-3 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold transition-all flex items-center gap-1.5 shadow-md shadow-purple-600/20 active:scale-95">
                 <i data-lucide="printer" class="w-3.5 h-3.5"></i>
                 <span>طباعة التقرير</span>
               </button>
@@ -1052,92 +1053,92 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           
           <!-- Card 1: Boys (بنين) -->
-          <div class="glass-card p-5 rounded-2xl relative overflow-hidden group border border-sky-500/20 bg-gradient-to-br from-sky-950/30 to-slate-900/60 shadow-lg">
+          <div class="glass-card p-5 rounded-2xl relative overflow-hidden group border border-sky-200 bg-white shadow-sm hover:shadow-md">
             <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-bold text-sky-400 flex items-center gap-1.5">
+              <span class="text-xs font-bold text-sky-700 flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span>
                 إجمالي الطلاب (بنين 👦)
               </span>
-              <div class="p-2.5 rounded-xl bg-sky-500/10 text-sky-400">
+              <div class="p-2.5 rounded-xl bg-sky-50 text-sky-600 border border-sky-100">
                 <i data-lucide="user-check" class="w-5 h-5"></i>
               </div>
             </div>
             <div class="flex items-baseline gap-2">
-              <div class="text-3xl font-black text-sky-400 font-mono" id="analyticsCountBoys">0</div>
-              <span class="text-xs font-bold text-sky-300" id="analyticsPctBoys">(0%)</span>
+              <div class="text-3xl font-black text-slate-900 font-mono" id="analyticsCountBoys">0</div>
+              <span class="text-xs font-bold text-sky-600" id="analyticsPctBoys">(0%)</span>
             </div>
             <!-- Progress Bar -->
-            <div class="w-full bg-slate-800 rounded-full h-2 mt-3 overflow-hidden">
+            <div class="w-full bg-slate-100 rounded-full h-2 mt-3 overflow-hidden">
               <div id="analyticsBarBoys" class="bg-gradient-to-r from-sky-500 to-blue-600 h-2 rounded-full transition-all duration-700" style="width: 0%"></div>
             </div>
-            <div class="text-[11px] text-slate-400 font-medium mt-2 flex items-center justify-between" id="analyticsGradeBoysBreakdown">
+            <div class="text-[11px] text-slate-600 font-medium mt-2 flex items-center justify-between" id="analyticsGradeBoysBreakdown">
               <span>ث1: 0</span> • <span>ث2: 0</span> • <span>ث3: 0</span>
             </div>
           </div>
 
           <!-- Card 2: Girls (بنات) -->
-          <div class="glass-card p-5 rounded-2xl relative overflow-hidden group border border-pink-500/20 bg-gradient-to-br from-pink-950/30 to-slate-900/60 shadow-lg">
+          <div class="glass-card p-5 rounded-2xl relative overflow-hidden group border border-pink-200 bg-white shadow-sm hover:shadow-md">
             <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-bold text-pink-400 flex items-center gap-1.5">
+              <span class="text-xs font-bold text-pink-700 flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
                 إجمالي الطالبات (بنات 👧)
               </span>
-              <div class="p-2.5 rounded-xl bg-pink-500/10 text-pink-400">
+              <div class="p-2.5 rounded-xl bg-pink-50 text-pink-600 border border-pink-100">
                 <i data-lucide="smile" class="w-5 h-5"></i>
               </div>
             </div>
             <div class="flex items-baseline gap-2">
-              <div class="text-3xl font-black text-pink-400 font-mono" id="analyticsCountGirls">0</div>
-              <span class="text-xs font-bold text-pink-300" id="analyticsPctGirls">(0%)</span>
+              <div class="text-3xl font-black text-slate-900 font-mono" id="analyticsCountGirls">0</div>
+              <span class="text-xs font-bold text-pink-600" id="analyticsPctGirls">(0%)</span>
             </div>
             <!-- Progress Bar -->
-            <div class="w-full bg-slate-800 rounded-full h-2 mt-3 overflow-hidden">
+            <div class="w-full bg-slate-100 rounded-full h-2 mt-3 overflow-hidden">
               <div id="analyticsBarGirls" class="bg-gradient-to-r from-pink-500 to-rose-600 h-2 rounded-full transition-all duration-700" style="width: 0%"></div>
             </div>
-            <div class="text-[11px] text-slate-400 font-medium mt-2 flex items-center justify-between" id="analyticsGradeGirlsBreakdown">
+            <div class="text-[11px] text-slate-600 font-medium mt-2 flex items-center justify-between" id="analyticsGradeGirlsBreakdown">
               <span>ث1: 0</span> • <span>ث2: 0</span> • <span>ث3: 0</span>
             </div>
           </div>
 
           <!-- Card 3: Top Teacher (المدرس الأكثر كثافة) -->
-          <div class="glass-card p-5 rounded-2xl relative overflow-hidden group border border-amber-500/20 bg-gradient-to-br from-amber-950/30 to-slate-900/60 shadow-lg">
+          <div class="glass-card p-5 rounded-2xl relative overflow-hidden group border border-amber-200 bg-white shadow-sm hover:shadow-md">
             <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-bold text-amber-400 flex items-center gap-1.5">
-                <i data-lucide="crown" class="w-4 h-4 text-amber-400"></i>
+              <span class="text-xs font-bold text-amber-700 flex items-center gap-1.5">
+                <i data-lucide="crown" class="w-4 h-4 text-amber-500"></i>
                 المدرس الأكثر كثافة 👨‍🏫
               </span>
-              <div class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400">
+              <div class="p-2.5 rounded-xl bg-amber-50 text-amber-600 border border-amber-100">
                 <i data-lucide="award" class="w-5 h-5"></i>
               </div>
             </div>
-            <div class="text-lg font-black text-white truncate" id="analyticsTopTeacherName">جارِ الحساب...</div>
-            <div class="text-xs font-bold text-amber-400 mt-1 flex items-center gap-1.5" id="analyticsTopTeacherSubCount">
+            <div class="text-lg font-black text-slate-900 truncate" id="analyticsTopTeacherName">جارِ الحساب...</div>
+            <div class="text-xs font-bold text-amber-700 mt-1 flex items-center gap-1.5" id="analyticsTopTeacherSubCount">
               <span>0 طالب مقيد</span>
             </div>
-            <div class="text-[11px] text-slate-400 font-medium mt-3 flex items-center justify-between" id="analyticsTopTeacherShare">
+            <div class="text-[11px] text-slate-600 font-medium mt-3 flex items-center justify-between" id="analyticsTopTeacherShare">
               <span>النسبة من السنتر: 0%</span>
             </div>
           </div>
 
           <!-- Card 4: Attendance & Commitment (الالتزام والنشاط) -->
-          <div class="glass-card p-5 rounded-2xl relative overflow-hidden group border border-emerald-500/20 bg-gradient-to-br from-emerald-950/30 to-slate-900/60 shadow-lg">
+          <div class="glass-card p-5 rounded-2xl relative overflow-hidden group border border-emerald-200 bg-white shadow-sm hover:shadow-md">
             <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
-                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+              <span class="text-xs font-bold text-emerald-700 flex items-center gap-1.5">
+                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
                 متوسط الالتزام العام 🏆
               </span>
-              <div class="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400">
+              <div class="p-2.5 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100">
                 <i data-lucide="trending-up" class="w-5 h-5"></i>
               </div>
             </div>
             <div class="flex items-baseline gap-2">
-              <div class="text-3xl font-black text-emerald-400 font-mono" id="analyticsAvgAttendance">0%</div>
-              <span class="text-xs font-bold text-slate-300">معدل الحضور</span>
+              <div class="text-3xl font-black text-slate-900 font-mono" id="analyticsAvgAttendance">0%</div>
+              <span class="text-xs font-bold text-emerald-700">معدل الحضور</span>
             </div>
-            <div class="w-full bg-slate-800 rounded-full h-2 mt-3 overflow-hidden">
+            <div class="w-full bg-slate-100 rounded-full h-2 mt-3 overflow-hidden">
               <div id="analyticsBarAvgAttendance" class="bg-gradient-to-r from-emerald-500 to-teal-400 h-2 rounded-full transition-all duration-700" style="width: 0%"></div>
             </div>
-            <div class="text-[11px] text-slate-400 font-medium mt-2 flex items-center justify-between" id="analyticsAttendanceExtra">
+            <div class="text-[11px] text-slate-600 font-medium mt-2 flex items-center justify-between" id="analyticsAttendanceExtra">
               <span>المتفوقون 100%: 0 طالب</span>
             </div>
           </div>
@@ -1148,16 +1149,16 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
           
           <!-- Gender Donut Chart (5 cols) -->
-          <div class="lg:col-span-5 glass-panel p-5 rounded-3xl border border-slate-800 shadow-xl flex flex-col justify-between">
+          <div class="lg:col-span-5 glass-panel p-5 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between bg-white">
             <div class="flex items-center justify-between mb-4">
               <div>
-                <h3 class="text-sm font-bold text-white flex items-center gap-2">
-                  <i data-lucide="pie-chart" class="w-4 h-4 text-sky-400"></i>
+                <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+                  <i data-lucide="pie-chart" class="w-4 h-4 text-sky-600"></i>
                   <span>توزيع الطلاب حسب النوع (بنين vs بنات)</span>
                 </h3>
-                <p class="text-[11px] text-slate-400 mt-0.5">تحليل بياني دقيق للتوازن العددي في السنتر</p>
+                <p class="text-xs text-slate-500 mt-0.5">تحليل بياني دقيق للتوازن العددي في السنتر</p>
               </div>
-              <div class="px-2.5 py-1 rounded-xl bg-slate-800 text-[11px] font-bold text-slate-300" id="analyticsDonutTotalBadge">
+              <div class="px-2.5 py-1 rounded-xl bg-slate-100 border border-slate-200 text-xs font-bold text-slate-700" id="analyticsDonutTotalBadge">
                 0 طالب
               </div>
             </div>
@@ -1168,35 +1169,35 @@
             </div>
 
             <!-- Custom Legend -->
-            <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-800 text-xs">
-              <div class="flex items-center justify-between p-2.5 rounded-xl bg-sky-500/10 border border-sky-500/20">
+            <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-200 text-xs">
+              <div class="flex items-center justify-between p-2.5 rounded-xl bg-sky-50 border border-sky-200">
                 <div class="flex items-center gap-2">
                   <span class="w-3 h-3 rounded-full bg-sky-500"></span>
-                  <span class="font-bold text-sky-300">بنين</span>
+                  <span class="font-bold text-sky-800">بنين</span>
                 </div>
-                <span class="font-mono font-black text-sky-400" id="legendBoys">0 (0%)</span>
+                <span class="font-mono font-black text-sky-700" id="legendBoys">0 (0%)</span>
               </div>
-              <div class="flex items-center justify-between p-2.5 rounded-xl bg-pink-500/10 border border-pink-500/20">
+              <div class="flex items-center justify-between p-2.5 rounded-xl bg-pink-50 border border-pink-200">
                 <div class="flex items-center gap-2">
                   <span class="w-3 h-3 rounded-full bg-pink-500"></span>
-                  <span class="font-bold text-pink-300">بنات</span>
+                  <span class="font-bold text-pink-800">بنات</span>
                 </div>
-                <span class="font-mono font-black text-pink-400" id="legendGirls">0 (0%)</span>
+                <span class="font-mono font-black text-pink-700" id="legendGirls">0 (0%)</span>
               </div>
             </div>
           </div>
 
           <!-- Top Teachers Bar Chart (7 cols) -->
-          <div class="lg:col-span-7 glass-panel p-5 rounded-3xl border border-slate-800 shadow-xl flex flex-col justify-between">
+          <div class="lg:col-span-7 glass-panel p-5 rounded-3xl border border-slate-200 shadow-sm flex flex-col justify-between bg-white">
             <div class="flex items-center justify-between mb-4">
               <div>
-                <h3 class="text-sm font-bold text-white flex items-center gap-2">
-                  <i data-lucide="bar-chart-2" class="w-4 h-4 text-purple-400"></i>
+                <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+                  <i data-lucide="bar-chart-2" class="w-4 h-4 text-purple-600"></i>
                   <span>أعلى 10 مدرسين حسب كثافة وإقبال الطلاب</span>
                 </h3>
-                <p class="text-[11px] text-slate-400 mt-0.5">ترتيب تنازلي بعدد الطلاب المقيدين لكل مدرس</p>
+                <p class="text-xs text-slate-500 mt-0.5">ترتيب تنازلي بعدد الطلاب المقيدين لكل مدرس</p>
               </div>
-              <span class="px-2.5 py-1 rounded-xl bg-purple-500/10 text-purple-300 border border-purple-500/20 text-[11px] font-bold">
+              <span class="px-2.5 py-1 rounded-xl bg-purple-50 text-purple-700 border border-purple-200 text-xs font-bold">
                 كثافة الحصص
               </span>
             </div>
@@ -1206,9 +1207,9 @@
               <canvas id="canvasTopTeachers"></canvas>
             </div>
 
-            <div class="text-[11px] text-slate-400 pt-3 border-t border-slate-800 flex items-center justify-between">
+            <div class="text-xs text-slate-500 pt-3 border-t border-slate-200 flex items-center justify-between">
               <span>* يتم التحديث التلقائي لحظياً مع أي رصد أو تسجيل جديد</span>
-              <button type="button" onclick="scrollToTeachersTable()" class="text-purple-400 hover:text-purple-300 font-bold flex items-center gap-1">
+              <button type="button" onclick="scrollToTeachersTable()" class="text-purple-600 hover:text-purple-800 font-bold flex items-center gap-1">
                 <span>عرض الكشف الكامل لجميع المدرسين</span>
                 <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
               </button>
@@ -1218,28 +1219,28 @@
         </div>
 
         <!-- Honor Roll & Student Leaderboard (لوحة الشرف والأوائل) -->
-        <div class="glass-panel p-5 sm:p-6 rounded-3xl border border-slate-800 shadow-xl space-y-4">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-800">
+        <div class="glass-panel p-5 sm:p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4 bg-white">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-200">
             <div>
-              <h3 class="text-base font-black text-white flex items-center gap-2">
-                <i data-lucide="medal" class="w-5 h-5 text-amber-400"></i>
+              <h3 class="text-base font-black text-slate-900 flex items-center gap-2">
+                <i data-lucide="medal" class="w-5 h-5 text-amber-500"></i>
                 <span>لوحة الشرف والتميز الأكاديمي</span>
               </h3>
-              <p class="text-xs text-slate-400 mt-0.5">قائمة الطلاب الأوائل الأكثر التزاماً بالحضور وأصحاب أعلى الدرجات والتقييمات</p>
+              <p class="text-xs text-slate-500 mt-0.5">قائمة الطلاب الأوائل الأكثر التزاماً بالحضور وأصحاب أعلى الدرجات والتقييمات</p>
             </div>
 
             <!-- Sub-tabs: Attendance vs Academic vs Needs Followup -->
-            <div class="flex items-center gap-1.5 bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800 self-start sm:self-auto">
+            <div class="flex items-center gap-1.5 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 self-start sm:self-auto">
               <button type="button" onclick="setAnalyticsLeaderboardTab('attendance')" id="btnLeadTab_attendance" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-emerald-600 text-white shadow flex items-center gap-1.5">
                 <i data-lucide="check-check" class="w-3.5 h-3.5"></i>
                 <span>أوائل الالتزام بالحضور</span>
               </button>
-              <button type="button" onclick="setAnalyticsLeaderboardTab('academic')" id="btnLeadTab_academic" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white flex items-center gap-1.5">
-                <i data-lucide="star" class="w-3.5 h-3.5 text-amber-400"></i>
+              <button type="button" onclick="setAnalyticsLeaderboardTab('academic')" id="btnLeadTab_academic" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all text-slate-600 hover:text-slate-900 flex items-center gap-1.5">
+                <i data-lucide="star" class="w-3.5 h-3.5 text-amber-500"></i>
                 <span>أوائل الدرجات</span>
               </button>
-              <button type="button" onclick="setAnalyticsLeaderboardTab('followup')" id="btnLeadTab_followup" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white flex items-center gap-1.5">
-                <i data-lucide="alert-triangle" class="w-3.5 h-3.5 text-rose-400"></i>
+              <button type="button" onclick="setAnalyticsLeaderboardTab('followup')" id="btnLeadTab_followup" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all text-slate-600 hover:text-slate-900 flex items-center gap-1.5">
+                <i data-lucide="alert-triangle" class="w-3.5 h-3.5 text-rose-500"></i>
                 <span>الأكثر غياباً (متابعة)</span>
               </button>
             </div>
@@ -1252,40 +1253,40 @@
         </div>
 
         <!-- Full Teachers Density & Distribution Table -->
-        <div id="sectionTeachersTable" class="glass-panel p-5 sm:p-6 rounded-3xl border border-slate-800 shadow-xl space-y-4">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-800">
+        <div id="sectionTeachersTable" class="glass-panel p-5 sm:p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4 bg-white">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-200">
             <div>
-              <h3 class="text-base font-black text-white flex items-center gap-2">
-                <i data-lucide="graduation-cap" class="w-5 h-5 text-sky-400"></i>
+              <h3 class="text-base font-black text-slate-900 flex items-center gap-2">
+                <i data-lucide="graduation-cap" class="w-5 h-5 text-sky-600"></i>
                 <span>كشف الكثافة الكامل لجميع مدرسي السنتر</span>
               </h3>
-              <p class="text-xs text-slate-400 mt-0.5">تفصيل أعداد الطلاب وتوزيعهم على صفوف ث1، ث2، ث3 لكل مدرس</p>
+              <p class="text-xs text-slate-500 mt-0.5">تفصيل أعداد الطلاب وتوزيعهم على صفوف ث1، ث2، ث3 لكل مدرس</p>
             </div>
 
             <!-- Search inside teachers -->
             <div class="relative w-full sm:w-64">
               <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute right-3 top-2.5 pointer-events-none"></i>
-              <input type="text" id="searchAnalyticsTeacherInput" oninput="filterAnalyticsTeachersTable()" placeholder="ابحث عن مدرس أو مادة..." class="w-full bg-slate-900 border border-slate-700 rounded-xl pr-9 pl-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:ring-1 focus:ring-purple-500">
+              <input type="text" id="searchAnalyticsTeacherInput" oninput="filterAnalyticsTeachersTable()" placeholder="ابحث عن مدرس أو مادة..." class="w-full bg-white border border-slate-300 rounded-xl pr-9 pl-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium">
             </div>
           </div>
 
           <!-- Table Wrapper -->
-          <div class="overflow-x-auto rounded-2xl border border-slate-800">
+          <div class="overflow-x-auto rounded-2xl border border-slate-200">
             <table class="w-full text-right text-xs">
-              <thead class="bg-slate-900/90 text-slate-400 font-bold border-b border-slate-800">
+              <thead class="bg-slate-50 text-slate-700 font-bold border-b border-slate-200">
                 <tr>
                   <th class="p-3 text-center">الترتيب</th>
                   <th class="p-3">اسم المدرس</th>
                   <th class="p-3">المادة</th>
                   <th class="p-3 text-center">إجمالي الطلاب</th>
-                  <th class="p-3 text-center text-emerald-400">أولى (ث1)</th>
-                  <th class="p-3 text-center text-indigo-400">ثانية (ث2)</th>
-                  <th class="p-3 text-center text-amber-400">ثالثة (ث3)</th>
+                  <th class="p-3 text-center text-emerald-700">أولى (ث1)</th>
+                  <th class="p-3 text-center text-indigo-700">ثانية (ث2)</th>
+                  <th class="p-3 text-center text-amber-700">ثالثة (ث3)</th>
                   <th class="p-3 text-center">الكثافة والنسبة</th>
                   <th class="p-3 text-center">عرض الطلاب</th>
                 </tr>
               </thead>
-              <tbody id="analyticsTeachersTableBody" class="divide-y divide-slate-800/60 font-medium">
+              <tbody id="analyticsTeachersTableBody" class="divide-y divide-slate-200 font-medium">
                 <!-- Dynamically populated by renderAnalyticsTeachersTable() -->
               </tbody>
             </table>

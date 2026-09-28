@@ -6735,12 +6735,12 @@ function renderAnalyticsCharts(boys, girls, topTeachers) {
         animation: { duration: 800 },
         scales: {
           x: {
-            grid: { color: 'rgba(255, 255, 255, 0.06)' },
-            ticks: { color: '#94a3b8', font: { family: 'Cairo', weight: 'bold' } }
+            grid: { color: 'rgba(0, 0, 0, 0.05)' },
+            ticks: { color: '#475569', font: { family: 'Cairo', weight: 'bold' } }
           },
           y: {
             grid: { display: false },
-            ticks: { color: '#cbd5e1', font: { family: 'Cairo', weight: 'bold', size: 11 } }
+            ticks: { color: '#0f172a', font: { family: 'Cairo', weight: 'bold', size: 12 } }
           }
         },
         plugins: {
@@ -6767,10 +6767,10 @@ function renderAnalyticsLeaderboard() {
 
   if (evaluated.length === 0) {
     container.innerHTML = `
-      <div class="glass-card p-8 rounded-2xl text-center text-slate-400 space-y-2">
-        <i data-lucide="info" class="w-8 h-8 mx-auto text-slate-500"></i>
-        <p class="font-bold text-sm">لا توجد بيانات حضور أو درجات مسجلة للمرحلة أو المادة المحددة حتى الآن.</p>
-        <p class="text-xs">قم برصد الحصص أولاً عبر قسم رصد الحضور لتظهر النتائج هنا فوراً.</p>
+      <div class="glass-card p-8 rounded-2xl text-center text-slate-500 space-y-2 border border-slate-200">
+        <i data-lucide="info" class="w-8 h-8 mx-auto text-slate-400"></i>
+        <p class="font-bold text-sm text-slate-800">لا توجد بيانات حضور أو درجات مسجلة للمرحلة أو المادة المحددة حتى الآن.</p>
+        <p class="text-xs text-slate-500">قم برصد الحصص أولاً عبر قسم رصد الحضور لتظهر النتائج هنا فوراً.</p>
       </div>
     `;
     try { initIcons(); } catch(e) {}
@@ -6803,9 +6803,9 @@ function renderAnalyticsLeaderboard() {
         ? '🎉 رائع جداً! لا يوجد أي طالب يعاني من غياب متكرر في هذه المرحلة.' 
         : 'لا توجد بيانات متاحة.');
     container.innerHTML = `
-      <div class="glass-card p-8 rounded-2xl text-center text-slate-400 space-y-2">
-        <i data-lucide="check-circle-2" class="w-8 h-8 mx-auto text-emerald-400"></i>
-        <p class="font-bold text-sm">${emptyMsg}</p>
+      <div class="glass-card p-8 rounded-2xl text-center text-slate-500 space-y-2 border border-slate-200">
+        <i data-lucide="check-circle-2" class="w-8 h-8 mx-auto text-emerald-500"></i>
+        <p class="font-bold text-sm text-slate-800">${emptyMsg}</p>
       </div>
     `;
     try { initIcons(); } catch(e) {}
@@ -6816,66 +6816,66 @@ function renderAnalyticsLeaderboard() {
 
   container.innerHTML = listToDisplay.map((st, idx) => {
     const rankBadge = idx < 3 
-      ? `<span class="text-xl sm:text-2xl">${medals[idx]}</span>`
-      : `<span class="w-7 h-7 rounded-xl bg-slate-800 text-slate-300 font-mono font-bold flex items-center justify-center text-xs">#${idx + 1}</span>`;
+      ? `<span class="text-2xl">${medals[idx]}</span>`
+      : `<span class="w-8 h-8 rounded-xl bg-slate-100 text-slate-700 border border-slate-200 font-mono font-black flex items-center justify-center text-xs">#${idx + 1}</span>`;
 
     let badgeHtml = '';
     if (_currentAnalyticsLeaderboardTab === 'attendance') {
       const isPerfect = st.m.attRate === 100 && st.m.totalAbsent === 0;
       badgeHtml = isPerfect
-        ? `<span class="px-2.5 py-1 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold flex items-center gap-1">
-             <i data-lucide="star" class="w-3.5 h-3.5 text-amber-400 fill-amber-400"></i> 100% التزام تام
+        ? `<span class="px-3 py-1 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-300 text-xs font-bold flex items-center gap-1.5 shadow-sm">
+             <i data-lucide="star" class="w-3.5 h-3.5 text-amber-500 fill-amber-500"></i> 100% التزام تام
            </span>`
-        : `<span class="px-2.5 py-1 rounded-xl bg-teal-500/20 text-teal-300 text-xs font-bold font-mono">
+        : `<span class="px-3 py-1 rounded-xl bg-teal-50 text-teal-800 border border-teal-200 text-xs font-bold font-mono">
              ${st.m.attRate}% حضور (${st.m.totalPresent} ح)
            </span>`;
     } else if (_currentAnalyticsLeaderboardTab === 'academic') {
       badgeHtml = `
-        <span class="px-2.5 py-1 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-bold font-mono flex items-center gap-1">
-          <i data-lucide="award" class="w-3.5 h-3.5 text-amber-400"></i> ${st.m.scorePct}% (${st.m.totalScore}/${st.m.totalMax})
+        <span class="px-3 py-1 rounded-xl bg-amber-50 text-amber-900 border border-amber-300 text-xs font-bold font-mono flex items-center gap-1.5 shadow-sm">
+          <i data-lucide="award" class="w-3.5 h-3.5 text-amber-600"></i> ${st.m.scorePct}% (${st.m.totalScore}/${st.m.totalMax})
         </span>
       `;
     } else {
       badgeHtml = `
-        <span class="px-2.5 py-1 rounded-xl bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-bold font-mono flex items-center gap-1">
-          <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-rose-400"></i> غياب ${st.m.totalAbsent} حصة (${st.m.attRate}%)
+        <span class="px-3 py-1 rounded-xl bg-rose-50 text-rose-800 border border-rose-300 text-xs font-bold font-mono flex items-center gap-1.5 shadow-sm">
+          <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-rose-600"></i> غياب ${st.m.totalAbsent} حصة (${st.m.attRate}%)
         </span>
       `;
     }
 
     const genderIcon = detectStudentGender(st.name) === 'female'
-      ? '<span class="text-pink-400" title="أنثى">👧</span>'
-      : '<span class="text-sky-400" title="ذكر">👦</span>';
+      ? '<span class="text-pink-600 text-base" title="أنثى">👧</span>'
+      : '<span class="text-sky-600 text-base" title="ذكر">👦</span>';
 
     const actionBtnLabel = _currentAnalyticsLeaderboardTab === 'followup' ? 'متابعة واتساب 💬' : 'إرسال تهنئة 💬';
     const actionBtnClass = _currentAnalyticsLeaderboardTab === 'followup'
-      ? 'bg-rose-600/90 hover:bg-rose-500 text-white'
-      : 'bg-emerald-600/90 hover:bg-emerald-500 text-white';
+      ? 'bg-rose-600 hover:bg-rose-500 text-white'
+      : 'bg-emerald-600 hover:bg-emerald-500 text-white';
 
     return `
-      <div class="glass-card p-3 sm:p-4 rounded-2xl border border-slate-800 hover:border-slate-700 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 group">
+      <div class="glass-card p-3.5 sm:p-4 rounded-2xl border border-slate-200 hover:border-purple-300 bg-white shadow-sm hover:shadow transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 group">
         <div class="flex items-center gap-3">
           <div class="shrink-0 flex items-center justify-center w-8">
             ${rankBadge}
           </div>
           <div>
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-bold text-white group-hover:text-purple-300 transition-colors">${st.name}</span>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-sm sm:text-base font-extrabold text-slate-900 group-hover:text-purple-700 transition-colors leading-normal">${st.name}</span>
               ${genderIcon}
-              <span class="px-1.5 py-0.5 rounded-md bg-slate-800 text-[10px] font-mono text-slate-400">#${st.code}</span>
-              <span class="px-1.5 py-0.5 rounded-md bg-purple-500/10 text-[10px] font-bold text-purple-300">${st.grade}</span>
+              <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-mono text-xs font-bold border border-slate-200">#${st.code}</span>
+              <span class="px-2 py-0.5 rounded-md bg-purple-50 text-purple-700 font-bold text-xs border border-purple-200">${st.grade}</span>
             </div>
-            <div class="text-[11px] text-slate-400 mt-1 flex flex-wrap items-center gap-2">
-              <span>حضور: <b class="text-emerald-400">${st.m.totalPresent}</b></span>
-              <span>غياب: <b class="${st.m.totalAbsent > 0 ? 'text-rose-400' : 'text-slate-300'}">${st.m.totalAbsent}</b></span>
-              ${st.area ? `<span>المنطقة: <b>${st.area}</b></span>` : ''}
+            <div class="text-xs text-slate-600 mt-1 flex flex-wrap items-center gap-2.5">
+              <span>حضور: <b class="text-emerald-700 font-bold">${st.m.totalPresent}</b></span>
+              <span>غياب: <b class="${st.m.totalAbsent > 0 ? 'text-rose-600 font-bold' : 'text-slate-500 font-bold'}">${st.m.totalAbsent}</b></span>
+              ${st.area ? `<span>المنطقة: <b class="text-slate-800 font-bold">${st.area}</b></span>` : ''}
             </div>
           </div>
         </div>
 
         <div class="flex items-center gap-2 self-end sm:self-auto shrink-0">
           ${badgeHtml}
-          <button type="button" onclick="sendHonorWhatsApp('${st.code}', '${_currentAnalyticsLeaderboardTab}')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all shadow-md active:scale-95 flex items-center gap-1.5 ${actionBtnClass}" title="مراسلة ولي الأمر مباشرة عبر واتساب">
+          <button type="button" onclick="sendHonorWhatsApp('${st.code}', '${_currentAnalyticsLeaderboardTab}')" class="px-3 py-1.5 rounded-xl text-xs font-bold transition-all shadow active:scale-95 flex items-center gap-1.5 ${actionBtnClass}" title="مراسلة ولي الأمر مباشرة عبر واتساب">
             <span>${actionBtnLabel}</span>
           </button>
         </div>
@@ -6896,7 +6896,7 @@ function renderAnalyticsTeachersTable() {
   if (teachers.length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="9" class="p-8 text-center text-slate-400">
+        <td colspan="9" class="p-8 text-center text-slate-500">
           لا توجد بيانات مدرسين للمادة أو المرحلة المختارة.
         </td>
       </tr>
@@ -6907,48 +6907,48 @@ function renderAnalyticsTeachersTable() {
   tbody.innerHTML = teachers.map((t, idx) => {
     const share = Math.round((t.count / totalStudents) * 100);
     const topRankColor = idx === 0 
-      ? 'bg-amber-500 text-slate-950 font-black' 
-      : (idx === 1 ? 'bg-slate-300 text-slate-900 font-bold' : (idx === 2 ? 'bg-amber-700 text-white font-bold' : 'bg-slate-800 text-slate-300'));
+      ? 'bg-amber-100 text-amber-900 border border-amber-300 font-black' 
+      : (idx === 1 ? 'bg-slate-200 text-slate-900 font-bold' : (idx === 2 ? 'bg-amber-50 text-amber-800 border border-amber-200 font-bold' : 'bg-slate-100 text-slate-700 border border-slate-200'));
 
     return `
-      <tr class="hover:bg-slate-800/40 transition-colors teacher-row" data-search="${t.teacher} ${t.subject}">
+      <tr class="hover:bg-slate-50 border-b border-slate-200 transition-colors teacher-row text-slate-800" data-search="${t.teacher} ${t.subject}">
         <td class="p-3 text-center">
           <span class="inline-flex items-center justify-center w-6 h-6 rounded-lg text-xs font-mono ${topRankColor}">
             ${idx + 1}
           </span>
         </td>
-        <td class="p-3 font-bold text-white flex items-center gap-2">
-          <i data-lucide="user" class="w-3.5 h-3.5 text-purple-400"></i>
+        <td class="p-3 font-extrabold text-slate-900 flex items-center gap-2 text-sm">
+          <i data-lucide="user" class="w-4 h-4 text-purple-600"></i>
           <span>${t.teacher}</span>
         </td>
         <td class="p-3">
-          <span class="px-2 py-0.5 rounded-lg bg-sky-500/10 text-sky-300 font-bold text-[11px] border border-sky-500/20">
+          <span class="px-2 py-0.5 rounded-lg bg-sky-50 text-sky-800 font-bold text-xs border border-sky-200">
             ${t.subject}
           </span>
         </td>
-        <td class="p-3 text-center font-black text-amber-400 font-mono text-sm">
+        <td class="p-3 text-center font-black text-amber-700 font-mono text-sm">
           ${t.count.toLocaleString('ar-EG')}
         </td>
-        <td class="p-3 text-center font-mono font-bold text-emerald-400">
+        <td class="p-3 text-center font-mono font-bold text-emerald-700">
           ${t.grades['ث1'] || 0}
         </td>
-        <td class="p-3 text-center font-mono font-bold text-indigo-400">
+        <td class="p-3 text-center font-mono font-bold text-indigo-700">
           ${t.grades['ث2'] || 0}
         </td>
-        <td class="p-3 text-center font-mono font-bold text-amber-400">
+        <td class="p-3 text-center font-mono font-bold text-amber-700">
           ${t.grades['ث3'] || 0}
         </td>
         <td class="p-3 text-center">
           <div class="flex items-center justify-center gap-2">
-            <span class="font-mono text-xs text-slate-300 font-bold">${share}%</span>
-            <div class="w-16 bg-slate-800 rounded-full h-1.5 overflow-hidden">
-              <div class="bg-gradient-to-r from-purple-500 to-indigo-500 h-1.5 rounded-full" style="width: ${Math.min(100, share)}%"></div>
+            <span class="font-mono text-xs text-slate-700 font-bold">${share}%</span>
+            <div class="w-16 bg-slate-200 rounded-full h-1.5 overflow-hidden">
+              <div class="bg-gradient-to-r from-purple-600 to-indigo-600 h-1.5 rounded-full" style="width: ${Math.min(100, share)}%"></div>
             </div>
           </div>
         </td>
         <td class="p-3 text-center">
-          <button type="button" onclick="filterStudentsByTeacher('${t.teacher.replace(/'/g, "\\'")}', '${t.subject}')" class="px-2.5 py-1 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-[11px] font-bold transition-all flex items-center gap-1 mx-auto active:scale-95" title="عرض جميع طلاب هذا المدرس في قائمة الطلاب">
-            <i data-lucide="search" class="w-3 h-3 text-sky-400"></i>
+          <button type="button" onclick="filterStudentsByTeacher('${t.teacher.replace(/'/g, "\\'")}', '${t.subject}')" class="px-2.5 py-1 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 text-xs font-bold transition-all flex items-center gap-1 mx-auto active:scale-95" title="عرض جميع طلاب هذا المدرس في قائمة الطلاب">
+            <i data-lucide="search" class="w-3.5 h-3.5 text-sky-600"></i>
             <span>الطلاب</span>
           </button>
         </td>
