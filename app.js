@@ -211,6 +211,8 @@ function canonicalSubjectName(subj) {
   if (!subj || typeof subj !== 'string') return "";
   const s = subj.trim();
   const norm = normalize_arabic(s);
+  // CRITICAL: احصاء MUST precede رياضة so Statistics is completely isolated from Math
+  if (norm.includes('احص') || norm.includes('إحص')) return 'احصاء';
   if (norm.includes('فزي') || norm.includes('فيز')) return 'فزياء';
   if (norm.includes('كيم')) return 'كيمياء';
   if (norm.includes('رياض')) return 'رياضة';
@@ -218,7 +220,6 @@ function canonicalSubjectName(subj) {
   if (norm.includes('عرب')) return 'عربي';
   if (norm.includes('فرنس')) return 'فرنساوي';
   if (norm.includes('احي')) return 'احياء';
-  if (norm.includes('احص')) return 'احصاء';
   if (norm.includes('تار')) return 'تاريخ';
   if (norm.includes('جغراف')) return 'جغرافيا';
   if (norm.includes('علوم')) return 'علوم';
@@ -239,15 +240,57 @@ function normalize_grade(grade) {
   return g || 'ث1';
 }
 
-// Clean teacher name helper: guarantees no truncated teacher names like 'ا' or 'م' or empty
+// Clean teacher name helper: strips bracketed attendance, normalizes titles, maps to real canonical teacher names, and strips dummy/bogus teachers
 function cleanTeacherName(rawTeacher, rawSubj) {
-  const canon = canonicalSubjectName(rawSubj) || rawSubj;
-  const defaultTeacher = (TEACHERS[canon] && TEACHERS[canon][0]) || 'مدرس المادة';
-  if (!rawTeacher || typeof rawTeacher !== 'string') return defaultTeacher;
-  const t = rawTeacher.trim();
-  // Corrupted strings caused by splitting on slash inside titles like "ا/" or "م/"
-  if (t === 'ا' || t === 'م' || t === 'ا/' || t === 'م/' || t === '/' || t === 'مدرس المادة' || t === 'جديد' || t === 'مدرس آخر' || t.length <= 2) {
-    return defaultTeacher;
+  if (!rawTeacher || typeof rawTeacher !== 'string') {
+    const canon = canonicalSubjectName(rawSubj) || rawSubj;
+    return (TEACHERS[canon] && TEACHERS[canon][0]) || '';
+  }
+  let t = rawTeacher.trim();
+  // Strip all bracket expressions like [شهر 10 (أكتوبر): _, _, ...] or [حصص: ...]
+  t = t.replace(/\[[^\]]*\]/g, ' ').replace(/\[.*$/, ' ').trim();
+  t = t.replace(/(شهر\s*\d+|أكتوبر|سبتمبر|نوفمبر|ديسمبر|يناير|فبراير|مارس|أبريل|مايو|يونيو|يوليو|أغسطس|حصص)[\s\S]*/i, '').trim();
+
+  // Normalize prefixes
+  t = t.replace(/^(أستاذ|الاستاذ|الأستاذ|استاذ|أ\.|ا\.)\s*/i, 'ا/ ');
+  t = t.replace(/^(م\.|مهندس|المهندس)\s*/i, 'م/ ');
+  t = t.replace(/^(د\.|دكتور|الدكتور)\s*/i, 'د/ ');
+  t = t.replace(/^ا\s*[\/.-]\s*/, 'ا/ ');
+  t = t.replace(/^م\s*[\/.-]\s*/, 'م/ ');
+  t = t.replace(/^د\s*[\/.-]\s*/, 'د/ ');
+  t = t.replace(/\s+/g, ' ').trim();
+
+  // Canonical mapping for known teachers
+  if (/مص[طت]?ف[يى].*صابر|مص[طت]?ف[يى]|صابر/i.test(t)) return 'ا/ مصطفي صابر';
+  if (/احمد.*(عبد|قادر)|عبد.*قادر/i.test(t)) return 'ا/ احمد عبد القادر';
+  if (/محمد.*الجو|الجوهري/i.test(t)) return 'ا/ محمد الجوهري';
+  if (/حماد[هة]/i.test(t)) return 'ا/ حماده يوسف';
+  if (/احمد.*الليث|الليثي/i.test(t)) return 'ا/ احمد الليثي';
+  if (/احمد.*سعيد/i.test(t)) return 'ا/ احمد سعيد';
+  if (/رضا/i.test(t)) return 'ا/ رضا صلاح';
+  if (/سار[هة]/i.test(t)) return 'ا/ سارة مجدي';
+  if (/سمي[هة]/i.test(t)) return 'ا/ سمية محمود';
+  if (/سيد.*عبد.*العاط/i.test(t)) return 'ا/ سيد عبد العاطي';
+  if (/علي.*نور/i.test(t)) return 'ا/ علي نور';
+  if (/عمر.*عبد.*الفضيل/i.test(t)) return 'ا/ عمر عبد الفضيل';
+  if (/محمد.*رجب|رجب/i.test(t)) return 'ا/ محمد رجب';
+  if (/محمد.*صبحي|صبحي/i.test(t)) return 'ا/ محمد صبحي';
+  if (/محمد.*صلاح/i.test(t)) return 'ا/ محمد صلاح';
+  if (/محمد.*علام|علام/i.test(t)) return 'ا/ محمد علام';
+  if (/محمد.*مختار|مختار/i.test(t)) return 'ا/ محمد مختار';
+  if (/محمد.*نور/i.test(t) && !/نور\s*الدين/.test(t)) return 'ا/ محمد نور';
+  if (/ناصر.*سعد/i.test(t)) return 'ا/ ناصر سعد';
+  if (/محمد.*ابراهيم/i.test(t)) return 'م/ محمد ابراهيم';
+  if (/نور\s*الدين/i.test(t)) return 'م/ نور الدين';
+  if (/ايمن.*شعبان/i.test(t)) return 'ا/ ايمن شعبان';
+  if (/محمود.*سليمان/i.test(t)) return 'ا/ محمود سليمان';
+
+  // Check invalid or dummy
+  if (!t || t === '.' || t === 'علوم' || t.includes('مدرس المادة') || t.includes('مدرس ماده') || t === 'ا' || t === 'م' || t === 'ا/' || t === 'جديد' || t === 'مدرس آخر' || t.length <= 2) {
+    const canon = canonicalSubjectName(rawSubj) || rawSubj;
+    const defT = (TEACHERS[canon] && TEACHERS[canon][0]) || '';
+    if (defT && !defT.includes('مدرس المادة')) return defT;
+    return '';
   }
   return t;
 }
@@ -302,6 +345,11 @@ function parseSubjectsFromSummary(subjectsSummary, teachersSummary, existingAcad
     const old = existingMap[canon];
     const oldTeacher = (old && old.teacher) ? cleanTeacherName(old.teacher, canon) : null;
     const finalTeacher = cleanTeacherName(explicitTeacher || oldTeacher, canon);
+
+    // If teacher is missing, invalid, or dummy "مدرس المادة", do NOT register dummy subject
+    if (!finalTeacher || finalTeacher.includes('مدرس المادة') || finalTeacher.includes('مدرس ماده')) {
+      return;
+    }
 
     let sessions = ["", "", "", "", "", "", "", ""];
     if (old && Array.isArray(old.sessions) && old.sessions.length > 0) {
@@ -426,12 +474,24 @@ function rebuildStudentSummaries(student) {
   if (!student) return;
   if (!student.academicSubjects) student.academicSubjects = {};
 
+  // Prune any dummy slots where teacher is empty or 'مدرس المادة'
+  Object.keys(student.academicSubjects).forEach(k => {
+    const subObj = student.academicSubjects[k] || {};
+    const t = cleanTeacherName(subObj.teacher, k);
+    if (!t || t.includes('مدرس المادة') || t.includes('مدرس ماده')) {
+      delete student.academicSubjects[k];
+    } else {
+      subObj.teacher = t;
+    }
+  });
+
   const subKeys = Object.keys(student.academicSubjects);
   student.subjectsSummary = subKeys.join(', ');
   student.teachersSummary = subKeys.map(k => {
     const subObj = student.academicSubjects[k] || {};
     const canon = canonicalSubjectName(k) || k;
-    const tName = cleanTeacherName(subObj.teacher || (TEACHERS[canon] && TEACHERS[canon][0]) || 'مدرس المادة', canon);
+    const tName = cleanTeacherName(subObj.teacher, canon);
+    if (!tName) return null;
     
     let parts = [`${k}/${tName}`];
 
@@ -456,7 +516,7 @@ function rebuildStudentSummaries(student) {
     }
 
     return parts.join(' ');
-  }).join(' | ');
+  }).filter(Boolean).join(' | ');
 
   student._metrics = calculateStudentMetrics(student);
   student._searchString = buildStudentSearchString(student);
@@ -6495,7 +6555,7 @@ function renderAnalyticsDashboard() {
       const subData = subs[subK];
       if (subData && subData.teacher) {
         const tName = subData.teacher.trim();
-        if (!tName || tName === 'مدرس آخر' || tName.includes('غير محدد')) return;
+        if (!tName || tName === 'مدرس آخر' || tName.includes('غير محدد') || tName.includes('مدرس المادة') || tName.includes('مدرس ماده')) return;
         const key = `${subK}:::${tName}`;
         if (!teacherMap[key]) {
           teacherMap[key] = {

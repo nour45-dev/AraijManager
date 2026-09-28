@@ -20,7 +20,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2001 ابراهيم عبدالله ابراهيم 1090679504 1112245435 عرب الشعارة ث2 "
+    "_searchString": "2001 ابراهيم عبدالله ابراهيم 1090679504 1112245435 عرب الشعاره ث2 عام"
   },
   {
     "code": "2002",
@@ -79,7 +79,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2002 احمد اسماعيل عبد الفتاح 1203873300 1228036071 بلقس ث2 بكالوريا - الاعمال"
+    "_searchString": "2002 احمد اسماعيل عبد الفتاح 1203873300 1228036071 بلقس ث2 بكالوريا - الاعمال عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2003",
@@ -102,7 +102,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2003 احمد حسين كامل 1102166258 1065389070 بلقس ث2 "
+    "_searchString": "2003 احمد حسين كامل 1102166258 1065389070 بلقس ث2 عام"
   },
   {
     "code": "2004",
@@ -125,7 +125,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2004 احمد حلمي محمد عبد الرحمن 1101596018 1146562084 السلمانية ث2 "
+    "_searchString": "2004 احمد حلمي محمد عبد الرحمن 1101596018 1146562084 السلمانيه ث2 عام"
   },
   {
     "code": "2005",
@@ -148,7 +148,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2005 احمد حمدى سعد 1225206533 1120807553 بلقس ث2 "
+    "_searchString": "2005 احمد حمدي سعد 1225206533 1120807553 بلقس ث2 عام"
   },
   {
     "code": "2006",
@@ -158,46 +158,10 @@ window.STUDENTS_DATA = [
     "parentPhone": "1559896671",
     "grade": "ث2",
     "specialization": "بكالوريا - هندسة",
-    "subjectsSummary": "فرنساوي",
-    "teachersSummary": "فرنساوي/.",
+    "subjectsSummary": "",
+    "teachersSummary": "",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
-    "academicSubjects": {
-      "فرنساوي": {
-        "teacher": ".",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      }
-    },
+    "academicSubjects": {},
     "_metrics": {
       "totalScore": 0,
       "totalMax": 0,
@@ -207,7 +171,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2006 احمد سعيد محمد 1102813129 1559896671 الجعافرة ث2 بكالوريا - هندسة"
+    "_searchString": "2006 احمد سعيد محمد 1102813129 1559896671 الجعافره ث2 بكالوريا - هندسه"
   },
   {
     "code": "2007",
@@ -230,7 +194,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2007 احمد عوض احمد 1014023142  بلقس ث2 "
+    "_searchString": "2007 احمد عوض احمد 1014023142 بلقس ث2 عام"
   },
   {
     "code": "2008",
@@ -289,7 +253,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2008 احمد عيد عفيفي 1070797673 1009353808 بلقس ث2 "
+    "_searchString": "2008 احمد عيد عفيفي 1070797673 1009353808 بلقس ث2 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2515",
@@ -348,7 +312,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 73.4
     },
-    "_searchString": "2515 احمد فرج ابراهيم 122963537 1152209714 زواية ا ث2 عام"
+    "_searchString": "2515 احمد فرج ابراهيم 122963537 1152209714 زوايه ا ث2 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2010",
@@ -430,7 +394,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 74
     },
-    "_searchString": "2011 احمد محمد ابراهيم 1202586400 1144369561 بلقس ث2 عام"
+    "_searchString": "2011 احمد محمد ابراهيم 1202586400 1144369561 بلقس ث2 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2012",
@@ -453,7 +417,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2012 احمد محمد امين 1149015218 1557920401 الجعافرة ث2 عام"
+    "_searchString": "2012 احمد محمد امين 1149015218 1557920401 الجعافره ث2 عام"
   },
   {
     "code": "2014",
@@ -512,7 +476,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2014 احمد محمد رمضان 1221945665 1143451127 الجعافرة ث2 بكالوريا - طب"
+    "_searchString": "2014 احمد محمد رمضان 1221945665 1143451127 الجعافره ث2 بكالوريا - طب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2015",
@@ -535,7 +499,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2015 احمد محمد عبد ناصر 1285188137 1221827124 بلقس ث2 "
+    "_searchString": "2015 احمد محمد عبد ناصر 1285188137 1221827124 بلقس ث2 عام"
   },
   {
     "code": "2016",
@@ -558,7 +522,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2016 احمد محمد محمود 1147129900 1118495078  ث2 "
+    "_searchString": "2016 احمد محمد محمود 1147129900 1118495078 ث2 عام"
   },
   {
     "code": "2017",
@@ -581,7 +545,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2017 احمد محمود سيد 1118189522 1147189474 زواية ا ث2 "
+    "_searchString": "2017 احمد محمود سيد 1118189522 1147189474 زوايه ا ث2 عام"
   },
   {
     "code": "2019",
@@ -604,7 +568,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2019 ادهم ممدوح عبد الحليم 1103176278 1113778370 الجعافرة ث2 "
+    "_searchString": "2019 ادهم ممدوح عبد الحليم 1103176278 1113778370 الجعافره ث2 عام"
   },
   {
     "code": "2022",
@@ -627,7 +591,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2022 اسراء صبحي عبدالسميع 1208073953 1274950329 بلقس ث2 "
+    "_searchString": "2022 اسراء صبحي عبدالسميع 1208073953 1274950329 بلقس ث2 عام"
   },
   {
     "code": "2023",
@@ -650,7 +614,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2023 اسراء محمد رضا 1147328782 1148015791 سلمانية ث2 "
+    "_searchString": "2023 اسراء محمد رضا 1147328782 1148015791 سلمانيه ث2 عام"
   },
   {
     "code": "2024",
@@ -673,7 +637,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2024 اسراء محمد رضاء سيد 1148015791 1147328782  ث2 "
+    "_searchString": "2024 اسراء محمد رضاء سيد 1148015791 1147328782 ث2 عام"
   },
   {
     "code": "2025",
@@ -696,7 +660,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2025 اسراء مصطفي عبدالعزيز 1044069453 1064258681 الزاوية ث2 "
+    "_searchString": "2025 اسراء مصطفي عبدالعزيز 1044069453 1064258681 الزاويه ث2 عام"
   },
   {
     "code": "2026",
@@ -719,7 +683,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2026 اسلام عصام سيد 1287726249 1110703642 سلمانية ث2 "
+    "_searchString": "2026 اسلام عصام سيد 1287726249 1110703642 سلمانيه ث2 عام"
   },
   {
     "code": "2027",
@@ -742,7 +706,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2027 اسماء احمد حسين 1225021407 1223634845  ث2 "
+    "_searchString": "2027 اسماء احمد حسين 1225021407 1223634845 ث2 عام"
   },
   {
     "code": "2028",
@@ -801,7 +765,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2028 اسماء احمد عبد الفتاح 1069983462 1118199042 بلقس ث2 "
+    "_searchString": "2028 اسماء احمد عبد الفتاح 1069983462 1118199042 بلقس ث2 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2029",
@@ -824,7 +788,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2029 اسماء حسين هاشم 1120955674 1206068754 ب ث2 "
+    "_searchString": "2029 اسماء حسين هاشم 1120955674 1206068754 ب ث2 عام"
   },
   {
     "code": "2030",
@@ -883,7 +847,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2030 اسماء رزق حلمي 1280361219 1272414260 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2030 اسماء رزق حلمي 1280361219 1272414260 بلقس ث2 بكالوريا - طب عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "2031",
@@ -893,46 +857,10 @@ window.STUDENTS_DATA = [
     "parentPhone": "1110512149",
     "grade": "ث2",
     "specialization": "بكالوريا - طب",
-    "subjectsSummary": "فرنساوي",
-    "teachersSummary": "فرنساوي/.",
+    "subjectsSummary": "",
+    "teachersSummary": "",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
-    "academicSubjects": {
-      "فرنساوي": {
-        "teacher": ".",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      }
-    },
+    "academicSubjects": {},
     "_metrics": {
       "totalScore": 0,
       "totalMax": 0,
@@ -942,7 +870,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2031 اسماء ضياء فكري  1110512149 كوم السمن ث2 بكالوريا - طب"
+    "_searchString": "2031 اسماء ضياء فكري 1110512149 كوم السمن ث2 بكالوريا - طب"
   },
   {
     "code": "2032",
@@ -965,7 +893,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2032 اسماء طارق علي 1505425749 10046412 حزانية ث2 "
+    "_searchString": "2032 اسماء طارق علي 1505425749 10046412 حزانيه ث2 عام"
   },
   {
     "code": "2035",
@@ -988,7 +916,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2035 اسماء محمد 1152438929   ث2 "
+    "_searchString": "2035 اسماء محمد 1152438929 ث2 عام"
   },
   {
     "code": "2036",
@@ -1070,7 +998,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 83,
       "averageScore": 0
     },
-    "_searchString": "2041 امنية سامح سعد 1280351039 1203310830 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2041 امنيه سامح سعد 1280351039 1203310830 بلقس ث2 بكالوريا - طب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2042",
@@ -1093,7 +1021,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2042 امنية محمد عبد النبي 1278070341  بلقس ث2 "
+    "_searchString": "2042 امنيه محمد عبد النبي 1278070341 بلقس ث2 عام"
   },
   {
     "code": "2043",
@@ -1152,7 +1080,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 33,
       "averageScore": 0
     },
-    "_searchString": "2043 امين خالد 1003153357 1066632383 الجعافرة ث2 "
+    "_searchString": "2043 امين خالد 1003153357 1066632383 الجعافره ث2 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2046",
@@ -1175,7 +1103,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2046 امينة احمد حسن 1228472359 1227115063 بلقس ث2 "
+    "_searchString": "2046 امينه احمد حسن 1228472359 1227115063 بلقس ث2 عام"
   },
   {
     "code": "2051",
@@ -1198,7 +1126,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2051 اية رجب سيد يوسف 1126890496 1203330297 السلمانية ث2 "
+    "_searchString": "2051 ايه رجب سيد يوسف 1126890496 1203330297 السلمانيه ث2 عام"
   },
   {
     "code": "2052",
@@ -1257,7 +1185,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 72
     },
-    "_searchString": "2052 اية رمضان سعيد  1226443182 بلقس ث2 "
+    "_searchString": "2052 ايه رمضان سعيد 1226443182 بلقس ث2 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2053",
@@ -1280,7 +1208,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2053 اية سيد حامد 1102167571 1122739754  ث2 "
+    "_searchString": "2053 ايه سيد حامد 1102167571 1122739754 ث2 عام"
   },
   {
     "code": "2054",
@@ -1303,7 +1231,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2054 اية عاشور علي  1033313976  ث2 "
+    "_searchString": "2054 ايه عاشور علي 1033313976 ث2 عام"
   },
   {
     "code": "2056",
@@ -1397,7 +1325,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2056 اية محمد عبد المنعم 12736727164 1014793025 السلمانية ث2 "
+    "_searchString": "2056 ايه محمد عبد المنعم 12736727164 1014793025 السلمانيه ث2 عام عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2057",
@@ -1491,7 +1419,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 78,
       "averageScore": 76.8
     },
-    "_searchString": "2057 ايريني وجدي حليم 1224948615 1204135381 سلمانية ث2 بكالوريا - هندسة"
+    "_searchString": "2057 ايريني وجدي حليم 1224948615 1204135381 سلمانيه ث2 بكالوريا - هندسه عربي ا/ احمد عبد القادر انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2059",
@@ -1514,7 +1442,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2059 ايمان جمال محمد 1203307694 1229930276 بلقس ث2 "
+    "_searchString": "2059 ايمان جمال محمد 1203307694 1229930276 بلقس ث2 عام"
   },
   {
     "code": "2061",
@@ -1537,7 +1465,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2061 ايمان قاسم حسن 1093897509 1031644854 عرب الشعارة ث2 "
+    "_searchString": "2061 ايمان قاسم حسن 1093897509 1031644854 عرب الشعاره ث2 عام"
   },
   {
     "code": "2062",
@@ -1560,7 +1488,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2062 ايمان محمد سيد 1102624572 1102624572 بلقس ث2 "
+    "_searchString": "2062 ايمان محمد سيد 1102624572 1102624572 بلقس ث2 عام"
   },
   {
     "code": "2063",
@@ -1583,7 +1511,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2063 ايه سيد حامد 1102167571 1122739754 بلقس ث2 "
+    "_searchString": "2063 ايه سيد حامد 1102167571 1122739754 بلقس ث2 عام"
   },
   {
     "code": "2064",
@@ -1606,7 +1534,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2064 بدر سيد علي 1118171518 1022331760 بلقس ث2 "
+    "_searchString": "2064 بدر سيد علي 1118171518 1022331760 بلقس ث2 عام"
   },
   {
     "code": "2065",
@@ -1629,7 +1557,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2065 بسملة شعبان عبد الحميد 1552407663  السلمانية ث2 "
+    "_searchString": "2065 بسمله شعبان عبد الحميد 1552407663 السلمانيه ث2 عام"
   },
   {
     "code": "2066",
@@ -1652,7 +1580,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2066 بسملة محمود 1006076730 1006076730 بلقس ث2 "
+    "_searchString": "2066 بسمله محمود 1006076730 1006076730 بلقس ث2 عام"
   },
   {
     "code": "2068",
@@ -1675,7 +1603,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2068 بسملة وائل شوقي 1289053381 1023910292 دائري بهتيم ث2 "
+    "_searchString": "2068 بسمله وايل شوقي 1289053381 1023910292 دايري بهتيم ث2 عام"
   },
   {
     "code": "2069",
@@ -1698,7 +1626,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2069 بسنت احمد ابو سريع 1201595797  بلقس ث2 "
+    "_searchString": "2069 بسنت احمد ابو سريع 1201595797 بلقس ث2 عام"
   },
   {
     "code": "2072",
@@ -1757,7 +1685,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2072 تقي شريف لطفي 1002195256 1017069378 كوم السمن ث2 "
+    "_searchString": "2072 تقي شريف لطفي 1002195256 1017069378 كوم السمن ث2 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2073",
@@ -1816,7 +1744,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2073 ثريا طاهر محمد 1030888310 1095106811 بلقس ث2 "
+    "_searchString": "2073 ثريا طاهر محمد 1030888310 1095106811 بلقس ث2 عام عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "2074",
@@ -1839,7 +1767,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2074 جمال احمد يونس 1274285591 1288175652 بلقس ث2 "
+    "_searchString": "2074 جمال احمد يونس 1274285591 1288175652 بلقس ث2 عام"
   },
   {
     "code": "2075",
@@ -1898,7 +1826,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2075 جمال ناصر جمال 1203642960 1024419242 الجعافرة ث2 "
+    "_searchString": "2075 جمال ناصر جمال 1203642960 1024419242 الجعافره ث2 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2076",
@@ -1957,7 +1885,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2076 جنات اكرم احمد 1208468822 1208468822 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2076 جنات اكرم احمد 1208468822 1208468822 بلقس ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2077",
@@ -1980,7 +1908,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2077 جنات عاطف عبد العزيز 1220504491 1226685157 بلقس ث2 "
+    "_searchString": "2077 جنات عاطف عبد العزيز 1220504491 1226685157 بلقس ث2 عام"
   },
   {
     "code": "2082",
@@ -2003,7 +1931,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2082 جنة كمال سلامة 1018711699 1005399646 عرب الشعارة ث2 "
+    "_searchString": "2082 جنه كمال سلامه 1018711699 1005399646 عرب الشعاره ث2 عام"
   },
   {
     "code": "2083",
@@ -2026,7 +1954,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2083 جنة محمد سامي 1207906040 1279108733 بلقس ث2 "
+    "_searchString": "2083 جنه محمد سامي 1207906040 1279108733 بلقس ث2 عام"
   },
   {
     "code": "2084",
@@ -2085,7 +2013,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2084 جني ابو سريع عرفات 1227730711  بلقس ث2 بكالوريا - طب"
+    "_searchString": "2084 جني ابو سريع عرفات 1227730711 بلقس ث2 بكالوريا - طب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2085",
@@ -2179,7 +2107,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2085 جني احمد عبد العليم 1006281373 1012238080 عرب الشعارة ث2 "
+    "_searchString": "2085 جني احمد عبد العليم 1006281373 1012238080 عرب الشعاره ث2 عام عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2089",
@@ -2273,7 +2201,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2089 جني حسني حسين 1126758156 1273215928  ث2 بكالوريا - طب"
+    "_searchString": "2089 جني حسني حسين 1126758156 1273215928 ث2 بكالوريا - طب فزياء ا/ محمد مختار انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2090",
@@ -2296,7 +2224,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2090 جني سعيد اسماعيل 1114245605 1114245607 بلقس ث2 "
+    "_searchString": "2090 جني سعيد اسماعيل 1114245605 1114245607 بلقس ث2 عام"
   },
   {
     "code": "2091",
@@ -2319,7 +2247,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2091 جني سيد نصار 1024660614 1275957743 بلقس ث2 "
+    "_searchString": "2091 جني سيد نصار 1024660614 1275957743 بلقس ث2 عام"
   },
   {
     "code": "2092",
@@ -2413,7 +2341,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 92
     },
-    "_searchString": "2092 جني شريف ابراهيم 1550831004 1210013688 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2092 جني شريف ابراهيم 1550831004 1210013688 بلقس ث2 بكالوريا - طب فزياء ا/ محمد الجوهري عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "2093",
@@ -2436,7 +2364,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2093 جني عبد الخالق 1116880484 1271353380 بلقس ث2 "
+    "_searchString": "2093 جني عبد الخالق 1116880484 1271353380 بلقس ث2 عام"
   },
   {
     "code": "2094",
@@ -2459,7 +2387,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2094 جني عبد العزيز علي 1201146041 1110051817 سلمانية ث2 "
+    "_searchString": "2094 جني عبد العزيز علي 1201146041 1110051817 سلمانيه ث2 عام"
   },
   {
     "code": "2096",
@@ -2482,7 +2410,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2096 جني عبدالعزيز علي نصار 1201146041 1032427304 السلمانية ث2 "
+    "_searchString": "2096 جني عبدالعزيز علي نصار 1201146041 1032427304 السلمانيه ث2 عام"
   },
   {
     "code": "2100",
@@ -2505,7 +2433,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2100 جني هاني العايدي 1210125297 1270713628 بلقس ث2 "
+    "_searchString": "2100 جني هاني العايدي 1210125297 1270713628 بلقس ث2 عام"
   },
   {
     "code": "2101",
@@ -2528,7 +2456,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2101 جهاد شديد محمد 102763776 1271022504 بلقس ث2 "
+    "_searchString": "2101 جهاد شديد محمد 102763776 1271022504 بلقس ث2 عام"
   },
   {
     "code": "2106",
@@ -2551,7 +2479,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2106 حبيبة سلامة 1012099892   ث2 "
+    "_searchString": "2106 حبيبه سلامه 1012099892 ث2 عام"
   },
   {
     "code": "2108",
@@ -2574,7 +2502,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2108 حبيبة محمد صبحي 1284662674 1111452196 بلقس ث2 "
+    "_searchString": "2108 حبيبه محمد صبحي 1284662674 1111452196 بلقس ث2 عام"
   },
   {
     "code": "2110",
@@ -2597,7 +2525,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2110 حسن علي حسن 1124924838 1224924811 زواية ا ث2 "
+    "_searchString": "2110 حسن علي حسن 1124924838 1224924811 زوايه ا ث2 عام"
   },
   {
     "code": "2111",
@@ -2620,7 +2548,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2111 حسن محمد سعد محمد 125033477  السلمانية ث2 "
+    "_searchString": "2111 حسن محمد سعد محمد 125033477 السلمانيه ث2 عام"
   },
   {
     "code": "2113",
@@ -2643,7 +2571,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2113 حسنة محسن محمد 1286966738 1286966738 بلقس ث2 "
+    "_searchString": "2113 حسنه محسن محمد 1286966738 1286966738 بلقس ث2 عام"
   },
   {
     "code": "2114",
@@ -2666,7 +2594,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2114 حسني محسن 1286966730   ث2 "
+    "_searchString": "2114 حسني محسن 1286966730 ث2 عام"
   },
   {
     "code": "2116",
@@ -2689,7 +2617,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2116 حسين طارق 1067185631 1220838459 بلقس ث2 "
+    "_searchString": "2116 حسين طارق 1067185631 1220838459 بلقس ث2 عام"
   },
   {
     "code": "2117",
@@ -2712,7 +2640,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2117 حسين طارق حسين 1067185631 1220838459 بلقس ث2 "
+    "_searchString": "2117 حسين طارق حسين 1067185631 1220838459 بلقس ث2 عام"
   },
   {
     "code": "2120",
@@ -2771,7 +2699,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 40,
       "averageScore": 0
     },
-    "_searchString": "2120 خالد محمد امين 1003153357 1066632383 عرب الشعارة ث2 عام"
+    "_searchString": "2120 خالد محمد امين 1003153357 1066632383 عرب الشعاره ث2 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2121",
@@ -2865,7 +2793,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 40,
       "averageScore": 0
     },
-    "_searchString": "2121 خالد وليد محمد 1125786554 1157185538 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2121 خالد وليد محمد 1125786554 1157185538 بلقس ث2 بكالوريا - طب فزياء ا/ محمد الجوهري انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2123",
@@ -2888,7 +2816,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2123 دنيا تامر 1105276985   ث2 "
+    "_searchString": "2123 دنيا تامر 1105276985 ث2 عام"
   },
   {
     "code": "2124",
@@ -2911,7 +2839,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2124 دنيا سيد احمد 1116319643 1284747014 بلقس ث2 "
+    "_searchString": "2124 دنيا سيد احمد 1116319643 1284747014 بلقس ث2 عام"
   },
   {
     "code": "2125",
@@ -2934,7 +2862,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2125 دنيا عبدة 1177397606   ث2 "
+    "_searchString": "2125 دنيا عبده 1177397606 ث2 عام"
   },
   {
     "code": "2126",
@@ -2944,46 +2872,10 @@ window.STUDENTS_DATA = [
     "parentPhone": "1008409725",
     "grade": "ث2",
     "specialization": "بكالوريا - طب",
-    "subjectsSummary": "فرنساوي",
-    "teachersSummary": "فرنساوي/.",
+    "subjectsSummary": "",
+    "teachersSummary": "",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
-    "academicSubjects": {
-      "فرنساوي": {
-        "teacher": ".",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      }
-    },
+    "academicSubjects": {},
     "_metrics": {
       "totalScore": 0,
       "totalMax": 0,
@@ -2993,7 +2885,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2126 دهب وليد سيد  1008409725 كوم السمن ث2 بكالوريا - طب"
+    "_searchString": "2126 دهب وليد سيد 1008409725 كوم السمن ث2 بكالوريا - طب"
   },
   {
     "code": "2127",
@@ -3016,7 +2908,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2127 دينا سيد احمد 1116319643 1284747114 بلقس ث2 "
+    "_searchString": "2127 دينا سيد احمد 1116319643 1284747114 بلقس ث2 عام"
   },
   {
     "code": "2129",
@@ -3039,7 +2931,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2129 راندا صبري رزق 1008332919 1093437717 السلمانية ث2 "
+    "_searchString": "2129 راندا صبري رزق 1008332919 1093437717 السلمانيه ث2 عام"
   },
   {
     "code": "2131",
@@ -3062,7 +2954,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2131 رحمة حسن ابراهيم 1066341833  الزاوية ث2 "
+    "_searchString": "2131 رحمه حسن ابراهيم 1066341833 الزاويه ث2 عام"
   },
   {
     "code": "2132",
@@ -3073,7 +2965,7 @@ window.STUDENTS_DATA = [
     "grade": "ث2",
     "specialization": "أزهر",
     "subjectsSummary": "كيمياء, فزياء, عربي, رياضة",
-    "teachersSummary": "كيمياء/ا/ محمد صلاح | فزياء/عم�� ومختار | عربي/ا/ احمد عبد القادر | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, _, _, ✓]",
+    "teachersSummary": "كيمياء/ا/ محمد صلاح | فزياء/ا/ محمد مختار | عربي/ا/ احمد عبد القادر | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, _, _, ✓]",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
     "academicSubjects": {
       "كيمياء": {
@@ -3112,7 +3004,7 @@ window.STUDENTS_DATA = [
         }
       },
       "فزياء": {
-        "teacher": "عم�� ومختار",
+        "teacher": "ا/ محمد مختار",
         "sessions": [
           "",
           "",
@@ -3226,7 +3118,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2132 رحمة رضا محمد عبده 1122609826 1121130657 السلمانية ث2 أزهر"
+    "_searchString": "2132 رحمه رضا محمد عبده 1122609826 1121130657 السلمانيه ث2 ازهر كيمياء ا/ محمد صلاح فزياء ا/ محمد مختار عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2134",
@@ -3249,7 +3141,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2134 رحمة شعبان  1271002886  ث2 "
+    "_searchString": "2134 رحمه شعبان 1271002886 ث2 عام"
   },
   {
     "code": "2135",
@@ -3272,7 +3164,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2135 رحمة شعبان عبد الغافر  1271002886 بلقس ث2 "
+    "_searchString": "2135 رحمه شعبان عبد الغافر 1271002886 بلقس ث2 عام"
   },
   {
     "code": "2136",
@@ -3295,7 +3187,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2136 ردينة محمود علي 1070044246 1025853634 سلمانية ث2 "
+    "_searchString": "2136 ردينه محمود علي 1070044246 1025853634 سلمانيه ث2 عام"
   },
   {
     "code": "2137",
@@ -3318,7 +3210,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2137 رزق احمد رزق  1225324677 بلقس ث2 "
+    "_searchString": "2137 رزق احمد رزق 1225324677 بلقس ث2 عام"
   },
   {
     "code": "2138",
@@ -3341,7 +3233,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2138 رضوي اسماعيل 1552957996   ث2 "
+    "_searchString": "2138 رضوي اسماعيل 1552957996 ث2 عام"
   },
   {
     "code": "2139",
@@ -3364,7 +3256,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2139 رضوي اشرف عبد العزيز 1007232515 1285536602 بلقس ث2 "
+    "_searchString": "2139 رضوي اشرف عبد العزيز 1007232515 1285536602 بلقس ث2 عام"
   },
   {
     "code": "2140",
@@ -3410,7 +3302,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2141 رضوي محمد حلمي 1210498672 1202343293  ث2 "
+    "_searchString": "2141 رضوي محمد حلمي 1210498672 1202343293 ث2 عام"
   },
   {
     "code": "2143",
@@ -3433,7 +3325,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2143 رقية عبد النبي 1105381605   ث2 "
+    "_searchString": "2143 رقيه عبد النبي 1105381605 ث2 عام"
   },
   {
     "code": "2144",
@@ -3456,7 +3348,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2144 رقية محمد ابراهيم 1141620880  السلمانية ث2 "
+    "_searchString": "2144 رقيه محمد ابراهيم 1141620880 السلمانيه ث2 عام"
   },
   {
     "code": "2145",
@@ -3479,7 +3371,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2145 رقية محمد ابراهيم 1126110950 1126110950 سلمانية ث2 "
+    "_searchString": "2145 رقيه محمد ابراهيم 1126110950 1126110950 سلمانيه ث2 عام"
   },
   {
     "code": "2147",
@@ -3502,7 +3394,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2147 رنا ايمن احمد 1114549669 1208638114 بلقس ث2 "
+    "_searchString": "2147 رنا ايمن احمد 1114549669 1208638114 بلقس ث2 عام"
   },
   {
     "code": "2148",
@@ -3525,7 +3417,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2148 رندا صبري رزق 1008332919 1093437717 حزانية ث2 "
+    "_searchString": "2148 رندا صبري رزق 1008332919 1093437717 حزانيه ث2 عام"
   },
   {
     "code": "2150",
@@ -3548,7 +3440,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2150 رنيم قدري سيد 1281056336 1122932292 عرب الشعارة ث2 "
+    "_searchString": "2150 رنيم قدري سيد 1281056336 1122932292 عرب الشعاره ث2 عام"
   },
   {
     "code": "2153",
@@ -3571,7 +3463,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2153 روان ماهر عبد الفتاح 1229224152 1278671297 بلقس ث2 "
+    "_searchString": "2153 روان ماهر عبد الفتاح 1229224152 1278671297 بلقس ث2 عام"
   },
   {
     "code": "2154",
@@ -3594,7 +3486,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2154 روان محمد 1140154104 1007675261 بلقس ث2 "
+    "_searchString": "2154 روان محمد 1140154104 1007675261 بلقس ث2 عام"
   },
   {
     "code": "2155",
@@ -3653,7 +3545,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2155 روان محمود صبري 1282519967 1061050159 بلقس ث2 "
+    "_searchString": "2155 روان محمود صبري 1282519967 1061050159 بلقس ث2 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2156",
@@ -3676,7 +3568,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2156 رودينا كمال 1010167974 122747317 بلقس ث2 "
+    "_searchString": "2156 رودينا كمال 1010167974 122747317 بلقس ث2 عام"
   },
   {
     "code": "2157",
@@ -3699,7 +3591,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2157 رويدا فوزي فوزي محمد 1147637695 1150742121 بلقس ث2 "
+    "_searchString": "2157 رويدا فوزي فوزي محمد 1147637695 1150742121 بلقس ث2 عام"
   },
   {
     "code": "2158",
@@ -3722,7 +3614,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2158 رويداحمد علي  1120904360 بلقس ث2 "
+    "_searchString": "2158 رويداحمد علي 1120904360 بلقس ث2 عام"
   },
   {
     "code": "2159",
@@ -3745,7 +3637,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2159 رويدة محمد عبد الفتاح 1003577762 1028065896 حزانية ث2 "
+    "_searchString": "2159 رويده محمد عبد الفتاح 1003577762 1028065896 حزانيه ث2 عام"
   },
   {
     "code": "2161",
@@ -3768,7 +3660,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2161 ريتاج محمد مصطفي 1272663528 1200603529 بلقس ث2 "
+    "_searchString": "2161 ريتاج محمد مصطفي 1272663528 1200603529 بلقس ث2 عام"
   },
   {
     "code": "2162",
@@ -3791,7 +3683,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2162 ريتاج وليد عبد العزيز  1272612106 بلقس ث2 "
+    "_searchString": "2162 ريتاج وليد عبد العزيز 1272612106 بلقس ث2 عام"
   },
   {
     "code": "2163",
@@ -3814,7 +3706,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2163 ريهام رمضان ابو سريع 1003986094 1148244213 بلقس ث2 "
+    "_searchString": "2163 ريهام رمضان ابو سريع 1003986094 1148244213 بلقس ث2 عام"
   },
   {
     "code": "2164",
@@ -3837,7 +3729,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2164 زنيب صالح حامد 1000370829 1120748726 بلقس ث2 "
+    "_searchString": "2164 زنيب صالح حامد 1000370829 1120748726 بلقس ث2 عام"
   },
   {
     "code": "2165",
@@ -3860,7 +3752,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2165 زنيب عبد الغني حسن 1275973023 1278620015 حزانية ث2 "
+    "_searchString": "2165 زنيب عبد الغني حسن 1275973023 1278620015 حزانيه ث2 عام"
   },
   {
     "code": "2166",
@@ -3883,7 +3775,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2166 زنيب هاشم ربيع 1102166974 1227203063 بلقس ث2 "
+    "_searchString": "2166 زنيب هاشم ربيع 1102166974 1227203063 بلقس ث2 عام"
   },
   {
     "code": "2167",
@@ -3906,7 +3798,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2167 زياد لطفي محمد 1141109891 1129821455 الجعافرة ث2 "
+    "_searchString": "2167 زياد لطفي محمد 1141109891 1129821455 الجعافره ث2 عام"
   },
   {
     "code": "2169",
@@ -3929,7 +3821,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2169 زينب اشرف سيف 1225029677 1034058825 بلقس ث2 "
+    "_searchString": "2169 زينب اشرف سيف 1225029677 1034058825 بلقس ث2 عام"
   },
   {
     "code": "2170",
@@ -3952,7 +3844,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2170 زينب رمضان شعبان 1144816630  السلمانية ث2 بكالوريا - طب"
+    "_searchString": "2170 زينب رمضان شعبان 1144816630 السلمانيه ث2 بكالوريا - طب"
   },
   {
     "code": "2172",
@@ -3975,7 +3867,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2172 زينب عبدالغني حسن 1275973023 1287620015 السلمانية ث2 "
+    "_searchString": "2172 زينب عبدالغني حسن 1275973023 1287620015 السلمانيه ث2 عام"
   },
   {
     "code": "2173",
@@ -4034,7 +3926,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 74.7
     },
-    "_searchString": "2173 زينب هاشم ربيع 1031265254 1227203063 بلقس ث2 بكالوريا - الاداب"
+    "_searchString": "2173 زينب هاشم ربيع 1031265254 1227203063 بلقس ث2 بكالوريا - الاداب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2174",
@@ -4057,7 +3949,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2174 زينب هشام 1031265254 1227203063  ث2 "
+    "_searchString": "2174 زينب هشام 1031265254 1227203063 ث2 عام"
   },
   {
     "code": "2175",
@@ -4080,7 +3972,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2175 زينة لطفي عبد الحميد 1505966183  عرب الشعارة ث2 "
+    "_searchString": "2175 زينه لطفي عبد الحميد 1505966183 عرب الشعاره ث2 عام"
   },
   {
     "code": "2176",
@@ -4103,7 +3995,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2176 سارة حمادة  1205043394  ث2 "
+    "_searchString": "2176 ساره حماده 1205043394 ث2 عام"
   },
   {
     "code": "2179",
@@ -4267,7 +4159,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2179 سارة كرم سيد 1040680807 1008348425 بلقس ث2 أزهر"
+    "_searchString": "2179 ساره كرم سيد 1040680807 1008348425 بلقس ث2 ازهر كيمياء ا/ محمد صلاح فزياء ا/ محمد مختار عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2180",
@@ -4290,7 +4182,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2180 سارة محمد عبد اللطيف 1009073696 1016159687 الزاوية ث2 "
+    "_searchString": "2180 ساره محمد عبد اللطيف 1009073696 1016159687 الزاويه ث2 عام"
   },
   {
     "code": "2183",
@@ -4313,7 +4205,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2183 سالي احمد حامد 1033520014 + بلقس ث2 "
+    "_searchString": "2183 سالي احمد حامد 1033520014 + بلقس ث2 عام"
   },
   {
     "code": "2184",
@@ -4407,7 +4299,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 83,
       "averageScore": 0
     },
-    "_searchString": "2184 سامح رجب عبد الرحمن 1284770737 1142305333 الجعافرة ث2 بكالوريا - هندسة"
+    "_searchString": "2184 سامح رجب عبد الرحمن 1284770737 1142305333 الجعافره ث2 بكالوريا - هندسه عربي ا/ سيد عبد العاطي انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2185",
@@ -4466,7 +4358,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 94.3
     },
-    "_searchString": "2185 سجدة كريم اشرف 115107324 1093804588 زواية ا ث2 "
+    "_searchString": "2185 سجده كريم اشرف 115107324 1093804588 زوايه ا ث2 عام عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "2186",
@@ -4489,7 +4381,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2186 سراف سالم محمد 1065519203 1019108066 بلقس ث2 "
+    "_searchString": "2186 سراف سالم محمد 1065519203 1019108066 بلقس ث2 عام"
   },
   {
     "code": "2187",
@@ -4512,7 +4404,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2187 سعاد احمد صالح 1288474906 1070523769  ث2 "
+    "_searchString": "2187 سعاد احمد صالح 1288474906 1070523769 ث2 عام"
   },
   {
     "code": "2189",
@@ -4535,7 +4427,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2189 سعد محمد اسماعيل 1090607420 1207702870 بلقس ث2 "
+    "_searchString": "2189 سعد محمد اسماعيل 1090607420 1207702870 بلقس ث2 عام"
   },
   {
     "code": "2191",
@@ -4558,7 +4450,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2191 سعيد رافت 1284665356 1289898328 بلقس ث2 "
+    "_searchString": "2191 سعيد رافت 1284665356 1289898328 بلقس ث2 عام"
   },
   {
     "code": "2193",
@@ -4581,7 +4473,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2193 سلسبيل اسامة 1273289228   ث2 "
+    "_searchString": "2193 سلسبيل اسامه 1273289228 ث2 عام"
   },
   {
     "code": "2194",
@@ -4591,46 +4483,10 @@ window.STUDENTS_DATA = [
     "parentPhone": "1029508345",
     "grade": "ث2",
     "specialization": "بكالوريا - طب",
-    "subjectsSummary": "فرنساوي",
-    "teachersSummary": "فرنساوي/.",
+    "subjectsSummary": "",
+    "teachersSummary": "",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
-    "academicSubjects": {
-      "فرنساوي": {
-        "teacher": ".",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      }
-    },
+    "academicSubjects": {},
     "_metrics": {
       "totalScore": 0,
       "totalMax": 0,
@@ -4640,7 +4496,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2194 سلسبيل صابر محمد (ولاء)  1029508345 كوم السمن ث2 بكالوريا - طب"
+    "_searchString": "2194 سلسبيل صابر محمد (ولاء) 1029508345 كوم السمن ث2 بكالوريا - طب"
   },
   {
     "code": "2195",
@@ -4663,7 +4519,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2195 سلمي ابراهيم عبد الكريم 1274951930  سلمانية ث2 "
+    "_searchString": "2195 سلمي ابراهيم عبد الكريم 1274951930 سلمانيه ث2 عام"
   },
   {
     "code": "2198",
@@ -4686,7 +4542,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2198 سلمي حسن حسن 1125786730 1147673388 السلمانية ث2 "
+    "_searchString": "2198 سلمي حسن حسن 1125786730 1147673388 السلمانيه ث2 عام"
   },
   {
     "code": "2199",
@@ -4745,7 +4601,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2199 سلمي حمادة ابراهيم 1103223406 1121611600 سلمانية ث2 "
+    "_searchString": "2199 سلمي حماده ابراهيم 1103223406 1121611600 سلمانيه ث2 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2200",
@@ -4768,7 +4624,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2200 سلمي سامح 1114471786   ث2 "
+    "_searchString": "2200 سلمي سامح 1114471786 ث2 عام"
   },
   {
     "code": "2202",
@@ -4814,7 +4670,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2205 سلمي محمد صبحي 1275974030 1222459052 بلقس ث2 "
+    "_searchString": "2205 سلمي محمد صبحي 1275974030 1222459052 بلقس ث2 عام"
   },
   {
     "code": "2206",
@@ -4873,7 +4729,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2206 سلمي محمد ع��دالفتاح 1224453980 1203425206 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2206 سلمي ��حمد عبدالفتاح 1224453980 1203425206 بلقس ث2 بكالوريا - طب عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "2207",
@@ -4896,7 +4752,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2207 سلمي محمود النبوي 1277931066 1062109956 بلقس ث2 "
+    "_searchString": "2207 سلمي محمود النبوي 1277931066 1062109956 بلقس ث2 عام"
   },
   {
     "code": "2208",
@@ -4919,7 +4775,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2208 سلمي مسعد 1098378682   ث2 "
+    "_searchString": "2208 سلمي مسعد 1098378682 ث2 عام"
   },
   {
     "code": "2210",
@@ -4942,7 +4798,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2210 سلمي وليد عامر عبدالفتاح 1284933058 1229937290 بلقس ث2 "
+    "_searchString": "2210 سلمي وليد عامر عبدالفتاح 1284933058 1229937290 بلقس ث2 عام"
   },
   {
     "code": "2512",
@@ -4953,11 +4809,11 @@ window.STUDENTS_DATA = [
     "grade": "ث2",
     "specialization": "عام",
     "subjectsSummary": "فزياء",
-    "teachersSummary": "فزياء/الجوهري",
+    "teachersSummary": "فزياء/ا/ محمد الجوهري",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
     "academicSubjects": {
       "فزياء": {
-        "teacher": "الجوهري",
+        "teacher": "ا/ محمد الجوهري",
         "sessions": [
           "",
           "",
@@ -5001,7 +4857,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2512 سما احمد ابو زيد 1117627388 1117085353 بلقس ث2 "
+    "_searchString": "2512 سما احمد ابو زيد 1117627388 1117085353 بلقس ث2 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2213",
@@ -5024,7 +4880,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2213 سما احمد رزق  1148775767 عرب الشعارة ث2 "
+    "_searchString": "2213 سما احمد رزق 1148775767 عرب الشعاره ث2 عام"
   },
   {
     "code": "2214",
@@ -5047,7 +4903,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2214 سما طلعت 1274284695   ث2 "
+    "_searchString": "2214 سما طلعت 1274284695 ث2 عام"
   },
   {
     "code": "2215",
@@ -5070,7 +4926,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2215 سما عبد الفتاح احمد 1022500463 1224624425 عرب الشعارة ث2 "
+    "_searchString": "2215 سما عبد الفتاح احمد 1022500463 1224624425 عرب الشعاره ث2 عام"
   },
   {
     "code": "2217",
@@ -5164,7 +5020,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2217 سندس عماد حمدي 1210119571 1112214898  ث2 أزهر"
+    "_searchString": "2217 سندس عماد حمدي 1210119571 1112214898 ث2 ازهر رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2218",
@@ -5258,7 +5114,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 64
     },
-    "_searchString": "2218 سيد يسري السيد اسماعيل 1117433216 1154211645 بلقس ث2 بكالوريا - هندسة"
+    "_searchString": "2218 سيد يسري السيد اسماعيل 1117433216 1154211645 بلقس ث2 بكالوريا - هندسه عربي ا/ احمد عبد القادر انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2219",
@@ -5281,7 +5137,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2219 شذي سامي برشاوي 1050705643 1009852202 الزاوية ث2 "
+    "_searchString": "2219 شذي سامي برشاوي 1050705643 1009852202 الزاويه ث2 عام"
   },
   {
     "code": "2220",
@@ -5340,7 +5196,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2220 شروق احمد حسين 1152428645 1102166496 بلقس ث2 عام"
+    "_searchString": "2220 شروق احمد حسين 1152428645 1102166496 بلقس ث2 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2223",
@@ -5363,7 +5219,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2223 شروق يسري احمد  1099915730  ث2 "
+    "_searchString": "2223 شروق يسري احمد 1099915730 ث2 عام"
   },
   {
     "code": "2224",
@@ -5422,7 +5278,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 98.6
     },
-    "_searchString": "2224 شمس احمد محمد 1021698589 1021698589 بلقس ث2 بكالوريا - هندسة"
+    "_searchString": "2224 شمس احمد محمد 1021698589 1021698589 بلقس ث2 بكالوريا - هندسه عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2225",
@@ -5445,7 +5301,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2225 شمس محمد 1282646400   ث2 "
+    "_searchString": "2225 شمس محمد 1282646400 ث2 عام"
   },
   {
     "code": "2226",
@@ -5468,7 +5324,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2226 شهاب حمادة محمد 1220771334 1559007013 بلقس ث2 "
+    "_searchString": "2226 شهاب حماده محمد 1220771334 1559007013 بلقس ث2 عام"
   },
   {
     "code": "2228",
@@ -5491,7 +5347,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2228 شهد رامي شوقي  105122553 بلقس ث2 "
+    "_searchString": "2228 شهد رامي شوقي 105122553 بلقس ث2 عام"
   },
   {
     "code": "2230",
@@ -5502,46 +5358,11 @@ window.STUDENTS_DATA = [
     "grade": "ث2",
     "specialization": "بكالوريا - هندسة",
     "subjectsSummary": "كيمياء",
-    "teachersSummary": "كيمي��ء/ا/ محمد صلاح",
+    "teachersSummary": "كيمياء/ا/ محمد صلاح",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
     "academicSubjects": {
-      "كيمي��ء": {
-        "teacher": "ا/ محمد صلاح",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      },
       "كيمياء": {
-        "teacher": "مدرس المادة",
+        "teacher": "ا/ محمد صلاح",
         "sessions": [
           "",
           "",
@@ -5585,7 +5406,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2230 شهد عمرو شعبان 1203429079 1281588221  ث2 بكالوريا - هندسة"
+    "_searchString": "2230 شهد عمرو شعبان 1203429079 1281588221 ث2 بكالوريا - هندسه كيمياء ا/ محمد صلاح"
   },
   {
     "code": "2231",
@@ -5679,7 +5500,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 91,
       "averageScore": 83.6
     },
-    "_searchString": "2231 شهد كرم 1080553347 1028863303  ث2 "
+    "_searchString": "2231 شهد كرم 1080553347 1028863303 ث2 عام انجليزي ا/ حماده يوسف عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "2232",
@@ -5702,7 +5523,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2232 شهد مصطفي 1000149715 103044345  ث2 "
+    "_searchString": "2232 شهد مصطفي 1000149715 103044345 ث2 عام"
   },
   {
     "code": "2233",
@@ -5725,7 +5546,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2233 شيرين عماد عبدالرحمن  1066506142 الزاوية ث2 "
+    "_searchString": "2233 شيرين عماد عبدالرحمن 1066506142 الزاويه ث2 عام"
   },
   {
     "code": "2236",
@@ -5748,7 +5569,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2236 شيماء علاء شديد 1066146428 1066146428 عزبة الزيني ث2 عام"
+    "_searchString": "2236 شيماء علاء شديد 1066146428 1066146428 عزبه الزيني ث2 عام"
   },
   {
     "code": "2237",
@@ -5771,7 +5592,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2237 شيماء عمرو سعيد 1284136243 1275268238  ث2 "
+    "_searchString": "2237 شيماء عمرو سعيد 1284136243 1275268238 ث2 عام"
   },
   {
     "code": "2240",
@@ -5794,7 +5615,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2240 طيبة اسماعيل مصطفي 1106314964 1154250734 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2240 طيبه اسماعيل مصطفي 1106314964 1154250734 بلقس ث2 بكالوريا - طب"
   },
   {
     "code": "2241",
@@ -5888,7 +5709,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2241 عائشة ابو بكر ابراهيم 1096389248 1116956932 عرب الشعارة ث2 "
+    "_searchString": "2241 عايشه ابو بكر ابراهيم 1096389248 1116956932 عرب الشعاره ث2 عام عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2242",
@@ -5911,7 +5732,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2242 عائشة احمد 1104935212   ث2 "
+    "_searchString": "2242 عايشه احمد 1104935212 ث2 عام"
   },
   {
     "code": "2243",
@@ -5934,7 +5755,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2243 عائشة عماد سيد 1033316015 1018306831  ث2 "
+    "_searchString": "2243 عايشه عماد سيد 1033316015 1018306831 ث2 عام"
   },
   {
     "code": "2244",
@@ -5957,7 +5778,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2244 عبد  الرحمن سيد 1122545194 1006242251 الجعافرة ث2 "
+    "_searchString": "2244 عبد  الرحمن سيد 1122545194 1006242251 الجعافره ث2 عام"
   },
   {
     "code": "2247",
@@ -5980,7 +5801,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2247 عبد الرحمن عمار 1008513666 1008513666 عرب الشعارة ث2 "
+    "_searchString": "2247 عبد الرحمن عمار 1008513666 1008513666 عرب الشعاره ث2 عام"
   },
   {
     "code": "2249",
@@ -6003,7 +5824,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2249 عبد الله صبحي عبد الله 1201650771 1276871321 بلقس ث2 "
+    "_searchString": "2249 عبد الله صبحي عبد الله 1201650771 1276871321 بلقس ث2 عام"
   },
   {
     "code": "2250",
@@ -6026,7 +5847,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2250 عبدالرحمن منصور 1205436625 1152548045 بلقس ث2 "
+    "_searchString": "2250 عبدالرحمن منصور 1205436625 1152548045 بلقس ث2 عام"
   },
   {
     "code": "2251",
@@ -6085,7 +5906,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 95
     },
-    "_searchString": "2251 عبير فؤاد فرج 1271068720 1111186027 بلقس ث2 "
+    "_searchString": "2251 عبير فواد فرج 1271068720 1111186027 بلقس ث2 عام عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "2252",
@@ -6108,7 +5929,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2252 عزة خالد محمد 1111474308  بلقس ث2 "
+    "_searchString": "2252 عزه خالد محمد 1111474308 بلقس ث2 عام"
   },
   {
     "code": "2253",
@@ -6167,7 +5988,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 60,
       "averageScore": 0
     },
-    "_searchString": "2253 علي احمد بدوي 1224285024 1224285024 الجعافرة ث2 بكالوريا - هندسة"
+    "_searchString": "2253 علي احمد بدوي 1224285024 1224285024 الجعافره ث2 بكالوريا - هندسه انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2254",
@@ -6190,7 +6011,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2254 علي ناصر ابراهيم 1208644607 1203181840 بلقس ث2 "
+    "_searchString": "2254 علي ناصر ابراهيم 1208644607 1203181840 بلقس ث2 عام"
   },
   {
     "code": "2255",
@@ -6213,7 +6034,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2255 عمار عامر خفاجة 1208993123 1110952566 الجعافرة ث2 "
+    "_searchString": "2255 عمار عامر خفاجه 1208993123 1110952566 الجعافره ث2 عام"
   },
   {
     "code": "2256",
@@ -6342,7 +6163,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2256 عمر تامر سعيد 1118962795 1116392805 بلقس ث2 "
+    "_searchString": "2256 عمر تامر سعيد 1118962795 1116392805 بلقس ث2 عام فزياء ا/ محمد مختار رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2257",
@@ -6401,7 +6222,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 40,
       "averageScore": 0
     },
-    "_searchString": "2257 عمر عبد الفتاح عبد الحميد 1050873326 1009037300 الجعافرة ث2 بكالوريا - طب"
+    "_searchString": "2257 عمر عبد الفتاح عبد الحميد 1050873326 1009037300 الجعافره ث2 بكالوريا - طب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2259",
@@ -6460,7 +6281,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 69.1
     },
-    "_searchString": "2259 عمر محمد عبدالكريم 1210957032 1090015222  ث2 عام"
+    "_searchString": "2259 عمر محمد عبدالكريم 1210957032 1090015222 ث2 عام عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "2263",
@@ -6483,7 +6304,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2263 فاطمة احمد عبد الحميد 1025847322 1025847322 بلقس ث2 "
+    "_searchString": "2263 فاطمه احمد عبد الحميد 1025847322 1025847322 بلقس ث2 عام"
   },
   {
     "code": "2264",
@@ -6506,7 +6327,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2264 فاطمة اشرف محمد 1556783233 102074226 بلقس ث2 "
+    "_searchString": "2264 فاطمه اشرف محمد 1556783233 102074226 بلقس ث2 عام"
   },
   {
     "code": "2265",
@@ -6529,7 +6350,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2265 فاطمة حسني كامل 1017091702 1096183897  ث2 "
+    "_searchString": "2265 فاطمه حسني كامل 1017091702 1096183897 ث2 عام"
   },
   {
     "code": "2266",
@@ -6552,7 +6373,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2266 فاطمة سعيد 1288180540 1286110651  ث2 "
+    "_searchString": "2266 فاطمه سعيد 1288180540 1286110651 ث2 عام"
   },
   {
     "code": "2267",
@@ -6575,7 +6396,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2267 فاطمة سيد غنيم 1026794188 1115634998 بلقس ث2 "
+    "_searchString": "2267 فاطمه سيد غنيم 1026794188 1115634998 بلقس ث2 عام"
   },
   {
     "code": "2269",
@@ -6634,7 +6455,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2269 فاطمة عايد 1282801079 1015142028 السلمانية ث2 بكالوريا - طب"
+    "_searchString": "2269 فاطمه عايد 1282801079 1015142028 السلمانيه ث2 بكالوريا - طب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2271",
@@ -6657,7 +6478,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2271 فاطمة عبد الغيني سيد 1108064581 1227594945 حزانية ث2 "
+    "_searchString": "2271 فاطمه عبد الغيني سيد 1108064581 1227594945 حزانيه ث2 عام"
   },
   {
     "code": "2274",
@@ -6680,7 +6501,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2274 فاطمة محمد عادل 1273156122   ث2 "
+    "_searchString": "2274 فاطمه محمد عادل 1273156122 ث2 عام"
   },
   {
     "code": "2275",
@@ -6703,7 +6524,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2275 فاطمة يسري حسني 1284455048  بلقس ث2 "
+    "_searchString": "2275 فاطمه يسري حسني 1284455048 بلقس ث2 عام"
   },
   {
     "code": "2276",
@@ -6726,7 +6547,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2276 فاطمة يسري حسني عبدالخالق 1287755048  بلقس ث2 "
+    "_searchString": "2276 فاطمه يسري حسني عبدالخالق 1287755048 بلقس ث2 عام"
   },
   {
     "code": "2277",
@@ -6749,7 +6570,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2277 فرج احمد فرج 1272249108 1001514592 بلقس ث2 "
+    "_searchString": "2277 فرج احمد فرج 1272249108 1001514592 بلقس ث2 عام"
   },
   {
     "code": "2278",
@@ -6772,7 +6593,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2278 فرج سعد فرج 1034391092 1200046817 بلقس ث2 "
+    "_searchString": "2278 فرج سعد فرج 1034391092 1200046817 بلقس ث2 عام"
   },
   {
     "code": "2279",
@@ -6795,7 +6616,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2279 فرح احمد محمد  1288284906 بلقس ث2 "
+    "_searchString": "2279 فرح احمد محمد 1288284906 بلقس ث2 عام"
   },
   {
     "code": "2280",
@@ -6818,7 +6639,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2280 فرحة سيد عواد 1276978217 1200612567  ث2 "
+    "_searchString": "2280 فرحه سيد عواد 1276978217 1200612567 ث2 عام"
   },
   {
     "code": "2282",
@@ -6877,7 +6698,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2282 فريدة فرج 1095321748   ث2 "
+    "_searchString": "2282 فريده فرج 1095321748 ث2 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2283",
@@ -6900,7 +6721,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2283 فريدة نجم مصطفي 1030896784   ث2 "
+    "_searchString": "2283 فريده نجم مصطفي 1030896784 ث2 عام"
   },
   {
     "code": "2284",
@@ -6923,7 +6744,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2284 فواد احمد فواد 1211343605 1129482428 بلقس ث2 "
+    "_searchString": "2284 فواد احمد فواد 1211343605 1129482428 بلقس ث2 عام"
   },
   {
     "code": "2285",
@@ -6946,7 +6767,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2285 قمر حسن احمد 1103784260  بلقس ث2 "
+    "_searchString": "2285 قمر حسن احمد 1103784260 بلقس ث2 عام"
   },
   {
     "code": "2288",
@@ -6969,7 +6790,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2288 كريمة قمرالدولة محمد 1125332629 1026830995 بلقس ث2 "
+    "_searchString": "2288 كريمه قمرالدوله محمد 1125332629 1026830995 بلقس ث2 عام"
   },
   {
     "code": "2290",
@@ -7028,7 +6849,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2290 كوثر فرج شحات 1229677021 1229804087  ث2 عام"
+    "_searchString": "2290 كوثر فرج شحات 1229677021 1229804087 ث2 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2292",
@@ -7051,7 +6872,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2292 ليلي مصطفي نظمي محمد 1276928389 1229939470 بلقس ث2 "
+    "_searchString": "2292 ليلي مصطفي نظمي محمد 1276928389 1229939470 بلقس ث2 عام"
   },
   {
     "code": "2298",
@@ -7074,7 +6895,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2298 محمد ابراهيم 1031753897 1229101450 بلقس ث2 "
+    "_searchString": "2298 محمد ابراهيم 1031753897 1229101450 بلقس ث2 عام"
   },
   {
     "code": "2299",
@@ -7097,7 +6918,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2299 محمد ابراهيم دسوقي 1031753897 1229101450  ث2 "
+    "_searchString": "2299 محمد ابراهيم دسوقي 1031753897 1229101450 ث2 عام"
   },
   {
     "code": "2300",
@@ -7120,7 +6941,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2300 محمد اشرف محمد 1203170014 1203170014 سلمانية ث2 "
+    "_searchString": "2300 محمد اشرف محمد 1203170014 1203170014 سلمانيه ث2 عام"
   },
   {
     "code": "2301",
@@ -7143,7 +6964,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2301 محمد تامر محمد 1206706099 1208162708 بلقس ث2 "
+    "_searchString": "2301 محمد تامر محمد 1206706099 1208162708 بلقس ث2 عام"
   },
   {
     "code": "2302",
@@ -7166,7 +6987,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2302 محمد جمعة 1157875264   ث2 "
+    "_searchString": "2302 محمد جمعه 1157875264 ث2 عام"
   },
   {
     "code": "2304",
@@ -7260,7 +7081,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2304 محمد خالد 1003961621 1118185106 بلقس ث2 عام"
+    "_searchString": "2304 محمد خالد 1003961621 1118185106 بلقس ث2 عام عربي ا/ سيد عبد العاطي انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2308",
@@ -7283,7 +7104,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2308 محمد سيد علي 1210124583 1227541109 الجعافرة ث2 "
+    "_searchString": "2308 محمد سيد علي 1210124583 1227541109 الجعافره ث2 عام"
   },
   {
     "code": "2309",
@@ -7377,7 +7198,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 74.2
     },
-    "_searchString": "2309 محمد صلاح محمد 1010822851 1121710775 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2309 محمد صلاح محمد 1010822851 1121710775 بلقس ث2 بكالوريا - طب انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2310",
@@ -7400,7 +7221,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2310 محمد طاهر محمد محمود 1141602006 1141602007 سلمانية ث2 "
+    "_searchString": "2310 محمد طاهر محمد محمود 1141602006 1141602007 سلمانيه ث2 عام"
   },
   {
     "code": "2311",
@@ -7423,7 +7244,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2311 محمد عادل سيف 1272496695 1289282352 بلقس ث2 "
+    "_searchString": "2311 محمد عادل سيف 1272496695 1289282352 بلقس ث2 عام"
   },
   {
     "code": "2315",
@@ -7482,7 +7303,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 60,
       "averageScore": 30
     },
-    "_searchString": "2315 محمد عبدالله محمد 1207731764 1284673561  ث2 بكالوريا - طب"
+    "_searchString": "2315 محمد عبدالله محمد 1207731764 1284673561 ث2 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2316",
@@ -7505,7 +7326,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2316 محمد علي احمد جميل 1270687186 1001286666 بلقس ث2 "
+    "_searchString": "2316 محمد علي احمد جميل 1270687186 1001286666 بلقس ث2 عام"
   },
   {
     "code": "2317",
@@ -7528,7 +7349,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2317 محمد علي صالح 106557768 1221600984 بلقس ث2 بكالوريا - هندسة"
+    "_searchString": "2317 محمد علي صالح 106557768 1221600984 بلقس ث2 بكالوريا - هندسه"
   },
   {
     "code": "2320",
@@ -7551,7 +7372,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2320 محمد عمرو حلمي 1212630743 1141651692 الجعافرة ث2 "
+    "_searchString": "2320 محمد عمرو حلمي 1212630743 1141651692 الجعافره ث2 عام"
   },
   {
     "code": "2322",
@@ -7574,7 +7395,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2322 محمد فتحي احمد الجمال 1091801237 1002341046 زواية ا ث2 "
+    "_searchString": "2322 محمد فتحي احمد الجمال 1091801237 1002341046 زوايه ا ث2 عام"
   },
   {
     "code": "2323",
@@ -7633,7 +7454,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 25
     },
-    "_searchString": "2323 محمد كريم جمال 1010636434 1008606602 بلقس ث2 بكالوريا - هندسة"
+    "_searchString": "2323 محمد كريم جمال 1010636434 1008606602 بلقس ث2 بكالوريا - هندسه عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2324",
@@ -7692,7 +7513,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 78.7
     },
-    "_searchString": "2324 محمد كريم محمد 1205151716 1205151716  ث2 "
+    "_searchString": "2324 محمد كريم محمد 1205151716 1205151716 ث2 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2326",
@@ -7786,7 +7607,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 0
     },
-    "_searchString": "2326 محمد محمود محمد 1156966120 1067254486 الجعافرة ث2 بكالوريا - طب"
+    "_searchString": "2326 محمد محمود محمد 1156966120 1067254486 الجعافره ث2 بكالوريا - طب انجليزي ا/ حماده يوسف عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "2328",
@@ -7809,7 +7630,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2328 محمد مصطفي رمضان 1222724886 1228060393 بلقس ث2 "
+    "_searchString": "2328 محمد مصطفي رمضان 1222724886 1228060393 بلقس ث2 عام"
   },
   {
     "code": "2329",
@@ -7832,7 +7653,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2329 محمد ناصر سيد احمد 1285612920 1151149879 بلقس ث2 "
+    "_searchString": "2329 محمد ناصر سيد احمد 1285612920 1151149879 بلقس ث2 عام"
   },
   {
     "code": "2331",
@@ -7855,7 +7676,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2331 محمد ياسر صلاح 1108064621 1141528152 السلمانية ث2 "
+    "_searchString": "2331 محمد ياسر صلاح 1108064621 1141528152 السلمانيه ث2 عام"
   },
   {
     "code": "2332",
@@ -7878,7 +7699,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2332 محمود شحتة سيد 1102815622 1097566342 السلمانية ث2 "
+    "_searchString": "2332 محمود شحته سيد 1102815622 1097566342 السلمانيه ث2 عام"
   },
   {
     "code": "2333",
@@ -7901,7 +7722,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2333 محمود صلاح ابراهيم 1112201914 1001928014 سلمانية ث2 "
+    "_searchString": "2333 محمود صلاح ابراهيم 1112201914 1001928014 سلمانيه ث2 عام"
   },
   {
     "code": "2334",
@@ -7924,7 +7745,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2334 محمود صلاح محمود 1031661271  الزاوية ث2 "
+    "_searchString": "2334 محمود صلاح محمود 1031661271 الزاويه ث2 عام"
   },
   {
     "code": "2336",
@@ -7947,7 +7768,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2336 محمود عبد العزيز محمود 1070148833 1002131116 السلمانية ث2 "
+    "_searchString": "2336 محمود عبد العزيز محمود 1070148833 1002131116 السلمانيه ث2 عام"
   },
   {
     "code": "2340",
@@ -7970,7 +7791,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2340 محمود علي محمود 1202584728 1028729995 السلمانية ث2 "
+    "_searchString": "2340 محمود علي محمود 1202584728 1028729995 السلمانيه ث2 عام"
   },
   {
     "code": "2342",
@@ -8064,7 +7885,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 81.3
     },
-    "_searchString": "2342 محمود محمد حلمي 1140038284 1150838767 بلقس ث2 بكالوريا - هندسة"
+    "_searchString": "2342 محمود محمد حلمي 1140038284 1150838767 بلقس ث2 بكالوريا - هندسه عربي ا/ سيد عبد العاطي تاريخ ا/ رضا صلاح"
   },
   {
     "code": "2343",
@@ -8123,7 +7944,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 85
     },
-    "_searchString": "2343 محمود محمد شعبان يونس 1108296038 1009977316 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2343 محمود محمد شعبان يونس 1108296038 1009977316 بلقس ث2 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2344",
@@ -8146,7 +7967,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2344 محمود مصطفي محمود 1278940581 1070106055 بلقس ث2 "
+    "_searchString": "2344 محمود مصطفي محمود 1278940581 1070106055 بلقس ث2 عام"
   },
   {
     "code": "2345",
@@ -8169,7 +7990,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2345 محمود مصطفي محمود 1278940581 1070106055 بلقس ث2 "
+    "_searchString": "2345 محمود مصطفي محمود 1278940581 1070106055 بلقس ث2 عام"
   },
   {
     "code": "2346",
@@ -8263,7 +8084,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 20,
       "averageScore": 0
     },
-    "_searchString": "2346 مرام مجدي يحي 1016003969 1152858171 السلمانية ث2 "
+    "_searchString": "2346 مرام مجدي يحي 1016003969 1152858171 السلمانيه ث2 عام انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2347",
@@ -8286,7 +8107,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2347 مروان سعيد صبحي 1200647034 1200647034 بلقس ث2 "
+    "_searchString": "2347 مروان سعيد صبحي 1200647034 1200647034 بلقس ث2 عام"
   },
   {
     "code": "2351",
@@ -8309,7 +8130,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2351 مروة عمرو رجب 1018250846 1211511384 بلقس ث2 "
+    "_searchString": "2351 مروه عمرو رجب 1018250846 1211511384 بلقس ث2 عام"
   },
   {
     "code": "2355",
@@ -8368,7 +8189,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 33,
       "averageScore": 0
     },
-    "_searchString": "2355 مريم اشرف محمد  1110198530 سلمانية ث2 "
+    "_searchString": "2355 مريم اشرف محمد 1110198530 سلمانيه ث2 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2356",
@@ -8391,7 +8212,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2356 مريم اشرف محمد عبد الرحمن  1110198530 السلمانية ث2 "
+    "_searchString": "2356 مريم اشرف محمد عبد الرحمن 1110198530 السلمانيه ث2 عام"
   },
   {
     "code": "2357",
@@ -8414,7 +8235,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2357 مريم حسن محمد 1282411762 1206589678 زاوية النجار ث2 "
+    "_searchString": "2357 مريم حسن محمد 1282411762 1206589678 زاويه النجار ث2 عام"
   },
   {
     "code": "2358",
@@ -8425,11 +8246,11 @@ window.STUDENTS_DATA = [
     "grade": "ث2",
     "specialization": "بكالوريا - الاداب",
     "subjectsSummary": "علم نفس, عربي, انجليزي, تاريخ",
-    "teachersSummary": "علم نفس/سمية واحمد الليثي | عربي/ا/ سيد عبد العاطي [حصص: ✓, ✓, ✓, 13/15, ✓, 17.5/20, _, _] | انجليزي/ا/ محمد ص��حي | تاريخ/ا/ رضا صلاح [حصص: ✓, _, _, _, _, _, _, _]",
+    "teachersSummary": "علم نفس/ا/ احمد الليثي | عربي/ا/ سيد عبد العاطي [حصص: ✓, ✓, ✓, 13/15, ✓, 17.5/20, _, _] | انجليزي/ا/ محمد ص��حي | تاريخ/ا/ رضا صلاح [حصص: ✓, _, _, _, _, _, _, _]",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
     "academicSubjects": {
       "علم نفس": {
-        "teacher": "سمية واحمد الليثي",
+        "teacher": "ا/ احمد الليثي",
         "sessions": [
           "",
           "",
@@ -8578,7 +8399,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 87.1
     },
-    "_searchString": "2358 مريم حمادة كامل ابراهيم 1210853381 1202097505 بلقس ث2 بكالوريا - الاداب"
+    "_searchString": "2358 مريم حماده كامل ابراهيم 1210853381 1202097505 بلقس ث2 بكالوريا - الاداب علم نفس ا/ احمد الليثي عربي ا/ سيد عبد العاطي انجليزي ا/ محمد ص��حي تاريخ ا/ رضا صلاح"
   },
   {
     "code": "2359",
@@ -8601,7 +8422,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2359 مريم خالد صبحي احمد 1093027752 1028619751 كوم السمن ث2 "
+    "_searchString": "2359 مريم خالد صبحي احمد 1093027752 1028619751 كوم السمن ث2 عام"
   },
   {
     "code": "2360",
@@ -8624,7 +8445,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2360 مريم سامح محمود 1111827399 1022997310  ث2 "
+    "_searchString": "2360 مريم سامح محمود 1111827399 1022997310 ث2 عام"
   },
   {
     "code": "2361",
@@ -8647,7 +8468,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2361 مريم سيد علي 1062262914 1013643301 حزانية ث2 "
+    "_searchString": "2361 مريم سيد علي 1062262914 1013643301 حزانيه ث2 عام"
   },
   {
     "code": "2362",
@@ -8670,7 +8491,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2362 مريم شراقي 10661413611   ث2 "
+    "_searchString": "2362 مريم شراقي 10661413611 ث2 عام"
   },
   {
     "code": "2363",
@@ -8764,7 +8585,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2363 مريم طارق ابراهيم 1107394599 1110264231 زواية ا ث2 بكالوريا - طب"
+    "_searchString": "2363 مريم طارق ابراهيم 1107394599 1110264231 زوايه ا ث2 بكالوريا - طب عربي ا/ احمد عبد القادر فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2364",
@@ -8787,7 +8608,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2364 مريم عبدالمجيد 1102400287   ث2 "
+    "_searchString": "2364 مريم عبدالمجيد 1102400287 ث2 عام"
   },
   {
     "code": "2366",
@@ -8810,7 +8631,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2366 مريم كرم مصلح 1024606728 1007927754 حزانية ث2 "
+    "_searchString": "2366 مريم كرم مصلح 1024606728 1007927754 حزانيه ث2 عام"
   },
   {
     "code": "2368",
@@ -8833,7 +8654,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2368 مريم محمد سيد 1270088224  بلقس ث2 "
+    "_searchString": "2368 مريم محمد سيد 1270088224 بلقس ث2 عام"
   },
   {
     "code": "2370",
@@ -8856,7 +8677,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2370 مريم محمد علي 1229329323 1032427304 سلمانية ث2 "
+    "_searchString": "2370 مريم محمد علي 1229329323 1032427304 سلمانيه ث2 عام"
   },
   {
     "code": "2371",
@@ -8879,7 +8700,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2371 مريم محمد علي نصار 1227715101 1032427304 السلمانية ث2 "
+    "_searchString": "2371 مريم محمد علي نصار 1227715101 1032427304 السلمانيه ث2 عام"
   },
   {
     "code": "2372",
@@ -8902,7 +8723,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2372 مريم محمد فرحات 1020333897   ث2 "
+    "_searchString": "2372 مريم محمد فرحات 1020333897 ث2 عام"
   },
   {
     "code": "2373",
@@ -8961,7 +8782,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2373 مريم محمد نبيل 1069020893 1276004191 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2373 مريم محمد نبيل 1069020893 1276004191 بلقس ث2 بكالوريا - طب رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2375",
@@ -9055,7 +8876,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "2375 مريم مصطفي محمود 1105057755 1069464116 السلمانية ث2 "
+    "_searchString": "2375 مريم مصطفي محمود 1105057755 1069464116 السلمانيه ث2 عام انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2376",
@@ -9078,7 +8899,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2376 مريم مصطفي محمود 1205057755 1069464116 سلمانية ث2 "
+    "_searchString": "2376 مريم مصطفي محمود 1205057755 1069464116 سلمانيه ث2 عام"
   },
   {
     "code": "2378",
@@ -9101,7 +8922,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2378 مريم وليد رجب  1155801809 السلمانية ث2 "
+    "_searchString": "2378 مريم وليد رجب 1155801809 السلمانيه ث2 عام"
   },
   {
     "code": "2382",
@@ -9124,7 +8945,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2382 مصطفي عمرو مجدي 1210855386 1278445419 بلقس ث2 "
+    "_searchString": "2382 مصطفي عمرو مجدي 1210855386 1278445419 بلقس ث2 عام"
   },
   {
     "code": "2383",
@@ -9147,7 +8968,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2383 مصطفي محمد مصطفي 1003826241 1222759599  ث2 "
+    "_searchString": "2383 مصطفي محمد مصطفي 1003826241 1222759599 ث2 عام"
   },
   {
     "code": "2384",
@@ -9170,7 +8991,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2384 مصطفي ياسر فوزي 1270702150 1270702624 بلقس ث2 "
+    "_searchString": "2384 مصطفي ياسر فوزي 1270702150 1270702624 بلقس ث2 عام"
   },
   {
     "code": "2387",
@@ -9264,7 +9085,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2387 ملك ايمن حسن 1225851449 1278993239 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2387 ملك ايمن حسن 1225851449 1278993239 بلقس ث2 بكالوريا - طب تاريخ ا/ رضا صلاح جغرافيا ا/ رضا صلاح"
   },
   {
     "code": "2389",
@@ -9287,7 +9108,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2389 ملك خليل ابراهيم محمد 1203484572 1274218973 بلقس ث2 "
+    "_searchString": "2389 ملك خليل ابراهيم محمد 1203484572 1274218973 بلقس ث2 عام"
   },
   {
     "code": "2390",
@@ -9310,7 +9131,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2390 ملك سيد رمضان 1050203674 1009682616 بلقس ث2 "
+    "_searchString": "2390 ملك سيد رمضان 1050203674 1009682616 بلقس ث2 عام"
   },
   {
     "code": "2391",
@@ -9333,7 +9154,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2391 ملك شاكر عبد الرحمن  1090177628 الزاوية ث2 "
+    "_searchString": "2391 ملك شاكر عبد الرحمن 1090177628 الزاويه ث2 عام"
   },
   {
     "code": "2392",
@@ -9356,7 +9177,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2392 ملك شريف محمد 1100104284  بلقس ث2 "
+    "_searchString": "2392 ملك شريف محمد 1100104284 بلقس ث2 عام"
   },
   {
     "code": "2393",
@@ -9415,7 +9236,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2393 ملك صابر كامل سيد 121202569 121202569 بلقس ث2 "
+    "_searchString": "2393 ملك صابر كامل سيد 121202569 121202569 بلقس ث2 عام عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "2394",
@@ -9438,7 +9259,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2394 ملك عايد 102529190 1006614042 بلقس ث2 "
+    "_searchString": "2394 ملك عايد 102529190 1006614042 بلقس ث2 عام"
   },
   {
     "code": "2395",
@@ -9461,7 +9282,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2395 ملك عايد شديد 1025029190 1006614042 عزبة الزيني ث2 "
+    "_searchString": "2395 ملك عايد شديد 1025029190 1006614042 عزبه الزيني ث2 عام"
   },
   {
     "code": "2397",
@@ -9484,7 +9305,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2397 ملك محمد البوهي 1100639603 1117359311 بلقس ث2 "
+    "_searchString": "2397 ملك محمد البوهي 1100639603 1117359311 بلقس ث2 عام"
   },
   {
     "code": "2398",
@@ -9507,7 +9328,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2398 ملك محمد علي 1108064566 1149559112 حزانية ث2 "
+    "_searchString": "2398 ملك محمد علي 1108064566 1149559112 حزانيه ث2 عام"
   },
   {
     "code": "2399",
@@ -9530,7 +9351,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2399 ملك محمد محمود علي 1271088272 1220808205 بلقس ث2 "
+    "_searchString": "2399 ملك محمد محمود علي 1271088272 1220808205 بلقس ث2 عام"
   },
   {
     "code": "2400",
@@ -9553,7 +9374,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2400 ملك محمود محمد كامل 1146128258 1146128258 السلمانية ث2 "
+    "_searchString": "2400 ملك محمود محمد كامل 1146128258 1146128258 السلمانيه ث2 عام"
   },
   {
     "code": "2402",
@@ -9576,7 +9397,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2402 ملك ناصر 1501170212 1220176587 بلقس ث2 "
+    "_searchString": "2402 ملك ناصر 1501170212 1220176587 بلقس ث2 عام"
   },
   {
     "code": "2403",
@@ -9599,7 +9420,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2403 ملك ياسر سعيد 1114535503 1120143663 عرب الشعارة ث2 "
+    "_searchString": "2403 ملك ياسر سعيد 1114535503 1120143663 عرب الشعاره ث2 عام"
   },
   {
     "code": "2404",
@@ -9622,7 +9443,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2404 مللك عبد الناصر ابراهيم 1284141762 1229144870 بلقس ث2 "
+    "_searchString": "2404 مللك عبد الناصر ابراهيم 1284141762 1229144870 بلقس ث2 عام"
   },
   {
     "code": "2405",
@@ -9645,7 +9466,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2405 منار رشاد احمد 1080238074  كوم السمن ث2 "
+    "_searchString": "2405 منار رشاد احمد 1080238074 كوم السمن ث2 عام"
   },
   {
     "code": "2406",
@@ -9704,7 +9525,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2406 منار وائل كرم 1270318948 1283092752 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2406 منار وايل كرم 1270318948 1283092752 بلقس ث2 بكالوريا - طب فزياء ا/ محمد مختار"
   },
   {
     "code": "2407",
@@ -9727,7 +9548,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2407 منة احمد رجب حسن 1143440741 1116815589 السلمانية ث2 "
+    "_searchString": "2407 منه احمد رجب حسن 1143440741 1116815589 السلمانيه ث2 عام"
   },
   {
     "code": "2410",
@@ -9750,7 +9571,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2410 منة سيد شعبان 1226000241 1220074925 بلقس ث2 "
+    "_searchString": "2410 منه سيد شعبان 1226000241 1220074925 بلقس ث2 عام"
   },
   {
     "code": "2411",
@@ -9773,7 +9594,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2411 منة محمد اسماعيل 1279462083 1000896631  ث2 "
+    "_searchString": "2411 منه محمد اسماعيل 1279462083 1000896631 ث2 عام"
   },
   {
     "code": "2413",
@@ -9796,7 +9617,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2413 منة مصطفي سليم 1080794999 1149094293 بلقس ث2 "
+    "_searchString": "2413 منه مصطفي سليم 1080794999 1149094293 بلقس ث2 عام"
   },
   {
     "code": "2416",
@@ -9855,7 +9676,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2416 منه مصباح الحسيني (ماجدة) 1065510671 1065510671 بلقس ث2 عام"
+    "_searchString": "2416 منه مصباح الحسيني (ماجده) 1065510671 1065510671 بلقس ث2 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2418",
@@ -9914,7 +9735,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2418 مني سمارة كمال عبد المقصود 1203199682 1127072900  ث2 "
+    "_searchString": "2418 مني سماره كمال عبد المقصود 1203199682 1127072900 ث2 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2421",
@@ -9937,7 +9758,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2421 مهند محمد رمضان 1556394549 1147108836 الجعافرة ث2 "
+    "_searchString": "2421 مهند محمد رمضان 1556394549 1147108836 الجعافره ث2 عام"
   },
   {
     "code": "2422",
@@ -9960,7 +9781,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2422 مهيب كارم سيد 1119635155 1119635155 عرب الشعارة ث2 "
+    "_searchString": "2422 مهيب كارم سيد 1119635155 1119635155 عرب الشعاره ث2 عام"
   },
   {
     "code": "2423",
@@ -9983,7 +9804,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2423 مهيتاب عمرو عيد عبد العزيز 1287720240 1287720240 بلقس ث2 "
+    "_searchString": "2423 مهيتاب عمرو عيد عبد العزيز 1287720240 1287720240 بلقس ث2 عام"
   },
   {
     "code": "2425",
@@ -10006,7 +9827,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2425 مي حنفي عبد العال 1064369615 1098545130 حزانية ث2 "
+    "_searchString": "2425 مي حنفي عبد العال 1064369615 1098545130 حزانيه ث2 عام"
   },
   {
     "code": "2427",
@@ -10065,7 +9886,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 20
     },
-    "_searchString": "2427 مي صفوت سالم 1031615076 1155963898 بلقس ث2 "
+    "_searchString": "2427 مي صفوت سالم 1031615076 1155963898 بلقس ث2 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2428",
@@ -10124,7 +9945,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2428 ميادة رضا حسن 1280344987 1221155462  ث2 "
+    "_searchString": "2428 مياده رضا حسن 1280344987 1221155462 ث2 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2431",
@@ -10147,7 +9968,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2431 ندي اسماعيل سالم 1153711482 115371487 السلمانية ث2 "
+    "_searchString": "2431 ندي اسماعيل سالم 1153711482 115371487 السلمانيه ث2 عام"
   },
   {
     "code": "2433",
@@ -10170,7 +9991,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2433 ندي رافت احمد سالم  1224729743 بلقس ث2 "
+    "_searchString": "2433 ندي رافت احمد سالم 1224729743 بلقس ث2 عام"
   },
   {
     "code": "2434",
@@ -10193,7 +10014,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2434 ندي سعد شديد  1005057623 بلقس ث2 "
+    "_searchString": "2434 ندي سعد شديد 1005057623 بلقس ث2 عام"
   },
   {
     "code": "2435",
@@ -10216,7 +10037,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2435 ندي عصام اسماعيل 1276706747  بلقس ث2 "
+    "_searchString": "2435 ندي عصام اسماعيل 1276706747 بلقس ث2 عام"
   },
   {
     "code": "2436",
@@ -10239,7 +10060,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2436 ندي محمد حسن 1287122360 1287443827 بلقس ث2 "
+    "_searchString": "2436 ندي محمد حسن 1287122360 1287443827 بلقس ث2 عام"
   },
   {
     "code": "2437",
@@ -10262,7 +10083,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2437 نعمة محمد عبدالحميد 1007675261 1007675261 الزاوية ث2 "
+    "_searchString": "2437 نعمه محمد عبدالحميد 1007675261 1007675261 الزاويه ث2 عام"
   },
   {
     "code": "2438",
@@ -10285,7 +10106,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2438 نعيمة مجدي ميمي 1055358720 1098270215 بلقس ث2 "
+    "_searchString": "2438 نعيمه مجدي ميمي 1055358720 1098270215 بلقس ث2 عام"
   },
   {
     "code": "2440",
@@ -10308,7 +10129,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2440 نور احمد سعيد 1202581903 1141109222  ث2 "
+    "_searchString": "2440 نور احمد سعيد 1202581903 1141109222 ث2 عام"
   },
   {
     "code": "2441",
@@ -10331,7 +10152,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2441 نور الصباح حسن صبحي 1102165580 1206734360 بلقس ث2 "
+    "_searchString": "2441 نور الصباح حسن صبحي 1102165580 1206734360 بلقس ث2 عام"
   },
   {
     "code": "2443",
@@ -10354,7 +10175,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2443 نور رضوان ابو سريع 1227708535 1555056524 بلقس ث2 "
+    "_searchString": "2443 نور رضوان ابو سريع 1227708535 1555056524 بلقس ث2 عام"
   },
   {
     "code": "2444",
@@ -10413,7 +10234,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 20,
       "averageScore": 0
     },
-    "_searchString": "2444 نور رمضان محمد 1114388049 1110277907 عرب الشعارة ث2 "
+    "_searchString": "2444 نور رمضان محمد 1114388049 1110277907 عرب الشعاره ث2 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2447",
@@ -10472,7 +10293,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 83,
       "averageScore": 0
     },
-    "_searchString": "2447 نور محمد صلاح 1154004550 1121990801  ث2 عام"
+    "_searchString": "2447 نور محمد صلاح 1154004550 1121990801 ث2 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2448",
@@ -10495,7 +10316,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2448 نورا احمد سعيد 1202581903 1141109222 بلقس ث2 "
+    "_searchString": "2448 نورا احمد سعيد 1202581903 1141109222 بلقس ث2 عام"
   },
   {
     "code": "2449",
@@ -10518,7 +10339,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2449 نورا يحي جمال ابراهيم 1030952757 1016980624 بلقس ث2 "
+    "_searchString": "2449 نورا يحي جمال ابراهيم 1030952757 1016980624 بلقس ث2 عام"
   },
   {
     "code": "2451",
@@ -10541,7 +10362,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2451 نورة احمد سعيد 1202581903 1141109222 بلقس ث2 "
+    "_searchString": "2451 نوره احمد سعيد 1202581903 1141109222 بلقس ث2 عام"
   },
   {
     "code": "2452",
@@ -10564,7 +10385,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2452 نورهان احمد النوبي 1201489453 1271252067 بلقس ث2 "
+    "_searchString": "2452 نورهان احمد النوبي 1201489453 1271252067 بلقس ث2 عام"
   },
   {
     "code": "2453",
@@ -10587,7 +10408,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2453 نورهان سعد حامد 1554802979 1285292523 بلقس ث2 "
+    "_searchString": "2453 نورهان سعد حامد 1554802979 1285292523 بلقس ث2 عام"
   },
   {
     "code": "2455",
@@ -10610,7 +10431,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2455 نورهان كامل احمد 1271347376 106347639 زواية ا ث2 "
+    "_searchString": "2455 نورهان كامل احمد 1271347376 106347639 زوايه ا ث2 عام"
   },
   {
     "code": "2456",
@@ -10633,7 +10454,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2456 نورهان محمد مصطفي 1273607975  بلقس ث2 "
+    "_searchString": "2456 نورهان محمد مصطفي 1273607975 بلقس ث2 عام"
   },
   {
     "code": "2457",
@@ -10656,7 +10477,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2457 نوهان سعد حامد 1554802979 1285292523 بلقس ث2 "
+    "_searchString": "2457 نوهان سعد حامد 1554802979 1285292523 بلقس ث2 عام"
   },
   {
     "code": "2458",
@@ -10679,7 +10500,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2458 نيرة محمد بدوي محمد 1157952321 1001434764 سميحة ث2 "
+    "_searchString": "2458 نيره محمد بدوي محمد 1157952321 1001434764 سميحه ث2 عام"
   },
   {
     "code": "2459",
@@ -10702,7 +10523,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2459 هانم مصطفي مجدي  1221533524 بلقس ث2 "
+    "_searchString": "2459 هانم مصطفي مجدي 1221533524 بلقس ث2 عام"
   },
   {
     "code": "2461",
@@ -10761,7 +10582,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2461 هدي محمد علي 1558948861 1061117844 حزانية ث2 "
+    "_searchString": "2461 هدي محمد علي 1558948861 1061117844 حزانيه ث2 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2463",
@@ -10784,7 +10605,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2463 هنا احمد محمود سيد 1287740023 1284140316 بلقس ث2 "
+    "_searchString": "2463 هنا احمد محمود سيد 1287740023 1284140316 بلقس ث2 عام"
   },
   {
     "code": "2464",
@@ -10807,7 +10628,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2464 هنا اشرف 1143474142 1205122553  ث2 "
+    "_searchString": "2464 هنا اشرف 1143474142 1205122553 ث2 عام"
   },
   {
     "code": "2466",
@@ -10866,7 +10687,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2466 هنا طة احمد 1062109956 1096596363 بلقس ث2 بكالوريا - هندسة"
+    "_searchString": "2466 هنا طه احمد 1062109956 1096596363 بلقس ث2 بكالوريا - هندسه عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "2468",
@@ -10960,7 +10781,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2468 هنا محسن لطفي محمد 1002857849 1002857849 بلقس ث2 "
+    "_searchString": "2468 هنا محسن لطفي محمد 1002857849 1002857849 بلقس ث2 عام عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2469",
@@ -10983,7 +10804,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2469 هنا محمد حافظ  1030071866 عرب الشعارة ث2 "
+    "_searchString": "2469 هنا محمد حافظ 1030071866 عرب الشعاره ث2 عام"
   },
   {
     "code": "2470",
@@ -11006,7 +10827,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2470 هنا محمد سعد 1210248995 1228261435 بلقس ث2 "
+    "_searchString": "2470 هنا محمد سعد 1210248995 1228261435 بلقس ث2 عام"
   },
   {
     "code": "2472",
@@ -11029,7 +10850,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2472 هيا اشرف 1558486404   ث2 "
+    "_searchString": "2472 هيا اشرف 1558486404 ث2 عام"
   },
   {
     "code": "2475",
@@ -11052,7 +10873,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2475 يارا احمد خليل 1009723042 1022863932 حزانية ث2 "
+    "_searchString": "2475 يارا احمد خليل 1009723042 1022863932 حزانيه ث2 عام"
   },
   {
     "code": "2477",
@@ -11075,7 +10896,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2477 يارا نادر عزت 1208162874 1271780507 بلقس ث2 "
+    "_searchString": "2477 يارا نادر عزت 1208162874 1271780507 بلقس ث2 عام"
   },
   {
     "code": "2478",
@@ -11098,7 +10919,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2478 يارا هشام محمد 1228732155 1288249162 بلقس ث2 "
+    "_searchString": "2478 يارا هشام محمد 1228732155 1288249162 بلقس ث2 عام"
   },
   {
     "code": "2480",
@@ -11121,7 +10942,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2480 ياسمين عبد الله هاشم  1126257669 كوم السمن ث2 "
+    "_searchString": "2480 ياسمين عبد الله هاشم 1126257669 كوم السمن ث2 عام"
   },
   {
     "code": "2481",
@@ -11180,7 +11001,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2481 ياسمين مجدي محمد 1224106409 1210801800 بلقس ث2 "
+    "_searchString": "2481 ياسمين مجدي محمد 1224106409 1210801800 بلقس ث2 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2482",
@@ -11203,7 +11024,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2482 ياسمين محمد حجاج 1143461415 1284745530 بلقس ث2 "
+    "_searchString": "2482 ياسمين محمد حجاج 1143461415 1284745530 بلقس ث2 عام"
   },
   {
     "code": "2484",
@@ -11226,7 +11047,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2484 ياسين كريم سلامة 1227484185 1207666483 بلقس ث2 "
+    "_searchString": "2484 ياسين كريم سلامه 1227484185 1207666483 بلقس ث2 عام"
   },
   {
     "code": "2485",
@@ -11249,7 +11070,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2485 يسرية صالح مجدي 1202771291 1271115269 بلقس ث2 "
+    "_searchString": "2485 يسريه صالح مجدي 1202771291 1271115269 بلقس ث2 عام"
   },
   {
     "code": "2488",
@@ -11272,7 +11093,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2488 يوسف رضا محمد 1206362791 1118770807 سلمانية ث2 "
+    "_searchString": "2488 يوسف رضا محمد 1206362791 1118770807 سلمانيه ث2 عام"
   },
   {
     "code": "2489",
@@ -11295,7 +11116,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2489 يوسف سمير سمير امين 1124939957 1159777956 بلقس ث2 "
+    "_searchString": "2489 يوسف سمير سمير امين 1124939957 1159777956 بلقس ث2 عام"
   },
   {
     "code": "2490",
@@ -11318,7 +11139,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2490 يوسف شعبان سيد 1158205427 11103096963 السلمانية ث2 "
+    "_searchString": "2490 يوسف شعبان سيد 1158205427 11103096963 السلمانيه ث2 عام"
   },
   {
     "code": "2491",
@@ -11341,7 +11162,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2491 يوسف طه ابراهيم 1203181840 1208644607  ث2 "
+    "_searchString": "2491 يوسف طه ابراهيم 1203181840 1208644607 ث2 عام"
   },
   {
     "code": "2493",
@@ -11435,7 +11256,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 81.3
     },
-    "_searchString": "2493 يوسف عبد الحميد محمد 1116320378 1282800748 بلقس ث2 "
+    "_searchString": "2493 يوسف عبد الحميد محمد 1116320378 1282800748 بلقس ث2 عام كيمياء ا/ محمد صلاح عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "2494",
@@ -11458,7 +11279,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2494 يوسف عبده سيد 1145384742 1125784990 الجعافرة ث2 "
+    "_searchString": "2494 يوسف عبده سيد 1145384742 1125784990 الجعافره ث2 عام"
   },
   {
     "code": "2496",
@@ -11481,7 +11302,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2496 يوسف محمد عز الدين 1280157937 1288270773 بلقس ث2 "
+    "_searchString": "2496 يوسف محمد عز الدين 1280157937 1288270773 بلقس ث2 عام"
   },
   {
     "code": "2497",
@@ -11504,7 +11325,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2497 يوسف هاني سيد 1280345578 1140325971 سلمانية ث2 "
+    "_searchString": "2497 يوسف هاني سيد 1280345578 1140325971 سلمانيه ث2 عام"
   },
   {
     "code": "2498",
@@ -11527,7 +11348,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2498 يوسف عماد عبد النبي 1128711047  الجعافرة ث2 "
+    "_searchString": "2498 يوسف عماد عبد النبي 1128711047 الجعافره ث2 عام"
   },
   {
     "code": "3001",
@@ -11538,11 +11359,11 @@ window.STUDENTS_DATA = [
     "grade": "ث3",
     "specialization": "عام",
     "subjectsSummary": "رياضة, فزياء",
-    "teachersSummary": "رياضة/ا/ مصطفي صا��ر [حصص: ✓, غ, ✓, ✓, ✓, _, _, ✓] | فزياء/ا/ عمر عبد الفضيل",
+    "teachersSummary": "رياضة/ا/ مصطفي صابر [حصص: ✓, غ, ✓, ✓, ✓, _, _, ✓] | فزياء/ا/ عمر عبد الفضيل",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
     "academicSubjects": {
       "رياضة": {
-        "teacher": "ا/ مصطفي صا��ر",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "✓",
           "غ",
@@ -11621,7 +11442,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 83,
       "averageScore": 0
     },
-    "_searchString": "3001 ابراهيم محمد سالم 1210114259 1210114623 بلقس ث3 عام"
+    "_searchString": "3001 ابراهيم محمد سالم 1210114259 1210114623 بلقس ث3 عام رياضه ا/ مصطفي صابر فزياء ا/ عمر عبد الفضيل"
   },
   {
     "code": "3004",
@@ -11644,7 +11465,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3004 احمد ابراهيم 1228662457   ث3 عام"
+    "_searchString": "3004 احمد ابراهيم 1228662457 ث3 عام"
   },
   {
     "code": "3005",
@@ -11654,46 +11475,10 @@ window.STUDENTS_DATA = [
     "parentPhone": "1275043573",
     "grade": "ث3",
     "specialization": "عام",
-    "subjectsSummary": "فرنساوي",
-    "teachersSummary": "فرنساوي/.",
+    "subjectsSummary": "",
+    "teachersSummary": "",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
-    "academicSubjects": {
-      "فرنساوي": {
-        "teacher": ".",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      }
-    },
+    "academicSubjects": {},
     "_metrics": {
       "totalScore": 0,
       "totalMax": 0,
@@ -11703,7 +11488,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3005 احمد ابو السعود الشيخ 1226782647 1275043573  ث3 عام"
+    "_searchString": "3005 احمد ابو السعود الشيخ 1226782647 1275043573 ث3 عام"
   },
   {
     "code": "3006",
@@ -11726,7 +11511,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3006 احمد الجمال 1018465082 101656231  ث3 عام"
+    "_searchString": "3006 احمد الجمال 1018465082 101656231 ث3 عام"
   },
   {
     "code": "3008",
@@ -11749,7 +11534,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3008 احمد خالد سعيد 1112460936 1226324451  ث3 "
+    "_searchString": "3008 احمد خالد سعيد 1112460936 1226324451 ث3 عام"
   },
   {
     "code": "3010",
@@ -11808,7 +11593,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 88,
       "averageScore": 0
     },
-    "_searchString": "3010 احمد رمضان رشدي 1122472032 1113105035 الزاوية ث3 عام"
+    "_searchString": "3010 احمد رمضان رشدي 1122472032 1113105035 الزاويه ث3 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3011",
@@ -11867,7 +11652,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3011 احمد سع��د حسين 1018626054 1009344598 القشيش ث3 "
+    "_searchString": "3011 احمد سع��د حسين 1018626054 1009344598 القشيش ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3012",
@@ -12031,7 +11816,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 50
     },
-    "_searchString": "3012 احمد ضياء احمد 1225708276 1125786730 السلمانية ث3 عام"
+    "_searchString": "3012 احمد ضياء احمد 1225708276 1125786730 السلمانيه ث3 عام عربي ا/ احمد عبد القادر احصاء ا/ مصطفي صابر فرنساوي ا/ محمد رجب رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3014",
@@ -12090,7 +11875,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3014 احمد عبد الناصر سيد 1229945483 128398764  ث3 عام"
+    "_searchString": "3014 احمد عبد الناصر سيد 1229945483 128398764 ث3 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3015",
@@ -12113,7 +11898,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3015 احمد كريم الجمال 1018465082 1039083566 بلقس ث3 "
+    "_searchString": "3015 احمد كريم الجمال 1018465082 1039083566 بلقس ث3 عام"
   },
   {
     "code": "3018",
@@ -12136,7 +11921,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3018 احمد محمد فايق 1210121924 1222618103 بلقس ث3 "
+    "_searchString": "3018 احمد محمد فايق 1210121924 1222618103 بلقس ث3 عام"
   },
   {
     "code": "3562",
@@ -12147,11 +11932,11 @@ window.STUDENTS_DATA = [
     "grade": "ث3",
     "specialization": "عام",
     "subjectsSummary": "احصاء",
-    "teachersSummary": "احصاء/مصطفى",
+    "teachersSummary": "احصاء/ا/ مصطفي صابر",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
     "academicSubjects": {
       "احصاء": {
-        "teacher": "مصطفى",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -12195,7 +11980,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3562 احمد محمد كمال 1067096576 1271755091 بلقس ث3 عام"
+    "_searchString": "3562 احمد محمد كمال 1067096576 1271755091 بلقس ث3 عام احصاء ا/ مصطفي صابر"
   },
   {
     "code": "3020",
@@ -12254,7 +12039,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3020 احمد محمود محمد العايدي 1097626559 1004448822 بلقس ث3 "
+    "_searchString": "3020 احمد محمود محمد العايدي 1097626559 1004448822 بلقس ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3021",
@@ -12348,7 +12133,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 0
     },
-    "_searchString": "3021 احمد نادر سعد 1226399871 1284286196 بلقس ث3 عام"
+    "_searchString": "3021 احمد نادر سعد 1226399871 1284286196 بلقس ث3 عام كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3022",
@@ -12371,7 +12156,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3022 احمد نزية كمال 1102096898 1284886155 بلقس ث3 "
+    "_searchString": "3022 احمد نزيه كمال 1102096898 1284886155 بلقس ث3 عام"
   },
   {
     "code": "3023",
@@ -12465,7 +12250,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3023 ادهم  محمود حسن 1212525070 1094571900  ث3 عام"
+    "_searchString": "3023 ادهم  محمود حسن 1212525070 1094571900 ث3 عام احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3024",
@@ -12488,7 +12273,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3024 ادهم نزية 1210501318   ث3 "
+    "_searchString": "3024 ادهم نزيه 1210501318 ث3 عام"
   },
   {
     "code": "3025",
@@ -12582,7 +12367,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3025 اروي بلال انس 1152985376 1153044420  ث3 عام"
+    "_searchString": "3025 اروي بلال انس 1152985376 1153044420 ث3 عام احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3026",
@@ -12641,7 +12426,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3026 اسراء اشرف احمد 1208644125 1200346428 بلقس ث3 عام"
+    "_searchString": "3026 اسراء اشرف احمد 1208644125 1200346428 بلقس ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3027",
@@ -12770,7 +12555,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 57,
       "averageScore": 100
     },
-    "_searchString": "3027 اسراء ربيع ابو سريع  1116849015  ث3 عام"
+    "_searchString": "3027 اسراء ربيع ابو سريع 1116849015 ث3 عام رياضه ا/ مصطفي صابر احياء ا/ علي نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3028",
@@ -12899,7 +12684,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 92,
       "averageScore": 100
     },
-    "_searchString": "3028 اسراء محمود محمد 1287726359 1066747361 بلقس ث3 عام"
+    "_searchString": "3028 اسراء محمود محمد 1287726359 1066747361 بلقس ث3 عام كيمياء ا/ محمد صلاح احياء ا/ محمد نور فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3029",
@@ -12922,7 +12707,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3029 اسراء مصطفي رمضان 1070738816 1070738814 بلقس ث3 "
+    "_searchString": "3029 اسراء مصطفي رمضان 1070738816 1070738814 بلقس ث3 عام"
   },
   {
     "code": "3036",
@@ -12933,7 +12718,7 @@ window.STUDENTS_DATA = [
     "grade": "ث3",
     "specialization": "عام",
     "subjectsSummary": "عربي, كي��ياء, فزياء, احياء, كيمياء, فرنساوي",
-    "teachersSummary": "عربي/ا/ احمد عبد القادر [حصص: _, _, _, _, 4/10, _, _, _] | كي��ياء/ا/ محمد صلاح [حصص: ✓, ✓, ✓, _, ✓, _, _, _] | فزياء/عمر ومختار | احياء/محمد نور وعلام | كيمياء/ا/ احمد سعيد [حصص: _, _, _, _, _, ✓, _, _] | فرنساوي/ا/ محمد رجب",
+    "teachersSummary": "عربي/ا/ احمد عبد القادر [حصص: _, _, _, _, 4/10, _, _, _] | كي��ياء/ا/ محمد صلاح [حصص: ✓, ✓, ✓, _, ✓, _, _, _] | فزياء/ا/ محمد مختار | احياء/ا/ محمد علام | كيمياء/ا/ احمد سعيد [حصص: _, _, _, _, _, ✓, _, _] | فرنساوي/ا/ محمد رجب",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
     "academicSubjects": {
       "عربي": {
@@ -13007,7 +12792,7 @@ window.STUDENTS_DATA = [
         }
       },
       "فزياء": {
-        "teacher": "عمر ومختار",
+        "teacher": "ا/ محمد مختار",
         "sessions": [
           "",
           "",
@@ -13042,7 +12827,7 @@ window.STUDENTS_DATA = [
         }
       },
       "احياء": {
-        "teacher": "محمد نور وعلام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -13156,7 +12941,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 40
     },
-    "_searchString": "3036 الاء سليمان عبد الروؤف 1270389945 1223594546 بلقس ث3 عام"
+    "_searchString": "3036 الاء سليمان عبد الرووف 1270389945 1223594546 بلقس ث3 عام عربي ا/ احمد عبد القادر كي��ياء ا/ محمد صلاح فزياء ا/ محمد مختار احياء ا/ محمد علام كيمياء ا/ احمد سعيد فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3038",
@@ -13179,7 +12964,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3038 السيد احمد فتحي 1152761248 1127120211 بلقس ث3 "
+    "_searchString": "3038 السيد احمد فتحي 1152761248 1127120211 بلقس ث3 عام"
   },
   {
     "code": "3039",
@@ -13202,7 +12987,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3039 امنبة اشرف رمضان 1062398855 1070738814  ث3 "
+    "_searchString": "3039 امنبه اشرف رمضان 1062398855 1070738814 ث3 عام"
   },
   {
     "code": "3040",
@@ -13296,7 +13081,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3040 امنية اشرف رمضان 1062398855 1070738814 بلقس ث3 أزهر"
+    "_searchString": "3040 امنيه اشرف رمضان 1062398855 1070738814 بلقس ث3 ازهر كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3043",
@@ -13355,7 +13140,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 50,
       "averageScore": 0
     },
-    "_searchString": "3043 اميرة عبد الله سلامة 1206385562 1225140259 ابو السعود ث3 عام"
+    "_searchString": "3043 اميره عبد الله سلامه 1206385562 1225140259 ابو السعود ث3 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3045",
@@ -13484,7 +13269,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3045 امينة ممدوح رجب 1270427945 1024680403 السلمانية ث3 عام"
+    "_searchString": "3045 امينه ممدوح رجب 1270427945 1024680403 السلمانيه ث3 عام عربي ا/ احمد عبد القادر كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3048",
@@ -13677,13 +13462,13 @@ window.STUDENTS_DATA = [
     "_metrics": {
       "totalScore": 0,
       "totalMax": 0,
-      "totalPresent": 16,
+      "totalPresent": 17,
       "totalAbsent": 6,
-      "totalRecordedSessions": 22,
-      "attendanceRate": 73,
+      "totalRecordedSessions": 23,
+      "attendanceRate": 74,
       "averageScore": 0
     },
-    "_searchString": "3048 اية اشرف سيد 1140287739 1276294446 بلقس ث3 عام"
+    "_searchString": "3048 ايه اشرف سيد 1140287739 1276294446 بلقس ث3 عام عربي ا/ سيد عبد العاطي كيمياء ا/ محمد صلاح احياء ا/ محمد نور فزياء ا/ محمد مختار فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3051",
@@ -13812,7 +13597,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 91,
       "averageScore": 0
     },
-    "_searchString": "3051 ايتن عبد الخالق سيد 1228912298 1227135633 بلقس ث3 عام"
+    "_searchString": "3051 ايتن عبد الخالق سيد 1228912298 1227135633 بلقس ث3 عام احياء ا/ محمد نور كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3053",
@@ -13835,7 +13620,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3053 باسم ايمن يونس 1283629016 1150534614 بلقس ث3 "
+    "_searchString": "3053 باسم ايمن يونس 1283629016 1150534614 بلقس ث3 عام"
   },
   {
     "code": "3054",
@@ -13858,7 +13643,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3054 بسملة احمد محمود  1226096724 بلقس ث3 عام"
+    "_searchString": "3054 بسمله احمد محمود 1226096724 بلقس ث3 عام"
   },
   {
     "code": "3055",
@@ -13881,7 +13666,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3055 بسملة سعيد عباس 1552313914 1122445581  ث3 "
+    "_searchString": "3055 بسمله سعيد عباس 1552313914 1122445581 ث3 عام"
   },
   {
     "code": "3056",
@@ -13904,7 +13689,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3056 بسملة سعيد علي 1552313914 1122445581 زواية النجار ث3 "
+    "_searchString": "3056 بسمله سعيد علي 1552313914 1122445581 زوايه النجار ث3 عام"
   },
   {
     "code": "3058",
@@ -13927,7 +13712,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3058 بلقس 1010167974 1212747317 بلقس ث3 "
+    "_searchString": "3058 بلقس 1010167974 1212747317 بلقس ث3 عام"
   },
   {
     "code": "3059",
@@ -14056,7 +13841,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3059 تقي احمد محمد 1027575394 1021218103 بلقس ث3 عام"
+    "_searchString": "3059 تقي احمد محمد 1027575394 1021218103 بلقس ث3 عام عربي ا/ احمد عبد القادر كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3060",
@@ -14185,7 +13970,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3060 تقي صابر حسن 1015923510 1100449620 بلقس ث3 عام"
+    "_searchString": "3060 تقي صابر حسن 1015923510 1100449620 بلقس ث3 عام كيمياء ا/ محمد ص��اح رياضه ا/ مصطفي صابر فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3061",
@@ -14208,7 +13993,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3061 جاسم ايمن يونس 1283629016 115053461 بلقس ث3 "
+    "_searchString": "3061 جاسم ايمن يونس 1283629016 115053461 بلقس ث3 عام"
   },
   {
     "code": "3063",
@@ -14231,7 +14016,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3063 جمال محمد جمال 1220352696 1145339942 بلقس ث3 "
+    "_searchString": "3063 جمال محمد جمال 1220352696 1145339942 بلقس ث3 عام"
   },
   {
     "code": "3066",
@@ -14325,7 +14110,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 83,
       "averageScore": 0
     },
-    "_searchString": "3066 جنات عبد الحميد محمد 1201672311 1203266123 بلقس ث3 عام"
+    "_searchString": "3066 جنات عبد الحميد محمد 1201672311 1203266123 بلقس ث3 عام فزياء ا/ محمد مختار رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3068",
@@ -14348,7 +14133,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3068 جنات مصطفي 1277748868 1287420463 بلقس ث3 "
+    "_searchString": "3068 جنات مصطفي 1277748868 1287420463 بلقس ث3 عام"
   },
   {
     "code": "3069",
@@ -14371,7 +14156,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3069 جنة احمد سيد 1280321812 1145688055 بلقس ث3 "
+    "_searchString": "3069 جنه احمد سيد 1280321812 1145688055 بلقس ث3 عام"
   },
   {
     "code": "3071",
@@ -14500,7 +14285,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 92,
       "averageScore": 0
     },
-    "_searchString": "3071 جني احمد  اسماعيل 1226282877 1288688444  ث3 عام"
+    "_searchString": "3071 جني احمد  اسماعيل 1226282877 1288688444 ث3 عام كيمياء ا/ محمد صلاح احياء ا/ محمد علام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3072",
@@ -14646,13 +14431,13 @@ window.STUDENTS_DATA = [
     "_metrics": {
       "totalScore": 29,
       "totalMax": 35,
-      "totalPresent": 11,
+      "totalPresent": 12,
       "totalAbsent": 0,
-      "totalRecordedSessions": 11,
+      "totalRecordedSessions": 12,
       "attendanceRate": 100,
       "averageScore": 82.9
     },
-    "_searchString": "3073 جني ايهاب سعيد 1270891253 1272684908  ث3 عام"
+    "_searchString": "3073 جني ايهاب سعيد 1270891253 1272684908 ث3 عام كيمياء ا/ محمد صلاح عربي ا/ سيد عبد العاطي فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3074",
@@ -14781,7 +14566,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3074 جني حسن كامل 127820442 1205351182 بلقس ث3 عام"
+    "_searchString": "3074 جني حسن كامل 127820442 1205351182 بلقس ث3 عام احياء ا/ محمد نور كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3075",
@@ -14875,7 +14660,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3075 جني رضا اسماعيل 1223644041 1274399610 قليوب ث3 أزهر"
+    "_searchString": "3075 جني رضا اسماعيل 1223644041 1274399610 قليوب ث3 ازهر كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3076",
@@ -14969,7 +14754,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3076 جني سيد صلاح سويلم 1284136301 1224182032  ث3 عام"
+    "_searchString": "3076 جني سيد صلاح سويلم 1284136301 1224182032 ث3 عام احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3079",
@@ -14992,7 +14777,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3079 جني مجدي ابراهيم 1280782113 1157630109 بلقس ث3 "
+    "_searchString": "3079 جني مجدي ابراهيم 1280782113 1157630109 بلقس ث3 عام"
   },
   {
     "code": "3081",
@@ -15003,7 +14788,7 @@ window.STUDENTS_DATA = [
     "grade": "ث3",
     "specialization": "عام",
     "subjectsSummary": "كيمياء, فرنساوي",
-    "teachersSummary": "كيمياء/ا/ محمد صلاح [حصص: غ, ✓, ✓, _, _, ✓, _, _] | فرنساوي/��/ محمد رجب",
+    "teachersSummary": "كيمياء/ا/ محمد صلاح [حصص: غ, ✓, ✓, _, _, ✓, _, _] | فرنساوي/ا/ محمد رجب",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
     "academicSubjects": {
       "كيمياء": {
@@ -15042,7 +14827,7 @@ window.STUDENTS_DATA = [
         }
       },
       "فرنساوي": {
-        "teacher": "��/ محمد رجب",
+        "teacher": "ا/ محمد رجب",
         "sessions": [
           "",
           "",
@@ -15086,7 +14871,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3081 جني محمد غنيم 1212730858 1202794741 كوم اشفين ث3 عام"
+    "_searchString": "3081 جني محمد غنيم 1212730858 1202794741 كوم اشفين ث3 عام كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3082",
@@ -15215,7 +15000,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 92,
       "averageScore": 60
     },
-    "_searchString": "3082 جني مصطفي السيد 1068011460 1067327841 بلقس ث3 عام"
+    "_searchString": "3082 جني مصطفي السيد 1068011460 1067327841 بلقس ث3 عام فزياء ا/ محمد مختار عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3568",
@@ -15226,11 +15011,11 @@ window.STUDENTS_DATA = [
     "grade": "ث3",
     "specialization": "عام",
     "subjectsSummary": "احصاء",
-    "teachersSummary": "احصاء/مصطفى",
+    "teachersSummary": "احصاء/ا/ مصطفي صابر",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
     "academicSubjects": {
       "احصاء": {
-        "teacher": "مصطفى",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -15274,7 +15059,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3568 جني يحي اسماعيل 1207406829 1205251065 بلقس ث3 "
+    "_searchString": "3568 جني يحي اسماعيل 1207406829 1205251065 بلقس ث3 عام احصاء ا/ مصطفي صابر"
   },
   {
     "code": "3086",
@@ -15297,7 +15082,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3086 جوليا عبد السيد فوزي 1272345596 1281308003 السلمانية ث3 "
+    "_searchString": "3086 جوليا عبد السيد فوزي 1272345596 1281308003 السلمانيه ث3 عام"
   },
   {
     "code": "3091",
@@ -15391,7 +15176,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3091 حبيبة رجب سيد 1212730858 1016685570 بلقس ث3 عام"
+    "_searchString": "3091 حبيبه رجب سيد 1212730858 1016685570 بلقس ث3 عام احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3092",
@@ -15555,7 +15340,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3092 حبيبة عبد النبي  حسن 1033644814 1032173479 بلقس ث3 عام"
+    "_searchString": "3092 حبيبه عبد النبي  حسن 1033644814 1032173479 بلقس ث3 عام انجليزي ا/ محمد صبحي كيمياء ا/ محمد صلاح احياء ا/ محمد نور فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3093",
@@ -15578,7 +15363,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3093 حبيبة عبد الواحد 1020107911 1066501760 الزاوية ث3 "
+    "_searchString": "3093 حبيبه عبد الواحد 1020107911 1066501760 الزاويه ث3 عام"
   },
   {
     "code": "3094",
@@ -15637,7 +15422,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 0
     },
-    "_searchString": "3094 حبيبة علي صلاح 1274217439 1288637917  ث3 عام"
+    "_searchString": "3094 حبيبه علي صلاح 1274217439 1288637917 ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3095",
@@ -15660,7 +15445,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3095 حبيبة علي م��مد 1012148968 1287336119 بلقس ث3 "
+    "_searchString": "3095 حبيبه علي مح��د 1012148968 1287336119 بلقس ث3 عام"
   },
   {
     "code": "3096",
@@ -15824,7 +15609,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3096 حبيبة كريم احمد 1097373070 1100601856 بلقس ث3 عام"
+    "_searchString": "3096 حبيبه كريم احمد 1097373070 1100601856 بلقس ث3 عام احياء ا/ محمد علام كيمياء ا/ محمد صلاح فزياء ا/ محمد الجوهري فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3098",
@@ -15847,7 +15632,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3098 حبيبة محمود مصطفي 1115860770 1153464404 بلقس ث3 "
+    "_searchString": "3098 حبيبه محمود مصطفي 1115860770 1153464404 بلقس ث3 عام"
   },
   {
     "code": "3099",
@@ -15906,7 +15691,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3099 حبيبة مسعد بدر 1094987469 1144170779 كوم السمن ث3 عام"
+    "_searchString": "3099 حبيبه مسعد بدر 1094987469 1144170779 كوم السمن ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3101",
@@ -15929,7 +15714,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3101 حبيبي عبدالنبي 1012148968 1287336119  ث3 "
+    "_searchString": "3101 حبيبي عبدالنبي 1012148968 1287336119 ث3 عام"
   },
   {
     "code": "3102",
@@ -15952,7 +15737,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3102 حبية علي صلاح 1274217435 1288637917 بلقس ث3 "
+    "_searchString": "3102 حبيه علي صلاح 1274217435 1288637917 بلقس ث3 عام"
   },
   {
     "code": "3563",
@@ -16046,7 +15831,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3563 حسام عربي احمد 1102166414 1141752589  ث3 عام"
+    "_searchString": "3563 حسام عربي احمد 1102166414 1141752589 ث3 عام احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3104",
@@ -16140,7 +15925,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 83,
       "averageScore": 70
     },
-    "_searchString": "3104 حسن بهادر حسن 1010358484 1009048470 الزاوية ث3 "
+    "_searchString": "3104 حسن بهادر حسن 1010358484 1009048470 الزاويه ث3 عام عربي ا/ احمد عبد القادر فزياء ا/ محمد مختار"
   },
   {
     "code": "3105",
@@ -16163,7 +15948,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3105 حسن محمود حسن 1279110740   ث3 "
+    "_searchString": "3105 حسن محمود حسن 1279110740 ث3 عام"
   },
   {
     "code": "3108",
@@ -16186,7 +15971,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3108 حنين احمد اسماعيل 1288688444 1226282877 بلقس ث3 "
+    "_searchString": "3108 حنين احمد اسماعيل 1288688444 1226282877 بلقس ث3 عام"
   },
   {
     "code": "3109",
@@ -16245,7 +16030,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 25,
       "averageScore": 0
     },
-    "_searchString": "3109 حنين احمد حسني 1289274115 1276095638 بل��س ث3 "
+    "_searchString": "3109 حنين احمد حسني 1289274115 1276095638 بلق�� ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3111",
@@ -16304,7 +16089,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3111 حنين سليمان عبد اللطيف 1033912000 1121106066 كوم السمن ث3 "
+    "_searchString": "3111 حنين سليمان عبد اللطيف 1033912000 1121106066 كوم السمن ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3113",
@@ -16468,7 +16253,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 0
     },
-    "_searchString": "3113 حنين محمود مصطفي 1115860770 1153464404 عبدالله باشا ث3 عام"
+    "_searchString": "3113 حنين محمود مصطفي 1115860770 1153464404 عبدالله باشا ث3 عام كيمياء ا/ محمد صلاح فزياء ا/ محمد الجوهري انجليزي ا/ حماده يوسف فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3114",
@@ -16491,7 +16276,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3114 حنين وليد محمود 1028912644 1289125468 بلقس ث3 "
+    "_searchString": "3114 حنين وليد محمود 1028912644 1289125468 بلقس ث3 عام"
   },
   {
     "code": "3115",
@@ -16620,7 +16405,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 69.6
     },
-    "_searchString": "3115 حنين ياسر سعيد 1229829821 1229193037 بلقس ث3 "
+    "_searchString": "3115 حنين ياسر سعيد 1229829821 1229193037 بلقس ث3 عام عربي ا/ احمد عبد القادر تاريخ ا/ رضا صلاح جغرافيا ا/ رضا صلاح"
   },
   {
     "code": "3116",
@@ -16679,7 +16464,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3116 خالد محمد رمضان 1207140455 1003786969 بلقس ث3 عام"
+    "_searchString": "3116 خالد محمد رمضان 1207140455 1003786969 بلقس ث3 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3118",
@@ -16738,7 +16523,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3118 دعاء حسام محمد 1275959341 1275959341  ث3 "
+    "_searchString": "3118 دعاء حسام محمد 1275959341 1275959341 ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3121",
@@ -16937,7 +16722,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 50,
       "averageScore": 0
     },
-    "_searchString": "3121 دعاء محمد كمال 1555933467 1097670404  ث3 عام"
+    "_searchString": "3121 دعاء محمد كمال 1555933467 1097670404 ث3 عام احصاء ا/ مصطفي صابر تاريخ ا/ رضا صلاح انجليزي ا/ محمد صبحي جغرافيا ا/ رضا صلاح رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3122",
@@ -17066,7 +16851,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3122 دينا سعيد سيف 1229463263 1278993221 بلقس ث3 عام"
+    "_searchString": "3122 دينا سعيد سيف 1229463263 1278993221 بلقس ث3 عام فزياء ا/ محمد مختار كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3727",
@@ -17125,7 +16910,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3727 دينا سيف 1229463263 1278993221 بلقس ث3 عام"
+    "_searchString": "3727 دينا سيف 1229463263 1278993221 بلقس ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3126",
@@ -17184,7 +16969,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3126 راندا زكي حامد 1202585913 1010291702 السلمانية ث3 عام"
+    "_searchString": "3126 راندا زكي حامد 1202585913 1010291702 السلمانيه ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3127",
@@ -17207,7 +16992,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3127 رانيا علاء الدين 1023326780 11294260 زواية النجار ث3 "
+    "_searchString": "3127 رانيا علاء الدين 1023326780 11294260 زوايه النجار ث3 عام"
   },
   {
     "code": "3129",
@@ -17301,7 +17086,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3129 رحاب خالد ابراهيم 1224721060 1227080173 بلقس ث3 عام"
+    "_searchString": "3129 رحاب خالد ابراهيم 1224721060 1227080173 بلقس ث3 عام كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3130",
@@ -17465,7 +17250,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 94,
       "averageScore": 0
     },
-    "_searchString": "3130 رحاب رمضان عفيفي 12110107865 1212275449  ث3 أزهر"
+    "_searchString": "3130 رحاب رمضان عفيفي 12110107865 1212275449 ث3 ازهر فزياء ا/ محمد مختار كيمياء ا/ محمد صلاح رياضه ا/ مصطفي صابر فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3132",
@@ -17488,7 +17273,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3132 رحمة خالد شعبان 1204902183 1116723424 بلقس ث3 "
+    "_searchString": "3132 رحمه خالد شعبان 1204902183 1116723424 بلقس ث3 عام"
   },
   {
     "code": "3133",
@@ -17547,7 +17332,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3133 رحمة رضا 1110659021 1152156641 بلقس ث3 عام"
+    "_searchString": "3133 رحمه رضا 1110659021 1152156641 بلقس ث3 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3559",
@@ -17641,7 +17426,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3559 رحمة رمضان ناصر 1118573944 1153814391 بلقس ث3 "
+    "_searchString": "3559 رحمه رمضان ناصر 1118573944 1153814391 بلقس ث3 عام تاريخ ا/ رضا صلاح عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3135",
@@ -17700,7 +17485,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3135 رحمة علاء ابو العلا 1229561741 1205805764 بلقس ث3 عام"
+    "_searchString": "3135 رحمه علاء ابو العلا 1229561741 1205805764 بلقس ث3 عام تاريخ ا/ رضا صلاح"
   },
   {
     "code": "3136",
@@ -17723,7 +17508,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3136 رشا محمد 1229091915 1221671500  ث3 "
+    "_searchString": "3136 رشا محمد 1229091915 1221671500 ث3 عام"
   },
   {
     "code": "3137",
@@ -17852,7 +17637,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 91,
       "averageScore": 0
     },
-    "_searchString": "3137 رضا ابراهيم مصطفي 1144791774 1152853636 سيد ابو دياب ث3 أزهر"
+    "_searchString": "3137 رضا ابراهيم مصطفي 1144791774 1152853636 سيد ابو دياب ث3 ازهر كيمياء ا/ محمد صلاح فزياء ا/ محمد مختار رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3138",
@@ -17875,7 +17660,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3138 رضوي اشرف الشيخ 1227936338 1288270449 بلقس ث3 "
+    "_searchString": "3138 رضوي اشرف الشيخ 1227936338 1288270449 بلقس ث3 عام"
   },
   {
     "code": "3139",
@@ -17934,7 +17719,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 60,
       "averageScore": 0
     },
-    "_searchString": "3139 رضوي رضا عزت 1129805273 1015280076 عبدالله باشا ث3 "
+    "_searchString": "3139 رضوي رضا عزت 1129805273 1015280076 عبدالله باشا ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3140",
@@ -18063,7 +17848,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 90
     },
-    "_searchString": "3140 رضوي علي عبد العزيز 1515817140 1150481722 السلمانية ث3 عام"
+    "_searchString": "3140 رضوي علي عبد العزيز 1515817140 1150481722 السلمانيه ث3 عام عربي ا/ احمد عبد القادر كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3145",
@@ -18086,7 +17871,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3145 رقية رمضان كرم 1121471905 1121471906 بلقس ث3 "
+    "_searchString": "3145 رقيه رمضان كرم 1121471905 1121471906 بلقس ث3 عام"
   },
   {
     "code": "3147",
@@ -18180,7 +17965,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 0,
       "averageScore": 0
     },
-    "_searchString": "3147 رقية شعبان ابراهيم 1200862615 1276173911 بلقس ث3 "
+    "_searchString": "3147 رقيه شعبان ابراهيم 1200862615 1276173911 بلقس ث3 عام فزياء ا/ محمد مختار احياء ا/ محمد نور"
   },
   {
     "code": "3149",
@@ -18309,7 +18094,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 90
     },
-    "_searchString": "3149 روان احمد عبدة 1283509531 1147628975 بلقس ث3 عام"
+    "_searchString": "3149 روان احمد عبده 1283509531 1147628975 بلقس ث3 عام كيمياء ا/ محمد صلاح رياضه ا/ مصطفي صابر فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3150",
@@ -18368,7 +18153,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 25,
       "averageScore": 0
     },
-    "_searchString": "3150 روان اشرف محمد 1070253119 1012550567 جعافرة ث3 عام"
+    "_searchString": "3150 روان اشرف محمد 1070253119 1012550567 جعافره ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3151",
@@ -18462,7 +18247,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 71,
       "averageScore": 0
     },
-    "_searchString": "3151 روان امام سيد 1065401407 1062892111 بلقس ث3 "
+    "_searchString": "3151 روان امام سيد 1065401407 1062892111 بلقس ث3 عام فزياء ا/ محمد الجوهري احياء ا/ محمد نور"
   },
   {
     "code": "3153",
@@ -18661,7 +18446,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 90,
       "averageScore": 57.1
     },
-    "_searchString": "3153 روان هيثم فتحي 1288591099 11226405025 بلقس ث3 عام"
+    "_searchString": "3153 روان هيثم فتحي 1288591099 11226405025 بلقس ث3 عام عربي ا/ احمد عبد القادر فزياء ا/ محمد الجوهري كيمياء ا/ محمد صلاح احياء ا/ محمد علام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3155",
@@ -18684,7 +18469,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3155 روضة محمد علي 1271140329 1223865422 السلمانية ث3 "
+    "_searchString": "3155 روضه محمد علي 1271140329 1223865422 السلمانيه ث3 عام"
   },
   {
     "code": "3156",
@@ -18804,7 +18589,7 @@ window.STUDENTS_DATA = [
         }
       },
       "انجليزي": {
-        "teacher": "ا/ حماده يوسف  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ حماده يوسف",
         "sessions": [
           "✓",
           "",
@@ -18835,6 +18620,16 @@ window.STUDENTS_DATA = [
             "",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       }
@@ -18848,7 +18643,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 91.7
     },
-    "_searchString": "3156 روميساء محمد عبد الكريم 1210957033 1090015222 بلقس ث3 عام"
+    "_searchString": "3156 روميساء محمد عبد الكريم 1210957033 1090015222 بلقس ث3 عام احياء ا/ محمد علام كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3157",
@@ -18871,7 +18666,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3157 رويد فوزي محمد 1147637695 1150742121 بلقس ث3 "
+    "_searchString": "3157 رويد فوزي محمد 1147637695 1150742121 بلقس ث3 عام"
   },
   {
     "code": "3158",
@@ -18965,7 +18760,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3158 ريتاج محمد حسين 1008326361 10509906464 السلمانية ث3 عام"
+    "_searchString": "3158 ريتاج محمد حسين 1008326361 10509906464 السلمانيه ث3 عام كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3159",
@@ -19164,7 +18959,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3159 ريتاج وليد حلمي 1203467204 1203208930 بلقس ث3 عام"
+    "_searchString": "3159 ريتاج وليد حلمي 1203467204 1203208930 بلقس ث3 عام انجليزي ا/ حماده يوسف كيمياء ا/ محمد صلاح فزياء ا/ محمد مختار عربي ا/ احمد عبد القادر فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3160",
@@ -19223,7 +19018,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3160 ريم محمد سيد محمد 1222924392 1145120123 السلمانية ث3 عام"
+    "_searchString": "3160 ريم محمد سيد محمد 1222924392 1145120123 السلمانيه ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3162",
@@ -19317,7 +19112,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 60,
       "averageScore": 0
     },
-    "_searchString": "3162 زكريا كامل علي 1018700424 1037151619 الزاوية ث3 عام"
+    "_searchString": "3162 زكريا كامل علي 1018700424 1037151619 الزاويه ث3 عام عربي ا/ احمد عبد القادر فزياء ا/ محمد مختار"
   },
   {
     "code": "3164",
@@ -19340,7 +19135,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3164 زياد احمد اسماعيل 1102167536 1116305644 بلقس ث3 "
+    "_searchString": "3164 زياد احمد اسماعيل 1102167536 1116305644 بلقس ث3 عام"
   },
   {
     "code": "3165",
@@ -19469,7 +19264,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3165 زياد احمد سامي 1221886097 1020213414 بلقس ث3 عام"
+    "_searchString": "3165 زياد احمد سامي 1221886097 1020213414 بلقس ث3 عام كيمياء ا/ محمد صلاح رياضه ا/ مصطفي صابر فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3166",
@@ -19563,7 +19358,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3166 زياد حسن علي 1040753312 1025660691 بلقس ث3 عام"
+    "_searchString": "3166 زياد حسن علي 1040753312 1025660691 بلقس ث3 عام كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3167",
@@ -19586,7 +19381,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3167 زياد رمضان 1080054322   ث3 "
+    "_searchString": "3167 زياد رمضان 1080054322 ث3 عام"
   },
   {
     "code": "3168",
@@ -19680,7 +19475,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3168 ��ياد محمد سيد 1147747804 1273485484 بلقس ث3 عام"
+    "_searchString": "3168 ��ياد محمد سيد 1147747804 1273485484 بلقس ث3 عام كيمياء ا/ محمد صلاح فزياء ا/ محمد مختار"
   },
   {
     "code": "3169",
@@ -19739,7 +19534,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3169 زين العابدين محمد 1097801598 1014014230 كوم اشفين ث3 "
+    "_searchString": "3169 زين العابدين محمد 1097801598 1014014230 كوم اشفين ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3170",
@@ -19833,7 +19628,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3170 زين وزير فايد 1019107894 1069765202 الزاوية ث3 "
+    "_searchString": "3170 زين وزير فايد 1019107894 1069765202 الزاويه ث3 عام عربي ا/ احمد عبد القادر فزياء ا/ محمد مختار"
   },
   {
     "code": "3172",
@@ -19856,7 +19651,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3172 زينب صالح هاشم 1503373506 1111107566 بلقس ث3 "
+    "_searchString": "3172 زينب صالح هاشم 1503373506 1111107566 بلقس ث3 عام"
   },
   {
     "code": "3173",
@@ -19915,7 +19710,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3173 سارة اشرف محمد 1125784461 1227610413 بلقس ث3 "
+    "_searchString": "3173 ساره اشرف محمد 1125784461 1227610413 بلقس ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3175",
@@ -20009,7 +19804,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 80
     },
-    "_searchString": "3175 سارة رضا ابو سريع 1155272785 1155272785 بلقس ث3 عام"
+    "_searchString": "3175 ساره رضا ابو سريع 1155272785 1155272785 بلقس ث3 عام عربي ا/ احمد عبد القادر احياء ا/ محمد علام"
   },
   {
     "code": "3177",
@@ -20032,7 +19827,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3177 سارة عبدة شعبان 1287596673 1229914746 بلقس ث3 "
+    "_searchString": "3177 ساره عبده شعبان 1287596673 1229914746 بلقس ث3 عام"
   },
   {
     "code": "3178",
@@ -20126,7 +19921,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 90
     },
-    "_searchString": "3178 سارة محمد يوسف 1147577088 1118892431 السلمانية ث3 عام"
+    "_searchString": "3178 ساره محمد يوسف 1147577088 1118892431 السلمانيه ث3 عام عربي ا/ احمد عبد القادر انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3179",
@@ -20149,7 +19944,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3179 سعيد وائل سعيد 1203299144 1212884254  ث3 "
+    "_searchString": "3179 سعيد وايل سعيد 1203299144 1212884254 ث3 عام"
   },
   {
     "code": "3180",
@@ -20278,7 +20073,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 94,
       "averageScore": 0
     },
-    "_searchString": "3180 سلمي احمد عبد الواحد 1159882765 1 بلقس ث3 عام"
+    "_searchString": "3180 سلمي احمد عبد الواحد 1159882765 1 بلقس ث3 عام فزياء ا/ محمد مختار كيمياء ا/ محمد صلاح رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3181",
@@ -20301,7 +20096,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3181 سلمي حسين ابراهيم 1090121249 1556913979 كوم اشفين ث3 "
+    "_searchString": "3181 سلمي حسين ابراهيم 1090121249 1556913979 كوم اشفين ث3 عام"
   },
   {
     "code": "3183",
@@ -20360,7 +20155,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3183 سلمي فتحي حامد 106384824 1006109376 كوم اشفين ث3 "
+    "_searchString": "3183 سلمي فتحي حامد 106384824 1006109376 كوم اشفين ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3184",
@@ -20489,7 +20284,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3184 سلمي فرج محمد ابراهيم 1067587839 1207286923 بلقس ث3 "
+    "_searchString": "3184 سلمي فرج محمد ابراهيم 1067587839 1207286923 بلقس ث3 عام فزياء ا/ محمد الجوهري احياء ا/ محمد نور كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3186",
@@ -20512,7 +20307,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3186 سلمي محمد احمد 1101070101 1288260727 بلقس ث3 "
+    "_searchString": "3186 سلمي محمد احمد 1101070101 1288260727 بلقس ث3 عام"
   },
   {
     "code": "3187",
@@ -20606,7 +20401,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3187 سلمي محمد سيد مح��د 1005490934 1008182645 زوايا النجار ث3 عام"
+    "_searchString": "3187 سلمي محمد سيد مح��د 1005490934 1008182645 زوايا النجار ث3 عام رياضه ا/ مصطفي صابر كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3188",
@@ -20629,7 +20424,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3188 سلمي محمد يحيي 1112032412 1112032412 زواية النجار ث3 "
+    "_searchString": "3188 سلمي محمد يحيي 1112032412 1112032412 زوايه النجار ث3 عام"
   },
   {
     "code": "3189",
@@ -20688,7 +20483,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 70
     },
-    "_searchString": "3189 سلمي محمود حسين 1222461941 1284111656  ث3 "
+    "_searchString": "3189 سلمي محمود حسين 1222461941 1284111656 ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3191",
@@ -20817,7 +20612,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3191 سما سعيد عبد اللطيف 1070629831 1070629832 السلمانيه ث3 عام"
+    "_searchString": "3191 سما سعيد عبد اللطيف 1070629831 1070629832 السلمانيه ث3 عام كيمياء ا/ محمد صلاح فزياء ا/ محمد الجوهري انجليزي ا/ محمد صبحي"
   },
   {
     "code": "3192",
@@ -20840,7 +20635,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3192 سما محمد حسين 1114351816 1282361877 زواية النج��ر ث3 عام"
+    "_searchString": "3192 سما محمد حسين 1114351816 1282361877 زوايه النجا�� ث3 عام"
   },
   {
     "code": "3193",
@@ -20863,7 +20658,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3193 سما محمد علي محمد 1117082849 1115277884  ث3 "
+    "_searchString": "3193 سما محمد علي محمد 1117082849 1115277884 ث3 عام"
   },
   {
     "code": "3194",
@@ -20957,7 +20752,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 73,
       "averageScore": 0
     },
-    "_searchString": "3194 سمر سالم حسين 111597898 1014440844 بلقس ث3 "
+    "_searchString": "3194 سمر سالم حسين 111597898 1014440844 بلقس ث3 عام كيمياء ا/ محمد صلاح احياء ا/ محمد نور"
   },
   {
     "code": "3195",
@@ -20980,7 +20775,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3195 سمر سلامة احمد 1205355141 1203745640 بلقس ث3 "
+    "_searchString": "3195 سمر سلامه احمد 1205355141 1203745640 بلقس ث3 عام"
   },
   {
     "code": "3196",
@@ -21074,7 +20869,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3196 سمر عماد ايمن 1228353880 1221027724 بلقس ث3 عام"
+    "_searchString": "3196 سمر عماد ايمن 1228353880 1221027724 بلقس ث3 عام رياضه ا/ مصطفي صابر فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3197",
@@ -21097,7 +20892,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3197 سمر محمد عيد 1228107265 1286750807  ث3 "
+    "_searchString": "3197 سمر محمد عيد 1228107265 1286750807 ث3 عام"
   },
   {
     "code": "3198",
@@ -21156,7 +20951,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 50,
       "averageScore": 0
     },
-    "_searchString": "3198 سمية ربيع رجب 1127706513 1275233295 بلقس ث3 "
+    "_searchString": "3198 سميه ربيع رجب 1127706513 1275233295 بلقس ث3 عام احياء ا/ محمد علام"
   },
   {
     "code": "3199",
@@ -21179,7 +20974,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3199 سندس احمد ابراهيم 1201452071 1201451309  ث3 "
+    "_searchString": "3199 سندس احمد ابراهيم 1201452071 1201451309 ث3 عام"
   },
   {
     "code": "3200",
@@ -21202,7 +20997,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3200 سندس عبدالرحمن صقر 1153366329 1145118642 بلقس ث3 "
+    "_searchString": "3200 سندس عبدالرحمن صقر 1153366329 1145118642 بلقس ث3 عام"
   },
   {
     "code": "3201",
@@ -21261,7 +21056,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 88,
       "averageScore": 0
     },
-    "_searchString": "3201 سهيلة علي فتحي  1009388564  ث3 عام"
+    "_searchString": "3201 سهيله علي فتحي 1009388564 ث3 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3202",
@@ -21284,7 +21079,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3202 سيد يوسف عبد الرازق 1224951571 1276679766 بلقس ث3 "
+    "_searchString": "3202 سيد يوسف عبد الرازق 1224951571 1276679766 بلقس ث3 عام"
   },
   {
     "code": "3203",
@@ -21299,7 +21094,7 @@ window.STUDENTS_DATA = [
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
     "academicSubjects": {
       "انجليزي": {
-        "teacher": "ا/ حماده يوسف  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ حماده يوسف",
         "sessions": [
           "✓",
           "",
@@ -21330,6 +21125,16 @@ window.STUDENTS_DATA = [
             "",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       }
@@ -21343,7 +21148,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3203 سيف احمد مجدي 1285960898 1288167577 بلقس ث3 "
+    "_searchString": "3203 سيف احمد مجدي 1285960898 1288167577 بلقس ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3204",
@@ -21402,7 +21207,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 55
     },
-    "_searchString": "3204 سيف جلال محمود 1143475583 1226903860 بلقس ث3 "
+    "_searchString": "3204 سيف جلال محمود 1143475583 1226903860 بلقس ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3206",
@@ -21461,7 +21266,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3206 شروق احمد محمد 1276101681 1200836415 بلقس ث3 "
+    "_searchString": "3206 شروق احمد محمد 1276101681 1200836415 بلقس ث3 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3207",
@@ -21484,7 +21289,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3207 شروق اسماعيل حسن 1202066801 1228324825 الدائري ث3 "
+    "_searchString": "3207 شروق اسماعيل حسن 1202066801 1228324825 الدايري ث3 عام"
   },
   {
     "code": "3208",
@@ -21507,7 +21312,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3208 شروق ايمن سالم 1128664558 1008771586 الزاوية ث3 "
+    "_searchString": "3208 شروق ايمن سالم 1128664558 1008771586 الزاويه ث3 عام"
   },
   {
     "code": "3209",
@@ -21530,7 +21335,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3209 شروق صلاح رشاد 1203205636 1055726283 سلمانية ث3 "
+    "_searchString": "3209 شروق صلاح رشاد 1203205636 1055726283 سلمانيه ث3 عام"
   },
   {
     "code": "3210",
@@ -21624,7 +21429,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 92,
       "averageScore": 0
     },
-    "_searchString": "3210 شروق عبد الخالق عواد 1226104719 128613875 بلقس ث3 عام"
+    "_searchString": "3210 شروق عبد الخالق عواد 1226104719 128613875 بلقس ث3 عام كيمياء ا/ محمد صلاح رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3211",
@@ -21647,7 +21452,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3211 شروق عبد الرحمن رجب 1274223269 1282641205 بلقس ث3 "
+    "_searchString": "3211 شروق عبد الرحمن رجب 1274223269 1282641205 بلقس ث3 عام"
   },
   {
     "code": "3212",
@@ -21811,7 +21616,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 70,
       "averageScore": 0
     },
-    "_searchString": "3212 شروق عمرو كرم 1126983178 1150743503 بلقس ث3 عام"
+    "_searchString": "3212 شروق عمرو كرم 1126983178 1150743503 بلقس ث3 عام تاريخ ا/ رضا صلاح احصاء ا/ مصطفي صابر جغرافيا ا/ رضا صلاح رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3213",
@@ -21834,7 +21639,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3213 شروق محمود سيد 1275963368 1275966738 بلقس ث3 "
+    "_searchString": "3213 شروق محمود سيد 1275963368 1275966738 بلقس ث3 عام"
   },
   {
     "code": "3214",
@@ -21928,7 +21733,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3214 شهد احمد محمد 1225957580 1288471080 بلقس ث3 عام"
+    "_searchString": "3214 شهد احمد محمد 1225957580 1288471080 بلقس ث3 عام احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3215",
@@ -21987,7 +21792,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3215 شهد بلال حمدي سيد 1024455514 1050108390 بلقس ث3 "
+    "_searchString": "3215 شهد بلال حمدي سيد 1024455514 1050108390 بلقس ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3216",
@@ -22010,7 +21815,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3216 شهد حمدي اسماعيل 1013066208 1141435246 السلمانية ث3 "
+    "_searchString": "3216 شهد حمدي اسماعيل 1013066208 1141435246 السلمانيه ث3 عام"
   },
   {
     "code": "3217",
@@ -22139,7 +21944,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 77,
       "averageScore": 0
     },
-    "_searchString": "3217 شهد رجب ربيع 1115625607 1279775575 بلقس ث3 عام"
+    "_searchString": "3217 شهد رجب ربيع 1115625607 1279775575 بلقس ث3 عام فزياء ا/ محمد الجوهري احياء ا/ محمد علام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3218",
@@ -22150,7 +21955,7 @@ window.STUDENTS_DATA = [
     "grade": "ث3",
     "specialization": "عام",
     "subjectsSummary": "فزياء, كيمياء, رياضة",
-    "teachersSummary": "فزياء/ا/ محمد الجوهري | كيمياء/احمد سعيد | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, ✓, ✓, ✓, ✓, ✓]",
+    "teachersSummary": "فزياء/ا/ محمد الجوهري | كيمياء/ا/ احمد سعيد | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, ✓, ✓, ✓, ✓, ✓]",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
     "academicSubjects": {
       "فزياء": {
@@ -22189,7 +21994,7 @@ window.STUDENTS_DATA = [
         }
       },
       "كيمياء": {
-        "teacher": "احمد سعيد",
+        "teacher": "ا/ احمد سعيد",
         "sessions": [
           "",
           "",
@@ -22268,7 +22073,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3218 شهد رمضان انور 1004510112 1279244930 بلقس ث3 عام"
+    "_searchString": "3218 شهد رمضان انور 1004510112 1279244930 بلقس ث3 عام فزياء ا/ محمد الجوهري كيمياء ا/ احمد سعيد رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3219",
@@ -22291,7 +22096,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3219 شهد عماد مصطفي 1224559832 1149004518 بلقس ث3 "
+    "_searchString": "3219 شهد عماد مصطفي 1224559832 1149004518 بلقس ث3 عام"
   },
   {
     "code": "3221",
@@ -22314,7 +22119,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3221 شهد محمد حسين 1156023307 1157808779  ث3 "
+    "_searchString": "3221 شهد محمد حسين 1156023307 1157808779 ث3 عام"
   },
   {
     "code": "3222",
@@ -22443,7 +22248,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3222 شهد محمد سيد سيد 1097176479 1097236389 بلقس ث3 عام"
+    "_searchString": "3222 شهد محمد سيد سيد 1097176479 1097236389 بلقس ث3 عام انجليزي ا/ حماده يوسف احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3223",
@@ -22466,7 +22271,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3223 شهد محمد هارون 1122047315 1149353845 بلقس ث3 "
+    "_searchString": "3223 شهد محمد هارون 1122047315 1149353845 بلقس ث3 عام"
   },
   {
     "code": "3224",
@@ -22489,7 +22294,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3224 شيماء احمد محمد 1117912427 1145307750 بلقس ث3 "
+    "_searchString": "3224 شيماء ��حمد محمد 1117912427 1145307750 بلقس ث3 عام"
   },
   {
     "code": "3225",
@@ -22618,7 +22423,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 92,
       "averageScore": 87.1
     },
-    "_searchString": "3225 شيماء جمال خيري 1102400170 1155416248 عبدالله باشا ث3 "
+    "_searchString": "3225 شيماء جمال خيري 1102400170 1155416248 عبدالله باشا ث3 عام عربي ا/ احمد عبد القادر احياء ا/ محمد علام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3226",
@@ -22641,7 +22446,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3226 شيماء راشد 1150115622 1115632954 بلقس ث3 "
+    "_searchString": "3226 شيماء راشد 1150115622 1115632954 بلقس ث3 عام"
   },
   {
     "code": "3227",
@@ -22770,7 +22575,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 92,
       "averageScore": 0
     },
-    "_searchString": "3227 شيماء رضوان حسن 1288013881 1205382687 السلمانية ث3 عام"
+    "_searchString": "3227 شيماء رضوان حسن 1288013881 1205382687 السلمانيه ث3 عام احياء ا/ محمد نور عربي ا/ احمد عبد القادر كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3228",
@@ -22793,7 +22598,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3228 شيماء محمود النوبي 1221867182 128870740 بلقس ث3 "
+    "_searchString": "3228 شيماء محمود النوبي 1221867182 128870740 بلقس ث3 عام"
   },
   {
     "code": "3229",
@@ -22852,7 +22657,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3229 صالح احمد صالح 1156906719 1125566663 بلقس ث3 "
+    "_searchString": "3229 صالح احمد صالح 1156906719 1125566663 بلقس ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3231",
@@ -22875,7 +22680,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3231 صالح عبدة صالح 1273508726   ث3 "
+    "_searchString": "3231 صالح عبده صالح 1273508726 ث3 عام"
   },
   {
     "code": "3232",
@@ -23004,7 +22809,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3232 صباح جمعة شحات 1100122159 1004317669 كوم السمن ث3 عام"
+    "_searchString": "3232 صباح جمعه شحات 1100122159 1004317669 كوم السمن ث3 عام احصاء ا/ مصطفي صابر تاريخ ا/ رضا صلاح رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3233",
@@ -23027,7 +22832,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3233 صباح جمعة شعبان 1100122159 1004317669 سلمانية ث3 "
+    "_searchString": "3233 صباح جمعه شعبان 1100122159 1004317669 سلمانيه ث3 عام"
   },
   {
     "code": "3234",
@@ -23156,7 +22961,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 50
     },
-    "_searchString": "3234 صباح عبد المعطي صبحي 1271944351 1287121920  ث3 عام"
+    "_searchString": "3234 صباح عبد المعطي صبحي 1271944351 1287121920 ث3 عام عربي ا/ احمد عبد القادر احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3236",
@@ -23250,7 +23055,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3236 صباح مجدي عبدالعزيز 1558607343 1154857583 بلقس ث3 عام"
+    "_searchString": "3236 صباح مجدي عبدالعزيز 1558607343 1154857583 بلقس ث3 عام فرنساوي ا/ محمد رجب رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3239",
@@ -23260,8 +23065,8 @@ window.STUDENTS_DATA = [
     "parentPhone": "1127981862",
     "grade": "ث3",
     "specialization": "عام",
-    "subjectsSummary": "عربي, احصاء, احص��ء, رياضة",
-    "teachersSummary": "عربي/ا/ احمد عبد القادر | احصاء/ا/ مصطفي صابر | احص��ء/ا/ مصطفي صابر | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, _, _, ✓]",
+    "subjectsSummary": "عربي, احصاء, رياضة",
+    "teachersSummary": "عربي/ا/ احمد عبد القادر | احصاء/ا/ مصطفي صابر | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, _, _, ✓]",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
     "academicSubjects": {
       "عربي": {
@@ -23300,41 +23105,6 @@ window.STUDENTS_DATA = [
         }
       },
       "احصاء": {
-        "teacher": "ا/ مصطفي صابر",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      },
-      "احص��ء": {
         "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
@@ -23414,7 +23184,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3239 صفية محمد عبد الرؤف 1125786053 1127981862 بلقس ث3 عام"
+    "_searchString": "3239 صفيه محمد عبد الروف 1125786053 1127981862 بلقس ث3 عام عربي ا/ احمد عبد القادر احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3240",
@@ -23508,7 +23278,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 0
     },
-    "_searchString": "3240 ضحي سيد محمد 1208605724 1288464921 بلقس ث3 عام"
+    "_searchString": "3240 ضحي سيد محمد 1208605724 1288464921 بلقس ث3 عام كيمياء ا/ محمد صلاح احياء ا/ محمد نور"
   },
   {
     "code": "3241",
@@ -23531,7 +23301,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3241 ضحي محمد احمد 1208605724 1288464921  ث3 "
+    "_searchString": "3241 ضحي محمد احمد 1208605724 1288464921 ث3 عام"
   },
   {
     "code": "3242",
@@ -23590,7 +23360,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3242 ضحي مصطفي محمود 1283824997 1125785171 بلقس ث3 عام"
+    "_searchString": "3242 ضحي مصطفي محمود 1283824997 1125785171 بلقس ث3 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3243",
@@ -23613,7 +23383,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3243 ضحي مصطفي محمود 1125785171 1283824997 بلقس ث3 "
+    "_searchString": "3243 ضحي مصطفي محمود 1125785171 1283824997 بلقس ث3 عام"
   },
   {
     "code": "3245",
@@ -23636,7 +23406,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3245 طارق سيد عيد 1212887017 1114554217 بلقس ث3 "
+    "_searchString": "3245 طارق سيد عيد 1212887017 1114554217 بلقس ث3 عام"
   },
   {
     "code": "3251",
@@ -23659,7 +23429,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3251 عبد الله محمود عبد العز 1012454961 1113694485 سلمانية ث3 "
+    "_searchString": "3251 عبد الله محمود عبد العز 1012454961 1113694485 سلمانيه ث3 عام"
   },
   {
     "code": "3252",
@@ -23718,7 +23488,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3252 عبد الله يسري مصطفي 1013058104 1207718796 بلقس ث3 "
+    "_searchString": "3252 عبد الله يسري مصطفي 1013058104 1207718796 بلقس ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3253",
@@ -23741,7 +23511,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3253 عبدالرحمن عبدالله 1273948433 1282659714  ث3 "
+    "_searchString": "3253 عبدالرحمن عبدالله 1273948433 1282659714 ث3 عام"
   },
   {
     "code": "3255",
@@ -23764,7 +23534,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3255 عبداللة محمود 1012454961 11136944895  ث3 "
+    "_searchString": "3255 عبدالله محمود 1012454961 11136944895 ث3 عام"
   },
   {
     "code": "3258",
@@ -23787,7 +23557,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3258 عبدالله محمد عنتر 1205954136 1060699699 بلقس ث3 "
+    "_searchString": "3258 عبدالله محمد عنتر 1205954136 1060699699 بلقس ث3 عام"
   },
   {
     "code": "3259",
@@ -23810,7 +23580,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3259 عبدالله محمود 1012454961   ث3 "
+    "_searchString": "3259 عبدالله محمود 1012454961 ث3 عام"
   },
   {
     "code": "3261",
@@ -23869,7 +23639,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3261 علا حمزة علي 1207437624 1286377403 بلقس ث3 "
+    "_searchString": "3261 علا حمزه علي 1207437624 1286377403 بلقس ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3264",
@@ -23998,7 +23768,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 84
     },
-    "_searchString": "3264 علياء خالد صالح 1119178416 1112723064 كوم اشفين ث3 عام"
+    "_searchString": "3264 علياء خالد صالح 1119178416 1112723064 كوم اشفين ث3 عام كيمياء ا/ محمد صلاح فزياء ا/ محمد الجوهري احياء ا/ محمد علام"
   },
   {
     "code": "3564",
@@ -24092,7 +23862,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3564 عماد عبد الرحيم 1142983710 1149503217  ث3 "
+    "_searchString": "3564 عماد عبد الرحيم 1142983710 1149503217 ث3 عام كيمياء ا/ محمد صلاح رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3266",
@@ -24115,7 +23885,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3266 عمار احمد 1094465293 1050197721 زواية النجار ث3 "
+    "_searchString": "3266 عمار احمد 1094465293 1050197721 زوايه النجار ث3 عام"
   },
   {
     "code": "3267",
@@ -24174,7 +23944,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3267 عمار شريف رجب 1025932099 1149814429 عرب الشعارة ث3 "
+    "_searchString": "3267 عمار شريف رجب 1025932099 1149814429 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3269",
@@ -24189,7 +23959,7 @@ window.STUDENTS_DATA = [
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
     "academicSubjects": {
       "انجليزي": {
-        "teacher": "ا/ حماده يوسف  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ حماده يوسف",
         "sessions": [
           "✓",
           "",
@@ -24212,6 +23982,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "✓",
             "",
             "",
@@ -24268,7 +24048,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3269 عمار طارق محمود 1210634131 1210638101 بلقس ث3 عام"
+    "_searchString": "3269 عمار طارق محمود 1210634131 1210638101 بلقس ث3 عام انجليزي ا/ حماده يوسف رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3270",
@@ -24362,7 +24142,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3270 عمر احمد محمد 1022623758 1201176146 السلمانية ث3 عام"
+    "_searchString": "3270 عمر احمد محمد 1022623758 1201176146 السلمانيه ث3 عام فزياء ا/ محمد الجوهري كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3271",
@@ -24444,7 +24224,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 0
     },
-    "_searchString": "3275 عمرو محمد علي 1200900648 1555120382 بلقس ث3 عام"
+    "_searchString": "3275 عمرو محمد علي 1200900648 1555120382 بلقس ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3276",
@@ -24467,7 +24247,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3276 عمرو يحي 1067440775 1062892111  ث3 "
+    "_searchString": "3276 عمرو يحي 1067440775 1062892111 ث3 عام"
   },
   {
     "code": "3277",
@@ -24490,7 +24270,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3277 عمور يحي محمد 1278553120 12026994183  ث3 "
+    "_searchString": "3277 عمور يحي محمد 1278553120 12026994183 ث3 عام"
   },
   {
     "code": "3278",
@@ -24619,7 +24399,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 87,
       "averageScore": 0
     },
-    "_searchString": "3278 غادة عادل سالم 1225064128 1013832715 كوم اشفين ث3 عام"
+    "_searchString": "3278 غاده عادل سالم 1225064128 1013832715 كوم اشفين ث3 عام كيمياء ا/ محمد صلاح فزياء ا/ محمد مختار احياء ا/ محمد نور"
   },
   {
     "code": "3279",
@@ -24642,7 +24422,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3279 فؤاد احمد 1281453199 1287874937  ث3 "
+    "_searchString": "3279 فواد احمد 1281453199 1287874937 ث3 عام"
   },
   {
     "code": "3281",
@@ -24701,7 +24481,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3281 فاطمة ابراهيم رمضان 1202290938 1271817834 بلقس ث3 عام"
+    "_searchString": "3281 فاطمه ابراهيم رمضان 1202290938 1271817834 بلقس ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3285",
@@ -24724,7 +24504,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3285 فاطمة سيد سلامة 1029166073 1154325434 بلقس ث3 "
+    "_searchString": "3285 فاطمه سيد سلامه 1029166073 1154325434 بلقس ث3 عام"
   },
   {
     "code": "3287",
@@ -24812,13 +24592,13 @@ window.STUDENTS_DATA = [
     "_metrics": {
       "totalScore": 42.5,
       "totalMax": 55,
-      "totalPresent": 12,
+      "totalPresent": 13,
       "totalAbsent": 1,
-      "totalRecordedSessions": 13,
-      "attendanceRate": 92,
+      "totalRecordedSessions": 14,
+      "attendanceRate": 93,
       "averageScore": 77.3
     },
-    "_searchString": "3287 فاطمة عصام سلامة 1206723405 1274256936 بلقس ث3 عام"
+    "_searchString": "3287 فاطمه عصام سلامه 1206723405 1274256936 بلقس ث3 عام عربي ا/ سيد عبد العاطي احياء ا/ محمد نور"
   },
   {
     "code": "3288",
@@ -24912,7 +24692,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3288 فاطمة علي حسانين علي 1010213652 1142723277 السلمانية ث3 عام"
+    "_searchString": "3288 فاطمه علي حسانين علي 1010213652 1142723277 السلمانيه ث3 عام عربي ا/ احمد عبد القادر كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3289",
@@ -25006,7 +24786,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 83,
       "averageScore": 0
     },
-    "_searchString": "3289 فاطمة عواد عطية عواد 1284224796 1226523755 بلقس ث3 عام"
+    "_searchString": "3289 فاطمه عواد عطيه عواد 1284224796 1226523755 بلقس ث3 عام كيمياء ا/ محمد صلاح احياء ا/ محمد علام"
   },
   {
     "code": "3291",
@@ -25100,7 +24880,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 90.5
     },
-    "_searchString": "3291 فاطمة محمد امين 1004999058 1111581366 بلقس ث3 "
+    "_searchString": "3291 فاطمه محمد امين 1004999058 1111581366 بلقس ث3 عام احياء ا/ محمد علام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3292",
@@ -25188,13 +24968,13 @@ window.STUDENTS_DATA = [
     "_metrics": {
       "totalScore": 25,
       "totalMax": 40,
-      "totalPresent": 9,
+      "totalPresent": 10,
       "totalAbsent": 4,
-      "totalRecordedSessions": 13,
-      "attendanceRate": 69,
+      "totalRecordedSessions": 14,
+      "attendanceRate": 71,
       "averageScore": 62.5
     },
-    "_searchString": "3292 فاطمة محمود عبد الله 1280145800 1201860661 بلقس ث3 عام"
+    "_searchString": "3292 فاطمه محمود عبد الله 1280145800 1201860661 بلقس ث3 عام احياء ا/ محمد نور عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "3294",
@@ -25209,7 +24989,7 @@ window.STUDENTS_DATA = [
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
     "academicSubjects": {
       "انجليزي": {
-        "teacher": "ا/ حماده يوسف  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ حماده يوسف",
         "sessions": [
           "✓",
           "",
@@ -25240,6 +25020,16 @@ window.STUDENTS_DATA = [
             "",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       }
@@ -25253,7 +25043,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3294 فاطمة وليد اسماعيل 1108074921 1114682932 الجعافرة ث3 "
+    "_searchString": "3294 فاطمه وليد اسماعيل 1108074921 1114682932 الجعافره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3296",
@@ -25276,7 +25066,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3296 فتحية محمد عبد الرحمن 1211254285 12229912814 بلقس ث3 "
+    "_searchString": "3296 فتحيه محمد عبد الرحمن 1211254285 12229912814 بلقس ث3 عام"
   },
   {
     "code": "3298",
@@ -25299,7 +25089,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3298 فرح ربيع 1220661721   ث3 "
+    "_searchString": "3298 فرح ربيع 1220661721 ث3 عام"
   },
   {
     "code": "3299",
@@ -25322,7 +25112,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3299 فرحة ربيع صالح 1220661721 1003048297  ث3 "
+    "_searchString": "3299 فرحه ربيع صالح 1220661721 1003048297 ث3 عام"
   },
   {
     "code": "3300",
@@ -25381,7 +25171,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 0
     },
-    "_searchString": "3300 فرحة محمد شحاتة 1127201523 1119562737 جعافرة ث3 عام"
+    "_searchString": "3300 فرحه محمد شحاته 1127201523 1119562737 جعافره ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3301",
@@ -25440,7 +25230,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3301 فرحة ياسر رجب 1201664635 1001770303 بلقس ث3 عام"
+    "_searchString": "3301 فرحه ياسر رجب 1201664635 1001770303 بلقس ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3302",
@@ -25499,7 +25289,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 0
     },
-    "_searchString": "3302 فهد احمد سيد 1210117946 1289793750 سلمانية ث3 عام"
+    "_searchString": "3302 فهد احمد سيد 1210117946 1289793750 سلمانيه ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3305",
@@ -25587,13 +25377,13 @@ window.STUDENTS_DATA = [
     "_metrics": {
       "totalScore": 0,
       "totalMax": 0,
-      "totalPresent": 4,
+      "totalPresent": 5,
       "totalAbsent": 2,
-      "totalRecordedSessions": 6,
-      "attendanceRate": 67,
+      "totalRecordedSessions": 7,
+      "attendanceRate": 71,
       "averageScore": 0
     },
-    "_searchString": "3305 قطب حسين قطب 1202013702 1275442676 بلقس ث3 عام"
+    "_searchString": "3305 قطب حسين قطب 1202013702 1275442676 بلقس ث3 عام عربي ا/ سيد عبد العاطي كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3307",
@@ -25722,7 +25512,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3307 ليلي ابراهيم محمد 1552365526 1129073066 بلقس ث3 عام"
+    "_searchString": "3307 ليلي ابراهيم محمد 1552365526 1129073066 بلقس ث3 عام كيمياء ا/ محمد صلاح احياء ا/ محمد نور فزياء ا/ محمد مختار"
   },
   {
     "code": "3310",
@@ -25781,7 +25571,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3310 ماهر ايمن رمضان 1282527436 1278793335  ث3 "
+    "_searchString": "3310 ماهر ايمن رمضان 1282527436 1278793335 ث3 عام احصاء ا/ مصطفي صابر"
   },
   {
     "code": "3311",
@@ -25875,7 +25665,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 91,
       "averageScore": 90
     },
-    "_searchString": "3311 محمد احمد فرج 1118471525 1505267229 السلمانية ث3 عام"
+    "_searchString": "3311 محمد احمد فرج 1118471525 1505267229 السلمانيه ث3 عام كيمياء ا/ محمد صلاح رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3312",
@@ -25898,7 +25688,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3312 محمد اسماعيل الاعصر 1204291682 1221343614 السلمانية ث3 "
+    "_searchString": "3312 محمد اسماعيل الاعصر 1204291682 1221343614 السلمانيه ث3 عام"
   },
   {
     "code": "3316",
@@ -25921,7 +25711,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3316 محمد خالد ربيع احمد 1282917840 1068449440 كوم اشفين ث3 "
+    "_searchString": "3316 محمد خالد ربيع احمد 1282917840 1068449440 كوم اشفين ث3 عام"
   },
   {
     "code": "3317",
@@ -25944,7 +25734,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3317 محمد خالد محمد 1111474308  بلقس ث3 "
+    "_searchString": "3317 محمد خالد محمد 1111474308 بلقس ث3 عام"
   },
   {
     "code": "3318",
@@ -25967,7 +25757,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3318 محمد رضا محمد 1204290640 1112919077 بلقس ث3 "
+    "_searchString": "3318 محمد رضا محمد 1204290640 1112919077 بلقس ث3 عام"
   },
   {
     "code": "3320",
@@ -25990,7 +25780,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3320 محمد رمضان سيد  1103223409 السلمانية ث3 "
+    "_searchString": "3320 محمد رمضان سيد 1103223409 السلمانيه ث3 عام"
   },
   {
     "code": "3321",
@@ -26084,7 +25874,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3321 محمد سعيد عبد الله 1150447764 1111317008 بلقس ث3 عام"
+    "_searchString": "3321 محمد سعيد عبد الله 1150447764 1111317008 بلقس ث3 عام كيمياء ا/ محمد صلاح فزياء ا/ محمد مختار"
   },
   {
     "code": "3323",
@@ -26143,7 +25933,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3323 محمد صابر ابراهيم 1102165509 1285671183 بلقس ث3 عام"
+    "_searchString": "3323 محمد صابر ابراهيم 1102165509 1285671183 بلقس ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3325",
@@ -26202,7 +25992,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 88
     },
-    "_searchString": "3325 محمد صبيح سيد 1220661327 1202880565 بلقس ث3 عام"
+    "_searchString": "3325 محمد صبيح سيد 1220661327 1202880565 بلقس ث3 عام احياء ا/ محمد علام"
   },
   {
     "code": "3326",
@@ -26225,7 +26015,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3326 محمد صلاح سالم 1226561965 1226561965  ث3 عام"
+    "_searchString": "3326 محمد صلاح سالم 1226561965 1226561965 ث3 عام"
   },
   {
     "code": "3328",
@@ -26248,7 +26038,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3328 محمد عبد الحميد محمد 122956256 1288528958 بلقس ث3 "
+    "_searchString": "3328 محمد عبد الحميد محمد 122956256 1288528958 بلقس ث3 عام"
   },
   {
     "code": "3330",
@@ -26342,7 +26132,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 70
     },
-    "_searchString": "3330 محمد عبد النبي ابو سريع 1090742734 1119542403 بلقس ث3 "
+    "_searchString": "3330 محمد عبد النبي ابو سريع 1090742734 1119542403 بلقس ث3 عام عربي ا/ احمد عبد القادر احياء ا/ محمد نور"
   },
   {
     "code": "3331",
@@ -26401,7 +26191,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3331 محمد عربي محمد 1102165715 1102165761 بلقس ث3 عام"
+    "_searchString": "3331 محمد عربي محمد 1102165715 1102165761 بلقس ث3 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3333",
@@ -26424,7 +26214,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3333 محمد علاء قليوبي 1221377214 1283426058 السلمانية ث3 "
+    "_searchString": "3333 محمد علاء قليوبي 1221377214 1283426058 السلمانيه ث3 عام"
   },
   {
     "code": "3334",
@@ -26518,7 +26308,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3334 محمد عماد سيد 1278179761 1097595394 بلقس ث3 "
+    "_searchString": "3334 محمد عماد سيد 1278179761 1097595394 بلقس ث3 عام كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3335",
@@ -26528,46 +26318,10 @@ window.STUDENTS_DATA = [
     "parentPhone": "1064171674",
     "grade": "ث3",
     "specialization": "عام",
-    "subjectsSummary": "فرنساوي",
-    "teachersSummary": "فرنساوي/.",
+    "subjectsSummary": "",
+    "teachersSummary": "",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
-    "academicSubjects": {
-      "فرنساوي": {
-        "teacher": ".",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      }
-    },
+    "academicSubjects": {},
     "_metrics": {
       "totalScore": 0,
       "totalMax": 0,
@@ -26636,7 +26390,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3336 محمد فاضل ممدوح 1129164836 111622343 الجعافرة ث3 عام"
+    "_searchString": "3336 محمد فاضل ممدوح 1129164836 111622343 الجعافره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3337",
@@ -26730,7 +26484,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3337 محمد فتحي سعيد 1203400958  سلمانية ث3 عام"
+    "_searchString": "3337 محمد فتحي سعيد 1203400958 سلمانيه ث3 عام كيمياء ا/ محمد صلاح رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3338",
@@ -26789,7 +26543,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3338 محمد فرج اسماعيل 120638340 1272195594  ث3 "
+    "_searchString": "3338 محمد فرج اسماعيل 120638340 1272195594 ث3 عام احصاء ا/ مصطفي صابر"
   },
   {
     "code": "3339",
@@ -26812,7 +26566,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3339 محمد فرج عبد الخالق 1281611533 1212932545 بلقس ث3 "
+    "_searchString": "3339 محمد فرج عبد الخالق 1281611533 1212932545 بلقس ث3 عام"
   },
   {
     "code": "3340",
@@ -26835,7 +26589,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3340 محمد لطفي مصطفي 1121423421 12286658 بلقس ث3 "
+    "_searchString": "3340 محمد لطفي مصطفي 1121423421 12286658 بلقس ث3 عام"
   },
   {
     "code": "3341",
@@ -26858,7 +26612,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3341 محمد محمود 1277958858 1060208020 بلقس ث3 "
+    "_searchString": "3341 محمد محمود 1277958858 1060208020 بلقس ث3 عام"
   },
   {
     "code": "3342",
@@ -26952,7 +26706,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3342 محمد محمود عبد المطلب 1131418755 1060208020 السلمانية ث3 عام"
+    "_searchString": "3342 محمد محمود عبد المطلب 1131418755 1060208020 السلمانيه ث3 عام عربي ا/ احمد عبد القادر احصاء ا/ مصطفي صابر"
   },
   {
     "code": "3345",
@@ -26967,7 +26721,7 @@ window.STUDENTS_DATA = [
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
     "academicSubjects": {
       "انجليزي": {
-        "teacher": "ا/ حماده يوسف  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ حماده يوسف",
         "sessions": [
           "✓",
           "",
@@ -26990,6 +26744,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "✓",
             "",
             "",
@@ -27046,7 +26810,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3345 محمود حسن محمد 1103784373 1103784373 بلقس ث3 عام"
+    "_searchString": "3345 محمود حسن محمد 1103784373 1103784373 بلقس ث3 عام انجليزي ا/ حماده يوسف احصاء ا/ مصطفي صابر"
   },
   {
     "code": "3346",
@@ -27128,7 +26892,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3347 محمود عصام سعد 1060182902 1116071140 عرب الشعارة ث3 "
+    "_searchString": "3347 محمود عصام سعد 1060182902 1116071140 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3349",
@@ -27251,13 +27015,13 @@ window.STUDENTS_DATA = [
     "_metrics": {
       "totalScore": 52,
       "totalMax": 70,
-      "totalPresent": 11,
+      "totalPresent": 12,
       "totalAbsent": 2,
-      "totalRecordedSessions": 13,
-      "attendanceRate": 85,
+      "totalRecordedSessions": 14,
+      "attendanceRate": 86,
       "averageScore": 74.3
     },
-    "_searchString": "3349 مرفت محمود ابو ��ريع يونس 1272248398 1203254425 بلقس ث3 "
+    "_searchString": "3349 مرفت محمود ابو س��يع يونس 1272248398 1203254425 بلقس ث3 عام كيمياء ا/ محمد صلاح احياء ا/ محمد علام عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "3350",
@@ -27268,11 +27032,11 @@ window.STUDENTS_DATA = [
     "grade": "ث3",
     "specialization": "عام",
     "subjectsSummary": "احياء",
-    "teachersSummary": "احياء/محمد نور",
+    "teachersSummary": "احياء/ا/ محمد نور",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
     "academicSubjects": {
       "احياء": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -27316,7 +27080,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3350 مروان سامح عبد الحميد 1067001476 1275427245 كوم اشفين ث3 "
+    "_searchString": "3350 مروان سامح عبد الحميد 1067001476 1275427245 كوم اشفين ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3351",
@@ -27445,7 +27209,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3351 مريم احمد صبحي 1202267920 1289919972 بلقس ث3 عام"
+    "_searchString": "3351 مريم احمد صبحي 1202267920 1289919972 بلقس ث3 عام فزياء ا/ محمد مختار كيمياء ا/ محمد صلاح عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3352",
@@ -27456,7 +27220,7 @@ window.STUDENTS_DATA = [
     "grade": "ث3",
     "specialization": "عام",
     "subjectsSummary": "احصاء, رياضة",
-    "teachersSummary": "احصاء/ا/ مصطفي صابر | رياضة/ا/ م��طفي صابر [حصص: ✓, ✓, ✓, غ, ✓, ✓, غ, _]",
+    "teachersSummary": "احصاء/ا/ مصطفي صابر | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, غ, ✓, ✓, غ, _]",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
     "academicSubjects": {
       "احصاء": {
@@ -27495,7 +27259,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ م��طفي صابر",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "✓",
           "✓",
@@ -27539,7 +27303,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 71,
       "averageScore": 0
     },
-    "_searchString": "3352 مريم صبحي محمد 1285946679 1223022629 بلقس ث3 عام"
+    "_searchString": "3352 مريم صبحي محمد 1285946679 1223022629 بلقس ث3 عام احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3353",
@@ -27668,7 +27432,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 36
     },
-    "_searchString": "3353 مريم عاطف عبد العزيز 1288690004 1220504491 بلقس ث3 عام"
+    "_searchString": "3353 مريم عاطف عبد العزيز 1288690004 1220504491 بلقس ث3 عام كيمياء ا/ محمد صلاح احياء ا/ محمد علام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3355",
@@ -27762,7 +27526,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 60
     },
-    "_searchString": "3355 مريم عصام عبد الفتاح 1037193624 1145022093 بلقس ث3 عام"
+    "_searchString": "3355 مريم عصام عبد الفتاح 1037193624 1145022093 بلقس ث3 عام عربي ا/ احمد عبد القادر احياء ا/ محمد نور"
   },
   {
     "code": "3357",
@@ -27821,7 +27585,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3357 مريم علام عبد المؤمن 1150838837 1116370510 جعافرة ث3 عام"
+    "_searchString": "3357 مريم علام عبد المومن 1150838837 1116370510 جعافره ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3358",
@@ -27950,7 +27714,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 50,
       "averageScore": 0
     },
-    "_searchString": "3358 مريم عمر مجدي 1221017298 1012793604 عبدالله باشا ث3 عام"
+    "_searchString": "3358 مريم عمر مجدي 1221017298 1012793604 عبدالله باشا ث3 عام كيمياء ا/ محمد صلاح احياء ا/ محمد علام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3359",
@@ -27973,7 +27737,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3359 مريم عمرو محمد 1113677791 1115177535 عرب الشعارة ث3 "
+    "_searchString": "3359 مريم عمرو محمد 1113677791 1115177535 عرب الشعاره ث3 عام"
   },
   {
     "code": "3364",
@@ -28032,7 +27796,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3364 مريم محمد فتحي 1147329832 1142228986 بلقس ث3 "
+    "_searchString": "3364 مريم محمد فتحي 1147329832 1142228986 بلقس ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3365",
@@ -28055,7 +27819,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3365 مريم محمدسيد محمد 1001583307 1008182645 زوايا النجار ث3 "
+    "_searchString": "3365 مريم محمدسيد محمد 1001583307 1008182645 زوايا النجار ث3 عام"
   },
   {
     "code": "3366",
@@ -28078,7 +27842,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3366 مريم مصطفي احمد 1207391884 1107391884 كوم السمن ث3 "
+    "_searchString": "3366 مريم مصطفي احمد 1207391884 1107391884 كوم السمن ث3 عام"
   },
   {
     "code": "3367",
@@ -28101,7 +27865,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3367 مريم ممدوح حسن 1102813843 1060983944 بلقس ث3 "
+    "_searchString": "3367 مريم ممدوح حسن 1102813843 1060983944 بلقس ث3 عام"
   },
   {
     "code": "3368",
@@ -28230,7 +27994,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 60
     },
-    "_searchString": "3368 مريم هاشم مصطفي 1206377327 1223750794 بلقس ث3 "
+    "_searchString": "3368 مريم هاشم مصطفي 1206377327 1223750794 بلقس ث3 عام كيمياء ا/ محمد صلاح احياء ا/ محمد علام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3369",
@@ -28253,7 +28017,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3369 مصطفي حمادة محمدي 1126748610 1102472603 شبرا ث3 "
+    "_searchString": "3369 مصطفي حماده محمدي 1126748610 1102472603 شبرا ث3 عام"
   },
   {
     "code": "3370",
@@ -28276,7 +28040,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3370 مصطفي عبد المنعم محمد 1210125433 1064614936 بلقس ث3 "
+    "_searchString": "3370 مصطفي عبد المنعم محمد 1210125433 1064614936 بلقس ث3 عام"
   },
   {
     "code": "3373",
@@ -28405,7 +28169,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3373 معاذ خالد سيد 1044540633 1066690172 الحزانية ث3 أزهر"
+    "_searchString": "3373 معاذ خالد سيد 1044540633 1066690172 الحزانيه ث3 ازهر فزياء ا/ محمد الجوهري كيمياء ا/ محمد صلاح احياء ا/ محمد نور"
   },
   {
     "code": "3374",
@@ -28534,7 +28298,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 85.3
     },
-    "_searchString": "3374 ملك احمد علي 1202281224 1270995920  ث3 "
+    "_searchString": "3374 ملك احمد علي 1202281224 1270995920 ث3 عام كيمياء ا/ محمد صلاح عربي ا/ احمد عبد القادر احياء ا/ محمد علام"
   },
   {
     "code": "3376",
@@ -28557,7 +28321,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3376 ملك حسن 1148721332 1148731332 بلقس ث3 "
+    "_searchString": "3376 ملك حسن 1148721332 1148731332 بلقس ث3 عام"
   },
   {
     "code": "3377",
@@ -28580,7 +28344,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3377 ملك ربيع عبدالعظيم 1024420395 1090717633 مسطرد ث3 "
+    "_searchString": "3377 ملك ربيع عبدالعظيم 1024420395 1090717633 مسطرد ث3 عام"
   },
   {
     "code": "3378",
@@ -28674,7 +28438,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3378 ملك رضا اسماعيل 1214506708 1274399610 قليوب ث3 عام"
+    "_searchString": "3378 ملك رضا اسماعيل 1214506708 1274399610 قليوب ث3 عام كيمياء ا/ محمد صلاح رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3379",
@@ -28697,7 +28461,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3379 ملك رمضان 1225703116 1206752578  ث3 "
+    "_searchString": "3379 ملك رمضان 1225703116 1206752578 ث3 عام"
   },
   {
     "code": "3380",
@@ -28791,7 +28555,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 83,
       "averageScore": 0
     },
-    "_searchString": "3380 ملك سيد كامل 1014689851 1030518418 بلقس ث3 عام"
+    "_searchString": "3380 ملك سيد كامل 1014689851 1030518418 بلقس ث3 عام فزياء ا/ محمد مختار احياء ا/ محمد علام"
   },
   {
     "code": "3382",
@@ -28876,7 +28640,7 @@ window.STUDENTS_DATA = [
         }
       },
       "انجليزي": {
-        "teacher": "ا/ حماده يوسف  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ حماده يوسف",
         "sessions": [
           "✓",
           "",
@@ -28907,6 +28671,16 @@ window.STUDENTS_DATA = [
             "",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       }
@@ -28920,7 +28694,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3382 ملك عبد العزيز عبد الكريم 1204564364 1206752183  ث3 عام"
+    "_searchString": "3382 ملك عبد العزيز عبد الكريم 1204564364 1206752183 ث3 عام فزياء ا/ محمد مختار عربي ا/ احمد عبد القادر انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3383",
@@ -28979,7 +28753,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3383 ملك محمد احمد 1144357988  عرب الشعارة ث3 "
+    "_searchString": "3383 ملك محمد احمد 1144357988 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3384",
@@ -29108,7 +28882,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 88,
       "averageScore": 0
     },
-    "_searchString": "3384 ملك محمد عبد الحليم 1001061892 1061470470 بلقس ث3 عام"
+    "_searchString": "3384 ملك محمد عبد الحليم 1001061892 1061470470 بلقس ث3 عام فزياء ا/ محمد مختار احياء ا/ محمد نور كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3386",
@@ -29237,7 +29011,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 100
     },
-    "_searchString": "3386 ملك ناصر محمد 1003521202 1147070796 السلمانية ث3 عام"
+    "_searchString": "3386 ملك ناصر محمد 1003521202 1147070796 السلمانيه ث3 عام عربي ا/ احمد عبد القادر احياء ا/ محمد نور كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3388",
@@ -29260,7 +29034,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3388 ملك وئل محمد 1114548687 1208007597 بلقس ث3 "
+    "_searchString": "3388 ملك ويل محمد 1114548687 1208007597 بلقس ث3 عام"
   },
   {
     "code": "3389",
@@ -29354,7 +29128,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3389 ملك وليد محمود 1276960201 1272281864 بلقس ث3 عام"
+    "_searchString": "3389 ملك وليد محمود 1276960201 1272281864 بلقس ث3 عام كيمياء ا/ محمد صلاح احياء ا/ محمد نو��"
   },
   {
     "code": "3390",
@@ -29377,7 +29151,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3390 منار محمد 1203431605 1289315493 بلقس ث3 "
+    "_searchString": "3390 منار محمد 1203431605 1289315493 بلقس ث3 عام"
   },
   {
     "code": "3391",
@@ -29400,7 +29174,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3391 منة الله احمد ماهر الشيخ 1285546196 1203098277 بلقس ث3 "
+    "_searchString": "3391 منه الله احمد ماهر الشيخ 1285546196 1203098277 بلقس ث3 عام"
   },
   {
     "code": "3392",
@@ -29423,7 +29197,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3392 منة الله عصام محمد 1010969311 1010956659 بلقس ث3 "
+    "_searchString": "3392 منه الله عصام محمد 1010969311 1010956659 بلقس ث3 عام"
   },
   {
     "code": "3393",
@@ -29446,7 +29220,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3393 منة الله عماد حمدي 1026340505 1112486812 بلقس ث3 "
+    "_searchString": "3393 منه الله عماد حمدي 1026340505 1112486812 بلقس ث3 عام"
   },
   {
     "code": "3394",
@@ -29540,7 +29314,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3394 منة سعيد محمد نصار 1210117804 1009803999 السلمانية ث3 "
+    "_searchString": "3394 منه سعيد محمد نصار 1210117804 1009803999 السلمانيه ث3 عام كيمياء ا/ محمد صلاح عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3396",
@@ -29563,7 +29337,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3396 منة كرم عبد الكريم 1201524525 1283496956 بلقس ث3 "
+    "_searchString": "3396 منه كرم عبد الكريم 1201524525 1283496956 بلقس ث3 عام"
   },
   {
     "code": "3397",
@@ -29586,7 +29360,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3397 منة محمد عطا  1125451232 الجعافرة ث3 "
+    "_searchString": "3397 منه محمد عطا 1125451232 الجعافره ث3 عام"
   },
   {
     "code": "3398",
@@ -29609,7 +29383,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3398 منة محمود زكي 1070980062 1112655099 بلقس ث3 "
+    "_searchString": "3398 منه محمود زكي 1070980062 1112655099 بلقس ث3 عام"
   },
   {
     "code": "3400",
@@ -29632,7 +29406,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3400 منة وليد عبد العزيز 1117234047 1152461899  ث3 "
+    "_searchString": "3400 منه وليد عبد العزيز 1117234047 1152461899 ث3 عام"
   },
   {
     "code": "3401",
@@ -29691,7 +29465,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3401 منه الله احمد ماهر 1285546196 1203098277 بلقس ث3 "
+    "_searchString": "3401 منه الله احمد ماهر 1285546196 1203098277 بلقس ث3 عام احصاء ا/ مصطفي صابر"
   },
   {
     "code": "3402",
@@ -29714,7 +29488,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3402 منه الله عصام 1010969311 1010956659 بلقس ث3 "
+    "_searchString": "3402 منه الله عصام 1010969311 1010956659 بلقس ث3 عام"
   },
   {
     "code": "3403",
@@ -29773,7 +29547,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3403 مني اشرف مصطفي 111631987 1149547576 بلقس ث3 "
+    "_searchString": "3403 مني اشرف مصطفي 111631987 1149547576 بلقس ث3 عام احصاء ا/ مصطفي صابر"
   },
   {
     "code": "3404",
@@ -29796,7 +29570,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3404 مني صبري 1220799038 1555612224  ث3 "
+    "_searchString": "3404 مني صبري 1220799038 1555612224 ث3 عام"
   },
   {
     "code": "3406",
@@ -29819,7 +29593,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3406 مني ياسر سعيد 1093191877 109888655 زواية النجار ث3 "
+    "_searchString": "3406 مني ياسر سعيد 1093191877 109888655 زوايه النجار ث3 عام"
   },
   {
     "code": "3407",
@@ -29913,7 +29687,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 88
     },
-    "_searchString": "3407 مها بكري 1092512648 1098256673  ث3 "
+    "_searchString": "3407 مها بكري 1092512648 1098256673 ث3 عام فزياء ا/ محمد مختار احياء ا/ محمد علام"
   },
   {
     "code": "3408",
@@ -29936,7 +29710,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3408 مها عبد المحسن بكري 1092512648 1098256673 بلقس ث3 "
+    "_searchString": "3408 ��ها عبد المحسن بكري 1092512648 1098256673 بلقس ث3 عام"
   },
   {
     "code": "3409",
@@ -29995,7 +29769,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3409 مهند علي 1270014622 1033445877 بلقس ث3 عام"
+    "_searchString": "3409 مهند علي 1270014622 1033445877 بلقس ث3 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3410",
@@ -30018,7 +29792,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3410 مي احمد 1002887312 1063393037  ث3 "
+    "_searchString": "3410 مي احمد 1002887312 1063393037 ث3 عام"
   },
   {
     "code": "3411",
@@ -30112,7 +29886,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3411 مي اسماعيل عبد النبي 1552242516 1285937960 السلمانية ث3 "
+    "_searchString": "3411 مي اسماعيل عبد النبي 1552242516 1285937960 السلمانيه ث3 عام كيمياء ا/ محمد صلاح عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3412",
@@ -30206,7 +29980,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3412 مي سيد يحي رجب 1033578172 1141178288 السلمانية ث3 "
+    "_searchString": "3412 مي سيد يحي رجب 1033578172 1141178288 السلمانيه ث3 عام عربي ا/ احمد عبد القادر احصاء ا/ مصطفي صابر"
   },
   {
     "code": "3414",
@@ -30265,7 +30039,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3414 مي هيثم محمود 1107574028 1129840887 كوم السمن ث3 عام"
+    "_searchString": "3414 مي هيثم محمود 1107574028 1129840887 كوم السمن ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3415",
@@ -30288,7 +30062,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3415 ميادة احمد عبداللة 1226167795 1229030510 بلقس ث3 "
+    "_searchString": "3415 مياده احمد عبدالله 1226167795 1229030510 بلقس ث3 عام"
   },
   {
     "code": "3417",
@@ -30382,7 +30156,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 68
     },
-    "_searchString": "3417 ميادة علي عبد الخالق 1278553150 1278553150 بلقس ث3 "
+    "_searchString": "3417 مياده علي عبد الخالق 1278553150 1278553150 بلقس ث3 عام احياء ا/ محمد علام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3418",
@@ -30476,7 +30250,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 93.7
     },
-    "_searchString": "3418 ميار مصطفي صبحي 1205704975 1221418258 بلقس ث3 عام"
+    "_searchString": "3418 ميار مصطفي صبحي 1205704975 1221418258 بلقس ث3 عام احياء ا/ محمد علام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3419",
@@ -30499,7 +30273,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3419 ميرفت محمود 1272248398 1203254425  ث3 "
+    "_searchString": "3419 ميرفت محمود 1272248398 1203254425 ث3 عام"
   },
   {
     "code": "3420",
@@ -30522,7 +30296,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3420 نادية ابراهيم 1206150157 1066277751  ث3 "
+    "_searchString": "3420 ناديه ابراهيم 1206150157 1066277751 ث3 عام"
   },
   {
     "code": "3421",
@@ -30616,7 +30390,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3421 نادية سليمان عواد 1203700533 1205382514 السلمانية ث3 "
+    "_searchString": "3421 ناديه سليمان عواد 1203700533 1205382514 السلمانيه ث3 عام عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3422",
@@ -30675,7 +30449,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 25,
       "averageScore": 0
     },
-    "_searchString": "3422 نادية محمد رمضان 1145775926 1276414399 بلقس ث3 عام"
+    "_searchString": "3422 ناديه محمد رمضان 1145775926 1276414399 بلقس ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3424",
@@ -30698,7 +30472,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3424 نجات صالح 1004510112 1066147713  ث3 "
+    "_searchString": "3424 نجات صالح 1004510112 1066147713 ث3 عام"
   },
   {
     "code": "3425",
@@ -30757,7 +30531,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3425 نجاة صالح انور صالح  1066147713 بلقس ث3 عام"
+    "_searchString": "3425 نجاه صالح انور صالح 1066147713 بلقس ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3426",
@@ -30816,7 +30590,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3426 نجاة يا��ر رفعت 1272054940 1205354638 السلمانية ث3 "
+    "_searchString": "3426 نجاه ياس�� رفعت 1272054940 1205354638 السلمانيه ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3427",
@@ -30839,7 +30613,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3427 نجات ياسر رفعت  1205354638 السلمانية ث3 "
+    "_searchString": "3427 نجات ياسر رفعت 1205354638 السلمانيه ث3 عام"
   },
   {
     "code": "3428",
@@ -30898,7 +30672,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 60
     },
-    "_searchString": "3428 نجلاء شديد مصطفي 1200190824 1063845516 الزاوية ث3 "
+    "_searchString": "3428 نجلاء شديد مصطفي 1200190824 1063845516 الزاويه ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3429",
@@ -30957,7 +30731,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 50
     },
-    "_searchString": "3429 نجوي ناصر سعيد 1278308133 1285303506 بلقس ث3 عام"
+    "_searchString": "3429 نجوي ناصر سعيد 1278308133 1285303506 بلقس ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3431",
@@ -31051,7 +30825,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3431 ندي ايهاب ابو زيد 1094326181 1153859983 بلقس ث3 عام"
+    "_searchString": "3431 ندي ايهاب ابو زيد 1094326181 1153859983 بلقس ث3 عام كيمياء ا/ محمد صلاح احياء ا/ محمد علام"
   },
   {
     "code": "3432",
@@ -31110,7 +30884,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3432 ندي سعد محمد 1153229423 1204687471 زوايا ث3 عام"
+    "_searchString": "3432 ندي سعد محمد 1153229423 1204687471 زوايا ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3434",
@@ -31133,7 +30907,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3434 ندي عبدة محمد 1201677151 1276979759 بلقس ث3 "
+    "_searchString": "3434 ندي عبده محمد 1201677151 1276979759 بلقس ث3 عام"
   },
   {
     "code": "3435",
@@ -31156,7 +30930,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3435 ندي عصام عبدالعزيز 1272239879 1201455912 بلقس ث3 "
+    "_searchString": "3435 ندي عصام عبدالعزيز 1272239879 1201455912 بلقس ث3 عام"
   },
   {
     "code": "3437",
@@ -31215,7 +30989,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3437 نور اسعد عيد 1116318831 1116318831  ث3 "
+    "_searchString": "3437 نور اسعد عيد 1116318831 1116318831 ث3 عام احصاء ا/ مصطفي صابر"
   },
   {
     "code": "3438",
@@ -31274,7 +31048,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3438 نور انس بدر 1224075991 1220025664 بلقس ث3 عام"
+    "_searchString": "3438 نور انس بدر 1224075991 1220025664 بلقس ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3441",
@@ -31368,7 +31142,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3441 نور شعبان عبد الموجود 1141353370 1116320069 السلمانية ث3 عام"
+    "_searchString": "3441 نور شعبان عبد الموجود 1141353370 1116320069 السلمانيه ث3 عام كيمياء ا/ محمد صلاح عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3442",
@@ -31427,7 +31201,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3442 نور عبد المنعم 1285026055 1140347289 بلقس ث3 "
+    "_searchString": "3442 نور عبد المنعم 1285026055 1140347289 بلقس ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3443",
@@ -31450,7 +31224,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3443 نور عبدالنبي  1210293756  ث3 "
+    "_searchString": "3443 نور عبدالنبي 1210293756 ث3 عام"
   },
   {
     "code": "3444",
@@ -31509,7 +31283,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3444 نور مجدي سلامة 1270881539 1270681376  ث3 عام"
+    "_searchString": "3444 نور مجدي سلامه 1270881539 1270681376 ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3446",
@@ -31532,7 +31306,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3446 نورا سعد عيد سيد 1116318831 1116318831 بلقس ث3 "
+    "_searchString": "3446 نورا سعد عيد سيد 1116318831 1116318831 بلقس ث3 عام"
   },
   {
     "code": "3447",
@@ -31555,7 +31329,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3447 نورة ايهاب ابو زيد 1149016950 1127453020 بلقس ث3 "
+    "_searchString": "3447 نوره ايهاب ابو زيد 1149016950 1127453020 بلقس ث3 عام"
   },
   {
     "code": "3448",
@@ -31578,7 +31352,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3448 نورهان بخيت حمزة 1003952780 1023009542 الزاوية ث3 "
+    "_searchString": "3448 نورهان بخيت حمزه 1003952780 1023009542 الزاويه ث3 عام"
   },
   {
     "code": "3449",
@@ -31701,13 +31475,13 @@ window.STUDENTS_DATA = [
     "_metrics": {
       "totalScore": 129,
       "totalMax": 150,
-      "totalPresent": 14,
+      "totalPresent": 15,
       "totalAbsent": 0,
-      "totalRecordedSessions": 14,
+      "totalRecordedSessions": 15,
       "attendanceRate": 100,
       "averageScore": 86
     },
-    "_searchString": "3449 نورهان حمادة 1004510104 1002237099 بلقس ث3 "
+    "_searchString": "3449 نورهان حماده 1004510104 1002237099 بلقس ث3 عام كيمياء ا/ محمد صلاح احياء ا/ محمد علام عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "3450",
@@ -31766,7 +31540,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3450 نورهان شريف حمزة 1003952780 1023006549 بلقس ث3 عام"
+    "_searchString": "3450 نورهان شريف حمزه 1003952780 1023006549 بلقس ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3452",
@@ -31789,7 +31563,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3452 نولرهان احمد 1206590291   ث3 "
+    "_searchString": "3452 نولرهان احمد 1206590291 ث3 عام"
   },
   {
     "code": "3453",
@@ -31912,13 +31686,13 @@ window.STUDENTS_DATA = [
     "_metrics": {
       "totalScore": 40,
       "totalMax": 55,
-      "totalPresent": 16,
+      "totalPresent": 17,
       "totalAbsent": 1,
-      "totalRecordedSessions": 17,
+      "totalRecordedSessions": 18,
       "attendanceRate": 94,
       "averageScore": 72.7
     },
-    "_searchString": "3453 نيرة محمد مجدي 1287199848 1210446987 بلقس ث3 عام"
+    "_searchString": "3453 نيره محمد مجدي 1287199848 1210446987 بلقس ث3 عام عربي ا/ سيد عبد العاطي فزياء ا/ محمد مختار احياء ا/ محمد نور"
   },
   {
     "code": "3454",
@@ -32047,7 +31821,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 82,
       "averageScore": 0
     },
-    "_searchString": "3454 هاجر سعد اسماعيل 1097160469 1097165685 بلقس ث3 عام"
+    "_searchString": "3454 هاجر سعد اسماعيل 1097160469 1097165685 بلقس ث3 عام كيمياء ا/ محمد صلاح عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3457",
@@ -32070,7 +31844,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3457 هاجر شعبان ابراهيم 1099618781 1029511990 السلمانية ث3 عام"
+    "_searchString": "3457 هاجر شعبان ابراهيم 1099618781 1029511990 السلمانيه ث3 عام"
   },
   {
     "code": "3458",
@@ -32093,7 +31867,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3458 هاجر عاطف سالم 1203089965 1272090861 بلقس ث3 "
+    "_searchString": "3458 هاجر عاطف سالم 1203089965 1272090861 بلقس ث3 عام"
   },
   {
     "code": "3459",
@@ -32152,7 +31926,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3459 هاجر هاني محمد 1211047327 1117966457 جعافرة ث3 عام"
+    "_searchString": "3459 هاجر هاني محمد 1211047327 1117966457 جعافره ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3460",
@@ -32246,7 +32020,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3460 هدي محمد السيد 1228580467 1201537510 بلقس ث3 عام"
+    "_searchString": "3460 هدي محمد السيد 1228580467 1201537510 بلقس ث3 عام كيمياء ا/ محمد صلاح احياء ا/ محمد علام"
   },
   {
     "code": "3461",
@@ -32398,7 +32172,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3462 هدير عرفة سليمان 1157984402 1220331534 بلقس ث3 عام"
+    "_searchString": "3462 هدير عرفه سليمان 1157984402 1220331534 بلقس ث3 عام كيمياء ا/ محمد صلاح رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3463",
@@ -32409,11 +32183,11 @@ window.STUDENTS_DATA = [
     "grade": "ث3",
     "specialization": "عام",
     "subjectsSummary": "عربي",
-    "teachersSummary": "عربي/ا/ احمد عبد ا��قادر [حصص: _, _, _, _, 8/10, _, _, _]",
+    "teachersSummary": "عربي/ا/ احمد عبد القادر [حصص: _, _, _, _, 8/10, _, _, _]",
     "regDate": "٢٧‏/٩‏/٢٠٢٦",
     "academicSubjects": {
       "عربي": {
-        "teacher": "ا/ احمد عبد ا��قادر",
+        "teacher": "ا/ احمد عبد القادر",
         "sessions": [
           "",
           "",
@@ -32457,7 +32231,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 80
     },
-    "_searchString": "3463 همس نبيل شعبان 1129602480 1203029405 بلقس ث3 عام"
+    "_searchString": "3463 همس نبيل شعبان 1129602480 1203029405 بلقس ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3465",
@@ -32551,7 +32325,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 83,
       "averageScore": 50
     },
-    "_searchString": "3465 هنا احمد مصري 1069199247 1114610991 بلقس ث3 بكالوريا - طب"
+    "_searchString": "3465 هنا احمد مصري 1069199247 1114610991 بلقس ث3 بكالوريا - طب رياضه ا/ مصطفي صابر كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3466",
@@ -32680,7 +32454,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3466 هنا جمال ابو السعود 1212355923 1277965965 بلقس ث3 "
+    "_searchString": "3466 هنا جمال ابو السعود 1212355923 1277965965 بلقس ث3 عام انجليزي ا/ حماده يوسف فزياء ا/ محمد مختار كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3468",
@@ -32703,7 +32477,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3468 هنا هاشم صلاح 1151287393 1153494453 بلقس ث3 "
+    "_searchString": "3468 هنا هاشم صلاح 1151287393 1153494453 بلقس ث3 عام"
   },
   {
     "code": "3469",
@@ -32762,7 +32536,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 86,
       "averageScore": 0
     },
-    "_searchString": "3469 هنا هشام صلاح 1151287393 1153494453 بلقس ث3 عام"
+    "_searchString": "3469 هنا هشام صلاح 1151287393 1153494453 بلقس ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3470",
@@ -32785,7 +32559,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3470 هند شريف 1149096819 1116142565 بلقس ث3 "
+    "_searchString": "3470 هند شريف 1149096819 1116142565 بلقس ث3 عام"
   },
   {
     "code": "3471",
@@ -32844,7 +32618,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3471 وفاء سالم سلامة 1009393022 1229466000 بلقس ث3 عام"
+    "_searchString": "3471 وفاء سالم سلامه 1009393022 1229466000 بلقس ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3472",
@@ -32938,7 +32712,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 90
     },
-    "_searchString": "3472 وفاء عبد العزيز سعيد 1146945396 1145366541 بلقس ث3 عام"
+    "_searchString": "3472 وفاء عبد العزيز سعيد 1146945396 1145366541 بلقس ث3 عام عربي ا/ احمد عبد القادر احياء ا/ محمد نور"
   },
   {
     "code": "3474",
@@ -33067,7 +32841,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3474 يارا لطفي احمد 1002340884 109588838 بلقس ث3 عام"
+    "_searchString": "3474 يارا لطفي احمد 1002340884 109588838 بلقس ث3 عام كيمياء ا/ محمد صلاح فزياء ا/ محمد الجوهري رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3475",
@@ -33090,7 +32864,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3475 يارامحمد رافت 1147132568 1147132568 بلقس ث3 "
+    "_searchString": "3475 يارامحمد رافت 1147132568 1147132568 بلقس ث3 عام"
   },
   {
     "code": "3476",
@@ -33113,7 +32887,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3476 ياسر سعد عبدالعزيز 1277530301 1224952424 بلقس ث3 "
+    "_searchString": "3476 ياسر سعد عبدالعزيز 1277530301 1224952424 بلقس ث3 عام"
   },
   {
     "code": "3478",
@@ -33136,7 +32910,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3478 ياسمين فراج احمد 1124216271 1028198250 بلقس ث3 "
+    "_searchString": "3478 ياسمين فراج احمد 1124216271 1028198250 بلقس ث3 عام"
   },
   {
     "code": "3483",
@@ -33195,7 +32969,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3483 يوسف ايمن صبحي 1277758363 1272074278 بلقس ث3 بكالوريا - طب"
+    "_searchString": "3483 يوسف ايمن صبحي 1277758363 1272074278 بلقس ث3 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3484",
@@ -33254,7 +33028,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 80
     },
-    "_searchString": "3484 يوسف رضوان ابراهيم 1055681248 1006721030 بلقس ث3 عام"
+    "_searchString": "3484 يوسف رضوان ابراهيم 1055681248 1006721030 بلقس ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3486",
@@ -33313,7 +33087,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3486 يوسف شريف سيد 1229926450 1123252344 سلمانية ث3 عام"
+    "_searchString": "3486 يوسف شريف سيد 1229926450 1123252344 سلمانيه ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3487",
@@ -33336,7 +33110,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3487 يوسف عبد المنصف 1200150912 1275420576 بلقس ث3 "
+    "_searchString": "3487 يوسف عبد المنصف 1200150912 1275420576 بلقس ث3 عام"
   },
   {
     "code": "3488",
@@ -33359,7 +33133,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3488 يوسف عبدالله 1061956890 1093093157 بلقس ث3 "
+    "_searchString": "3488 يوسف عبدالله 1061956890 1093093157 بلقس ث3 عام"
   },
   {
     "code": "3489",
@@ -33382,7 +33156,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3489 يوسف محمد ابو سريع 1282277873 1220333389 بلقس ث3 "
+    "_searchString": "3489 يوسف محمد ابو سريع 1282277873 1220333389 بلقس ث3 عام"
   },
   {
     "code": "3490",
@@ -33441,7 +33215,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3490 يوسف مدحت مصطفي 1097456178 1021999591 بلقس ث3 عام"
+    "_searchString": "3490 يوسف مدحت مصطفي 1097456178 1021999591 بلقس ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3491",
@@ -33464,7 +33238,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3491 يومانة صفوت احمد 1229930341 1207647771 بلقس ث3 "
+    "_searchString": "3491 يومانه صفوت احمد 1229930341 1207647771 بلقس ث3 عام"
   },
   {
     "code": "3492",
@@ -33558,7 +33332,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3492 دنيا احمد راشد 1273529331 1203681131 المشتل ث3 أزهر"
+    "_searchString": "3492 دنيا احمد راشد 1273529331 1203681131 المشتل ث3 ازهر فزياء ا/ محمد الجوهري رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1001",
@@ -33678,7 +33452,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -33701,6 +33475,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "",
             "",
             "",
@@ -33792,7 +33576,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1001 رحمة عبد الوهاب سيد 1229936499 1275239840 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1001 رحمه عبد الوهاب سيد 1229936499 1275239840 بلقس ث1 بكالوريا - طب انجليزي ا/ حماده يوسف علوم ا/ علي نور فلسفه ا/ احمد الليثي رياضه ا/ مصطفي صابر فرنساوي ا/ محمد رجب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1002",
@@ -33802,7 +33586,7 @@ window.STUDENTS_DATA = [
     "parentPhone": "1102167236",
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
-    "subjectsSummary": "انجليزي, تاريخ, رياضة, فلسفة, فرنساوي, عربي",
+    "subjectsSummary": "انجليزي, تاريخ, ريا��ة, فلسفة, فرنساوي, عربي",
     "teachersSummary": "انجليزي/ا/ محمد صبحي | تاريخ/ا/ ايمن شعبان | ريا��ة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | فلسفة/ا/ احمد الليثي | فرنساوي/ا/ محمد رجب | عربي/ا/ احمد عبد القادر",
     "regDate": "2026-07-12 16:48",
     "academicSubjects": {
@@ -33877,7 +33661,7 @@ window.STUDENTS_DATA = [
         }
       },
       "ريا��ة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -33900,6 +33684,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "",
             "",
             "",
@@ -34015,41 +33809,6 @@ window.STUDENTS_DATA = [
             ""
           ]
         }
-      },
-      "رياضة": {
-        "teacher": "مدرس المادة",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
       }
     },
     "_metrics": {
@@ -34061,7 +33820,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1002 حور اشرف عادل 1158003560 1102167236 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1002 حور اشرف عادل 1158003560 1102167236 بلقس ث1 بكالوريا - طب انجليزي ا/ محمد صبحي تاريخ ا/ ايمن شعبان ريا��ه ا/ مصطفي صابر فلسفه ا/ احمد الليثي فرنساوي ا/ محمد رجب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3493",
@@ -34072,11 +33831,11 @@ window.STUDENTS_DATA = [
     "grade": "ث3",
     "specialization": "عام",
     "subjectsSummary": "فزياء, كيمياء, احياء",
-    "teachersSummary": "فزياء/الجوهري وعمر [حصص: ✓, ✓, _, _, _, _, _, _] | كيمياء/ا/ محمد صلاح [حصص: ✓, ✓, ✓, _, ✓, _, _, _] | احياء/ا/ محمد نور",
+    "teachersSummary": "فزياء/ا/ محمد الجوهري [حصص: ✓, ✓, _, _, _, _, _, _] | كيمياء/ا/ محمد صلاح [حصص: ✓, ✓, ✓, _, ✓, _, _, _] | احياء/ا/ محمد نور",
     "regDate": "2026-07-14 15:05",
     "academicSubjects": {
       "فزياء": {
-        "teacher": "الجوهري وعمر",
+        "teacher": "ا/ محمد الجوهري",
         "sessions": [
           "✓",
           "✓",
@@ -34190,7 +33949,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3493 ريتاج محمد عبد العزيز 1153559867 1004721986 كوم السمن ث3 عام"
+    "_searchString": "3493 ريتاج محمد عبد العزيز 1153559867 1004721986 كوم السمن ث3 عام فزياء ا/ محمد الجوهري كيمياء ا/ محمد صلاح احياء ا/ محمد نور"
   },
   {
     "code": "3494",
@@ -34284,7 +34043,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3494 ماجدة محمد ممدوح 1069788416 1002679183 كوم السمن ث3 عام"
+    "_searchString": "3494 ماجده محمد ممدوح 1069788416 1002679183 كوم السمن ث3 عام كيمياء ا/ محمد صلاح فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3495",
@@ -34343,7 +34102,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3495 فاتن عبد الحي مجدي 01016781158 01022326221 كوم السمن ث3 عام"
+    "_searchString": "3495 فاتن عبد الحي مجدي 01016781158 01022326221 كوم السمن ث3 عام احصاء ا/ مصطفي صابر"
   },
   {
     "code": "1003",
@@ -34354,7 +34113,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "أزهر",
     "subjectsSummary": "انجليزي, علوم, رياضة, عربي",
-    "teachersSummary": "انجليزي/ا/ محمد صبحي | علوم/علي نور | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, ✓, ✓, _, _, _] | عربي/ا/ احمد عبد القادر",
+    "teachersSummary": "انجليزي/ا/ محمد صبحي | علوم/ا/ علي نور | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, ✓, ✓, _, _, _] | عربي/ا/ احمد عبد القادر",
     "regDate": "2026-07-14 15:18",
     "academicSubjects": {
       "انجليزي": {
@@ -34393,7 +34152,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "علي نور",
+        "teacher": "ا/ علي نور",
         "sessions": [
           "",
           "",
@@ -34507,7 +34266,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1003 جني محمد طه 1113676059 1091744295 السلمانية ث1 أزهر"
+    "_searchString": "1003 جني محمد طه 1113676059 1091744295 السلمانيه ث1 ازهر انجليزي ا/ محمد صبحي علوم ا/ علي نور رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1004",
@@ -34518,7 +34277,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "أزهر",
     "subjectsSummary": "انجليزي, علوم, رياضة, عربي",
-    "teachersSummary": "انجليزي/ا/ محمد صبحي | علوم/علي نور | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, ✓, ✓, _, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "انجليزي/ا/ محمد صبحي | علوم/ا/ علي نور | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, ✓, ✓, _, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-07-14 15:21",
     "academicSubjects": {
       "انجليزي": {
@@ -34557,7 +34316,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "علي نور",
+        "teacher": "ا/ علي نور",
         "sessions": [
           "",
           "",
@@ -34671,7 +34430,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1004 رودينا كريم علي 1507390402 1010688272 السلمانية ث1 أزهر"
+    "_searchString": "1004 رودينا كريم علي 1507390402 1010688272 السلمانيه ث1 ازهر انجليزي ا/ محمد صبحي علوم ا/ علي نور رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1005",
@@ -34682,7 +34441,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "أزهر",
     "subjectsSummary": "انجليزي, علوم, رياضة, عربي",
-    "teachersSummary": "انجليزي/ا/ محمد صبحي | علوم/علي نور | رياضة/ا/ مصطفي صابر | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "انجليزي/ا/ محمد صبحي | علوم/ا/ علي نور | رياضة/ا/ مصطفي صابر | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-07-14 15:22",
     "academicSubjects": {
       "انجليزي": {
@@ -34721,7 +34480,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "علي نور",
+        "teacher": "ا/ علي نور",
         "sessions": [
           "",
           "",
@@ -34835,7 +34594,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1005 ريماس منصور صبحي 1126225900 1 السلمانية ث1 أزهر"
+    "_searchString": "1005 ريماس منصور صبحي 1126225900 1 السلمانيه ث1 ازهر انجليزي ا/ محمد صبحي علوم ا/ علي نور رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1007",
@@ -34846,7 +34605,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - هندسة",
     "subjectsSummary": "عربي, علوم, تاريخ, فلسفة",
-    "teachersSummary": "عربي/ا/ سيد عبد العاطي [حصص: _, _, ✓, _, _, _, _, ✓] | علوم/علام | تاريخ/ا/ رضا صلاح | فلسفة/ا/ احمد الليثي",
+    "teachersSummary": "عربي/ا/ سيد عبد العاطي [حصص: _, _, ✓, _, _, _, _, ✓] | علوم/ا/ محمد علام | تاريخ/ا/ رضا صلاح | فلسفة/ا/ احمد الليثي",
     "regDate": "2026-07-14 16:38",
     "academicSubjects": {
       "عربي": {
@@ -34885,7 +34644,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -34999,7 +34758,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1007 زينب يسري محمود الشيخ 1206765622 1206765622 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1007 زينب يسري محمود الشيخ 1206765622 1206765622 بلقس ث1 بكالوريا - هندسه عربي ا/ سيد عبد العاطي علوم ا/ محمد علام تاريخ ا/ رضا صلاح فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1006",
@@ -35198,7 +34957,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 86,
       "averageScore": 0
     },
-    "_searchString": "1006 بسملة فرج علي 1122946705 1149261675 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1006 بسمله فرج علي 1122946705 1149261675 بلقس ث1 بكالوريا - طب عربي ا/ سيد عبد العاطي رياضه ا/ مصطفي صابر تاريخ ا/ رضا صلاح فلسفه ا/ احمد الليثي فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3496",
@@ -35283,7 +35042,7 @@ window.STUDENTS_DATA = [
         }
       },
       "انجليزي": {
-        "teacher": "ا/ حماده يوسف  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ حماده يوسف",
         "sessions": [
           "✓",
           "",
@@ -35306,6 +35065,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "✓",
             "",
             "",
@@ -35362,7 +35131,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 88,
       "averageScore": 0
     },
-    "_searchString": "3496 ملك احمد مصلح 1127943895 1111955346 العطارة ث3 عام"
+    "_searchString": "3496 ملك احمد مصلح 1127943895 1111955346 العطاره ث3 عام فزياء ا/ محمد الجوهري كيمياء ا/ محمد صلاح انجليزي ا/ حماده يوسف فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3497",
@@ -35421,7 +35190,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3497 كنزي عماد عبد الحليم 01035634186 01150595972 العطارة ث3 عام"
+    "_searchString": "3497 كنزي عماد عبد الحليم 01035634186 01150595972 العطاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3498",
@@ -35444,7 +35213,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3498 شادية جمال 1002118091 100 العطارة ث3 عام"
+    "_searchString": "3498 شاديه جمال 1002118091 100 العطاره ث3 عام"
   },
   {
     "code": "3499",
@@ -35608,7 +35377,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 93,
       "averageScore": 92.6
     },
-    "_searchString": "3499 رضوي هاني عبد الخالق 1507634195 1154185090 بلقس ث3 عام"
+    "_searchString": "3499 رضوي هاني عبد الخالق 1507634195 1154185090 بلقس ث3 عام كيمياء ا/ محمد صلاح احياء ا/ محمد علام فزياء ا/ محمد مختار فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3500",
@@ -35737,7 +35506,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3500 محمد يسري مصباح 1223190192 12 الزاويه ث3 عام"
+    "_searchString": "3500 محمد يسري مصباح 1223190192 12 الزاويه ث3 عام احياء ا/ محمد نور فرنساوي ا/ محمد رجب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2499",
@@ -35866,7 +35635,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2499 ملك يسري مصباح 1223190192 12 الزاوية ث2 عام"
+    "_searchString": "2499 ملك يسري مصباح 1223190192 12 الزاويه ث2 عام تاريخ ا/ رضا صلاح برمجه م/ نور الدين عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3501",
@@ -35925,7 +35694,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 88.4
     },
-    "_searchString": "3501 عائشه ياسر اسماعيل 1276250411 1102247383 ابو عياش ث3 عام"
+    "_searchString": "3501 عايشه ياسر اسماعيل 1276250411 1102247383 ابو عياش ث3 عام احياء ا/ محمد علام"
   },
   {
     "code": "1008",
@@ -35936,11 +35705,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "علوم, رياضة, فلسفة, عربي",
-    "teachersSummary": "علوم/محمد علام | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _] | عربي/ا/ سيد عبد العاطي [حصص: _, _, ✓, _, _, _, _, ✓]",
+    "teachersSummary": "علوم/ا/ محمد علام | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _] | عربي/ا/ سيد عبد العاطي [حصص: _, _, ✓, _, _, _, _, ✓]",
     "regDate": "2026-07-18 15:37",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -35975,7 +35744,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -35998,6 +35767,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "",
             "",
             "",
@@ -36089,7 +35868,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1008 ملك عيد سيد 1070572514 10 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1008 ملك عيد سيد 1070572514 10 بلقس ث1 بكالوريا - طب علوم ا/ محمد علام رياضه ا/ مصطفي صابر فلسفه ا/ احمد الليثي عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "1009",
@@ -36099,12 +35878,12 @@ window.STUDENTS_DATA = [
     "parentPhone": "1274219189",
     "grade": "ث1",
     "specialization": "بكالوريا",
-    "subjectsSummary": "علوم, رياضة, فلسفة, تاريخ, احمد الليثي, عربي",
-    "teachersSummary": "علوم/أ.علام | رياضة/أ.مصطفي | فلسفة/ا/ احمد الليثي | تاريخ/ا.ايمن شعبان | احمد الليثي/مدرس المادة | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, ✓, _, _, _]",
+    "subjectsSummary": "علوم, رياضة, فلسفة, تاريخ, عربي",
+    "teachersSummary": "علوم/ا/ محمد علام | رياضة/ا/ مصطفي صابر | فلسفة/ا/ احمد الليثي | تاريخ/ا/ ايمن شعبان | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, ✓, _, _, _]",
     "regDate": "2026-07-18 16:00",
     "academicSubjects": {
       "علوم": {
-        "teacher": "أ.علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -36139,7 +35918,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "أ.مصطفي",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -36209,42 +35988,7 @@ window.STUDENTS_DATA = [
         }
       },
       "تاريخ": {
-        "teacher": "ا.ايمن شعبان",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      },
-      "احمد الليثي": {
-        "teacher": "مدرس المادة",
+        "teacher": "ا/ ايمن شعبان",
         "sessions": [
           "",
           "",
@@ -36323,7 +36067,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1009 رقية احمد امين سلامة 1228359947 1274219189 بلقس ث1 بكالوريا"
+    "_searchString": "1009 رقيه احمد امين سلامه 1228359947 1274219189 بلقس ث1 بكالوريا علوم ا/ محمد علام رياضه ا/ مصطفي صابر فلسفه ا/ احمد الليثي تاريخ ا/ ايمن شعبان عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1012",
@@ -36334,7 +36078,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا",
     "subjectsSummary": "عربي, علوم, رياضة, فلسفة",
-    "teachersSummary": "عربي/ا/ سيد عبد العاطي [حصص: _, _, ✓, _, _, _, _, غ] | علوم/علام | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _]",
+    "teachersSummary": "عربي/ا/ سيد عبد العاطي [حصص: _, _, ✓, _, _, _, _, غ] | علوم/ا/ محمد علام | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _]",
     "regDate": "2026-07-18 16:00",
     "academicSubjects": {
       "عربي": {
@@ -36373,7 +36117,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -36408,7 +36152,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -36431,6 +36175,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "",
             "",
             "",
@@ -36487,7 +36241,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "1012 بسملة شهاب مجدي 1222447017 1223876773 بلقس ث1 بكالوريا"
+    "_searchString": "1012 بسمله شهاب مجدي 1222447017 1223876773 بلقس ث1 بكالوريا عربي ا/ سيد عبد العاطي علوم ا/ محمد علام رياضه ا/ مصطفي صابر فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1019",
@@ -36498,7 +36252,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا",
     "subjectsSummary": "انجليزي, علوم, رياضة, عربي, فلسفة",
-    "teachersSummary": "انجليزي/ا/ حماده يوسف [حصص: ✓, ✓, ✓, _, _, ✓, _, _] | علوم/علام | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | عربي/ا/ سيد عبد العاطي [حصص: _, _, ✓, _, _, _, _, غ] | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _]",
+    "teachersSummary": "انجليزي/ا/ حماده يوسف [حصص: ✓, ✓, ✓, _, _, ✓, _, _] | علوم/ا/ محمد علام | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | عربي/ا/ سيد عبد العاطي [حصص: _, _, ✓, _, _, _, _, غ] | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _]",
     "regDate": "2026-07-18 16:00",
     "academicSubjects": {
       "انجليزي": {
@@ -36537,7 +36291,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -36572,7 +36326,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -36595,6 +36349,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "",
             "",
             "",
@@ -36686,7 +36450,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 88,
       "averageScore": 0
     },
-    "_searchString": "1019 امل محمد بيومي 1281314222 1019759578 بلقس ث1 بكالوريا"
+    "_searchString": "1019 امل محمد بيومي 1281314222 1019759578 بلقس ث1 بكالوريا انجليزي ا/ حماده يوسف علوم ا/ محمد علام رياضه ا/ مصطفي صابر عربي ا/ سيد عبد العاطي فلسفه ا/ احمد الليثي"
   },
   {
     "code": "2500",
@@ -36780,7 +36544,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2500 رؤي عبد اللطيف امين 01101318817 01112005915 الجعافرة ث2 أزهر"
+    "_searchString": "2500 روي عبد اللطيف امين 01101318817 01112005915 الجعافره ث2 ازهر كيمياء ا/ محمد صلاح فزياء ا/ محمد مختار"
   },
   {
     "code": "3502",
@@ -36868,13 +36632,13 @@ window.STUDENTS_DATA = [
     "_metrics": {
       "totalScore": 37.5,
       "totalMax": 55,
-      "totalPresent": 6,
+      "totalPresent": 7,
       "totalAbsent": 0,
-      "totalRecordedSessions": 6,
+      "totalRecordedSessions": 7,
       "attendanceRate": 100,
       "averageScore": 68.2
     },
-    "_searchString": "3502 احمد رمضان ابراهيم 1210116941 1279622710 بلقس ث3 عام"
+    "_searchString": "3502 احمد رمضان ابراهيم 1210116941 1279622710 بلقس ث3 عام عربي ا/ سيد عبد العاطي تاريخ ا/ رضا صلاح"
   },
   {
     "code": "3503",
@@ -36933,7 +36697,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3503 منه الله عماد حمدي 01026340505 01112214898 بلقس ث3 أزهر"
+    "_searchString": "3503 منه الله عماد حمدي 01026340505 01112214898 بلقس ث3 ازهر فرنساوي ا/ محمد رجب"
   },
   {
     "code": "1011",
@@ -36943,8 +36707,8 @@ window.STUDENTS_DATA = [
     "parentPhone": "1118348009",
     "grade": "ث1",
     "specialization": "بكالوريا",
-    "subjectsSummary": "علوم, رياضة, احمد الليثي, عربي",
-    "teachersSummary": "علوم/ا/ علي نور | رياضة/ا/ مصطفي صابر [��صص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | احمد الليثي/مدرس المادة | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "subjectsSummary": "علوم, رياضة, عربي",
+    "teachersSummary": "علوم/ا/ علي نور | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-07-19 12:10",
     "academicSubjects": {
       "علوم": {
@@ -36983,7 +36747,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر [��صص: _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -37012,41 +36776,6 @@ window.STUDENTS_DATA = [
             "",
             "",
             "✓",
-            "",
-            ""
-          ]
-        }
-      },
-      "احمد الليثي": {
-        "teacher": "مدرس المادة",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             "",
             ""
           ]
@@ -37097,7 +36826,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1011 رنا عيد سعيد 1118044240 1118348009 بلقس ث1 بكالوريا"
+    "_searchString": "1011 رنا عيد سعيد 1118044240 1118348009 بلقس ث1 بكالوريا علوم ا/ علي نور رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1010",
@@ -37108,11 +36837,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا",
     "subjectsSummary": "علوم, رياضة, فلسفة, عربي",
-    "teachersSummary": "علوم/أ.علام | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, ✓, ✓, _, _, _] | فلسفة/الليثي | عربي/ا/ احمد عبد القادر",
+    "teachersSummary": "علوم/ا/ محمد علام | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, ✓, ✓, _, _, _] | فلسفة/ا/ احمد الليثي | عربي/ا/ احمد عبد القادر",
     "regDate": "2026-07-19 12:11",
     "academicSubjects": {
       "علوم": {
-        "teacher": "أ.علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -37182,7 +36911,7 @@ window.STUDENTS_DATA = [
         }
       },
       "فلسفة": {
-        "teacher": "الليثي",
+        "teacher": "ا/ احمد الليثي",
         "sessions": [
           "",
           "",
@@ -37261,7 +36990,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1010 جودي احمد مسعود 1281117161 1012517819 بلقس ث1 بكالوريا"
+    "_searchString": "1010 جودي احمد مسعود 1281117161 1012517819 بلقس ث1 بكالوريا علوم ا/ محمد علام رياضه ا/ مصطفي صابر فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1018",
@@ -37311,7 +37040,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -37334,6 +37063,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "",
             "",
             "",
@@ -37390,7 +37129,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "1018 رودينا احمد فؤاد 1287874936 1287874937 بلقس ث1 بكالوريا"
+    "_searchString": "1018 رودينا احمد فواد 1287874936 1287874937 بلقس ث1 بكالوريا عربي ا/ سيد عبد العاطي رياضه ا/ مصطفي صابر فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1013",
@@ -37401,11 +37140,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا",
     "subjectsSummary": "علوم, فلسفة",
-    "teachersSummary": "علوم/علي نور [حصص: _, _, ✓, _, _, _, _, _] | فلسفة/ا/ احمد الليثي [حصص: ✓, ✓, ✓, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ علي نور [حصص: _, _, ✓, _, _, _, _, _] | فلسفة/ا/ احمد الليثي [حصص: ✓, ✓, ✓, _, _, _, _, _]",
     "regDate": "2026-07-19 12:14",
     "academicSubjects": {
       "علوم": {
-        "teacher": "علي نور",
+        "teacher": "ا/ علي نور",
         "sessions": [
           "",
           "",
@@ -37484,7 +37223,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1013 مودة محمود عبد العزيز 1044577464 1145629291 بلقس ث1 بكالوريا"
+    "_searchString": "1013 موده محمود عبد العزيز 1044577464 1145629291 بلقس ث1 بكالوريا علوم ا/ علي نور فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1014",
@@ -37495,11 +37234,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا",
     "subjectsSummary": "علوم, رياضة, فلسفة, عربي",
-    "teachersSummary": "علوم/أ.علام | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, ✓, ✓, ✓, _, _] | فلسفة/احمد الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, ✓, ✓, ✓, _, _] | فلسفة/ا/ احمد الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-07-19 12:15",
     "academicSubjects": {
       "علوم": {
-        "teacher": "أ.علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -37569,7 +37308,7 @@ window.STUDENTS_DATA = [
         }
       },
       "فلسفة": {
-        "teacher": "احمد الليثي",
+        "teacher": "ا/ احمد الليثي",
         "sessions": [
           "",
           "",
@@ -37648,7 +37387,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1014 سلمي امين محمد 1116318328 1116317578 بلقس ث1 بكالوريا"
+    "_searchString": "1014 سلمي امين محمد 1116318328 1116317578 بلقس ث1 بكالوريا علوم ا/ محمد علام رياضه ا/ مصطفي صابر فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1015",
@@ -37659,7 +37398,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا",
     "subjectsSummary": "عربي, فلسفة, علوم, رياضة",
-    "teachersSummary": "عربي/ا/ سيد عبد العاطي [حصص: _, _, ✓, _, _, _, _, ✓] | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _] | علوم/علام | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+    "teachersSummary": "عربي/ا/ سيد عبد العاطي [حصص: _, _, ✓, _, _, _, _, ✓] | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _] | علوم/ا/ محمد علام | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
     "regDate": "2026-07-19 12:15",
     "academicSubjects": {
       "عربي": {
@@ -37733,7 +37472,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -37768,7 +37507,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -37799,6 +37538,16 @@ window.STUDENTS_DATA = [
             "✓",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
           ]
         }
       }
@@ -37812,7 +37561,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1015 نورهان جمال شعبان 1274074740 1288493422 بلقس ث1 بكالوريا"
+    "_searchString": "1015 نورهان جمال شعبان 1274074740 1288493422 بلقس ث1 بكالوريا عربي ا/ سيد عبد العاطي فلسفه ا/ احمد الليثي علوم ا/ محمد علام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1016",
@@ -37823,11 +37572,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا",
     "subjectsSummary": "علوم, رياضة, فلسفة, تاريخ",
-    "teachersSummary": "علوم/أ.علام | رياضة/أ.مصطفي | فلسفة/ا/ احمد الليثي [حصص: ✓, غ, ✓, _, _, _, _, _] | تاريخ/ا.ايمن شعبان",
+    "teachersSummary": "علوم/ا/ محمد علام | رياضة/ا/ مصطفي صابر | فلسفة/ا/ احمد الليثي [حصص: ✓, غ, ✓, _, _, _, _, _] | تاريخ/ا/ ايمن شعبان",
     "regDate": "2026-07-19 12:15",
     "academicSubjects": {
       "علوم": {
-        "teacher": "أ.علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -37862,7 +37611,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "أ.مصطفي",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -37932,7 +37681,7 @@ window.STUDENTS_DATA = [
         }
       },
       "تاريخ": {
-        "teacher": "ا.ايمن شعبان",
+        "teacher": "ا/ ايمن شعبان",
         "sessions": [
           "",
           "",
@@ -37976,7 +37725,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 0
     },
-    "_searchString": "1016 روان ياسر ��ميل 1032629107 1065101097 بلقس ث1 بكالوريا"
+    "_searchString": "1016 روان ياسر ج��يل 1032629107 1065101097 بلقس ث1 بكالوريا علوم ا/ محمد علام رياضه ا/ مصطفي صابر فلسفه ا/ احمد الليثي تاريخ ا/ ايمن شعبان"
   },
   {
     "code": "1017",
@@ -37987,7 +37736,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا",
     "subjectsSummary": "عربي, رياضة, علوم, فلسفة",
-    "teachersSummary": "عربي/ا/ سيد عبد العاطي [حصص: _, _, ✓, _, _, _, _, ✓] | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | علوم/علام | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _]",
+    "teachersSummary": "عربي/ا/ سيد عبد العاطي [حصص: _, _, ✓, _, _, _, _, ✓] | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | علوم/ا/ محمد علام | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _]",
     "regDate": "2026-07-19 12:15",
     "academicSubjects": {
       "عربي": {
@@ -38026,7 +37775,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -38057,11 +37806,21 @@ window.STUDENTS_DATA = [
             "✓",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
           ]
         }
       },
       "علوم": {
-        "teacher": "علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -38140,7 +37899,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1017 ملك محمد ابراهيم 1125786744 1276709880 بلقس ث1 بكالوريا"
+    "_searchString": "1017 ملك محمد ابراهيم 1125786744 1276709880 بلقس ث1 بكالوريا عربي ا/ سيد عبد العاطي رياضه ا/ مصطفي صابر علوم ا/ محمد علام فلسفه ا/ احمد الليثي"
   },
   {
     "code": "3504",
@@ -38199,7 +37958,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3504 عبد الرحمن محمد منصور 1000974968 1005896700 الزاويه ث3 أزهر"
+    "_searchString": "3504 عبد الرحمن محمد منصور 1000974968 1005896700 الزاويه ث3 ازهر احياء ا/ محمد نور"
   },
   {
     "code": "3505",
@@ -38258,7 +38017,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3505 سيف جميل حسان 1141620270 1094449986 الزاويه ث3 عام"
+    "_searchString": "3505 سيف جميل حسان 1141620270 1094449986 الزاويه ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "1020",
@@ -38269,7 +38028,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - الاعمال",
     "subjectsSummary": "فلسفة, تاريخ, علوم, عربي",
-    "teachersSummary": "فلسفة/ا/ احمد الليثي | تاريخ/ا/ ايمن شعبان | علوم/علام | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "فلسفة/ا/ احمد الليثي | تاريخ/ا/ ايمن شعبان | علوم/ا/ محمد علام | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-07-19 15:21",
     "academicSubjects": {
       "فلسفة": {
@@ -38343,7 +38102,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -38422,7 +38181,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1020 نور شوقي اسماعيل 1026845159 1555447093 بلقس ث1 بكالوريا - الاعمال"
+    "_searchString": "1020 نور شوقي اسماعيل 1026845159 1555447093 بلقس ث1 بكالوريا - الاعمال فلسفه ا/ احمد الليثي تاريخ ا/ ايمن شعبان علوم ا/ محمد علام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3506",
@@ -38481,7 +38240,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 86,
       "averageScore": 0
     },
-    "_searchString": "3506 منه محمود زكي 1554414677 1070980062 بلقس ث3 عام"
+    "_searchString": "3506 منه محمود زكي 1554414677 1070980062 بلقس ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3507",
@@ -38575,7 +38334,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3507 امينة احمد صبحي 1273154170 1214608877 بلقس ث3 عام"
+    "_searchString": "3507 امينه احمد صبحي 1273154170 1214608877 بلقس ث3 عام عربي ا/ احمد عبد القادر فزياء ا/ محمد مختار"
   },
   {
     "code": "3508",
@@ -38669,7 +38428,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 64,
       "averageScore": 0
     },
-    "_searchString": "3508 ابرار محمود عبد الصادق 1119946694 1159818109 بلقس ث3 عام"
+    "_searchString": "3508 ابرار محمود عبد الصادق 1119946694 1159818109 بلقس ث3 عام انجليزي ا/ حماده يوسف احياء ا/ محمد نور"
   },
   {
     "code": "1021",
@@ -38719,7 +38478,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -38742,6 +38501,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "",
             "",
             "",
@@ -38798,7 +38567,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1021 رودينا محمود محمد 1090931407 10 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1021 رودينا محمود محمد 1090931407 10 بلقس ث1 بكالوريا - طب عربي ا/ سيد عبد العاطي رياضه ا/ مصطفي صابر فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1022",
@@ -38927,7 +38696,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 50,
       "averageScore": 0
     },
-    "_searchString": "1022 جنات محمد عطا 1271248122 12 بلقس ث1 بكالوريا - الاداب"
+    "_searchString": "1022 جنات محمد عطا 1271248122 12 بلقس ث1 بكالوريا - الاداب رياضه ا/ ناصر سعد فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1023",
@@ -38986,7 +38755,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 0
     },
-    "_searchString": "1023 حبيبة محمد حسن 1005741487 1225820203 بلقس ث1 بكالوريا - الاداب"
+    "_searchString": "1023 حبيبه محمد حسن 1005741487 1225820203 بلقس ث1 بكالوريا - الاداب فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1024",
@@ -38997,7 +38766,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "انجليزي, علوم, رياضة, فلسفة, عربي",
-    "teachersSummary": "انجليزي/ا/ حماده يوسف [حصص: _, _, ✓, _, _, ✓, _, _] | علوم/محمد نور | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | فلسفة/ا/ احمد الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "انجليزي/ا/ حماده يوسف [حصص: _, _, ✓, _, _, ✓, _, _] | علوم/ا/ محمد نور | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | فلسفة/ا/ احمد الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-07-21 15:28",
     "academicSubjects": {
       "انجليزي": {
@@ -39036,7 +38805,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -39071,7 +38840,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -39094,6 +38863,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "",
             "",
             "",
@@ -39185,7 +38964,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1024 ريهام خالد ابراهيم 1222400269 1227080173 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1024 ريهام خالد ابراهيم 1222400269 1227080173 بلقس ث1 بكالوريا - طب انجليزي ا/ حماده يوسف علوم ا/ محمد نور رياضه ا/ مصطفي صابر فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1025",
@@ -39196,11 +38975,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - هندسة",
     "subjectsSummary": "علوم, رياضة, فلسفة, عربي",
-    "teachersSummary": "علوم/علام | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | فلسفة/ا/ احمد الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | فلسفة/ا/ احمد الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-07-21 15:31",
     "academicSubjects": {
       "علوم": {
-        "teacher": "علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -39235,7 +39014,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -39258,6 +39037,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "",
             "",
             "",
@@ -39349,7 +39138,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1025 شيماء هاني فرج 1116419638 1013629677 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1025 شيماء هاني فرج 1116419638 1013629677 بلقس ث1 بكالوريا - هندسه علوم ا/ محمد علام رياضه ا/ مصطفي صابر فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3509",
@@ -39478,7 +39267,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 94,
       "averageScore": 45
     },
-    "_searchString": "3509 عبد الرحمن احمد عبدالله 1220604486 1102399799 بلقس ث3 عام"
+    "_searchString": "3509 عبد الرحمن احمد عبدالله 1220604486 1102399799 بلقس ث3 عام رياضه ا/ مصطفي صابر كيمياء ا/ محمد صلاح فزياء ا/ محمد مختار"
   },
   {
     "code": "1026",
@@ -39572,7 +39361,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1026 سماح رجب احمد 1228259402  بلقس ث1 بكالوريا - طب"
+    "_searchString": "1026 سماح رجب احمد 1228259402 بلقس ث1 بكالوريا - طب عربي ا/ سيد عبد العاطي فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1027",
@@ -39657,7 +39446,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -39688,6 +39477,16 @@ window.STUDENTS_DATA = [
             "✓",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
           ]
         }
       }
@@ -39701,7 +39500,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1027 ملك عبد الشافي احمد 1288593292  بلقس ث1 بكالوريا - طب"
+    "_searchString": "1027 ملك عبد الشافي احمد 1288593292 بلقس ث1 بكالوريا - طب عربي ا/ سيد عبد العاطي فلسفه ا/ احمد الليثي رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3511",
@@ -39760,7 +39559,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 85
     },
-    "_searchString": "3511 رقية رمضان كرم 1121471905 1121471906 بلقس ث3 عام"
+    "_searchString": "3511 محمود فريد عواد 01039094339 01013995423 الزاويه ث3 ازهر كيمياء ا/ محمد صلاح"
   },
   {
     "code": "1028",
@@ -39854,7 +39653,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1028 عائشه محمد مصطفى 1038541448 1010198506 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1028 عايشه محمد مصطفي 1038541448 1010198506 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1029",
@@ -39948,7 +39747,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1029 جومانا عصام مختار 1282949313 1027499930 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1029 جومانا عصام مختار 1282949313 1027499930 بلقس ث1 بكالوريا - هندسه فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3510",
@@ -40042,7 +39841,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3510 ندي عبده محمد 1035110272 1035073740 بلقس ث3 عام"
+    "_searchString": "3510 ندي عبده محمد 1035110272 1035073740 بلقس ث3 عام رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3512",
@@ -40165,13 +39964,13 @@ window.STUDENTS_DATA = [
     "_metrics": {
       "totalScore": 26.5,
       "totalMax": 40,
-      "totalPresent": 15,
+      "totalPresent": 16,
       "totalAbsent": 0,
-      "totalRecordedSessions": 15,
+      "totalRecordedSessions": 16,
       "attendanceRate": 100,
       "averageScore": 66.3
     },
-    "_searchString": "3512 فؤاد احمد فؤاد 1287874937 12 بلقس ث3 عام"
+    "_searchString": "3512 مصعب جمال محمد 01142357105 01148139910 الزاويه ث3 ازهر عربي ا/ سيد عبد العاطي رياضه ا/ مصطفي صابر كيمياء ا/ محمد صلاح"
   },
   {
     "code": "1030",
@@ -40182,11 +39981,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "أزهر",
     "subjectsSummary": "رياضة, علوم, انجليزي, فلسفة, عربي",
-    "teachersSummary": "رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | علوم/علام | انجليزي/ا/ حماده يوسف [حصص: ✓, ✓, ✓, _, _, ✓, _, _] | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | علوم/ا/ محمد علام | انجليزي/ا/ حماده يوسف [حصص: ✓, ✓, ✓, _, _, ✓, _, _] | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-07-23 15:49",
     "academicSubjects": {
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -40217,11 +40016,21 @@ window.STUDENTS_DATA = [
             "✓",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
           ]
         }
       },
       "علوم": {
-        "teacher": "علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -40370,7 +40179,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1030 ملك حسن عبد الحليم 1229949701 12 بلقس ث1 أزهر"
+    "_searchString": "1030 ملك حسن عبد الحليم 1229949701 12 بلقس ث1 ازهر رياضه ا/ مصطفي صابر علوم ا/ محمد علام انجليزي ا/ حماده يوسف فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1031",
@@ -40381,11 +40190,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "أزهر",
     "subjectsSummary": "رياضة, علوم, انجليزي, فلسفة, عربي",
-    "teachersSummary": "رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | علوم/علام | انجليزي/ا/ حماده يوسف [حصص: _, _, ✓, _, _, ✓, _, _] | فلسفة/ا/ احمد الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, ✓, _, _, _]",
+    "teachersSummary": "رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | علوم/ا/ محمد علام | انجليزي/ا/ حماده يوسف [حصص: _, _, ✓, _, _, ✓, _, _] | فلسفة/ا/ احمد الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, ✓, _, _, _]",
     "regDate": "2026-07-23 15:51",
     "academicSubjects": {
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -40416,11 +40225,21 @@ window.STUDENTS_DATA = [
             "✓",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
           ]
         }
       },
       "علوم": {
-        "teacher": "علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -40569,7 +40388,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1031 دعاء ابراهيم عبد الحليم 129949701 12 بلقس ث1 أزهر"
+    "_searchString": "1031 دعاء ابراهيم عبد الحليم 129949701 12 بلقس ث1 ازهر رياضه ا/ مصطفي صابر علوم ا/ محمد علام انجليزي ا/ حماده يوسف فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3513",
@@ -40580,11 +40399,11 @@ window.STUDENTS_DATA = [
     "grade": "ث3",
     "specialization": "أزهر",
     "subjectsSummary": "احياء",
-    "teachersSummary": "احياء/محمد نور",
+    "teachersSummary": "احياء/ا/ محمد نور",
     "regDate": "2026-07-25 15:20",
     "academicSubjects": {
       "احياء": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -40628,7 +40447,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3513 عبد الرحمن محمد شوقي 01118035545 01035833622 الزاويه ث3 أزهر"
+    "_searchString": "3513 عبد الرحمن محمد شوقي 01118035545 01035833622 الزاويه ث3 ازهر احياء ا/ محمد نور"
   },
   {
     "code": "3514",
@@ -40687,7 +40506,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3514 حنان احمد محمود 01032383368 01016551654 كوم السمن ث3 عام"
+    "_searchString": "3514 حنان احمد محمود 01032383368 01016551654 كوم السمن ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3515",
@@ -40702,7 +40521,7 @@ window.STUDENTS_DATA = [
     "regDate": "2026-07-26 14:44",
     "academicSubjects": {
       "انجليزي": {
-        "teacher": "ا/ حماده يوسف  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ حماده يوسف",
         "sessions": [
           "✓",
           "",
@@ -40725,6 +40544,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "✓",
             "",
             "",
@@ -40816,7 +40645,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 100
     },
-    "_searchString": "3515 مصطفى حمادة محمدي 1126748610 1102472603 شبرا ث3 عام"
+    "_searchString": "3515 مصطفي حماده محمدي 1126748610 1102472603 شبرا ث3 عام انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3516",
@@ -40910,7 +40739,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 91,
       "averageScore": 0
     },
-    "_searchString": "3516 ملك وائل محمد 1114548687 1208007597 بلقس ث3 عام"
+    "_searchString": "3516 ملك وايل محمد 1114548687 1208007597 بلقس ث3 عام كيمياء ا/ محمد صلاح رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1032",
@@ -40921,11 +40750,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - هندسة",
     "subjectsSummary": "علوم, عربي",
-    "teachersSummary": "علوم/محمد نور | عربي/ا/ احمد عبد القادر",
+    "teachersSummary": "علوم/ا/ محمد نور | عربي/ا/ احمد عبد القادر",
     "regDate": "2026-07-26 15:34",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -41004,7 +40833,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1032 حبيبة علي عبد الحي 1123229396 1115646563 سلمانية ث1 بكالوريا - هندسة"
+    "_searchString": "1032 حبيبه علي عبد الحي 1123229396 1115646563 سلمانيه ث1 بكالوريا - هندسه علوم ا/ محمد نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1033",
@@ -41015,11 +40844,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - الاعمال",
     "subjectsSummary": "علوم, عربي",
-    "teachersSummary": "علوم/محمد نور | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد نور | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-07-26 15:35",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -41098,7 +40927,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1033 مني صابر اسماعيل 1111398519 11 سلمانية ث1 بكالوريا - الاعمال"
+    "_searchString": "1033 مني صابر اسماعيل 1111398519 11 سلمانيه ث1 بكالوريا - الاعمال علوم ا/ محمد نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1034",
@@ -41109,11 +40938,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - الاعمال",
     "subjectsSummary": "علوم, عربي",
-    "teachersSummary": "علوم/محمد نور | عربي/ا/ احمد عبد القادر",
+    "teachersSummary": "علوم/ا/ محمد نور | عربي/ا/ احمد عبد القادر",
     "regDate": "2026-07-26 15:37",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -41192,7 +41021,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1034 حبيبة تامر شديد 1229897720 1114260360 سلمانية ث1 بكالوريا - الاعمال"
+    "_searchString": "1034 حبيبه تامر شديد 1229897720 1114260360 سلمانيه ث1 بكالوريا - الاعمال علوم ا/ محمد نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3517",
@@ -41321,7 +41150,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 78,
       "averageScore": 55
     },
-    "_searchString": "3517 حبيبة كريم خالد 1018197720 12 بلقس ث3 عام"
+    "_searchString": "3517 حبيبه كريم خالد 1018197720 12 بلقس ث3 عام كيمياء ا/ محمد صلاح فزياء ا/ محمد الجوهري فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3521",
@@ -41410,12 +41239,12 @@ window.STUDENTS_DATA = [
       "totalScore": 64,
       "totalMax": 80,
       "totalPresent": 8,
-      "totalAbsent": 0,
-      "totalRecordedSessions": 8,
-      "attendanceRate": 100,
+      "totalAbsent": 1,
+      "totalRecordedSessions": 9,
+      "attendanceRate": 89,
       "averageScore": 80
     },
-    "_searchString": "3521 عبد الرحمن عبدالله عبد الرازق 1273948433 1505397402 بلقس ث3 عام"
+    "_searchString": "3521 عبد الرحمن عبدالله عبد الرازق 1273948433 1505397402 بلقس ث3 عام احياء ا/ محمد علام عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "1037",
@@ -41509,7 +41338,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 70
     },
-    "_searchString": "1037 سما فريد شوقي 1283680920 1225469028 بلقس ث1 أزهر"
+    "_searchString": "1037 سما فريد شوقي 1283680920 1225469028 بلقس ث1 ازهر رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1038",
@@ -41603,7 +41432,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1038 مريم عبدالله عطية 1226048334 1225322556 بلقس ث1 أزهر"
+    "_searchString": "1038 مريم عبدالله عطيه 1226048334 1225322556 بلقس ث1 ازهر انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1035",
@@ -41614,11 +41443,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "علوم, عربي, فلسفة",
-    "teachersSummary": "علوم/محمد نور | عربي/ا/ احمد عبد القادر | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد نور | عربي/ا/ احمد عبد القادر | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _]",
     "regDate": "2026-07-27 14:50",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -41732,7 +41561,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1035 ادهم يوسف عبد الفضيل 1009578919 1093689292 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1035 ادهم يوسف عبد الفضيل 1009578919 1093689292 بلقس ث1 بكالوريا - طب علوم ا/ محمد نور عربي ا/ احمد عبد القادر فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1036",
@@ -41743,11 +41572,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "علوم, فلسفة, عربي",
-    "teachersSummary": "علوم/محمد نور | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد نور | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-07-27 14:50",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -41861,7 +41690,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1036 عمر مصطفى احمد 1118804667 11 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1036 عمر مصطفي احمد 1118804667 11 بلقس ث1 بكالوريا - طب علوم ا/ محمد نور فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2501",
@@ -41872,7 +41701,7 @@ window.STUDENTS_DATA = [
     "grade": "ث2",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "فزياء, تاريخ",
-    "teachersSummary": "فزياء/ا/ محمد الجوهري | تاريخ/سمية و رضا",
+    "teachersSummary": "فزياء/ا/ محمد الجوهري | تاريخ/ا/ رضا صلاح",
     "regDate": "2026-07-27 14:52",
     "academicSubjects": {
       "فزياء": {
@@ -41911,7 +41740,7 @@ window.STUDENTS_DATA = [
         }
       },
       "تاريخ": {
-        "teacher": "سمية و رضا",
+        "teacher": "ا/ رضا صلاح",
         "sessions": [
           "",
           "",
@@ -41955,7 +41784,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2501 بسنت يحي إبراهيم 01223111438 01288871983 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2501 بسنت يحي ابراهيم 01223111438 01288871983 بلقس ث2 بكالوريا - طب فزياء ا/ محمد الجوهري تاريخ ا/ رضا صلاح"
   },
   {
     "code": "3522",
@@ -42014,7 +41843,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3522 مريم مصطفى احمد 01006118823 01146670217 كوم السمن ث3 عام"
+    "_searchString": "3522 مريم مصطفي احمد 01006118823 01146670217 كوم السمن ث3 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3523",
@@ -42073,7 +41902,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3523 نور الدين هيثم محمد 01080542229 01147423947 الحزانية ث3 عام"
+    "_searchString": "3523 نور الدين هيثم محمد 01080542229 01147423947 الحزانيه ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3524",
@@ -42132,7 +41961,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3524 احمد رأفت سيد 01157235430 01154499179 الحزانية ث3 عام"
+    "_searchString": "3524 احمد رافت سيد 01157235430 01154499179 الحزانيه ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3525",
@@ -42191,7 +42020,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3525 محمد سليمان العطار 01064609164 0106620660 الحزانية ث3 عام"
+    "_searchString": "3525 محمد سليمان العطار 01064609164 0106620660 الحزانيه ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3526",
@@ -42214,7 +42043,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3526 محمد اشرف سلطان 1016476295 1119379052 الحزانية ث3 عام"
+    "_searchString": "3526 محمد اشرف سلطان 1016476295 1119379052 الحزانيه ث3 عام"
   },
   {
     "code": "2502",
@@ -42413,7 +42242,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "2502 سارة خليل ابراهيم 1109178005 1068685430 السلمانية ث2 أزهر"
+    "_searchString": "2502 ساره خليل ابراهيم 1109178005 1068685430 السلمانيه ث2 ازهر انجليزي ا/ محمد صبحي رياضه ا/ مصطفي صابر كيمياء ا/ محمد صلاح فزياء ا/ محمد مختار عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2177",
@@ -42472,7 +42301,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2177 سلاف سالم محمد 01065519203 01019108066 بلقس ث2 أزهر"
+    "_searchString": "2177 سلاف سالم محمد 01065519203 01019108066 بلقس ث2 ازهر كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3174",
@@ -42601,7 +42430,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 90
     },
-    "_searchString": "3174 يارا محمد رأفت 1280817004 1147132568 بلقس ث3 عام"
+    "_searchString": "3174 يارا محمد رافت 1280817004 1147132568 بلقس ث3 عام عربي ا/ احمد عبد القادر كيمياء ا/ محمد صلاح احياء ا/ محمد نور"
   },
   {
     "code": "3530",
@@ -42695,7 +42524,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 0
     },
-    "_searchString": "3530 ضحي مصطفى محمود 1125785171 1115669249 بلقس ث3 عام"
+    "_searchString": "3530 ضحي مصطفي محمود 1125785171 1115669249 بلقس ث3 عام رياضه ا/ مصطفي صابر كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3531",
@@ -42789,7 +42618,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 71,
       "averageScore": 0
     },
-    "_searchString": "3531 ملك محمد حلمي 1120057852 1286951421 بلقس ث3 عام"
+    "_searchString": "3531 ملك محمد حلمي 1120057852 1286951421 بلقس ث3 عام احياء ا/ محمد نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3356",
@@ -42883,7 +42712,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 60
     },
-    "_searchString": "3356 جني جمال شرف 1227117164 1119653091 بلقس ث3 عام"
+    "_searchString": "3356 جني جمال شرف 1227117164 1119653091 بلقس ث3 عام احياء ا/ محمد نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1039",
@@ -42894,11 +42723,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - الاعمال",
     "subjectsSummary": "علوم, فلسفة, رياضة, عربي",
-    "teachersSummary": "علوم/محمد نور وعلام | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _] | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, _, _, ✓, _, _, _] | عربي/ا/ احمد عبد القادر",
+    "teachersSummary": "علوم/ا/ محمد علام | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _] | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, _, _, ✓, _, _, _] | عربي/ا/ احمد عبد القادر",
     "regDate": "2026-07-28 15:25",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد نور وعلام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -43047,7 +42876,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1039 حبيبة سيد محمد 1108063995 1288464921 بلقس ث1 بكالوريا - الاعمال"
+    "_searchString": "1039 حبيبه سيد محمد 1108063995 1288464921 بلقس ث1 بكالوريا - الاعمال علوم ا/ محمد علام فلسفه ا/ احمد الليثي رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1040",
@@ -43058,11 +42887,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "علوم, فلسفة, برمجة, عربي",
-    "teachersSummary": "علوم/علام | فلسفة/ا/ احمد الليثي | برمجة/م/ محمد ابراهيم | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | فلسفة/ا/ احمد الليثي | برمجة/م/ محمد ابراهيم | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-07-28 16:08",
     "academicSubjects": {
       "علوم": {
-        "teacher": "علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -43211,7 +43040,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1040 مي احمد حسين 1122612042 1021303390 عبد الله باشا ث1 بكالوريا - طب"
+    "_searchString": "1040 مي احمد حسين 1122612042 1021303390 عبد الله باشا ث1 بكالوريا - طب علوم ا/ محمد علام فلسفه ا/ احمد الليثي برمجه م/ محمد ابراهيم عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1041",
@@ -43340,7 +43169,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1041 جنة محمد بكر 1280876658 1122071640 ابو عياش ث1 بكالوريا - طب"
+    "_searchString": "1041 جنه محمد بكر 1280876658 1122071640 ابو عياش ث1 بكالوريا - طب علوم علي فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3532",
@@ -43399,7 +43228,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3532 اميرة عبد السلام محمد 1093433620 1020733348 بلقس ث3 عام"
+    "_searchString": "3532 اميره عبد السلام محمد 1093433620 1020733348 بلقس ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3536",
@@ -43458,7 +43287,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3536 ندي معتز محمود 01038082970 010 كوم السمن ث3 عام"
+    "_searchString": "3536 ندي معتز محمود 01038082970 010 كوم السمن ث3 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3534",
@@ -43552,7 +43381,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3534 احمد رزق احمد جميل 1003866874 1118803650 بلقس ث3 عام"
+    "_searchString": "3534 احمد رزق احمد جميل 1003866874 1118803650 بلقس ث3 عام كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3533",
@@ -43646,7 +43475,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 86,
       "averageScore": 0
     },
-    "_searchString": "3533 عبد الرحمن طه منصور 1203002262 1278050770 بلقس ث3 عام"
+    "_searchString": "3533 عبد الرحمن طه منصور 1203002262 1278050770 بلقس ث3 عام كيمياء ا/ محمد صلاح احياء ا/ محمد علام"
   },
   {
     "code": "3535",
@@ -43705,7 +43534,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3535 منه الله احمد سيد 1115735725 1155088326 بلقس ث3 أزهر"
+    "_searchString": "3535 منه الله احمد سيد 1115735725 1155088326 بلقس ث3 ازهر فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2503",
@@ -43764,7 +43593,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 80.4
     },
-    "_searchString": "2503 رقية محمد صبحي 1119355271 1158664228 الزاوية ث2 بكالوريا - الاداب"
+    "_searchString": "2503 رقيه محمد صبحي 1119355271 1158664228 الزاويه ث2 بكالوريا - الاداب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2504",
@@ -43858,7 +43687,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 72.4
     },
-    "_searchString": "2504 صفية سيد منصور 1080764109 1060374159 الزاويه ث2 بكالوريا - طب"
+    "_searchString": "2504 صفيه سيد منصور 1080764109 1060374159 الزاويه ث2 بكالوريا - طب عربي ا/ احمد عبد القادر فزياء ا/ محمد الجوهري"
   },
   {
     "code": "1042",
@@ -43869,11 +43698,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "علوم, فلسفة, عربي",
-    "teachersSummary": "علوم/علام | فلسفة/ا/ احمد الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | فلسفة/ا/ احمد الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-07-29 16:27",
     "academicSubjects": {
       "علوم": {
-        "teacher": "علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -43987,7 +43816,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1042 هند معروف محمد 1201633411 1060529421 الزاويه ث1 بكالوريا - طب"
+    "_searchString": "1042 هند معروف محمد 1201633411 1060529421 الزاويه ث1 بكالوريا - طب علوم ا/ محمد علام فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1043",
@@ -44046,7 +43875,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1043 سلمي عمرو حنفي 122603298 12 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1043 سلمي عمرو حنفي 122603298 12 بلقس ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1044",
@@ -44057,11 +43886,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "علوم, رياضة, عربي",
-    "teachersSummary": "علوم/محمد علام | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, ✓, ✓, _, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, ✓, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, ✓, ✓, _, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, ✓, _, _, _]",
     "regDate": "2026-07-29 16:30",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -44175,7 +44004,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1044 رقية احمد امين صلاح 1069148430 1001113165 الزاوية ث1 بكالوريا - طب"
+    "_searchString": "1044 رقيه احمد امين صلاح 1069148430 1001113165 الزاويه ث1 بكالوريا - طب علوم ا/ محمد علام رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3528",
@@ -44269,7 +44098,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 91,
       "averageScore": 0
     },
-    "_searchString": "3528 مريم محمد سيد محمد 1121888273 1008182645 الزاويه ث3 عام"
+    "_searchString": "3528 مريم محمد سيد محمد 1121888273 1008182645 الزاويه ث3 عام كيمياء ا/ محمد صلاح احياء ا/ محمد نور"
   },
   {
     "code": "3527",
@@ -44328,7 +44157,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3527 ندي امجد خيري 1203435971 1201335195 بلقس ث3 عام"
+    "_searchString": "3527 ندي امجد خيري 1203435971 1201335195 بلقس ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3537",
@@ -44387,7 +44216,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3537 فاطمة ناجح صفا 1024495486 1211458483 بلقس ث3 عام"
+    "_searchString": "3537 فاطمه ناجح صفا 1024495486 1211458483 بلقس ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3538",
@@ -44446,7 +44275,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3538 ��دي محمد سيد 1228580467 1201537510 بلقس ث3 عام"
+    "_searchString": "3538 ه��ي محمد سيد 1228580467 1201537510 بلقس ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3539",
@@ -44540,7 +44369,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3539 حفصة رفيق محمد 1040842654 1007171843 الزاوية ث3 عام"
+    "_searchString": "3539 حفصه رفيق محمد 1040842654 1007171843 الزاويه ث3 عام احياء ا/ محمد نور فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3540",
@@ -44599,7 +44428,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3540 رقية محمود طلال 1225822128 1122427907 الزاروية ث3 عام"
+    "_searchString": "3540 رقيه محمود طلال 1225822128 1122427907 الزارويه ث3 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "1045",
@@ -44728,7 +44557,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1045 مالك احمد محمد ابراهيم 1100559059 1285906393 السلمانية ث1 أزهر"
+    "_searchString": "1045 مالك احمد محمد ابراهيم 1100559059 1285906393 السلمانيه ث1 ازهر فلسفه ا/ احمد الليثي علوم علي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1046",
@@ -44822,7 +44651,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1046 نجاة حسن كامل 1270943389 12 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1046 نجاه حسن كامل 1270943389 12 بلقس ث1 بكالوريا - طب رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1047",
@@ -44916,7 +44745,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 60
     },
-    "_searchString": "1047 ميرنا وليد عادل امين 1 1 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1047 ميرنا وليد عادل امين 1 1 بلقس ث1 بكالوريا - طب رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1048",
@@ -45080,7 +44909,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1048 اسراء تامر احمد 1272247307 1 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1048 اسراء تامر احمد 1272247307 1 بلقس ث1 بكالوريا - طب انجليزي ا/ محمد صبحي رياضه ا/ ناصر سعد فلسفه ا/ سميه محمود عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3542",
@@ -45139,7 +44968,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3542 رانا رضا نجيب 1104696788 1111192281 العطارة ث3 عام"
+    "_searchString": "3542 رانا رضا نجيب 1104696788 1111192281 العطاره ث3 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "1049",
@@ -45233,7 +45062,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1049 هيا حسين امام 1107552966 1220961622 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1049 هيا حسين امام 1107552966 1220961622 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2505",
@@ -45292,7 +45121,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2505 نبيلة محمد عبد الحميد 01108525018 01108524944 الزاويه ث2 بكالوريا - طب"
+    "_searchString": "2505 نبيله محمد عبد الحميد 01108525018 01108524944 الزاويه ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "1050",
@@ -45386,7 +45215,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1050 ريهام ياسر سعد 1271662112 1205498626 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1050 ريهام ياسر سعد 1271662112 1205498626 بلقس ث1 بكالوريا - هندسه فلسفه ا/ سميه محمود عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1051",
@@ -45445,7 +45274,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1051 فرح رامي فتحي 1205719316 1111347125 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1051 فرح رامي فتحي 1205719316 1111347125 بلقس ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1052",
@@ -45456,7 +45285,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "عربي, علوم, فلسفة",
-    "teachersSummary": "عربي/ا/ احمد عبد القادر | علوم/محمد نور | فلسفة/ا/ سارة مجدي",
+    "teachersSummary": "عربي/ا/ احمد عبد القادر | علوم/ا/ محمد نور | فلسفة/ا/ سارة مجدي",
     "regDate": "2026-08-01 06:34",
     "academicSubjects": {
       "عربي": {
@@ -45495,7 +45324,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -45574,7 +45403,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1052 جني ابراهيم بدوي 1201098606 1141160052 السلمانية ث1 بكالوريا - طب"
+    "_searchString": "1052 جني ابراهيم بدوي 1201098606 1141160052 السلمانيه ث1 بكالوريا - طب عربي ا/ احمد عبد القادر علوم ا/ محمد نور فلسفه ا/ ساره مجدي"
   },
   {
     "code": "1053",
@@ -45584,8 +45413,8 @@ window.STUDENTS_DATA = [
     "parentPhone": "1141160052",
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
-    "subjectsSummary": "عربي, علوم, فلسفة",
-    "teachersSummary": "ع��بي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _] | علوم/محمد نور | فلسفة/ا/ احمد الليثي",
+    "subjectsSummary": "ع��بي, علوم, فلسفة",
+    "teachersSummary": "ع��بي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _] | علوم/ا/ محمد نور | فلسفة/ا/ احمد الليثي",
     "regDate": "2026-08-01 06:35",
     "academicSubjects": {
       "ع��بي": {
@@ -45624,7 +45453,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -45692,41 +45521,6 @@ window.STUDENTS_DATA = [
             ""
           ]
         }
-      },
-      "عربي": {
-        "teacher": "مدرس المادة",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
       }
     },
     "_metrics": {
@@ -45738,7 +45532,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1053 ملك ابراهيم بدوي 1201098046 1141160052 السلمانية ث1 بكالوريا - طب"
+    "_searchString": "1053 ملك ابراهيم بدوي 1201098046 1141160052 السلمانيه ث1 بكالوريا - طب ع��بي ا/ احمد عبد القادر علوم ا/ محمد نور فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1054",
@@ -45797,7 +45591,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1054 ندي محمود نصار 1203089811 1114553735 السلمانية ث1 بكالوريا - طب"
+    "_searchString": "1054 ندي محمود نصار 1203089811 1114553735 السلمانيه ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1055",
@@ -45808,7 +45602,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - هندسة",
     "subjectsSummary": "عربي, علوم",
-    "teachersSummary": "عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _] | علوم/محمد نور",
+    "teachersSummary": "عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _] | علوم/ا/ محمد نور",
     "regDate": "2026-08-01 06:37",
     "academicSubjects": {
       "عربي": {
@@ -45847,7 +45641,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -45891,7 +45685,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1055 مريم حمادة جمال 1281099073 12 السلمانية ث1 بكالوريا - هندسة"
+    "_searchString": "1055 مريم حماده جمال 1281099073 12 السلمانيه ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر علوم ا/ محمد نور"
   },
   {
     "code": "1056",
@@ -45950,7 +45744,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1056 ملك عبد الكريم فؤاد 1201618129 1225817091 السلمانية ث1 بكالوريا - طب"
+    "_searchString": "1056 ملك عبد الكريم فواد 1201618129 1225817091 السلمانيه ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1058",
@@ -46044,7 +45838,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1058 اية محمد شكري 1108798502 1274760763 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1058 ايه محمد شكري 1108798502 1274760763 بلقس ث1 بكالوريا - طب عربي ا/ احمد عبد القادر فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1059",
@@ -46138,7 +45932,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1059 سلوي ياسر صلاح 1151506433 1200767188 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1059 سلوي ياسر صلاح 1151506433 1200767188 بلقس ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1060",
@@ -46197,7 +45991,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1060 ياسمين ابو سريع عبد المنعم 1503635421 1116729013 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1060 ياسمين ابو سريع عبد المنعم 1503635421 1116729013 بلقس ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1061",
@@ -46291,7 +46085,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1061 روان عبد العزيز سعيد 1508960272 1145366541 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1061 روان عبد العزيز سعيد 1508960272 1145366541 بلقس ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1062",
@@ -46350,7 +46144,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1062 ايمان محمد هاشم 1272328957 1100351347 السلمانية ث1 بكالوريا - طب"
+    "_searchString": "1062 ايمان محمد هاشم 1272328957 1100351347 السلمانيه ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1063",
@@ -46409,7 +46203,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1063 رقية حسين حسانين 1203335275 12 السلمانية ث1 بكالوريا - طب"
+    "_searchString": "1063 رقيه حسين حسانين 1203335275 12 السلمانيه ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1064",
@@ -46468,7 +46262,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1064 اسماء احمد ربيع 1207122116 1284468423 كوم اشفين ث1 بكالوريا - طب"
+    "_searchString": "1064 اسماء احمد ربيع 1207122116 1284468423 كوم اشفين ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1065",
@@ -46527,7 +46321,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1065 انسطابية يوسف 1284533221 1287118900 السلمانية ث1 بكالوريا - هندسة"
+    "_searchString": "1065 انسطابيه يوسف 1284533221 1287118900 السلمانيه ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1066",
@@ -46586,7 +46380,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1066 ماريز ياسر داود 1223032847 1208273947 السلمانية ث1 بكالوريا - طب"
+    "_searchString": "1066 ماريز ياسر داود 1223032847 1208273947 السلمانيه ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1068",
@@ -46715,7 +46509,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1068 سمر احمد محمد 1275985079 1281795531 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1068 سمر احمد محمد 1275985079 1281795531 بلقس ث1 بكالوريا - طب عربي ا/ احمد عبد القادر علوم علي فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1069",
@@ -46774,7 +46568,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1069 تقي محمد عبد الخالق 1146816371 1153337464 الجعافرة ث1 بكالوريا - طب"
+    "_searchString": "1069 تقي محمد عبد الخالق 1146816371 1153337464 الجعافره ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1070",
@@ -46833,7 +46627,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1070 جني عبد العزيز كامل 1114250129 1006254230 الجعافرة ث1 بكالوريا - طب"
+    "_searchString": "1070 جني عبد العزيز كامل 1114250129 1006254230 الجعافره ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1071",
@@ -46892,7 +46686,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1071 حنين محمد امين 1150484675 1147748785 الجع��فرة ث1 بكالوريا - طب"
+    "_searchString": "1071 حنين محمد امين 1150484675 1147748785 الجعا��ره ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1072",
@@ -46951,7 +46745,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1072 حبيبة ايمن صلاح 1123382293 1112791962 الجعافرة ث1 بكالوريا - طب"
+    "_searchString": "1072 حبيبه ايمن صلاح 1123382293 1112791962 الجعافره ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1073",
@@ -47010,7 +46804,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1073 اميرة محمد صالح 1128275558 1110039321 الجعافرة ث1 بكالوريا - طب"
+    "_searchString": "1073 اميره محمد صالح 1128275558 1110039321 الجعافره ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1074",
@@ -47069,7 +46863,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1074 نادين عصام حمزة 1103968269 1110749827 الجعافرة ث1 بكالوريا - طب"
+    "_searchString": "1074 نادين عصام حمزه 1103968269 1110749827 الجعافره ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1057",
@@ -47163,7 +46957,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1057 يارا محمد اسماعيل 1273450682 12 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1057 يارا محمد اسماعيل 1273450682 12 بلقس ث1 بكالوريا - طب عربي ا/ احمد عبد القادر فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1067",
@@ -47222,7 +47016,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1067 ماريا وجية غالي 1211513105 1276541476 السلمانية ث1 بكالوريا - طب"
+    "_searchString": "1067 ماريا وجيه غالي 1211513105 1276541476 السلمانيه ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1076",
@@ -47233,11 +47027,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - الاداب",
     "subjectsSummary": "علوم, عربي",
-    "teachersSummary": "علوم/محمد نور | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد نور | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-01 07:15",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -47316,7 +47110,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1076 ياسمين محمود حسنين 1117941472 1103223408 السلمانية ث1 بكالوريا - الاداب"
+    "_searchString": "1076 ياسمين محمود حسنين 1117941472 1103223408 السلمانيه ث1 بكالوريا - الاداب علوم ا/ محمد نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1078",
@@ -47327,7 +47121,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "عربي, علوم, فلسفة",
-    "teachersSummary": "عربي/ا/ احمد عبد القادر | علوم/محمد نور | فلسفة/ا/ سارة مجدي",
+    "teachersSummary": "عربي/ا/ احمد عبد القادر | علوم/ا/ محمد نور | فلسفة/ا/ سارة مجدي",
     "regDate": "2026-08-01 07:19",
     "academicSubjects": {
       "عربي": {
@@ -47366,7 +47160,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -47445,7 +47239,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1078 امينة خالد محمود 1150765123 1150765123 السلمانية ث1 بكالوريا - طب"
+    "_searchString": "1078 امينه خالد محمود 1150765123 1150765123 السلمانيه ث1 بكالوريا - طب عربي ا/ احمد عبد القادر علوم ا/ محمد نور فلسفه ا/ ساره مجدي"
   },
   {
     "code": "1079",
@@ -47539,7 +47333,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1079 ندي هاشم صبحي 1225594898 1143512953 السلمانية ث1 بكالوريا - طب"
+    "_searchString": "1079 ندي هاشم صبحي 1225594898 1143512953 السلمانيه ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1080",
@@ -47554,7 +47348,7 @@ window.STUDENTS_DATA = [
     "regDate": "2026-08-01 07:23",
     "academicSubjects": {
       "عربي": {
-        "teacher": "ا/ احمد عبد القادر  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ احمد عبد القادر",
         "sessions": [
           "✓",
           "",
@@ -47585,6 +47379,16 @@ window.STUDENTS_DATA = [
             "",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       }
@@ -47598,7 +47402,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1080 احمد محمد كمال 1050219197 1115653206 السلمانية ث1 بكالوريا - طب"
+    "_searchString": "1080 احمد محمد كمال 1050219197 1115653206 السلمانيه ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3543",
@@ -47657,7 +47461,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3543 عمر فايز سعد 1207759411 1121723073 السلمانية ث3 عام"
+    "_searchString": "3543 عمر فايز سعد 1207759411 1121723073 السلمانيه ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3544",
@@ -47716,7 +47520,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 90
     },
-    "_searchString": "3544 نورة حسين ابراهيم 1026415128 1090121249 كوم اشفين ث3 عام"
+    "_searchString": "3544 نوره حسين ابراهيم 1026415128 1090121249 كوم اشفين ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3545",
@@ -47775,7 +47579,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 70
     },
-    "_searchString": "3545 شهد سعيد عوض 1105382408 1105382409 الزاوية ث3 عام"
+    "_searchString": "3545 شهد سعيد عوض 1105382408 1105382409 الزاويه ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3546",
@@ -47834,7 +47638,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 70
     },
-    "_searchString": "3546 مريم مصطفى سيد 1060084331 1097808308 الزاوية ث3 عام"
+    "_searchString": "3546 مريم مصطفي سيد 1060084331 1097808308 الزاويه ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3547",
@@ -47893,7 +47697,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 60
     },
-    "_searchString": "3547 مريم محسن سيد 1116317835 1007313843 الزاوية ث3 عام"
+    "_searchString": "3547 مريم محسن سيد 1116317835 1007313843 الزاويه ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3548",
@@ -47987,7 +47791,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3548 فاطمة عيد محمد 01270593708 01286415230 بلقس ث3 عام"
+    "_searchString": "3548 فاطمه عيد محمد 01270593708 01286415230 بلقس ث3 عام عربي ا/ احمد عبد القادر احصاء ا/ مصطفي صابر"
   },
   {
     "code": "3549",
@@ -48046,7 +47850,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3549 احمد رمضان سيد 1040312993 1103223409 السلمانية ث3 عام"
+    "_searchString": "3549 احمد رمضان سيد 1040312993 1103223409 السلمانيه ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3550",
@@ -48105,7 +47909,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3550 بلال عادل عبد الفتاح 1203428045 1029251308 بلقس ث3 عام"
+    "_searchString": "3550 بلال عادل عبد الفتاح 1203428045 1029251308 بلقس ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1081",
@@ -48116,11 +47920,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "علوم, فلسفة, رياضة, عربي",
-    "teachersSummary": "علوم/علام | فلسفة/ا/ احمد الليثي | رياضة/ا/ مصطفي صابر [حصص: غ, غ, ✓, ✓, ✓, _, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | فلسفة/ا/ احمد الليثي | رياضة/ا/ مصطفي صابر [حصص: غ, غ, ✓, ✓, ✓, _, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-01 08:39",
     "academicSubjects": {
       "علوم": {
-        "teacher": "علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -48269,7 +48073,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 0
     },
-    "_searchString": "1081 سحر احمد عبدالله 1227490960 1200336738 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1081 سحر احمد عبدالله 1227490960 1200336738 بلقس ث1 بكالوريا - طب علوم ا/ محمد علام فلسفه ا/ احمد الليثي رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3551",
@@ -48363,7 +48167,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3551 رحمة عماري 1098168011 1064501611 بلقس ث3 عام"
+    "_searchString": "3551 رحمه عماري 1098168011 1064501611 بلقس ث3 عام عربي ا/ احمد عبد القادر فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3552",
@@ -48422,7 +48226,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3552 هيام عبد العزيز احمد 1102399668 1211080595 بلقس ث3 عام"
+    "_searchString": "3552 هيام عبد العزيز احمد 1102399668 1211080595 بلقس ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3553",
@@ -48481,7 +48285,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3553 احمد علي عبدالله 1226808514 1211080595 كوم اشفين ث3 عام"
+    "_searchString": "3553 احمد علي عبدالله 1226808514 1211080595 كوم اشفين ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3554",
@@ -48540,7 +48344,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3554 ناهد رفيق حسين 1105802767 1117934554 بلقس ث3 عام"
+    "_searchString": "3554 ناهد رفيق حسين 1105802767 1117934554 بلقس ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "1075",
@@ -48551,11 +48355,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "رياضة, فلسفة, عربي",
-    "teachersSummary": "رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _] | عربي/ا/ احمد عبد القادر [��صص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _] | عربي/ا/ احمد عبد القادر",
     "regDate": "2026-08-01 10:08",
     "academicSubjects": {
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -48578,6 +48382,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "",
             "",
             "",
@@ -48625,7 +48439,7 @@ window.STUDENTS_DATA = [
         }
       },
       "عربي": {
-        "teacher": "ا/ احمد عبد القادر [��صص: _, ✓, _, _, _, _, _, _]",
+        "teacher": "ا/ احمد عبد القادر",
         "sessions": [
           "",
           "",
@@ -48669,7 +48483,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1075 ندي محمد جمال 1025277334 1144350448 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1075 ندي محمد جمال 1025277334 1144350448 بلقس ث1 بكالوريا - طب رياضه ا/ مصطفي صابر فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2506",
@@ -48728,7 +48542,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 80
     },
-    "_searchString": "2506 حبيبة حسن محمد 1044961702 1023297974 السلمانية ث2 بكالوريا - الاداب"
+    "_searchString": "2506 حبيبه حسن محمد 1044961702 1023297974 السلمانيه ث2 بكالوريا - الاداب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3555",
@@ -48787,7 +48601,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 86,
       "averageScore": 0
     },
-    "_searchString": "3555 فيروز فكري حسين 1108064595 1108064627 الزاويه ث3 عام"
+    "_searchString": "3555 فيروز فكري حسين 1108064595 1108064627 الزاويه ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "2507",
@@ -48881,7 +48695,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 89,
       "averageScore": 74
     },
-    "_searchString": "2507 جني فايد علي 1126264496 12 السلمانية ث2 بكالوريا - طب"
+    "_searchString": "2507 جني فايد علي 1126264496 12 السلمانيه ث2 بكالوريا - طب عربي ا/ احمد عبد القادر انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2508",
@@ -48940,7 +48754,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2508 امينة ايمن عبد المحسن 1044843935 1 الزاويه ث2 بكالوريا - طب"
+    "_searchString": "2508 امينه ايمن عبد المحسن 1044843935 1 الزاويه ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2509",
@@ -48999,7 +48813,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 83.3
     },
-    "_searchString": "2509 نورة يحي جمال 1030952757 1016980624 الزاويه ث2 بكالوريا - طب"
+    "_searchString": "2509 نوره يحي جمال 1030952757 1016980624 الزاويه ث2 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2510",
@@ -49058,7 +48872,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2510 محمود علاء خليل 1147132318 1155245173 الزاويه ث2 بكالوريا - هندسة"
+    "_searchString": "2510 محمود علاء خليل 1147132318 1155245173 الزاويه ث2 بكالوريا - هندسه عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1077",
@@ -49117,7 +48931,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1077 ابو بكر عصام مصطفى 1228374716 1004127690 السلمانية ث1 أزهر"
+    "_searchString": "1077 ابو بكر عصام مصطفي 1228374716 1004127690 السلمانيه ث1 ازهر فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1082",
@@ -49176,7 +48990,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1082 ياسين ياسر حسن 1277406831 1201886169 السلمانية ث1 أزهر"
+    "_searchString": "1082 ياسين ياسر حسن 1277406831 1201886169 السلمانيه ث1 ازهر فلسفه ا/ احمد الليثي"
   },
   {
     "code": "2511",
@@ -49235,7 +49049,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2511 مصطفى احمد شعبان 01110420129 01022226593 الزاوية ث2 بكالوريا - طب"
+    "_searchString": "2511 مصطفي احمد شعبان 01110420129 01022226593 الزاويه ث2 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3556",
@@ -49294,7 +49108,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3556 هنا نصر الدين 106878304 101164202 بلقس ث3 عام"
+    "_searchString": "3556 هنا نصر الدين 106878304 101164202 بلقس ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3571",
@@ -49353,7 +49167,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3571 ياسمين محمد عبد الخالق 1225541969 12801502720 بلقس ث3 عام"
+    "_searchString": "3571 ياسمين محمد عبد الخالق 1225541969 12801502720 بلقس ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3572",
@@ -49412,7 +49226,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3572 ملك محمد الباهي 1559290296 1064310296 بلقس ث3 عام"
+    "_searchString": "3572 ملك محمد الباهي 1559290296 1064310296 بلقس ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3573",
@@ -49422,7 +49236,7 @@ window.STUDENTS_DATA = [
     "parentPhone": "12",
     "grade": "ث3",
     "specialization": "عام",
-    "subjectsSummary": "ا��ياء, رياضة",
+    "subjectsSummary": "احياء, رياضة",
     "teachersSummary": "احياء/ا/ محمد نور [حصص: ✓, ✓, ✓, ✓, ✓, ✓, ✓, _] | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, _, ✓, _]",
     "regDate": "2026-08-02 06:18",
     "academicSubjects": {
@@ -49495,41 +49309,6 @@ window.STUDENTS_DATA = [
             ""
           ]
         }
-      },
-      "ا��ياء": {
-        "teacher": "مدرس المادة",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
       }
     },
     "_metrics": {
@@ -49541,7 +49320,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3573 عبد الرحمن عمرو منصور 1033737114 12 بلقس ث3 عام"
+    "_searchString": "3573 عبد الرحمن عمرو منصور 1033737114 12 بلقس ث3 عام احياء ا/ محمد نور رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3574",
@@ -49556,7 +49335,7 @@ window.STUDENTS_DATA = [
     "regDate": "2026-08-02 06:53",
     "academicSubjects": {
       "انجليزي": {
-        "teacher": "ا/ حماده يوسف  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ حماده يوسف",
         "sessions": [
           "✓",
           "",
@@ -49579,6 +49358,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "✓",
             "",
             "",
@@ -49635,7 +49424,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3574 سلمي عبد الكريم عطية 1099402634 1115435556 بلقس ث3 عام"
+    "_searchString": "3574 سلمي عبد الكريم عطيه 1099402634 1115435556 بلقس ث3 عام انجليزي ا/ حماده يوسف تاريخ ا/ رضا صلاح"
   },
   {
     "code": "3575",
@@ -49650,7 +49439,7 @@ window.STUDENTS_DATA = [
     "regDate": "2026-08-02 07:16",
     "academicSubjects": {
       "انجليزي": {
-        "teacher": "ا/ حماده يوسف  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ حماده يوسف",
         "sessions": [
           "✓",
           "",
@@ -49681,6 +49470,16 @@ window.STUDENTS_DATA = [
             "",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       }
@@ -49694,7 +49493,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3575 مريم عبد المطلب 1113816718 1151750850 الجعافرة ث3 عام"
+    "_searchString": "3575 مريم عبد المطلب 1113816718 1151750850 الجعافره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3576",
@@ -49753,7 +49552,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3576 نور جمعة شحات 01100716823 012 جعافرة ث3 عام"
+    "_searchString": "3576 نور جمعه شحات 01100716823 012 جعافره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3577",
@@ -49812,7 +49611,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3577 فاطمة علي سليمان 1126193737 1117585222 جعافرة ث3 عام"
+    "_searchString": "3577 فاطمه علي سليمان 1126193737 1117585222 جعافره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2514",
@@ -49941,7 +49740,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 20,
       "averageScore": 0
     },
-    "_searchString": "2514 محمد ناصر عبد السلام 1203461792 120154102 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2514 محمد ناصر عبد السلام 1203461792 120154102 بلقس ث2 بكالوريا - طب عربي ا/ سيد عبد العاطي انجليزي ا/ حماده يوسف فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3567",
@@ -50064,13 +49863,13 @@ window.STUDENTS_DATA = [
     "_metrics": {
       "totalScore": 16,
       "totalMax": 20,
-      "totalPresent": 4,
+      "totalPresent": 5,
       "totalAbsent": 0,
-      "totalRecordedSessions": 4,
+      "totalRecordedSessions": 5,
       "attendanceRate": 100,
       "averageScore": 80
     },
-    "_searchString": "3567 مي صبري سلامة 122079038 12 بلقس ث3 عام"
+    "_searchString": "3567 مي صبري سلامه 122079038 12 بلقس ث3 عام عربي ا/ سيد عبد العاطي احياء ا/ محمد نور انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3566",
@@ -50199,7 +49998,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 70,
       "averageScore": 0
     },
-    "_searchString": "3566 فاطمة محمد علي 1552852314 1229930474 بلقس ث3 أزهر"
+    "_searchString": "3566 فاطمه محمد علي 1552852314 1229930474 بلقس ث3 ازهر تاريخ ا/ رضا صلاح احصاء ا/ مصطفي صابر جغرافيا ا/ رضا صلاح"
   },
   {
     "code": "1086",
@@ -50293,7 +50092,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1086 اسماء ابراهيم صبري 1148989038 1148989636 السلمانية ث1 بكالوريا - طب"
+    "_searchString": "1086 اسماء ابراهيم صبري 1148989038 1148989636 السلمانيه ث1 بكالوريا - طب عربي ا/ احمد عبد القادر فلسفه ا/ ساره مجدي"
   },
   {
     "code": "1085",
@@ -50304,11 +50103,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "فلسفة, عربي",
-    "teachersSummary": "فلسفة/سارة | عربي/ا/ احمد عبد القادر",
+    "teachersSummary": "فلسفة/ا/ سارة مجدي | عربي/ا/ احمد عبد القادر",
     "regDate": "2026-08-02 07:45",
     "academicSubjects": {
       "فلسفة": {
-        "teacher": "سارة",
+        "teacher": "ا/ سارة مجدي",
         "sessions": [
           "",
           "",
@@ -50387,7 +50186,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1085 حنين عبد المنعم سكر 1070521864 1116526062 السلمانية ث1 بكالوريا - طب"
+    "_searchString": "1085 حنين عبد المنعم سكر 1070521864 1116526062 السلمانيه ث1 بكالوريا - طب فلسفه ا/ ساره مجدي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3565",
@@ -50444,11 +50243,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "علوم, فلسفة, عربي",
-    "teachersSummary": "علوم/علام | فلسفة/الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | فلسفة/ا/ احمد الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-02 07:55",
     "academicSubjects": {
       "علوم": {
-        "teacher": "علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -50483,7 +50282,7 @@ window.STUDENTS_DATA = [
         }
       },
       "فلسفة": {
-        "teacher": "الليثي",
+        "teacher": "ا/ احمد الليثي",
         "sessions": [
           "",
           "",
@@ -50562,7 +50361,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1084 مريم عبد العزيز ��اسين 1111304949 1112275750 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1084 مريم عبد العزيز ي��سين 1111304949 1112275750 بلقس ث1 بكالوريا - طب علوم ا/ محمد علام فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2516",
@@ -50621,7 +50420,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 72.5
     },
-    "_searchString": "2516 يوسف علي صالح 1124646337 1026849553 الزاويه ث2 بكالوريا - الاداب"
+    "_searchString": "2516 يوسف علي صالح 1124646337 1026849553 الزاويه ث2 بكالوريا - الاداب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2513",
@@ -50715,7 +50514,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2513 مريم عبد العزيز محمد 1200740615 1227095376 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2513 مريم عبد العزيز محمد 1200740615 1227095376 بلقس ث2 بكالوريا - طب تاريخ ا/ رضا صلاح جغرافيا ا/ رضا صلاح"
   },
   {
     "code": "2212",
@@ -50774,7 +50573,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2212 ملك عبد الناصر ابراهيم 1284141762 1229144870 بلقس ث3 بكالوريا - طب"
+    "_searchString": "2212 ملك عبد الناصر ابراهيم 1284141762 1229144870 بلقس ث3 بكالوريا - طب تاريخ ا/ رضا صلاح"
   },
   {
     "code": "1087",
@@ -50785,11 +50584,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "أزهر",
     "subjectsSummary": "علوم, فلسفة, عربي",
-    "teachersSummary": "علوم/علي نور | فلسفة/احمد الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ علي نور | فلسفة/ا/ احمد الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-02 08:19",
     "academicSubjects": {
       "علوم": {
-        "teacher": "علي نور",
+        "teacher": "ا/ علي نور",
         "sessions": [
           "",
           "",
@@ -50824,7 +50623,7 @@ window.STUDENTS_DATA = [
         }
       },
       "فلسفة": {
-        "teacher": "احمد الليثي",
+        "teacher": "ا/ احمد الليثي",
         "sessions": [
           "",
           "",
@@ -50903,7 +50702,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1087 عبد الحميد مصطفى عبد الحميد 1106315145 1106315149 السلمانية ث1 أزهر"
+    "_searchString": "1087 عبد الحميد مصطفي عبد الحميد 1106315145 1106315149 السلمانيه ث1 ازهر علوم ا/ علي نور فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1088",
@@ -50914,11 +50713,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "أزهر",
     "subjectsSummary": "علوم, فلسفة, عربي",
-    "teachersSummary": "علوم/علي نور | فلسفة/الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ علي نور | فلسفة/ا/ احمد الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-02 08:20",
     "academicSubjects": {
       "علوم": {
-        "teacher": "علي نور",
+        "teacher": "ا/ علي نور",
         "sessions": [
           "",
           "",
@@ -50953,7 +50752,7 @@ window.STUDENTS_DATA = [
         }
       },
       "فلسفة": {
-        "teacher": "الليثي",
+        "teacher": "ا/ احمد الليثي",
         "sessions": [
           "",
           "",
@@ -51032,7 +50831,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1088 عبد الرحمن عبدالله صلاح 1146503637 111717777 السلمانية ث1 أزهر"
+    "_searchString": "1088 عبد الرحمن عبدالله صلاح 1146503637 111717777 السلمانيه ث1 ازهر علوم ا/ علي نور فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1089",
@@ -51043,7 +50842,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "أزهر",
     "subjectsSummary": "علوم, فلسفة, رياضة, انجليزي, عربي",
-    "teachersSummary": "علوم/علي | فلسفة/الليثي | رياضة/مصطفى | انجليزي/محمد صبحي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/علي | فلسفة/ا/ احمد الليثي | رياضة/ا/ مصطفي صابر | انجليزي/ا/ محمد صبحي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-02 08:28",
     "academicSubjects": {
       "علوم": {
@@ -51082,7 +50881,7 @@ window.STUDENTS_DATA = [
         }
       },
       "فلسفة": {
-        "teacher": "الليثي",
+        "teacher": "ا/ احمد الليثي",
         "sessions": [
           "",
           "",
@@ -51117,7 +50916,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "مصطفى",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -51152,7 +50951,7 @@ window.STUDENTS_DATA = [
         }
       },
       "انجليزي": {
-        "teacher": "محمد صبحي",
+        "teacher": "ا/ محمد صبحي",
         "sessions": [
           "",
           "",
@@ -51231,7 +51030,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1089 روضة محمود محمد سيد 1551131676 1140288613 السلمانية ث1 أزهر"
+    "_searchString": "1089 روضه محمود محمد سيد 1551131676 1140288613 السلمانيه ث1 ازهر علوم علي فلسفه ا/ احمد الليثي رياضه ا/ مصطفي صابر انجليزي ا/ محمد صبحي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1090",
@@ -51242,11 +51041,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "أزهر",
     "subjectsSummary": "انجليزي, علوم, فرنساوي, فلسفة, رياضة, عربي",
-    "teachersSummary": "انجليزي/محمد صبحي | علوم/علي | فرنساوي/محمد | فلسفة/الليثي | رياضة/مصطفى | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "انجليزي/ا/ محمد صبحي | علوم/علي | فرنساوي/محمد | فلسفة/ا/ احمد الليثي | رياضة/ا/ مصطفي صابر | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-02 08:30",
     "academicSubjects": {
       "انجليزي": {
-        "teacher": "محمد صبحي",
+        "teacher": "ا/ محمد صبحي",
         "sessions": [
           "",
           "",
@@ -51351,7 +51150,7 @@ window.STUDENTS_DATA = [
         }
       },
       "فلسفة": {
-        "teacher": "الليثي",
+        "teacher": "ا/ احمد الليثي",
         "sessions": [
           "",
           "",
@@ -51386,7 +51185,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "مصطفى",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -51465,7 +51264,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1090 ملك عبد المنعم عبد الرازق 1112523936 12 السلمانية ث1 أزهر"
+    "_searchString": "1090 ملك عبد المنعم عبد الرازق 1112523936 12 السلمانيه ث1 ازهر انجليزي ا/ محمد صبحي علوم علي فرنساوي محمد فلسفه ا/ احمد الليثي رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3265",
@@ -51524,7 +51323,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3265 فهد ماهد احمد 01097965982 01061731172 عزية كلفة ث3 عام"
+    "_searchString": "3265 فهد ماهد احمد 01097965982 01061731172 عزيه كلفه ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3019",
@@ -51618,7 +51417,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3019 عمر سيد مرسي 1013470752 1011117852 الحزانية ث3 عام"
+    "_searchString": "3019 عمر سيد مرسي 1013470752 1011117852 الحزانيه ث3 عام انجليزي ا/ حماده يوسف فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3103",
@@ -51677,7 +51476,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3103 شريف رزق بيومي 1160225703 12 الحزانية ث3 عام"
+    "_searchString": "3103 شريف رزق بيومي 1160225703 12 الحزانيه ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3578",
@@ -51700,7 +51499,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3578 محمد رفيق نبيل 1128063771 1150880008 الحزانية ث3 عام"
+    "_searchString": "3578 محمد رفيق نبيل 1128063771 1150880008 الحزانيه ث3 عام"
   },
   {
     "code": "3579",
@@ -51794,7 +51593,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3579 احمد حمدي وجية 01121396065 01153167718 الحزانية ث3 عام"
+    "_searchString": "3579 احمد حمدي وجيه 01121396065 01153167718 الحزانيه ث3 عام فرنساوي ا/ محمد رجب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3580",
@@ -51853,7 +51652,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3580 يوسف عبد الجليل عبد السميع 01151779158 01095877094 الحزانية ث3 عام"
+    "_searchString": "3580 يوسف عبد الجليل عبد السميع 01151779158 01095877094 الحزانيه ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3451",
@@ -51947,7 +51746,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 43,
       "averageScore": 0
     },
-    "_searchString": "3451 مصطفى احمد 1515872510 1030626345 بلقس ث3 أزهر"
+    "_searchString": "3451 مصطفي احمد 1515872510 1030626345 بلقس ث3 ازهر فرنساوي ا/ محمد رجب رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1083",
@@ -51958,11 +51757,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - هندسة",
     "subjectsSummary": "علوم, عربي",
-    "teachersSummary": "علوم/محمد نور | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد نور | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-02 09:27",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -52041,7 +51840,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1083 سلمي رمضان حسن 1203462319 1096797319 السلمانية ث1 بكالوريا - هندسة"
+    "_searchString": "1083 سلمي رمضان حسن 1203462319 1096797319 السلمانيه ث1 بكالوريا - هندسه علوم ا/ محمد نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3561",
@@ -52052,11 +51851,11 @@ window.STUDENTS_DATA = [
     "grade": "ث3",
     "specialization": "عام",
     "subjectsSummary": "تاريخ",
-    "teachersSummary": "تاريخ/رضا",
+    "teachersSummary": "تاريخ/ا/ رضا صلاح",
     "regDate": "2026-08-02 09:28",
     "academicSubjects": {
       "تاريخ": {
-        "teacher": "رضا",
+        "teacher": "ا/ رضا صلاح",
         "sessions": [
           "",
           "",
@@ -52100,7 +51899,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3561 ملك نبيل سعيد 01270008579 01201101387 بلقس ث3 عام"
+    "_searchString": "3561 ملك نبيل سعيد 01270008579 01201101387 بلقس ث3 عام تاريخ ا/ رضا صلاح"
   },
   {
     "code": "3560",
@@ -52264,7 +52063,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3560 نور سعيد سيد 1285434722 1159317440 بلقس ث3 عام"
+    "_searchString": "3560 نور سعيد سيد 1285434722 1159317440 بلقس ث3 عام احصاء ا/ مصطفي صابر تاريخ ا/ رضا صلاح جغرافيا ا/ رضا صلاح رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3558",
@@ -52358,7 +52157,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3558 فدوي محمد محمد 1111546393 1105802897 السلمانية ث3 عام"
+    "_searchString": "3558 فدوي محمد محمد 1111546393 1105802897 السلمانيه ث3 عام تاريخ ا/ رضا صلاح جغرافيا ا/ رضا صلاح"
   },
   {
     "code": "3557",
@@ -52369,11 +52168,11 @@ window.STUDENTS_DATA = [
     "grade": "ث3",
     "specialization": "أزهر",
     "subjectsSummary": "فزياء, رياضة",
-    "teachersSummary": "فزياء/مختار | رياضة/مصطفى",
+    "teachersSummary": "فزياء/ا/ محمد مختار | رياضة/ا/ مصطفي صابر",
     "regDate": "2026-08-02 09:37",
     "academicSubjects": {
       "فزياء": {
-        "teacher": "مختار",
+        "teacher": "ا/ محمد مختار",
         "sessions": [
           "",
           "",
@@ -52408,7 +52207,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "مصطفى",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -52452,7 +52251,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3557 احمد يسري سالم 01149190838 01505986465 بلقس ث3 أزهر"
+    "_searchString": "3557 احمد يسري سالم 01149190838 01505986465 بلقس ث3 ازهر فزياء ا/ محمد مختار رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3134",
@@ -52463,11 +52262,11 @@ window.STUDENTS_DATA = [
     "grade": "ث3",
     "specialization": "عام",
     "subjectsSummary": "فزياء, رياضة",
-    "teachersSummary": "فزياء/الجوهري ومصطفى | رياضة/مصطفى",
+    "teachersSummary": "فزياء/ا/ مصطفي صابر | رياضة/ا/ مصطفي صابر",
     "regDate": "2026-08-02 09:39",
     "academicSubjects": {
       "فزياء": {
-        "teacher": "الجوهري ومصطفى",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -52502,7 +52301,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "مصطفى",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -52546,7 +52345,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3134 عبدالله عادل مصطفى 01006031380 01121887509 عرب الشعارة ث3 عام"
+    "_searchString": "3134 عبدالله عادل مصطفي 01006031380 01121887509 عرب الشعاره ث3 عام فزياء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2330",
@@ -52605,7 +52404,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2330 دينا عبد الحليم منصور 1208950802 1289119661 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2330 دينا عبد الحليم منصور 1208950802 1289119661 بلقس ث2 بكالوريا - طب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2517",
@@ -52664,7 +52463,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2517 كريمة مجدي عبد الحي 1108074925 1142573069 الجعافرة ث2 بكالوريا - الاداب"
+    "_searchString": "2517 كريمه مجدي عبد الحي 1108074925 1142573069 الجعافره ث2 بكالوريا - الاداب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2009",
@@ -52687,7 +52486,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2009 ادهم حلمي عبد العزيز 1203178108 1229356015 السلمانية ث2 أزهر"
+    "_searchString": "2009 ادهم حلمي عبد العزيز 1203178108 1229356015 السلمانيه ث2 ازهر"
   },
   {
     "code": "2518",
@@ -52698,7 +52497,7 @@ window.STUDENTS_DATA = [
     "grade": "ث2",
     "specialization": "أزهر",
     "subjectsSummary": "فزياء, كيمياء, عربي, رياضة",
-    "teachersSummary": "فزياء/ا/ محمد مختار | كيمياء/ا/ محمد صلاح | عربي/ا/ احمد عبد القادر | رياضة/ا/ مص��في صابر [حصص: _, _, _, _, _, _, _, ✓]",
+    "teachersSummary": "فزياء/ا/ محمد مختار | كيمياء/ا/ محمد صلاح | عربي/ا/ احمد عبد القادر | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, _, _, ✓]",
     "regDate": "2026-08-02 10:23",
     "academicSubjects": {
       "فزياء": {
@@ -52807,7 +52606,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مص��في صابر",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -52851,7 +52650,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2518 سيف ايمن امين 1205502968 1212499992 السلمانية ث2 أزهر"
+    "_searchString": "2518 سيف ايمن امين 1205502968 1212499992 السلمانيه ث2 ازهر فزياء ا/ محمد مختار كيمياء ا/ محمد صلاح عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2519",
@@ -52980,7 +52779,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2519 محمد عماد ناجي 1223549667 1275219571 السلمانية ث2 أزهر"
+    "_searchString": "2519 محمد عماد ناجي 1223549667 1275219571 السلمانيه ث2 ازهر فزياء ا/ محمد مختار عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3584",
@@ -53039,7 +52838,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3584 احمد محمد فايد (عمار ياسر) 1210121924 1222618103 بلقس ث3 عام"
+    "_searchString": "3584 احمد محمد فايد (عمار ياسر) 1210121924 1222618103 بلقس ث3 عام احياء ا/ محمد علام"
   },
   {
     "code": "3585",
@@ -53133,7 +52932,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3585 اسراء مصطفى رمضان 1070738816 1062398855 بلقس ث3 أزهر"
+    "_searchString": "3585 اسراء مصطفي رمضان 1070738816 1062398855 بلقس ث3 ازهر كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "2610",
@@ -53192,7 +52991,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 92.7
     },
-    "_searchString": "2610 ايه عاشور علي 1281076846 12 الزاوية ث2 بكالوريا - طب"
+    "_searchString": "2610 ايه عاشور علي 1281076846 12 الزاويه ث2 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2530",
@@ -53286,7 +53085,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2530 سارة مصطفى ابراهيم 1033831622 1224807354 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2530 ساره مصطفي ابراهيم 1033831622 1224807354 بلقس ث2 بكالوريا - طب فزياء ا/ محمد الجوهري تاريخ ا/ رضا صلاح"
   },
   {
     "code": "2531",
@@ -53380,7 +53179,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2531 شهد احمد محمود 1229918269 1105802973 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2531 شهد احمد محمود 1229918269 1105802973 بلقس ث2 بكالوريا - طب فزياء ا/ محمد الجوهري تاريخ ا/ رضا صلاح"
   },
   {
     "code": "1099",
@@ -53439,7 +53238,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1099 مريم عبد المنعم عطية 1102813301 11 الجعافرة ث1 عام"
+    "_searchString": "1099 مريم عبد المنعم عطيه 1102813301 11 الجعافره ث1 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1097",
@@ -53454,7 +53253,7 @@ window.STUDENTS_DATA = [
     "regDate": "2026-08-05 09:34",
     "academicSubjects": {
       "عربي": {
-        "teacher": "ا/ احمد عبد القادر  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ احمد عبد القادر",
         "sessions": [
           "✓",
           "",
@@ -53477,6 +53276,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "✓",
             "",
             "",
@@ -53533,7 +53342,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1097 اسماعيل محمد اسماعيل 1273450682 1144759978 بلقس ث1 عام"
+    "_searchString": "1097 اسماعيل محمد اسماعيل 1273450682 1144759978 بلقس ث1 عام عربي ا/ احمد عبد القادر فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1100",
@@ -53592,7 +53401,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1100 جني محمد كمال 1149637310 1 الجعافرة ث1 عام"
+    "_searchString": "1100 جني محمد كمال 1149637310 1 الجعافره ث1 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3594",
@@ -53756,7 +53565,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 60
     },
-    "_searchString": "3594 بسملة ميدو سعيد 1273532405 1274005949 السلمانية ث3 عام"
+    "_searchString": "3594 بسمله ميدو سعيد 1273532405 1274005949 السلمانيه ث3 عام عربي ا/ احمد عبد القادر انجليزي ا/ حماده يوسف احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3593",
@@ -53850,7 +53659,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 70
     },
-    "_searchString": "3593 منة عزت شديد 1097488988 1017244600 الزاوية ث3 عام"
+    "_searchString": "3593 منه عزت شديد 1097488988 1017244600 الزاويه ث3 عام احياء ا/ محمد علام فزياء ا/ محمد مختار"
   },
   {
     "code": "3592",
@@ -53979,7 +53788,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 82,
       "averageScore": 0
     },
-    "_searchString": "3592 عبد الرحمن سامح يوسف 1124326295 1204364378 السلمانية ث3 عام"
+    "_searchString": "3592 عبد الرحمن سامح يوسف 1124326295 1204364378 السلمانيه ث3 عام عربي ا/ احمد عبد القادر كيمياء ا/ محمد صلاح رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3590",
@@ -54073,7 +53882,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3590 نعمة حسين درويش 01507817266 01270658857 السلمانية ث3 عام"
+    "_searchString": "3590 نعمه حسين درويش 01507817266 01270658857 السلمانيه ث3 عام عربي ا/ احمد عبد القادر احصاء ا/ مصطفي صابر"
   },
   {
     "code": "3591",
@@ -54132,7 +53941,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3591 جني محمد سعد 01202794741 01277188061 كوم اشفين ث3 عام"
+    "_searchString": "3591 جني محمد سعد 01202794741 01277188061 كوم اشفين ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3589",
@@ -54143,11 +53952,11 @@ window.STUDENTS_DATA = [
     "grade": "ث3",
     "specialization": "عام",
     "subjectsSummary": "عربي",
-    "teachersSummary": "عربي/ا/ احم�� عبد القادر [حصص: _, _, _, _, 7/10, _, _, _]",
+    "teachersSummary": "عربي/ا/ احمد عبد القادر [حصص: _, _, _, _, 7/10, _, _, _]",
     "regDate": "2026-08-05 12:28",
     "academicSubjects": {
       "عربي": {
-        "teacher": "ا/ احم�� عبد القادر",
+        "teacher": "ا/ احمد عبد القادر",
         "sessions": [
           "",
           "",
@@ -54191,7 +54000,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 70
     },
-    "_searchString": "3589 سلمي محمود كارم 1153189045 1010094273 الزاوية ث3 عام"
+    "_searchString": "3589 سلمي محمود كارم 1153189045 1010094273 الزاويه ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3588",
@@ -54250,7 +54059,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 60
     },
-    "_searchString": "3588 عبد الرحمن علي محمد 121116265 1007348752 بلقس ث3 عام"
+    "_searchString": "3588 عبد الرحمن علي محمد 121116265 1007348752 بلقس ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2532",
@@ -54344,7 +54153,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 87.3
     },
-    "_searchString": "2532 محمد خالد محمد 1119377675 1011452178 الزاوية ث2 عام"
+    "_searchString": "2532 محمد خالد محمد 1119377675 1011452178 الزاويه ث2 عام عربي ا/ سيد عبد العاطي فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3595",
@@ -54473,7 +54282,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 40
     },
-    "_searchString": "3595 رضوي احمد صابر 1108873600 1118273226 السلمانية ث3 عام"
+    "_searchString": "3595 رضوي احمد صابر 1108873600 1118273226 السلمانيه ث3 عام عربي ا/ احمد عبد القادر انجليزي ا/ حماده يوسف رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3596",
@@ -54637,7 +54446,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 40
     },
-    "_searchString": "3596 ايمان محمد طه 1108706659 1126281965 السلمانية ث3 عام"
+    "_searchString": "3596 ايمان محمد طه 1108706659 1126281965 السلمانيه ث3 عام انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3597",
@@ -54801,7 +54610,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 87,
       "averageScore": 0
     },
-    "_searchString": "3597 احمد محمد احمد 1278960350 12 السلمانية ث3 أزهر"
+    "_searchString": "3597 احمد محمد احمد 1278960350 12 السلمانيه ث3 ازهر احياء ا/ محمد نور كيمياء ا/ محمد صلاح فزياء ا/ محمد الجوهري فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3598",
@@ -54812,7 +54621,7 @@ window.STUDENTS_DATA = [
     "grade": "ث3",
     "specialization": "عام",
     "subjectsSummary": "كيمياء, فزياء, احياء",
-    "teachersSummary": "كيمياء/ا/ محمد صلاح [حصص: ✓, ✓, ✓, _, _, ✓, _, _] | فزياء/ا/ محمد مختار [حصص: ✓, ✓, ✓, ✓, _, _, _, _] | احياء/ا/ محمد نور [حص��: ✓, ✓, ✓, ✓, ✓, ✓, ✓, _]",
+    "teachersSummary": "كيمياء/ا/ محمد صلاح [حصص: ✓, ✓, ✓, _, _, ✓, _, _] | فزياء/ا/ محمد مختار [حصص: ✓, ✓, ✓, ✓, _, _, _, _] | احياء/ا/ محمد نور",
     "regDate": "2026-08-07 12:19",
     "academicSubjects": {
       "كيمياء": {
@@ -54886,7 +54695,7 @@ window.STUDENTS_DATA = [
         }
       },
       "احياء": {
-        "teacher": "ا/ محمد نور [حص��: ✓, ✓, ✓, ✓, ✓, ✓, ✓, _]",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -54930,7 +54739,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3598 مريم محمد عبد اللطيف 1147446004 1001849177 الزاويه ث3 عام"
+    "_searchString": "3598 مريم محمد عبد اللطيف 1147446004 1001849177 الزاويه ث3 عام كيمياء ا/ محمد صلاح فزياء ا/ محمد مختار احياء ا/ محمد نور"
   },
   {
     "code": "3600",
@@ -54989,7 +54798,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 86,
       "averageScore": 0
     },
-    "_searchString": "3600 ملك اسلام 1503176533 1121090897 الزاويه ث3 عام"
+    "_searchString": "3600 ملك اسلام 1503176533 1121090897 الزاويه ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3601",
@@ -55048,7 +54857,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 86,
       "averageScore": 0
     },
-    "_searchString": "3601 نغم محمد 1094764263 1061576814 الزاوية ث3 عام"
+    "_searchString": "3601 نغم محمد 1094764263 1061576814 الزاويه ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3602",
@@ -55107,7 +54916,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3602 سيد يوسف 01224951571 01205704769 بلقس ث3 عام"
+    "_searchString": "3602 سيد يوسف 01224951571 01205704769 بلقس ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3603",
@@ -55166,7 +54975,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3603 شروق رجب 1505816990 1145090211 الزاوية ث3 عام"
+    "_searchString": "3603 شروق رجب 1505816990 1145090211 الزاويه ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3605",
@@ -55225,7 +55034,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 86,
       "averageScore": 0
     },
-    "_searchString": "3605 بسنت عبد الرحمن 1122673492 1158194485 الزاوية ث3 عام"
+    "_searchString": "3605 بسنت عبد الرحمن 1122673492 1158194485 الزاويه ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3606",
@@ -55284,7 +55093,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3606 سلمي محمود 1030996519 1024254151 الزاوية ث3 عام"
+    "_searchString": "3606 سلمي محمود 1030996519 1024254151 الزاويه ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3607",
@@ -55343,7 +55152,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3607 منة عبد العزيز احمد 1009743910 1 الزاوية ث3 عام"
+    "_searchString": "3607 منه عبد العزيز احمد 1009743910 1 الزاويه ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "2529",
@@ -55437,7 +55246,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2529 ملك ناصر حسني 1501170212 1220176587 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2529 ملك ناصر حسني 1501170212 1220176587 بلقس ث2 بكالوريا - طب تاريخ ا/ رضا صلاح جغرافيا ا/ رضا صلاح"
   },
   {
     "code": "3609",
@@ -55496,7 +55305,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 86,
       "averageScore": 0
     },
-    "_searchString": "3609 اسراء رزق 1029213081 1011405466 الزاوية ث3 عام"
+    "_searchString": "3609 اسراء رزق 1029213081 1011405466 الزاويه ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3610",
@@ -55555,7 +55364,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 60,
       "averageScore": 0
     },
-    "_searchString": "3610 زينب رمضان 155483965 1284550419 بلقس ث3 عام"
+    "_searchString": "3610 زينب رمضان 155483965 1284550419 بلقس ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3611",
@@ -55614,7 +55423,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3611 حنين فتح الله 01203545218 012 الغوريري ث3 عام"
+    "_searchString": "3611 حنين فتح الله 01203545218 012 الغوريري ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3613",
@@ -55673,7 +55482,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3613 حليمة عاطف 1131125665 1119259180 عرب الشعارة ث3 عام"
+    "_searchString": "3613 حليمه عاطف 1131125665 1119259180 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3614",
@@ -55732,7 +55541,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3614 زينب محسن حسن 1001952418 1114546158 عرب الشعارة ث3 عام"
+    "_searchString": "3614 زينب محسن حسن 1001952418 1114546158 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3615",
@@ -55791,7 +55600,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3615 ضحي وليد سلامة 1031669493 1144065793 عرب الشعارة ث3 عام"
+    "_searchString": "3615 ضحي وليد سلامه 1031669493 1144065793 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3616",
@@ -55850,7 +55659,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3616 مريم محمد ناصر 01040582294 01066773265 عرب الشعارة ث3 عام"
+    "_searchString": "3616 مريم محمد ناصر 01040582294 01066773265 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3617",
@@ -55909,7 +55718,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3617 مريم محمد احمد 01144357988 01500612822 عرب الشعارة ث3 عام"
+    "_searchString": "3617 مريم محمد احمد 01144357988 01500612822 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3628",
@@ -55968,7 +55777,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3628 جميلة محمد بكر 1205620595 1007896455 بلقس ث3 عام"
+    "_searchString": "3628 جميله محمد بكر 1205620595 1007896455 بلقس ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3629",
@@ -56027,7 +55836,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3629 ياسين محي الدين قنديل 1283376968 1001697929 بلقس ث3 عام"
+    "_searchString": "3629 ياسين محي الدين قنديل 1283376968 1001697929 بلقس ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3619",
@@ -56086,7 +55895,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3619 فاطمة عبد الله سلامة 1151408594 1031620810 عرب الشعارة ث3 عام"
+    "_searchString": "3619 فاطمه عبد الله سلامه 1151408594 1031620810 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3630",
@@ -56180,7 +55989,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3630 قمر عمرو زين الدين 1122608262 1125734689 الزاويه ث3 عام"
+    "_searchString": "3630 قمر عمرو زين الدين 1122608262 1125734689 الزاويه ث3 عام فزياء ا/ محمد مختار احياء ا/ محمد نور"
   },
   {
     "code": "3631",
@@ -56274,7 +56083,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 90
     },
-    "_searchString": "3631 منة سيد فايز 1020201253 1092078709 الزاوية ث3 عام"
+    "_searchString": "3631 منه سيد فايز 1020201253 1092078709 الزاويه ث3 عام عربي ا/ احمد عبد القادر فزياء ا/ محمد مختار"
   },
   {
     "code": "3632",
@@ -56333,7 +56142,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3632 مل�� جميل فكري 1034905299 1016629092 بلقس ث3 عام"
+    "_searchString": "3632 ملك جميل فكري 1034905299 1016629092 بلقس ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3621",
@@ -56392,7 +56201,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3621 عائشة عمرو حافظ 01144860564 01 عرب الشعارة ث3 عام"
+    "_searchString": "3621 عايشه عمرو حافظ 01144860564 01 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3622",
@@ -56451,7 +56260,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3622 اية سعيد عبد الغني 1064709622 1284495553 عرب الشعارة ث3 عام"
+    "_searchString": "3622 ايه سعيد عبد الغني 1064709622 1284495553 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3633",
@@ -56510,7 +56319,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3633 جومانة صفوت 1229930341 1207647771 بلقس ث3 عام"
+    "_searchString": "3633 جومانه صفوت 1229930341 1207647771 بلقس ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3634",
@@ -56533,7 +56342,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3634 هاجر عزت جمعة 1053867195 1032310754 الزاوية ث3 عام"
+    "_searchString": "3634 هاجر عزت جمعه 1053867195 1032310754 الزاويه ث3 عام"
   },
   {
     "code": "3635",
@@ -56615,7 +56424,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 0,
       "averageScore": 0
     },
-    "_searchString": "3636 مريم رجب احمد 1091244923 1112803284 الزاويه ث3 عام"
+    "_searchString": "3636 مريم رجب احمد 1091244923 1112803284 الزاويه ث3 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3637",
@@ -56674,7 +56483,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 0
     },
-    "_searchString": "3637 فرح عبد الونيس 1282181727 1060794668 عرب عبس ث3 عام"
+    "_searchString": "3637 فرح عبد الونيس 1282181727 1060794668 عرب عبس ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3638",
@@ -56838,7 +56647,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 94,
       "averageScore": 95
     },
-    "_searchString": "3638 جهاد صالح عبد العزيز 1070059448 1064442736 الزاوية ث3 أزهر"
+    "_searchString": "3638 جهاد صالح عبد العزيز 1070059448 1064442736 الزاويه ث3 ازهر كيمياء ا/ محمد صلاح فزياء ا/ محمد مختار رياضه ا/ مصطفي صابر فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3639",
@@ -56897,7 +56706,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 50,
       "averageScore": 0
     },
-    "_searchString": "3639 محمود محمد عبد النبي 1044559192 1203047566 الزاوية ث3 عام"
+    "_searchString": "3639 محمود محمد عبد النبي 1044559192 1203047566 الزاويه ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3640",
@@ -56956,7 +56765,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3640 احمد رامي راجح 1097424441 1226059285 الزاوية ث3 عام"
+    "_searchString": "3640 احمد رامي راجح 1097424441 1226059285 الزاويه ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3624",
@@ -57015,7 +56824,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3624 عمر تامر محمود 1010067180 1278268933 الحزانية ث3 عام"
+    "_searchString": "3624 عمر تامر محمود 1010067180 1278268933 الحزانيه ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3625",
@@ -57074,7 +56883,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3625 احمد ابراهيم عبد البديع 01080191387 0127827160 الحزانية ث3 عام"
+    "_searchString": "3625 احمد ابراهيم عبد البديع 01080191387 0127827160 الحزانيه ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3627",
@@ -57168,7 +56977,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 0
     },
-    "_searchString": "3627 محمد عمرو عبد الغفور 1065328362 1060076462 بلقس ث3 عام"
+    "_searchString": "3627 محمد عمرو عبد الغفور 1065328362 1060076462 بلقس ث3 عام انجليزي ا/ حماده يوسف رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2537",
@@ -57227,7 +57036,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 50,
       "averageScore": 0
     },
-    "_searchString": "2537 جني كرم سراج 1055052894 1001772801 الحزانية ث2 بكالوريا - طب"
+    "_searchString": "2537 جني كرم سراج 1055052894 1001772801 الحزانيه ث2 بكالوريا - طب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2535",
@@ -57286,7 +57095,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2535 ايمان اسماعيل ابو سريع 1206590736 1208592311 بلقس ث2 بكالوريا - الاداب"
+    "_searchString": "2535 ايمان اسماعيل ابو سريع 1206590736 1208592311 بلقس ث2 بكالوريا - الاداب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2538",
@@ -57309,7 +57118,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2538 مريم ماهر احمد 1003798695 1067113271 الكلفة ث2 بكالوريا - هندسة"
+    "_searchString": "2538 مريم ماهر احمد 1003798695 1067113271 الكلفه ث2 بكالوريا - هندسه"
   },
   {
     "code": "2540",
@@ -57319,46 +57128,10 @@ window.STUDENTS_DATA = [
     "parentPhone": "01108296038",
     "grade": "ث2",
     "specialization": "بكالوريا - طب",
-    "subjectsSummary": "فرنساوي",
-    "teachersSummary": "فرنساوي/.",
+    "subjectsSummary": "",
+    "teachersSummary": "",
     "regDate": "2026-08-07 13:44",
-    "academicSubjects": {
-      "فرنساوي": {
-        "teacher": ".",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      }
-    },
+    "academicSubjects": {},
     "_metrics": {
       "totalScore": 0,
       "totalMax": 0,
@@ -57462,7 +57235,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 40,
       "averageScore": 0
     },
-    "_searchString": "2341 مؤمن وائل عباس 1206831935 1066637020 كوم اشفين ث2 بكالوريا - طب"
+    "_searchString": "2341 مومن وايل عباس 1206831935 1066637020 كوم اشفين ث2 بكالوريا - طب انجليزي ا/ حماده يوسف فزياء ا/ محمد الجوهري"
   },
   {
     "code": "1105",
@@ -57473,11 +57246,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "أزهر",
     "subjectsSummary": "علوم, فلسفة, عربي",
-    "teachersSummary": "علوم/محمد نور | فلسفة/ا/ احمد الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد نور | فلسفة/ا/ احمد الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-07 13:46",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -57591,7 +57364,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1105 هنا محمد حسن 1036355949 1 السلمانية ث1 أزهر"
+    "_searchString": "1105 هنا محمد حسن 1036355949 1 السلمانيه ث1 ازهر علوم ا/ محمد نور فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1106",
@@ -57602,11 +57375,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "أزهر",
     "subjectsSummary": "علوم, عربي",
-    "teachersSummary": "علوم/محمد نور | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد نور | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-07 13:47",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -57685,7 +57458,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1106 نور غنيم 1127097874  السلمانية ث1 أزهر"
+    "_searchString": "1106 نور غنيم 1127097874 السلمانيه ث1 ازهر علوم ا/ محمد نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1108",
@@ -57779,7 +57552,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1108 سجي احمد جمال 1200616575 1224307313 بلقس ث1 بكالوريا - الاداب"
+    "_searchString": "1108 سجي احمد جمال 1200616575 1224307313 بلقس ث1 بكالوريا - الاداب انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1109",
@@ -57790,11 +57563,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "علوم, فلسفة, عربي",
-    "teachersSummary": "علوم/علام | فلسفة/ا/ احمد الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | فلسفة/ا/ احمد الليثي | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-07 13:53",
     "academicSubjects": {
       "علوم": {
-        "teacher": "علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -57908,7 +57681,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1109 ياسين احمد محمود 1203780171 1203201209 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1109 ياسين احمد محمود 1203780171 1203201209 بلقس ث1 بكالوريا - طب علوم ا/ محمد علام فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3648",
@@ -57967,7 +57740,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 70
     },
-    "_searchString": "3648 جمال عبدالله جمال 1203307502 1286876316 بلقس ث3 عام"
+    "_searchString": "3648 جمال عبدالله جمال 1203307502 1286876316 بلقس ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3649",
@@ -58061,7 +57834,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3649 عبد الله محمود عبد المعز 1112454961 1113694485 السلمانية ث3 عام"
+    "_searchString": "3649 عبد الله محمود عبد المعز 1112454961 1113694485 السلمانيه ث3 عام عربي ا/ احمد عبد القادر كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3647",
@@ -58190,7 +57963,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 83,
       "averageScore": 0
     },
-    "_searchString": "3647 احمد حمادة احمد 1113834755 1113834756 السلمانية ث3 عام"
+    "_searchString": "3647 احمد حماده احمد 1113834755 1113834756 السلمانيه ث3 عام عربي ا/ احمد عبد القادر كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3646",
@@ -58249,7 +58022,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3646 محمد عاطف ابراهيم 1050729577 1108064471 السلمانية ث3 عام"
+    "_searchString": "3646 محمد عاطف ابراهيم 1050729577 1108064471 السلمانيه ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3645",
@@ -58343,7 +58116,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 83,
       "averageScore": 50
     },
-    "_searchString": "3645 احمد هاني ابو سريع 1010211669 1064537240 الزاوية ث3 عام"
+    "_searchString": "3645 احمد هاني ابو سريع 1010211669 1064537240 الزاويه ث3 عام عربي ا/ احمد عبد القادر فزياء ا/ محمد مختار"
   },
   {
     "code": "3650",
@@ -58437,7 +58210,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3650 فاطمة ايمن كرم 1115678655 1222777941 بلقس ث3 عام"
+    "_searchString": "3650 فاطمه ايمن كرم 1115678655 1222777941 بلقس ث3 عام عربي ا/ احمد عبد القادر تاريخ ا/ رضا صلاح"
   },
   {
     "code": "3644",
@@ -58496,7 +58269,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 84
     },
-    "_searchString": "3644 حبيبة علي عبد النبي 1012149868 1108296528 بلقس ث3 عام"
+    "_searchString": "3644 حبيبه علي عبد النبي 1012149868 1108296528 بلقس ث3 عام احياء ا/ محمد علام"
   },
   {
     "code": "3643",
@@ -58590,7 +58363,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 88,
       "averageScore": 0
     },
-    "_searchString": "3643 جني عطية عواد 1278353382 1225778353 بلقس ث3 عام"
+    "_searchString": "3643 جني عطيه عواد 1278353382 1225778353 بلقس ث3 عام عربي ا/ احمد عبد القادر احياء ا/ محمد علام"
   },
   {
     "code": "3642",
@@ -58649,7 +58422,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 40
     },
-    "_searchString": "3642 شهد عماد مصطفى 1224559832 1149005418 بلقس ث3 عام"
+    "_searchString": "3642 شهد عماد مصطفي 1224559832 1149005418 بلقس ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3641",
@@ -58743,7 +58516,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 60
     },
-    "_searchString": "3641 يحي احمد سيد 1105382309 1212287168 الزاوية ث3 عام"
+    "_searchString": "3641 يحي احمد سيد 1105382309 1212287168 الزاويه ث3 عام عربي ا/ احمد عبد القادر كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3651",
@@ -58802,7 +58575,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3651 محمود ياسر علي 01093053838 01150081496 الزاوية ث3 عام"
+    "_searchString": "3651 محمود ياسر علي 01093053838 01150081496 الزاويه ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1114",
@@ -58861,7 +58634,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1114 امل مصباح محمد 1102613734 1554964792 الجعافرة ث1 بكالوريا - طب"
+    "_searchString": "1114 امل مصباح محمد 1102613734 1554964792 الجعافره ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1113",
@@ -58920,7 +58693,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1113 محمد رمضان شوقي 1125785998 1004788836 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1113 محمد رمضان شوقي 1125785998 1004788836 بلقس ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1115",
@@ -58979,7 +58752,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1115 سلمي سامي حامد 1129554024 1013267304 الجعافرة ث1 بكالوريا - طب"
+    "_searchString": "1115 سلمي سامي حامد 1129554024 1013267304 الجعافره ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1112",
@@ -59038,7 +58811,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1112 شهد حسين حمدي 1122557946 1277553872 الجعافرة ث1 بكالوريا - طب"
+    "_searchString": "1112 شهد حسين حمدي 1122557946 1277553872 الجعافره ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1111",
@@ -59097,7 +58870,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1111 جنه محمد حسنين 1118698104 1559516227 السلمانية ث1 بكالوريا - طب"
+    "_searchString": "1111 جنه محمد حسنين 1118698104 1559516227 السلمانيه ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1110",
@@ -59112,7 +58885,7 @@ window.STUDENTS_DATA = [
     "regDate": "2026-08-08 09:27",
     "academicSubjects": {
       "عربي": {
-        "teacher": "ا/ احمد عبد القادر  [شهر 10 (أكتوبر): 7/10, _, _, _, _, _, _, _]",
+        "teacher": "ا/ احمد عبد القادر",
         "sessions": [
           "7/10",
           "",
@@ -59135,6 +58908,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "7/10",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "7/10",
             "",
             "",
@@ -59261,7 +59044,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 70
     },
-    "_searchString": "1110 اسلام امين عبد العزيز 1551963605  السلمانية ث1 بكالوريا - طب"
+    "_searchString": "1110 اسلام امين عبد العزيز 1551963605 السلمانيه ث1 بكالوريا - طب عربي ا/ احمد عبد القادر انجليزي ا/ محمد صبحي علوم ��حمد نور رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1092",
@@ -59355,7 +59138,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1092 رضوي احمد فكري 1018702924 1223035571 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1092 رضوي احمد فكري 1018702924 1223035571 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1093",
@@ -59449,7 +59232,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1093 ريهام احمد فكري 1018702924 1223035571 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1093 ريهام احمد فكري 1018702924 1223035571 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2527",
@@ -59534,7 +59317,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, _, _, ✓]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -59565,6 +59348,16 @@ window.STUDENTS_DATA = [
             "",
             "",
             "✓"
+          ],
+          "شهر 10 (أكتوبر)": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓"
           ]
         }
       }
@@ -59578,7 +59371,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2527 مريم محمود سليمان 1080674810 1063582144 الزاوية ث2 أزهر"
+    "_searchString": "2527 مريم محمود سليمان 1080674810 1063582144 الزاويه ث2 ازهر فزياء ا/ محمد مختار عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1091",
@@ -59589,7 +59382,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "رياضة, علوم, عربي",
-    "teachersSummary": "رياضة/ا/ مصطفي صابر | علوم/محمد نور | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "رياضة/ا/ مصطفي صابر | علوم/ا/ محمد نور | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-08 09:39",
     "academicSubjects": {
       "رياضة": {
@@ -59628,7 +59421,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -59707,7 +59500,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1091 فاطمة محمد مصطفى 1155129927  السلمانية ث1 بكالوريا - طب"
+    "_searchString": "1091 فاطمه محمد مصطفي 1155129927 السلمانيه ث1 بكالوريا - طب رياضه ا/ مصطفي صابر علوم ا/ محمد نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3583",
@@ -59871,7 +59664,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 0
     },
-    "_searchString": "3583 نجلاء جمال محمد 1277566749 1271749630 بلقس ث3 أزهر"
+    "_searchString": "3583 نجلاء جمال محمد 1277566749 1271749630 بلقس ث3 ازهر احصاء ا/ مصطفي صابر تاريخ ا/ رضا صلاح جغرافيا ا/ رضا صلاح رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2526",
@@ -59956,7 +59749,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, _, _, ✓]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -59987,6 +59780,16 @@ window.STUDENTS_DATA = [
             "",
             "",
             "✓"
+          ],
+          "شهر 10 (أكتوبر)": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓"
           ]
         }
       }
@@ -60000,7 +59803,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2526 جنات محمد فؤاد 1501558545 1116368661 بلقس ث2 أزهر"
+    "_searchString": "2526 جنات محمد فواد 1501558545 1116368661 بلقس ث2 ازهر فزياء ا/ محمد مختار عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2523",
@@ -60059,7 +59862,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2523 محمود محمد سعيد 01501416475 01222291804 بل��س ث2 بكالوريا - طب"
+    "_searchString": "2523 محمود محمد سعيد 01501416475 01222291804 بلق�� ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2520",
@@ -60118,7 +59921,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 90.9
     },
-    "_searchString": "2520 محمد عادل محمد سيف 1289282352 1 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2520 محمد عادل محمد سيف 1289282352 1 بلقس ث2 بكالوريا - طب عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "3652",
@@ -60177,7 +59980,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3652 مريم صبحي محمد نصار 01153748592 01 الزاويه ث3 عام"
+    "_searchString": "3652 مريم صبحي محمد نصار 01153748592 01 الزاويه ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3653",
@@ -60236,7 +60039,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3653 مريم محمد اسماعيل 01016127646 01278922295 الزاوية ث3 عام"
+    "_searchString": "3653 مريم محمد اسماعيل 01016127646 01278922295 الزاويه ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3655",
@@ -60295,7 +60098,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3655 مريم عمرو الجمال 1021706103 1060169515 الزاوية ث3 عام"
+    "_searchString": "3655 مريم عمرو الجمال 1021706103 1060169515 الزاويه ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3656",
@@ -60354,7 +60157,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3656 مي احمد محمد 01002887312 01063343037 السلمانية ث3 عام"
+    "_searchString": "3656 مي احمد محمد 01002887312 01063343037 السلمانيه ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3657",
@@ -60413,7 +60216,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3657 رضوي خالد توفيق 01554233690 01155873269 الزاويه ث3 عام"
+    "_searchString": "3657 رضوي خالد توفيق 01554233690 01155873269 الزاويه ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3658",
@@ -60472,7 +60275,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 86,
       "averageScore": 0
     },
-    "_searchString": "3658 احمد قاسم لطفي 1011707190 1007359076 الزاوية ث3 عام"
+    "_searchString": "3658 احمد قاسم لطفي 1011707190 1007359076 الزاويه ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3659",
@@ -60531,7 +60334,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3659 رحمة عبد الخالق محمد 01108798414 01105802954 الجعافرة ث3 عام"
+    "_searchString": "3659 رحمه عبد الخالق محمد 01108798414 01105802954 الجعافره ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3660",
@@ -60590,7 +60393,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3660 نور ابراهيم محمود 01127963510 0111693093 الجعافرة ث3 عام"
+    "_searchString": "3660 نور ابراهيم محمود 01127963510 0111693093 الجعافره ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "2550",
@@ -60649,7 +60452,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 60,
       "averageScore": 0
     },
-    "_searchString": "2550 محمد عمرو شعبان 1214507038 1271107336 بلقس ث2 بكالوريا - الاداب"
+    "_searchString": "2550 محمد عمرو شعبان 1214507038 1271107336 بلقس ث2 بكالوريا - الاداب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2551",
@@ -60660,11 +60463,11 @@ window.STUDENTS_DATA = [
     "grade": "ث2",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "عربي",
-    "teachersSummary": "عربي/ا/ احمد عبد الق��در [حصص: ✓, ✓, ✓, ✓, ✓, _, _, _]",
+    "teachersSummary": "عربي/ا/ احمد عبد القادر [حصص: ✓, ✓, ✓, ✓, ✓, _, _, _]",
     "regDate": "2026-08-08 10:28",
     "academicSubjects": {
       "عربي": {
-        "teacher": "ا/ احمد عبد الق��در",
+        "teacher": "ا/ احمد عبد القادر",
         "sessions": [
           "✓",
           "✓",
@@ -60708,7 +60511,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2551 امال عمر رأفت 1095164998 1033397985 عرب عبس ث2 بكالوريا - طب"
+    "_searchString": "2551 امال عمر رافت 1095164998 1033397985 عرب عبس ث2 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3661",
@@ -60731,7 +60534,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3661 جنة مصطفى جمال 1091696136 1223415364 كوم اشفين ث3 عام"
+    "_searchString": "3661 جنه مصطفي جمال 1091696136 1223415364 كوم اشفين ث3 عام"
   },
   {
     "code": "3662",
@@ -60788,7 +60591,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "عربي, علوم, رياضة, فلسفة",
-    "teachersSummary": "عربي/ا/ سيد عبد العاطي [حصص: غ, ✓, ✓, ✓, _, _, 10/20, ✓] | علوم/علام | رياضة/ا/ مصطفي صابر [حصص: غ, غ, غ, ✓, ✓, _, _, _] | فلسفة/ا/ احمد الليثي",
+    "teachersSummary": "عربي/ا/ سيد عبد العاطي [حصص: غ, ✓, ✓, ✓, _, _, 10/20, ✓] | علوم/ا/ محمد علام | رياضة/ا/ مصطفي صابر [حصص: غ, غ, غ, ✓, ✓, _, _, _] | فلسفة/ا/ احمد الليثي",
     "regDate": "2026-08-08 11:25",
     "academicSubjects": {
       "عربي": {
@@ -60827,7 +60630,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -60941,7 +60744,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 64,
       "averageScore": 50
     },
-    "_searchString": "1116 اسراء خالد الشيخ 1041952971 1024926700 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1116 اسراء خالد الشيخ 1041952971 1024926700 بلقس ث1 بكالوريا - طب عربي ا/ سيد عبد العاطي علوم ا/ محمد علام رياضه ا/ مصطفي صابر فلسفه ا/ احمد الليثي"
   },
   {
     "code": "2552",
@@ -61035,7 +60838,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2552 حسناء اسماعيل حسين 1121903491 1127375080 زوايا ث2 بكالوريا - طب"
+    "_searchString": "2552 حسناء اسماعيل حسين 1121903491 1127375080 زوايا ث2 بكالوريا - طب عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1117",
@@ -61045,46 +60848,10 @@ window.STUDENTS_DATA = [
     "parentPhone": "1284997898",
     "grade": "ث1",
     "specialization": "أزهر",
-    "subjectsSummary": "علوم",
-    "teachersSummary": "علوم/علوم",
+    "subjectsSummary": "",
+    "teachersSummary": "",
     "regDate": "2026-08-08 12:41",
-    "academicSubjects": {
-      "علوم": {
-        "teacher": "علوم",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      }
-    },
+    "academicSubjects": {},
     "_metrics": {
       "totalScore": 0,
       "totalMax": 0,
@@ -61094,7 +60861,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1117 يوسف محمد ابراهيم 1273505010 1284997898 بلقس ث1 أزهر"
+    "_searchString": "1117 يوسف محمد ابراهيم 1273505010 1284997898 بلقس ث1 ازهر"
   },
   {
     "code": "1118",
@@ -61188,7 +60955,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1118 عمر فرج ابو صالح 1288892502 1229217251 بلقس ث1 أزهر"
+    "_searchString": "1118 عمر فرج ابو صالح 1288892502 1229217251 بلقس ث1 ازهر علوم ا/ علي نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1120",
@@ -61199,11 +60966,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "أزهر",
     "subjectsSummary": "علوم, عربي",
-    "teachersSummary": "علوم/محمد نور | عربي/ا/ احمد عبد القادر",
+    "teachersSummary": "علوم/ا/ محمد نور | عربي/ا/ احمد عبد القادر",
     "regDate": "2026-08-08 12:45",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -61282,7 +61049,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1120 جمال عمرو سمير 1104674153 1154508820 بلقس ث1 أزهر"
+    "_searchString": "1120 جمال عمرو سمير 1104674153 1154508820 بلقس ث1 ازهر علوم ا/ محمد نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1121",
@@ -61293,11 +61060,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "أزهر",
     "subjectsSummary": "علوم, عربي",
-    "teachersSummary": "علوم/محمد نور | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد نور | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-08 12:46",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -61376,7 +61143,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1121 سيف الدين محمد 1093216780 1221832510 بلقس ث1 أزهر"
+    "_searchString": "1121 سيف الدين محمد 1093216780 1221832510 بلقس ث1 ازهر علوم ا/ محمد نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3582",
@@ -61435,7 +61202,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3582 هدي محمد 1203843364 1224399421 بلقس ث3 عام"
+    "_searchString": "3582 هدي محمد 1203843364 1224399421 بلقس ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "1122",
@@ -61564,7 +61331,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1122 هنا ايهاب سعيد 1205607890 1272684908 بلقس ث1 عام"
+    "_searchString": "1122 هنا ايهاب سعيد 1205607890 1272684908 بلقس ث1 عام عربي ا/ سيد عبد العاطي فلسفه ا/ احمد الليثي علوم علي"
   },
   {
     "code": "3682",
@@ -61623,7 +61390,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 0
     },
-    "_searchString": "3682 شروق صلاح رشاد 1203205636 1108799148 سلمنيه ث3 عام"
+    "_searchString": "3682 شروق صلاح رشاد 1203205636 1108799148 سلمنيه ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "1124",
@@ -61634,11 +61401,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "عام",
     "subjectsSummary": "علوم, فلسفة, رياضة, عربي",
-    "teachersSummary": "علوم/علام | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _] | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _] | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-08 14:49",
     "academicSubjects": {
       "علوم": {
-        "teacher": "علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -61708,7 +61475,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -61731,6 +61498,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "",
             "",
             "",
@@ -61787,7 +61564,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1124 شمس اشرف احمد 1149018069 1149018069 بلقس ث1 عام"
+    "_searchString": "1124 شمس اشرف احمد 1149018069 1149018069 بلقس ث1 عام علوم ا/ محمد علام فلسفه ا/ احمد الليثي رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3683",
@@ -61869,7 +61646,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3684 عبدالرحمن عزت محمد 01113211430 01033199343 عرب الشعاره ث3 أزهر"
+    "_searchString": "3684 عبدالرحمن عزت محمد 01113211430 01033199343 عرب الشعاره ث3 ازهر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1125",
@@ -61880,11 +61657,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "عام",
     "subjectsSummary": "علوم, عربي",
-    "teachersSummary": "علوم/محمد علام | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, ✓, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, ✓, _, _, _]",
     "regDate": "2026-08-08 15:18",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -61963,7 +61740,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1125 دينا مصطفي ابراهيم 1080191435 1203144035 بلقس ث1 عام"
+    "_searchString": "1125 دينا مصطفي ابراهيم 1080191435 1203144035 بلقس ث1 عام علوم ا/ محمد علام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1126",
@@ -61974,11 +61751,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "عام",
     "subjectsSummary": "علوم, عربي",
-    "teachersSummary": "علوم/محمد علام | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-08 15:21",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -62057,7 +61834,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1126 مريم عبدالخالق سع��د 1131482446 1122177510 ��لقس ث1 عام"
+    "_searchString": "1126 مريم عبدالخالق سعي�� 1131482446 1122177510 ب��قس ث1 عام علوم ا/ محمد علام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1127",
@@ -62068,11 +61845,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "عام",
     "subjectsSummary": "علوم, فلسفة",
-    "teachersSummary": "علوم/محمد علام | فلسفة/ا/ احمد الليثي [حصص: ✓, ✓, ✓, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | فلسفة/ا/ احمد الليثي [حصص: ✓, ✓, ✓, _, _, _, _, _]",
     "regDate": "2026-08-08 15:23",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -62151,7 +61928,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1127 يسرا محمد فايق 1226562407 1222618103 بلقس ث1 عام"
+    "_searchString": "1127 يسرا محمد فايق 1226562407 1222618103 بلقس ث1 عام علوم ا/ محمد علام فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1128",
@@ -62162,11 +61939,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "عام",
     "subjectsSummary": "علوم, عربي",
-    "teachersSummary": "علوم/محمد علام | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-08 15:25",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -62245,7 +62022,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1128 سلمي سعيد سلامه 1026579129 1091089122 بلقس ث1 عام"
+    "_searchString": "1128 سلمي سعيد سلامه 1026579129 1091089122 بلقس ث1 عام علوم ا/ محمد علام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1129",
@@ -62256,11 +62033,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "عام",
     "subjectsSummary": "علوم, عربي",
-    "teachersSummary": "علوم/محمد علام | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-08 15:27",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -62339,7 +62116,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1129 محمد سالم سلامه 1273451396 1229466000 بلقس ث1 عام"
+    "_searchString": "1129 محمد سالم سلامه 1273451396 1229466000 بلقس ث1 عام علوم ا/ محمد علام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1130",
@@ -62350,11 +62127,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "عام",
     "subjectsSummary": "علوم, عربي",
-    "teachersSummary": "علوم/محمد علام | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-08 15:29",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -62433,7 +62210,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1130 ملك ��بد الخالق سعيد 1131482447 1122177510 بلقس ث1 عام"
+    "_searchString": "1130 ملك ع��د الخالق سعيد 1131482447 1122177510 بلقس ث1 عام علوم ا/ محمد علام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3623",
@@ -62527,7 +62304,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3623 قمر اشرف نجاح مصلح 1037220461 1125796734 العطارة ث3 عام"
+    "_searchString": "3623 قمر اشرف نجاح مصلح 1037220461 1125796734 العطاره ث3 عام انجليزي ا/ حماده يوسف كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3685",
@@ -62586,7 +62363,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3685 سندس احمد ابراهيم 1201452071 1201451309 بلقس ث3 عام"
+    "_searchString": "3685 سندس احمد ابراهيم 1201452071 1201451309 بلقس ث3 عام احياء ا/ محمد علام"
   },
   {
     "code": "3612",
@@ -62645,7 +62422,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3612 تسنيم عرفه 01102465483 01152013904 الغوريري ث3 عام"
+    "_searchString": "3612 تسنيم عرفه 01102465483 01152013904 الغوريري ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2569",
@@ -62704,7 +62481,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2569 مصطفي قا��م محمد 01100099096 01002977955 كوم السمن ث2 بكالوريا - طب"
+    "_searchString": "2569 مصطفي قاس�� محمد 01100099096 01002977955 كوم السمن ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3529",
@@ -62793,12 +62570,12 @@ window.STUDENTS_DATA = [
       "totalScore": 42,
       "totalMax": 55,
       "totalPresent": 12,
-      "totalAbsent": 1,
-      "totalRecordedSessions": 13,
-      "attendanceRate": 92,
+      "totalAbsent": 2,
+      "totalRecordedSessions": 14,
+      "attendanceRate": 86,
       "averageScore": 76.4
     },
-    "_searchString": "3529 رويدا فوزي محمد 1147637695 1150742121 بلقس ث3 عام"
+    "_searchString": "3529 رويدا فوزي محمد 1147637695 1150742121 بلقس ث3 عام عربي ا/ سيد عبد العاطي انجليزي ا/ حماده يوسف"
   },
   {
     "code": "1131",
@@ -62892,7 +62669,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1131 مكة ابو السباع فراج 1030709115  ابو عياش ث1 بكالوريا - الاداب"
+    "_searchString": "1131 مكه ابو السباع فراج 1030709115 ابو عياش ث1 بكالوريا - الاداب علوم علي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1132",
@@ -62942,7 +62719,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -62965,6 +62742,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "",
             "",
             "",
@@ -63021,7 +62808,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1132 ملك عماد حمدي 1126637209 1 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1132 ملك عماد حمدي 1126637209 1 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1133",
@@ -63115,7 +62902,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1133 جني جميل فكري 1016629092 1 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1133 جني جميل فكري 1016629092 1 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1149",
@@ -63126,7 +62913,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "عربي, فلسفة, رياضة, علوم",
-    "teachersSummary": "عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _] | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _] | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | علوم/علام",
+    "teachersSummary": "عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _] | فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _] | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | علوم/ا/ محمد علام",
     "regDate": "2026-08-09 15:25",
     "academicSubjects": {
       "عربي": {
@@ -63200,7 +62987,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -63231,11 +63018,21 @@ window.STUDENTS_DATA = [
             "✓",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
           ]
         }
       },
       "علوم": {
-        "teacher": "علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -63279,7 +63076,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1149 علي محمود صابر 1153216316 1 عزبة خالد ث1 بكالوريا - طب"
+    "_searchString": "1149 علي محمود صابر 1153216316 1 عزبه خالد ث1 بكالوريا - طب عربي ا/ احمد عبد القادر فلسفه ا/ احمد الليثي رياضه ا/ مصطفي صابر علوم ا/ محمد علام"
   },
   {
     "code": "1148",
@@ -63373,7 +63170,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1148 امنية محمد هاشم 1220800924 1201006682 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1148 امنيه محمد هاشم 1220800924 1201006682 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1139",
@@ -63467,7 +63264,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1139 هدي عادل عبد الفتاح 1270733216 1272564473 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1139 هدي عادل عبد الفتاح 1270733216 1272564473 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1137",
@@ -63561,7 +63358,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1137 شهد اشرف عمر 12203093361 1221431407 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1137 شهد اشرف عمر 12203093361 1221431407 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1134",
@@ -63655,7 +63452,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1134 رقية محمود رزق 1042129244 1067988832 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1134 رقيه محمود رزق 1042129244 1067988832 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1135",
@@ -63749,7 +63546,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1135 ايات ربيع عطا الله 1108798598 1113152164 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1135 ايات ربيع عطا الله 1108798598 1113152164 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1138",
@@ -63843,7 +63640,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1138 سلمي وائل ناصر 1225286253 1202966817 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1138 سلمي وايل ناصر 1225286253 1202966817 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1140",
@@ -63902,7 +63699,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1140 رقية احمد محمد 1004963229 1159043050 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1140 رقيه احمد محمد 1004963229 1159043050 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1150",
@@ -63961,7 +63758,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1150 ايات ماهر احمد 1273313084 127805577 بلقس ث1 أزهر"
+    "_searchString": "1150 ايات ماهر احمد 1273313084 127805577 بلقس ث1 ازهر فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1136",
@@ -64055,7 +63852,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1136 ندي تامر رجب 1211119254  بلقس ث1 بكالوريا - ط��"
+    "_searchString": "1136 ندي تامر رجب 1211119254 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1146",
@@ -64149,7 +63946,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1146 جني سيد رمضان 1229671002 1155912494 عزبة المدرسه ث1 بكالوريا - طب"
+    "_searchString": "1146 جني سيد رمضان 1229671002 1155912494 عزبه المدرسه ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1154",
@@ -64243,7 +64040,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1154 شروق حمادة زين الدين 122188830  الزاوية ث1 بكالوريا - طب"
+    "_searchString": "1154 شروق حماده زين الدين 122188830 الزاويه ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1153",
@@ -64254,7 +64051,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "فلسفة, رياضة, عربي",
-    "teachersSummary": "فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _] | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, ✓, ✓, _, _, _] | عربي/ا/ احمد عبد الق��در",
+    "teachersSummary": "فلسفة/ا/ احمد الليثي [حصص: _, _, ✓, _, _, _, _, _] | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, ✓, ✓, _, _, _] | عربي/ا/ احمد عبد القادر",
     "regDate": "2026-08-09 15:49",
     "academicSubjects": {
       "فلسفة": {
@@ -64328,7 +64125,7 @@ window.STUDENTS_DATA = [
         }
       },
       "عربي": {
-        "teacher": "ا/ احمد عبد الق��در",
+        "teacher": "ا/ احمد عبد القادر",
         "sessions": [
           "",
           "",
@@ -64372,7 +64169,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1153 حنين بيومي يونس 1272224726 12 الزاويه ث1 بكالوريا - طب"
+    "_searchString": "1153 حنين بيومي يونس 1272224726 12 الزاويه ث1 بكالوريا - طب فلسفه ا/ احمد الليثي رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1152",
@@ -64431,7 +64228,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 0
     },
-    "_searchString": "1152 مريم محمد عبد الخالق 122554169 1281502720 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1152 مريم محمد عبد الخالق 122554169 1281502720 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1155",
@@ -64525,7 +64322,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1155 فاطمة محمد عبد المحسن 1206805591 1119304009 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1155 فاطمه محمد عبد المحسن 1206805591 1119304009 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1157",
@@ -64689,7 +64486,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 88,
       "averageScore": 0
     },
-    "_searchString": "1157 جني اسماعيل سيد 1211337568 1203882878 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1157 جني اسماعيل سيد 1211337568 1203882878 بلقس ث1 بكالوريا - طب رياضه ا/ مصطفي صابر فلسفه ا/ احمد الليثي انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1158",
@@ -64853,7 +64650,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1158 سلمي عصام صابر 1029112923 1501492641 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1158 سلمي عصام صابر 1029112923 1501492641 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي انجليزي ا/ حماده يوسف رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1160",
@@ -64947,7 +64744,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1160 منة وليد كمال 1099907315 1273063717 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1160 منه وليد كمال 1099907315 1273063717 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1159",
@@ -65041,7 +64838,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1159 هدية سيد رمضان 1061640173 1016723593 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1159 هديه سيد رمضان 1061640173 1016723593 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1156",
@@ -65135,7 +64932,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1156 ايثار محمد ابو السعود 1270799595 1026365783 بل��س ث1 بكالوريا - طب"
+    "_searchString": "1156 ايثار محمد ابو السعود 1270799595 1026365783 بلق�� ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2571",
@@ -65194,7 +64991,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2571 شهد مصطفي محمود 01000149715 01030443451 عزبة السكري ث2 بكالوريا - هندسة"
+    "_searchString": "2571 شهد مصطفي محمود 01000149715 01030443451 عزبه السكري ث2 بكالوريا - هندسه كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3663",
@@ -65217,7 +65014,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3663 رقية محمد شوقي 1105381853 1105381856 بلقس ث3 عام"
+    "_searchString": "3663 رقيه محمد شوقي 1105381853 1105381856 بلقس ث3 عام"
   },
   {
     "code": "3664",
@@ -65276,7 +65073,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 50
     },
-    "_searchString": "3664 فارس احمد محمد 1112194316 1040184776 بلقس ث3 عام"
+    "_searchString": "3664 فارس احمد محمد 1112194316 1040184776 بلقس ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3665",
@@ -65335,7 +65132,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 100
     },
-    "_searchString": "3665 محمد عبد القادر محمد 1060699699 1044697504 بلقس ث3 عام"
+    "_searchString": "3665 محمد عبد القادر محمد 1060699699 1044697504 بلقس ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "2572",
@@ -65394,7 +65191,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2572 نور حسن صبحي 1102165580 1102165584 بلقس ث2 بكالوريا - هندسة"
+    "_searchString": "2572 نور حسن صبحي 1102165580 1102165584 بلقس ث2 بكالوريا - هندسه كيمياء ا/ محمد صلاح"
   },
   {
     "code": "2573",
@@ -65453,7 +65250,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2573 ريهام ابو الوفا حسن 01062068317 01006164832 الزاوية ث2 بكالوريا - هندسة"
+    "_searchString": "2573 ريهام ابو الوفا حسن 01062068317 01006164832 الزاويه ث2 بكالوريا - هندسه كيمياء ا/ محمد صلاح"
   },
   {
     "code": "1161",
@@ -65617,7 +65414,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1161 رقية بلال حمدي 1031190923 1050108390 بلقس ث1 بكالوريا - الاداب"
+    "_searchString": "1161 رقيه بلال حمدي 1031190923 1050108390 بلقس ث1 بكالوريا - الاداب فلسفه ا/ احمد الليثي رياضه ا/ مصطفي صابر علوم علي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1162",
@@ -65711,7 +65508,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1162 جني سامح عبد الكريم 125578556 1281976942 بلقس ث1 عام"
+    "_searchString": "1162 جني سامح عبد الكريم 125578556 1281976942 بلقس ث1 عام رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1163",
@@ -65722,11 +65519,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - هندسة",
     "subjectsSummary": "علوم, رياضة, عربي",
-    "teachersSummary": "علوم/محمد علام | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, ✓, _, _] [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-10 12:18",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -65761,7 +65558,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -65784,6 +65581,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "",
             "",
             "",
@@ -65840,7 +65647,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1163 هاجر حماده سلامه 1111506744 1011026882 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1163 هاجر حماده سلامه 1111506744 1011026882 بلقس ث1 بكالوريا - هندسه علوم ا/ محمد علام رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1164",
@@ -65934,7 +65741,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 70
     },
-    "_searchString": "1164 سلوي ناصر ابراهيم 1228619372 1228619372 بلقس ث1 أزهر"
+    "_searchString": "1164 سلوي ناصر ابراهيم 1228619372 1228619372 بلقس ث1 ازهر رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1165",
@@ -65945,11 +65752,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "أزهر",
     "subjectsSummary": "رياضة, عربي",
-    "teachersSummary": "رياضة/ا/ م��طفي صابر [حصص: ✓, ✓, ✓, ✓, 9/10, _, _, _] | عربي/ا/ احمد عبد القادر",
+    "teachersSummary": "رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, ✓, 9/10, _, _, _] | عربي/ا/ احمد عبد القادر",
     "regDate": "2026-08-10 12:33",
     "academicSubjects": {
       "رياضة": {
-        "teacher": "ا/ م��طفي صابر",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "✓",
           "✓",
@@ -66028,7 +65835,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 90
     },
-    "_searchString": "1165 ايه هاني مجدي 1117249415 1117249415 بلقس ث1 أزهر"
+    "_searchString": "1165 ايه هاني مجدي 1117249415 1117249415 بلقس ث1 ازهر رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1166",
@@ -66087,7 +65894,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 40,
       "averageScore": 0
     },
-    "_searchString": "1166 ايمان عبدالله 1272141423 1271468847 بلقس ث1 أزهر"
+    "_searchString": "1166 ايمان عبدالله 1272141423 1271468847 بلقس ث1 ازهر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1167",
@@ -66146,7 +65953,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 0
     },
-    "_searchString": "1167 روفيدا محمود 1122947005 1000393534 بلقس ث1 أزهر"
+    "_searchString": "1167 روفيدا محمود 1122947005 1000393534 بلقس ث1 ازهر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1168",
@@ -66205,7 +66012,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1168 اميره صلاح 1225431815 100509909 بلقس ث1 أزهر"
+    "_searchString": "1168 اميره صلاح 1225431815 100509909 بلقس ث1 ازهر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1169",
@@ -66299,7 +66106,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1169 فاطمه احمد سيد 1204556883 1204556883 بلقس ث1 أزهر"
+    "_searchString": "1169 فاطمه احمد سيد 1204556883 1204556883 بلقس ث1 ازهر رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1170",
@@ -66393,7 +66200,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1170 بيداء ابراهيم 1018929771 1069599011 السلمنيه ث1 عام"
+    "_searchString": "1170 بيداء ابراهيم 1018929771 1069599011 السلمنيه ث1 عام فرنساوي ا/ محمد رجب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2574",
@@ -66487,7 +66294,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2574 نعمه مصطفي احمد 1288020826 1028798225 بلقس ث2 أزهر"
+    "_searchString": "2574 نعمه مصطفي احمد 1288020826 1028798225 بلقس ث2 ازهر رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3669",
@@ -66546,7 +66353,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 70
     },
-    "_searchString": "3669 اسراء ابراهيم محمد 1116318476 1021327337 الزاويه ث3 عام"
+    "_searchString": "3669 اسراء ابراهيم محمد 1116318476 1021327337 الزاويه ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3670",
@@ -66605,7 +66412,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 80
     },
-    "_searchString": "3670 محمد وليد محمد 1019925297 1096325246 الزاويه ث3 عام"
+    "_searchString": "3670 محمد وليد محمد 1019925297 1096325246 الزاويه ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3671",
@@ -66699,7 +66506,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3671 محمد اسماعيل 1204291682 1221343614 السلمانيه ث3 عام"
+    "_searchString": "3671 محمد اسماعيل 1204291682 1221343614 السلمانيه ث3 عام عربي ا/ احمد عبد القادر احصاء ا/ مصطفي صابر"
   },
   {
     "code": "3672",
@@ -66828,7 +66635,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 69,
       "averageScore": 0
     },
-    "_searchString": "3672 فاطمه صالح عبدالله 1121888906 1102813640 الزاويه ث3 عام"
+    "_searchString": "3672 فاطمه صالح عبدالله 1121888906 1102813640 الزاويه ث3 عام فزياء ا/ محمد مختار احياء ا/ محمد نور كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3673",
@@ -66992,7 +66799,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 83,
       "averageScore": 50
     },
-    "_searchString": "3673 سلمي عصام سلامه 1114551022 1098092273 الزاويه ث3 عام"
+    "_searchString": "3673 سلمي عصام سلامه 1114551022 1098092273 الزاويه ث3 عام فزياء ا/ محمد مختار احياء ا/ علي نور عربي ا/ احمد عبد القادر كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3674",
@@ -67051,7 +66858,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3674 مريم محمد حسن 01107151270 0111717175 الجعافره ث3 عام"
+    "_searchString": "3674 مريم محمد حسن 01107151270 0111717175 الجعافره ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "1171",
@@ -67145,7 +66952,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1171 محمود حازم عيد 1228328321 1121064478 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1171 محمود حازم عيد 1228328321 1121064478 بلقس ث1 بكالوريا - طب عربي ا/ احمد عبد القادر فلسفه ا/ احمد الليثي"
   },
   {
     "code": "3676",
@@ -67204,7 +67011,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3676 احمد محمد شوقي 01080999047 01220688653 الزاويه ث3 عام"
+    "_searchString": "3676 احمد محمد شوقي 01080999047 01220688653 الزاويه ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3677",
@@ -67263,7 +67070,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3677 يوسف شعبان محمود 01000724490 0158860718 الزاويه ث3 عام"
+    "_searchString": "3677 يوسف شعبان محمود 01000724490 0158860718 الزاويه ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3691",
@@ -67322,7 +67129,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3691 عمار احمد محمد 01094465293 01050197721 زوايه النجار ث3 عام"
+    "_searchString": "3691 عمار احمد محمد 01094465293 01050197721 زوايه النجار ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3690",
@@ -67381,7 +67188,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3690 محمد وليد سعيد 01225701298 01025222914 زاويه النجار ث3 عام"
+    "_searchString": "3690 محمد وليد سعيد 01225701298 01025222914 زاويه النجار ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3689",
@@ -67440,7 +67247,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3689 شروق عماد محمد 1030165384 1028863318 زاويه النحار ث3 عام"
+    "_searchString": "3689 شروق عماد محمد 1030165384 1028863318 زاويه النحار ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3688",
@@ -67499,7 +67306,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3688 شاديه عماد محمد 0128863318 01030165384 زوايه النجار ث3 عام"
+    "_searchString": "3688 شاديه عماد محمد 0128863318 01030165384 زوايه النجار ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3678",
@@ -67558,7 +67365,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3678 نورهان احمد محمد 1206590291 1206590291 زوايه النجار ث3 عام"
+    "_searchString": "3678 نورهان احمد محمد 1206590291 1206590291 زوايه النجار ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3675",
@@ -67617,7 +67424,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3675 يوسف حسين 01070220071 01505928788 زوايه النجار ث3 عام"
+    "_searchString": "3675 يوسف حسين 01070220071 01505928788 زوايه النجار ث3 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "2575",
@@ -67676,7 +67483,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 60,
       "averageScore": 0
     },
-    "_searchString": "2575 يوسف محمد سيد 1152734667 1157958196 بلقس ث2 عام"
+    "_searchString": "2575 يوسف محمد سيد 1152734667 1157958196 بلقس ث2 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1172",
@@ -67770,7 +67577,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1172 كريم عرفه شكري 1011505042 1002583082 جزيره الوراق ث1 عام"
+    "_searchString": "1172 كريم عرفه شكري 1011505042 1002583082 جزيره الوراق ث1 عام عربي ا/ احمد عبد القادر فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1173",
@@ -67781,7 +67588,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "عام",
     "subjectsSummary": "فلسفة, رياضة, علوم, عربي",
-    "teachersSummary": "فلسفة/ا/ احمد الليثي | رياضة/ا/ مصطفي صابر | علوم/محمد علام | عربي/ا/ احمد عبد الق��در",
+    "teachersSummary": "فلسفة/ا/ احمد الليثي | رياضة/ا/ مصطفي صابر | علوم/ا/ محمد علام | عربي/ا/ احمد عبد القادر",
     "regDate": "2026-08-11 11:51",
     "academicSubjects": {
       "فلسفة": {
@@ -67855,7 +67662,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "محمد علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -67890,7 +67697,7 @@ window.STUDENTS_DATA = [
         }
       },
       "عربي": {
-        "teacher": "ا/ احمد عبد الق��در",
+        "teacher": "ا/ احمد عبد القادر",
         "sessions": [
           "",
           "",
@@ -67934,7 +67741,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1173 ايه محمود صابر 1108798634 1153216316 عزبه النخل ث1 عام"
+    "_searchString": "1173 ايه محمود صابر 1108798634 1153216316 عزبه النخل ث1 عام فلسفه ا/ احمد الليثي رياضه ا/ مصطفي صابر علوم ا/ محمد علام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1174",
@@ -68028,7 +67835,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1174 فرحه محمد 1125784890 1125784890 السلمنيه ث1 عام"
+    "_searchString": "1174 فرحه محمد 1125784890 1125784890 السلمنيه ث1 عام عربي ا/ احمد عبد القادر فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1175",
@@ -68122,7 +67929,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1175 محمد احمد محمد 11100100645 15014490818 السلمانيه ث1 عام"
+    "_searchString": "1175 محمد احمد محمد 11100100645 15014490818 السلمانيه ث1 عام عربي ا/ احمد عبد القادر فلسفه ا/ ساره مجدي"
   },
   {
     "code": "1176",
@@ -68181,7 +67988,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1176 مريم حسن حسين 1144090247 1011437971 بلقس ث1 عام"
+    "_searchString": "1176 مريم حسن حسين 1144090247 1011437971 بلقس ث1 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1177",
@@ -68240,7 +68047,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1177 مريم رمضان علي 1278013620 1012207866 بلقس ث1 عام"
+    "_searchString": "1177 مريم رمضان علي 1278013620 1012207866 بلقس ث1 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1178",
@@ -68299,7 +68106,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1178 انس محمد سيد 1114242161 1104952071 سلمنييه ث1 عام"
+    "_searchString": "1178 انس محمد سيد 1114242161 1104952071 سلمنييه ث1 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3692",
@@ -68419,7 +68226,7 @@ window.STUDENTS_DATA = [
         }
       },
       "عربي": {
-        "teacher": "ا/ احمد عبد القادر  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ احمد عبد القادر",
         "sessions": [
           "✓",
           "",
@@ -68450,6 +68257,16 @@ window.STUDENTS_DATA = [
             "",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       }
@@ -68463,7 +68280,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3692 شهد عمرو 1000732631 1063370810 زاويه ث3 عام"
+    "_searchString": "3692 شهد عمرو 1000732631 1063370810 زاويه ث3 عام فرنساوي ا/ محمد رجب رياضه ا/ مصطفي صابر انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3693",
@@ -68522,7 +68339,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 50,
       "averageScore": 0
     },
-    "_searchString": "3693 نور محمد 1037667844 1000095266 زاويه النجار ث3 عام"
+    "_searchString": "3693 نور محمد 1037667844 1000095266 زاويه النجار ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3697",
@@ -68581,7 +68398,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3697 محمد مختار عبد القادر 01293805981 011284143104 عرب الشعاره ث3 عام"
+    "_searchString": "3697 محمد مختار عبد القادر 01293805981 011284143104 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3707",
@@ -68701,7 +68518,7 @@ window.STUDENTS_DATA = [
         }
       },
       "عربي": {
-        "teacher": "ا/ احمد عبد القادر  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ احمد عبد القادر",
         "sessions": [
           "✓",
           "",
@@ -68732,6 +68549,16 @@ window.STUDENTS_DATA = [
             "",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       }
@@ -68745,7 +68572,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3707 ندي محمد سعيد 1006884605 1019421289 بلق ث3 أزهر"
+    "_searchString": "3707 ندي محمد سعيد 1006884605 1019421289 بلق ث3 ازهر تاريخ ا/ رضا صلاح احصاء ا/ مصطفي صابر انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2579",
@@ -68850,7 +68677,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 88.2
     },
-    "_searchString": "2578 محمود محمد اسماعيل 1272219596 12722119596 بلقس ث2 عام"
+    "_searchString": "2578 محمود محمد اسماعيل 1272219596 12722119596 بلقس ث2 عام عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "3713",
@@ -68909,7 +68736,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3713 شهد مصطفى طه 01040397260 01040397260 حزانيه ث3 عام"
+    "_searchString": "3713 شهد مصطفي طه 01040397260 01040397260 حزانيه ث3 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3711",
@@ -69003,7 +68830,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3711 مريم عاصم يوسف 1099301211 1005589272 حزانيه ث3 عام"
+    "_searchString": "3711 مريم عاصم يوسف 1099301211 1005589272 حزانيه ث3 عام فزياء ا/ محمد الجوهري كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3712",
@@ -69155,7 +68982,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3710 استبرق احمد 1004925512 1004925512 قناطر ث3 عام"
+    "_searchString": "3710 استبرق احمد 1004925512 1004925512 قناطر ث3 عام فزياء ا/ محمد الجوهري كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3708",
@@ -69249,7 +69076,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3708 سيف احمد ماهر 1120378353 1116555790 ��زانيه ث3 عام"
+    "_searchString": "3708 سيف احمد ماهر 1120378353 1116555790 ��زانيه ث3 عام فزياء ا/ محمد الجوهري رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3715",
@@ -69343,7 +69170,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 60,
       "averageScore": 0
     },
-    "_searchString": "3715 احمد عبد العزيز 1108798481 1204130021 سلمانيه ث3 أزهر"
+    "_searchString": "3715 احمد عبد العزيز 1108798481 1204130021 سلمانيه ث3 ازهر كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3709",
@@ -69507,7 +69334,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 55,
       "averageScore": 0
     },
-    "_searchString": "3709 فاطمه سيد عواد 1131404481 1006391221 سلمانيه ث3 أزهر"
+    "_searchString": "3709 فاطمه سيد عواد 1131404481 1006391221 سلمانيه ث3 ازهر فزياء ا/ محمد الجوهري كيمياء ا/ محمد صلاح احياء ا/ علي نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2588",
@@ -69566,7 +69393,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2588 ايهاب محمد عبد المنطلب 1000075455 01033111138 كوم السمن ث2 بكالوريا - طب"
+    "_searchString": "2588 ايهاب محمد عبد المنطلب 1000075455 01033111138 كوم السمن ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2589",
@@ -69625,7 +69452,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2589 نضال رضا صالح 01124888726 01004381753 كوم السمن ث2 بكالوريا - طب"
+    "_searchString": "2589 نضال رضا صالح 01124888726 01004381753 كوم السمن ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3716",
@@ -69679,12 +69506,12 @@ window.STUDENTS_DATA = [
       "totalScore": 26,
       "totalMax": 35,
       "totalPresent": 4,
-      "totalAbsent": 2,
-      "totalRecordedSessions": 6,
-      "attendanceRate": 67,
+      "totalAbsent": 3,
+      "totalRecordedSessions": 7,
+      "attendanceRate": 57,
       "averageScore": 74.3
     },
-    "_searchString": "3716 جني رضا مصطفي 1223474303 1203402089 بلقس ث3 عام"
+    "_searchString": "3716 جني رضا مصطفي 1223474303 1203402089 بلقس ث3 عام عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "3717",
@@ -69737,13 +69564,13 @@ window.STUDENTS_DATA = [
     "_metrics": {
       "totalScore": 46,
       "totalMax": 55,
-      "totalPresent": 6,
+      "totalPresent": 7,
       "totalAbsent": 0,
-      "totalRecordedSessions": 6,
+      "totalRecordedSessions": 7,
       "attendanceRate": 100,
       "averageScore": 83.6
     },
-    "_searchString": "3717 مريم عبدالله محمد 1273532183 1223962066 بلقس ث3 عام"
+    "_searchString": "3717 مريم عبدالله محمد 1273532183 1223962066 بلقس ث3 عام عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "3718",
@@ -69837,7 +69664,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3718 شروق محمد ع��د الحميد 1286086873 1206590090 بلقس ث3 عام"
+    "_searchString": "3718 شروق محمد ع��د الحميد 1286086873 1206590090 بلقس ث3 عام احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1182",
@@ -69896,7 +69723,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1182 فرح محمد صبري 1507346403 1063779251 الزاويه ث1 بكالوريا - الاداب"
+    "_searchString": "1182 فرح محمد صبري 1507346403 1063779251 الزاويه ث1 بكالوريا - الاداب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1183",
@@ -69955,7 +69782,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1183 امل مجدي سيد 1097086440 1050980835 عرب الشعاره ث1 عام"
+    "_searchString": "1183 امل مجدي سيد 1097086440 1050980835 عرب الشعاره ث1 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1184",
@@ -70014,7 +69841,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1184 نسمه محمود سعيد 1022208908 105098034 عزبة ��سيب ث1 عام"
+    "_searchString": "1184 نسمه محمود سعيد 1022208908 105098034 عزبه ح��يب ث1 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1185",
@@ -70073,7 +69900,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1185 حفصه وليد رمضان 1118059964 1110953677 الزاويه ث1 عام"
+    "_searchString": "1185 حفصه وليد رمضان 1118059964 1110953677 الزاويه ث1 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1186",
@@ -70132,7 +69959,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1186 نعيمه سمير سليم 1065546472 1022455286 عرب عبس ث1 بكالوريا - الاداب"
+    "_searchString": "1186 نعيمه سمير سليم 1065546472 1022455286 عرب عبس ث1 بكالوريا - الاداب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1188",
@@ -70191,7 +70018,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1188 ياسمين عبد العزيز سيد 1158414485 1025429915 الزاويه ث1 بكالوريا - الاعمال"
+    "_searchString": "1188 ياسمين عبد العزيز سيد 1158414485 1025429915 الزاويه ث1 بكالوريا - الاعمال عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1187",
@@ -70250,7 +70077,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1187 ملك نعيم ناصر 1110953677 1118059964 الزاويه ث1 عام"
+    "_searchString": "1187 ملك نعيم ناصر 1110953677 1118059964 الزاويه ث1 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1189",
@@ -70309,7 +70136,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1189 مريم علي محمد 1037128712 1013293312 عرب عبس ث1 عام"
+    "_searchString": "1189 مريم علي محمد 1037128712 1013293312 عرب عبس ث1 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1190",
@@ -70368,7 +70195,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1190 هاجر عمرو حسين 1004436987 1039707385 الزاويه ث1 عام"
+    "_searchString": "1190 هاجر عمرو حسين 1004436987 1039707385 الزاويه ث1 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3719",
@@ -70427,7 +70254,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3719 سيف ماجد محمد 1154147655 1128158311 شبرا ث3 عام"
+    "_searchString": "3719 سيف ماجد محمد 1154147655 1128158311 شبرا ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3702",
@@ -70486,7 +70313,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 50,
       "averageScore": 0
     },
-    "_searchString": "3702 نور انس 10224075991 1065682202 بلقس ث3 عام"
+    "_searchString": "3702 نور انس 10224075991 1065682202 بلقس ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3703",
@@ -70580,7 +70407,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 92,
       "averageScore": 0
     },
-    "_searchString": "3703 اسماء ايمن رجب 1560849703 1211151457 بلقس ث3 عام"
+    "_searchString": "3703 اسماء ايمن رجب 1560849703 1211151457 بلقس ث3 عام انجليزي ا/ حماده يوسف رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3701",
@@ -70639,7 +70466,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3701 رؤي سعيد 01091299954 01113778370 الجعافره ث3 عام"
+    "_searchString": "3701 روي سعيد 01091299954 01113778370 الجعافره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3700",
@@ -70698,7 +70525,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3700 تسنيم خالد 01125855432 01158073273 الجعافرة ث3 عام"
+    "_searchString": "3700 تسنيم خالد 01125855432 01158073273 الجعافره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3698",
@@ -70792,7 +70619,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 50,
       "averageScore": 0
     },
-    "_searchString": "3698 روان محمد حمزه 1010946971 1014775877 الحزانيه ث3 عام"
+    "_searchString": "3698 روان محمد حمزه 1010946971 1014775877 الحزانيه ث3 عام انجليزي ا/ حماده يوسف فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3748",
@@ -70909,7 +70736,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1223 ملك احمد القاضي 01206407458 01206407458 بلقس ث3 عام"
+    "_searchString": "1223 ملك احمد القاضي 01206407458 01206407458 بلقس ث3 عام عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3749",
@@ -71026,7 +70853,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1222 مني حسن سيد 1226553269 1226553269 بلقس ث1 عام"
+    "_searchString": "1222 مني حسن سيد 1226553269 1226553269 بلقس ث1 عام عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2545",
@@ -71049,7 +70876,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2545 نها سيد 1034405592 1102018685 الزاويه ث2 أزهر"
+    "_searchString": "2545 نها سيد 1034405592 1102018685 الزاويه ث2 ازهر"
   },
   {
     "code": "3744",
@@ -71178,7 +71005,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 46,
       "averageScore": 0
     },
-    "_searchString": "3744 خالد وليد وليد 1222700495 1214647813 بلقس ث3 عام"
+    "_searchString": "3744 خالد وليد وليد 1222700495 1214647813 بلقس ث3 عام كيمياء ا/ محمد صلاح رياضه ا/ مصطفي صابر فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3740",
@@ -71237,7 +71064,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 88,
       "averageScore": 0
     },
-    "_searchString": "3740 الاء سعيد 1118012474 1505360299 زاويه ث3 عام"
+    "_searchString": "3740 الاء سعيد 1118012474 1505360299 زاويه ث3 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3743",
@@ -71331,7 +71158,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 95
     },
-    "_searchString": "3743 عبدالله عنتر 1205954136 1281015586 بلقس ث3 عام"
+    "_searchString": "3743 عبدالله عنتر 1205954136 1281015586 بلقس ث3 عام كيمياء ا/ محمد صلاح رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3742",
@@ -71390,7 +71217,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3742 عليا خالد صالح 1119178416 1112723094 كوم اشفين ث3 عام"
+    "_searchString": "3742 عليا خالد صالح 1119178416 1112723094 كوم اشفين ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "2542",
@@ -71449,7 +71276,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 14,
       "averageScore": 0
     },
-    "_searchString": "2542 سلمي محمد محمد 1009282596 1119904248 جعافره ث2 أزهر"
+    "_searchString": "2542 سلمي محمد محمد 1009282596 1119904248 جعافره ث2 ازهر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2543",
@@ -71578,7 +71405,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2543 اسراء صالح محمد علي 1143477105 114666547 بلقس ث2 أزهر"
+    "_searchString": "2543 اسراء صالح محمد علي 1143477105 114666547 بلقس ث2 ازهر رياضه ا/ مصطفي صابر فزياء ا/ محمد مختار عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2541",
@@ -71707,7 +71534,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "2541 عزه خالد محمد 102770891 102770891 سلمنيه ث2 أزهر"
+    "_searchString": "2541 عزه خالد محمد 102770891 102770891 سلمنيه ث2 ازهر فزياء ا/ محمد مختار رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3750",
@@ -71722,7 +71549,7 @@ window.STUDENTS_DATA = [
     "regDate": "2026-08-19 08:24",
     "academicSubjects": {
       "انجليزي": {
-        "teacher": "ا/ حماده يوسف  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ حماده يوسف",
         "sessions": [
           "✓",
           "",
@@ -71753,6 +71580,16 @@ window.STUDENTS_DATA = [
             "",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       }
@@ -71766,7 +71603,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3750 شمس واىل مصطفي 1272942184 1155293354 ساريقوش ث3 عام"
+    "_searchString": "3750 شمس وايل مصطفي 1272942184 1155293354 ساريقوش ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3751",
@@ -71848,7 +71685,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3752 فاطمه صابر محمد 0109685968 01004834556 ساريقوس ث3 عام"
+    "_searchString": "3752 فاطمه صابر محمد 0109685968 01004834556 ساريقوس ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3754",
@@ -71907,7 +71744,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3754 نور حاتم فكري 01024864194 01024562159 ساريقوس ث3 عام"
+    "_searchString": "3754 نور حاتم فكري 01024864194 01024562159 ساريقوس ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3755",
@@ -71989,7 +71826,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2559 شروق احمد 01152428645 01102166496 بلقس ث2 عام"
+    "_searchString": "2559 شروق احمد 01152428645 01102166496 بلقس ث2 عام فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3746",
@@ -72048,7 +71885,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3746 مريم ناصر حامد 01125470276 01021210100 السلمانية ث3 عام"
+    "_searchString": "3746 مريم ناصر حامد 01125470276 01021210100 السلمانيه ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3745",
@@ -72071,7 +71908,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3745 احمد عرفات سيد 1017307709 1157990499 الزاوية ث3 عام"
+    "_searchString": "3745 احمد عرفات سيد 1017307709 1157990499 الزاويه ث3 عام"
   },
   {
     "code": "2553",
@@ -72130,7 +71967,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 60,
       "averageScore": 0
     },
-    "_searchString": "2553 محمد هاني منصور 1127088720 1503090623 السلمانية ث2 عام"
+    "_searchString": "2553 محمد هاني منصور 1127088720 1503090623 السلمانيه ث2 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3699",
@@ -72145,7 +71982,7 @@ window.STUDENTS_DATA = [
     "regDate": "2026-08-19 11:27",
     "academicSubjects": {
       "انجليزي": {
-        "teacher": "ا/ حماده يوسف  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ حماده يوسف",
         "sessions": [
           "✓",
           "",
@@ -72176,6 +72013,16 @@ window.STUDENTS_DATA = [
             "",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       }
@@ -72189,7 +72036,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3699 فاطمة احمد عواد 1154858900 1116173047 الجعافره ث3 عام"
+    "_searchString": "3699 فاطمه احمد عواد 1154858900 1116173047 الجعافره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2584",
@@ -72248,7 +72095,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 20,
       "averageScore": 0
     },
-    "_searchString": "2584 كوثر فارس 1035619027 1111998392 عرب الشعارة ث2 بكالوريا - الاداب"
+    "_searchString": "2584 كوثر فارس 1035619027 1111998392 عرب الشعاره ث2 بكالوريا - الاداب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2582",
@@ -72307,7 +72154,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 40,
       "averageScore": 0
     },
-    "_searchString": "2582 مريم محمد عبد اللطيف 1114439257 1118357805 عرب الشعارة ث2 بكالوريا - الاداب"
+    "_searchString": "2582 مريم محمد عبد اللطيف 1114439257 1118357805 عرب الشعاره ث2 بكالوريا - الاداب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2583",
@@ -72366,7 +72213,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 40,
       "averageScore": 0
     },
-    "_searchString": "2583 مريم حمدي مصطفى 1157694703 115962897 عرب الشرقوه ث2 بكالوريا - طب"
+    "_searchString": "2583 مريم حمدي مصطفي 1157694703 115962897 عرب الشرقوه ث2 بكالوريا - طب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2585",
@@ -72425,7 +72272,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 40,
       "averageScore": 0
     },
-    "_searchString": "2585 يارا ربيع حسن 1125215898 1142209153 عرب الشرقوه ث2 بكالوريا - هندسة"
+    "_searchString": "2585 يارا ربيع حسن 1125215898 1142209153 عرب الشرقوه ث2 بكالوريا - هندسه انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2586",
@@ -72484,7 +72331,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 20,
       "averageScore": 0
     },
-    "_searchString": "2586 منة عيد سيد 1109778306 1116725429 عرب الشرقوة ث2 بكالوريا - هندسة"
+    "_searchString": "2586 منه عيد سيد 1109778306 1116725429 عرب الشرقوه ث2 بكالوريا - هندسه انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2587",
@@ -72578,7 +72425,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 50,
       "averageScore": 55
     },
-    "_searchString": "2587 شهد محمد صلاح 109523114985 1146705695 عرب الشرقوة ث2 بكالوريا - هندسة"
+    "_searchString": "2587 شهد محمد صلاح 109523114985 1146705695 عرب الشرقوه ث2 بكالوريا - هندسه انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1179",
@@ -72672,7 +72519,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1179 ملك اسماعيل مصطفى 1275474410 127547441 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1179 ملك اسماعيل مصطفي 1275474410 127547441 بلقس ث1 بكالوريا - هندسه فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1238",
@@ -72766,7 +72613,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1238 احمد خالد رمضان 1095634989 1092421891 بلقس ث1 بكالوريا - الاداب"
+    "_searchString": "1238 احمد خالد رمضان 1095634989 1092421891 بلقس ث1 بكالوريا - الاداب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1180",
@@ -72781,7 +72628,7 @@ window.STUDENTS_DATA = [
     "regDate": "2026-08-19 11:42",
     "academicSubjects": {
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -72804,6 +72651,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "",
             "",
             "",
@@ -72860,7 +72717,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1180 ريناد طارق 1018773537 1012129510 بلقس ث1 بكالوريا - الاداب"
+    "_searchString": "1180 ريناد طارق 1018773537 1012129510 بلقس ث1 بكالوريا - الاداب رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1181",
@@ -72954,7 +72811,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1181 شيماء محمد عطة 1097529829 1097529829 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1181 شيماء محمد عطه 1097529829 1097529829 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3705",
@@ -73013,7 +72870,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3705 شيماء محمد هارون 01125415614 01149353845 بلقس ث3 عام"
+    "_searchString": "3705 شيماء محمد هارون 01125415614 01149353845 بلقس ث3 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3704",
@@ -73072,7 +72929,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3704 شيماء راشد ابراهيم 01150115622 01115632954 بلقس ث3 عام"
+    "_searchString": "3704 شيماء راشد ابراهيم 01150115622 01115632954 بلقس ث3 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3722",
@@ -73131,7 +72988,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3722 محمود محمد رجب 1508082123 1061481694 كوم اشفين ث3 عام"
+    "_searchString": "3722 محمود محمد رجب 1508082123 1061481694 كوم اشفين ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3723",
@@ -73190,7 +73047,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3723 محمد سليمان 1211149987 1220051339 كوم اشفين ث3 عام"
+    "_searchString": "3723 محمد سليمان 1211149987 1220051339 كوم اشفين ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3724",
@@ -73249,7 +73106,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3724 محمد ياسر عيد 1121729560 1093644365 كوم اشفين ث3 عام"
+    "_searchString": "3724 محمد ياسر عيد 1121729560 1093644365 كوم اشفين ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "3725",
@@ -73308,7 +73165,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3725 رقية محمد سيد 1070141468 121169202 الزاويه ث3 عام"
+    "_searchString": "3725 رقيه محمد سيد 1070141468 121169202 الزاويه ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "2590",
@@ -73331,7 +73188,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2590 سيف محمد محمد 1090282860 1015383885 الزاوية ث2 بكالوريا - هندسة"
+    "_searchString": "2590 سيف محمد محمد 1090282860 1015383885 الزاويه ث2 بكالوريا - هندسه"
   },
   {
     "code": "2591",
@@ -73354,7 +73211,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2591 مي محمود محمد 1515413216 1006976619 الزاوية ث2 بكالوريا - طب"
+    "_searchString": "2591 مي محمود محمد 1515413216 1006976619 الزاويه ث2 بكالوريا - طب"
   },
   {
     "code": "2592",
@@ -73413,7 +73270,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2592 مودة سامح 01145192160 01118446050 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2592 موده سامح 01145192160 01118446050 بلقس ث2 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3759",
@@ -73472,7 +73329,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3759 سناء ناصر رمضان 1124707740 1153111484 بلقس ث3 عام"
+    "_searchString": "3759 سناء ناصر رمضان 1124707740 1153111484 بلقس ث3 عام احياء ا/ محمد نور"
   },
   {
     "code": "2594",
@@ -73531,7 +73388,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2594 مريم احمد محم�� 01023781564 01092711750 الزاوية ث2 بكالوريا - الاداب"
+    "_searchString": "2594 مريم احمد محمد 01023781564 01092711750 الزاويه ث2 بكالوريا - الاداب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2595",
@@ -73554,7 +73411,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2595 هنا محمد علي 1225449858 1026329100 الزاوية ث2 بكالوريا - الاداب"
+    "_searchString": "2595 هنا محمد علي 1225449858 1026329100 الزاويه ث2 بكالوريا - الاداب"
   },
   {
     "code": "3728",
@@ -73604,7 +73461,7 @@ window.STUDENTS_DATA = [
         }
       },
       "عربي": {
-        "teacher": "ا/ احمد عبد القادر  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ احمد عبد القادر",
         "sessions": [
           "✓",
           "",
@@ -73635,6 +73492,16 @@ window.STUDENTS_DATA = [
             "",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       }
@@ -73648,7 +73515,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3728 اينور ابراهيم عمر 1271002466 1155231343 بهتيم ث3 عام"
+    "_searchString": "3728 اينور ابراهيم عمر 1271002466 1155231343 بهتيم ث3 عام انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3729",
@@ -73663,7 +73530,7 @@ window.STUDENTS_DATA = [
     "regDate": "2026-08-19 12:20",
     "academicSubjects": {
       "انجليزي": {
-        "teacher": "ا/ حماده يوسف  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ حماده يوسف",
         "sessions": [
           "✓",
           "",
@@ -73694,6 +73561,16 @@ window.STUDENTS_DATA = [
             "",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       }
@@ -73707,7 +73584,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3729 ليان امين امين 1142174486 1142174486 الحزانية ث3 عام"
+    "_searchString": "3729 ليان امين امين 1142174486 1142174486 الحزانيه ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3730",
@@ -73766,7 +73643,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3730 ريتاج محمد محمود 01121419802 01140223740 بلقس ث3 عام"
+    "_searchString": "3730 ريتاج محمد محمود 01121419802 01140223740 بلقس ث3 عام انجليزي ا/ محمد صبحي"
   },
   {
     "code": "3732",
@@ -73825,7 +73702,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3732 عواد وائل عواد 1281130157 1021693024 سرياقوس ث3 عام"
+    "_searchString": "3732 عواد وايل عواد 1281130157 1021693024 سرياقوس ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3731",
@@ -73840,7 +73717,7 @@ window.STUDENTS_DATA = [
     "regDate": "2026-08-19 12:26",
     "academicSubjects": {
       "عربي": {
-        "teacher": "ا/ احمد عبد القادر  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ احمد عبد القادر",
         "sessions": [
           "✓",
           "",
@@ -73871,6 +73748,16 @@ window.STUDENTS_DATA = [
             "",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       }
@@ -73884,7 +73771,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3731 ايناس هشام 1131334690 1124375707 الصابونية ث3 عام"
+    "_searchString": "3731 ايناس هشام 1131334690 1124375707 الصابونيه ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3736",
@@ -73943,7 +73830,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3736 عبد الحميد تامر 01010914377 01028458478 عرب الشعارة ث3 عام"
+    "_searchString": "3736 عبد الحميد تامر 01010914377 01028458478 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3735",
@@ -74002,7 +73889,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3735 محمد احمد عبد العزيز 1023416476 1055288254 عرب الشعارة ث3 عام"
+    "_searchString": "3735 محمد احمد عبد العزيز 1023416476 1055288254 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3733",
@@ -74061,7 +73948,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3733 محمد تامر عبد النبي 0106081015 01150891891 عرب الشعارة ث3 عام"
+    "_searchString": "3733 محمد تامر عبد النبي 0106081015 01150891891 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3734",
@@ -74120,7 +74007,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3734 محمد علاء سالم 01208977125 01113466874 عرب الشرقوة ث3 عام"
+    "_searchString": "3734 محمد علاء سالم 01208977125 01113466874 عرب الشرقوه ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3737",
@@ -74170,7 +74057,7 @@ window.STUDENTS_DATA = [
         }
       },
       "انجليزي": {
-        "teacher": "ا/ حماده يوسف  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ حماده يوسف",
         "sessions": [
           "✓",
           "",
@@ -74201,6 +74088,16 @@ window.STUDENTS_DATA = [
             "",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       }
@@ -74214,7 +74111,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 57,
       "averageScore": 0
     },
-    "_searchString": "3737 فرحة تامر 1140764105 1152745731 الجعافره ث3 عام"
+    "_searchString": "3737 فرحه تامر 1140764105 1152745731 الجعافره ث3 عام تاريخ ا/ رضا صلاح انجليزي ا/ حماده يوسف"
   },
   {
     "code": "1191",
@@ -74224,47 +74121,12 @@ window.STUDENTS_DATA = [
     "parentPhone": "",
     "grade": "ث1",
     "specialization": "عام",
-    "subjectsSummary": "��ربي",
+    "subjectsSummary": "عربي",
     "teachersSummary": "عربي/ا/ احمد عبد القادر",
     "regDate": "2026-08-19 12:40",
     "academicSubjects": {
       "عربي": {
         "teacher": "ا/ احمد عبد القادر",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      },
-      "��ربي": {
-        "teacher": "مدرس المادة",
         "sessions": [
           "",
           "",
@@ -74308,7 +74170,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1191 جنى سالم عبد الكريم 1281976942  بلقس ث1 عام"
+    "_searchString": "1191 جني سالم عبد الكريم 1281976942 بلقس ث1 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3760",
@@ -74367,7 +74229,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3760 محمد فرج ياسر 0120638364 01272195594 بلقس ث3 عام"
+    "_searchString": "3760 محمد فرج ياسر 0120638364 01272195594 بلقس ث3 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1194",
@@ -74461,7 +74323,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1194 انس تامر 1226877177 1031546281 بلقس ث1 عام"
+    "_searchString": "1194 انس تامر 1226877177 1031546281 بلقس ث1 عام رياضه ا/ ناصر سعد عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1192",
@@ -74555,7 +74417,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1192 سيف الالفي 1094648575 1112107019 بلقس ث1 عام"
+    "_searchString": "1192 سيف الالفي 1094648575 1112107019 بلقس ث1 عام رياضه ا/ ناصر سعد عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1195",
@@ -74649,7 +74511,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1195 محمد طه عبد الحميد 12014507138 1202588833 بلقس ث1 عام"
+    "_searchString": "1195 محمد طه عبد الحميد 12014507138 1202588833 بلقس ث1 عام عربي ا/ احمد عبد القادر رياضه ا/ ناصر سعد"
   },
   {
     "code": "1196",
@@ -74778,7 +74640,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1196 عمر طه مجدي 1203490027 1274808843 شبرا الخيمه ث1 عام"
+    "_searchString": "1196 عمر طه مجدي 1203490027 1274808843 شبرا الخيمه ث1 عام رياضه ا/ ناصر سعد فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1200",
@@ -74872,7 +74734,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1200 بسمله احمد اسماعيل 1107394562 1116305644 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1200 بسمله احمد اسماعيل 1107394562 1116305644 بلقس ث1 بكالوريا - هندسه علوم علي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1199",
@@ -74966,7 +74828,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "1199 مريم محمد عبدالله نجم 1556607839 1100245902 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1199 مريم محمد عبدالله نجم 1556607839 1100245902 بلقس ث1 بكالوريا - هندسه رياضه ا/ ناصر سعد عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1198",
@@ -75025,7 +74887,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1198 جانا صلاح سالم خضير 1500214911 1550004465 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1198 جانا صلاح سالم خضير 1500214911 1550004465 بلقس ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1197",
@@ -75119,7 +74981,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1197 ياسين سليمان عبد العزيز 1273174117 1206064042 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1197 ياسين سليمان عبد العزيز 1273174117 1206064042 بلقس ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر رياضه ا/ ناصر سعد"
   },
   {
     "code": "1201",
@@ -75213,7 +75075,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1201 أيات السيد صبحي 1229758366 1226145467 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1201 ايات السيد صبحي 1229758366 1226145467 بلقس ث1 بكالوريا - طب علوم علي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1203",
@@ -75272,7 +75134,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1203 رويدا محمد احمد 1202022080 1125604582 السلمانيه ث1 أزهر"
+    "_searchString": "1203 رويدا محمد احمد 1202022080 1125604582 السلمانيه ث1 ازهر علوم علي"
   },
   {
     "code": "1202",
@@ -75366,7 +75228,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 0
     },
-    "_searchString": "1202 خلود محمد 1068427937  عرب عبس ث1 بكالوريا - هندسة"
+    "_searchString": "1202 خلود محمد 1068427937 عرب عبس ث1 بكالوريا - هندسه رياضه ا/ ناصر سعد عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1204",
@@ -75460,7 +75322,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 40,
       "averageScore": 0
     },
-    "_searchString": "1204 دعاء محمود عيد 1000197918 1050844776 زاويه النجار ث1 بكالوريا - طب"
+    "_searchString": "1204 دعاء محمود عيد 1000197918 1050844776 زاويه النجار ث1 بكالوريا - طب رياضه ا/ ناصر سعد عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1206",
@@ -75554,7 +75416,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1206 عبير احمد عطية 1018929771  السلمانية ث1 بكالوريا - طب"
+    "_searchString": "1206 عبير احمد عطيه 1018929771 السلمانيه ث1 بكالوريا - طب علوم علي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1205",
@@ -75565,11 +75427,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "علوم, عربي",
-    "teachersSummary": "علوم/محمد نور | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد نور | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-19 13:11",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -75648,7 +75510,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1205 نيداء ابراهيم 1018929771 1069599011 السلمانية ث1 بكالوريا - طب"
+    "_searchString": "1205 نيداء ابراهيم 1018929771 1069599011 السلمانيه ث1 بكالوريا - طب علوم ا/ محمد نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1212",
@@ -75742,7 +75604,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 0
     },
-    "_searchString": "1212 جويرية بهاء 1144726812 1014014883 بلقس ث1 عام"
+    "_searchString": "1212 جويريه بهاء 1144726812 1014014883 بلقس ث1 عام رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1213",
@@ -75836,7 +75698,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 100
     },
-    "_searchString": "1213 محمد صابر 1101791430 1112849334 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1213 محمد صابر 1101791430 1112849334 بلقس ث1 بكالوريا - طب رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1214",
@@ -75851,7 +75713,7 @@ window.STUDENTS_DATA = [
     "regDate": "2026-08-19 13:17",
     "academicSubjects": {
       "عربي": {
-        "teacher": "ا/ احمد عبد القادر  [شهر 10 (أكتوبر): غ, _, _, _, _, _, _, _]",
+        "teacher": "ا/ احمد عبد القادر",
         "sessions": [
           "غ",
           "",
@@ -75874,6 +75736,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "غ",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "غ",
             "",
             "",
@@ -75930,7 +75802,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 0,
       "averageScore": 0
     },
-    "_searchString": "1214 عبد الرحمن محمود شعبان 1008947664 1223503212 زاويه النجار ث1 بكالوريا - هندسة"
+    "_searchString": "1214 عبد الرحمن محمود شعبان 1008947664 1223503212 زاويه النجار ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1215",
@@ -76024,7 +75896,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 30
     },
-    "_searchString": "1215 محمد محمود محمد 1146591849 1220806940 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1215 محمد محمود محمد 1146591849 1220806940 بلقس ث1 بكالوريا - هندسه رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1216",
@@ -76118,7 +75990,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1216 عبد الرحمن محمد صالح 1006586411 10209614351 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1216 عبد الرحمن محمد صالح 1006586411 10209614351 بلقس ث1 بكالوريا - هندسه رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1217",
@@ -76212,7 +76084,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1217 محمد احمد شعبان 1125784829 1042272319 بلقس ث1 بكالوريا - الاداب"
+    "_searchString": "1217 محمد احمد شعبان 1125784829 1042272319 بلقس ث1 بكالوريا - الاداب رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1218",
@@ -76306,7 +76178,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1218 يوسف عبد النبي محمد 1020961439 1006586411 زاويه ث1 بكالوريا - طب"
+    "_searchString": "1218 يوسف عبد النبي محمد 1020961439 1006586411 زاويه ث1 بكالوريا - طب عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1219",
@@ -76400,7 +76272,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 0
     },
-    "_searchString": "1219 عبد الرحمن شريف 1155867174 1226316136 بلقس ث1 بكالوريا - الاعمال"
+    "_searchString": "1219 عبد الرحمن شريف 1155867174 1226316136 بلقس ث1 بكالوريا - الاعمال رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1220",
@@ -76529,7 +76401,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1220 ريتال عاطف صابر علي 1277020788 1285695265 بلقس ث1 أزه��"
+    "_searchString": "1220 ريتال عاطف صابر علي 1277020788 1285695265 بلقس ث1 ازهر رياضه ا/ مصطفي صابر انجليزي ا/ حماده يوسف فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1225",
@@ -76588,7 +76460,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1225 محمد مجدي 111568709  بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1225 محمد مجدي 111568709 بلقس ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2596",
@@ -76682,7 +76554,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 0
     },
-    "_searchString": "2596 بسمله محمود مجدي 1044913233 1006076730 بلقس ث2 بكالوريا - الاداب"
+    "_searchString": "2596 بسمله محمود مجدي 1044913233 1006076730 بلقس ث2 بكالوريا - الاداب تاريخ ا/ رضا صلاح جغرافيا ا/ رضا صلاح"
   },
   {
     "code": "1547",
@@ -76693,11 +76565,11 @@ window.STUDENTS_DATA = [
     "grade": "ث2",
     "specialization": "بكالوريا - الاداب",
     "subjectsSummary": "علم نفس, رياضة",
-    "teachersSummary": "علم نفس/الليثي | رياضة/ا/ مصطفي صابر",
+    "teachersSummary": "علم نفس/ا/ احمد الليثي | رياضة/ا/ مصطفي صابر",
     "regDate": "2026-08-19 13:35",
     "academicSubjects": {
       "علم نفس": {
-        "teacher": "الليثي",
+        "teacher": "ا/ احمد الليثي",
         "sessions": [
           "",
           "",
@@ -76776,7 +76648,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1547 محمد عصام محمد 1097198714  بلقس ث2 بكالوريا - الاداب"
+    "_searchString": "1547 محمد عصام محمد 1097198714 بلقس ث2 بكالوريا - الاداب علم نفس ا/ احمد الليثي رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2548",
@@ -76835,7 +76707,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2548 بسنت نبيل سعيد 1273708884 1201101378 بلقس ث2 بكالوريا - الاداب"
+    "_searchString": "2548 بسنت نبيل سعيد 1273708884 1201101378 بلقس ث2 بكالوريا - الاداب تاريخ ا/ رضا صلاح"
   },
   {
     "code": "1224",
@@ -76894,7 +76766,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1224 علي عارف محمود 1140067217 1054511570 كوم اشفين ث1 بكالوريا - طب"
+    "_searchString": "1224 علي عارف محمود 1140067217 1054511570 كوم اشفين ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1239",
@@ -76988,7 +76860,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1239 محمود عبد النبي عبد المنصف 1204485499 1227786175 كوم اشفين ث1 بكالوريا - هندسة"
+    "_searchString": "1239 محمود عبد النبي عبد المنصف 1204485499 1227786175 كوم اشفين ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1226",
@@ -77047,7 +76919,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1226 رقيه هاني شعبان 1124958609 11249334595 كوم اشفين ث1 بكالوريا - هندسة"
+    "_searchString": "1226 رقيه هاني شعبان 1124958609 11249334595 كوم اشفين ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1240",
@@ -77106,7 +76978,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1240 مريم وليد شعبان 11144297860  زاويه النجار ث1 بكالوريا - هندسة"
+    "_searchString": "1240 مريم وليد شعبان 11144297860 زاويه النجار ث1 بكالوريا - هندسه عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "1241",
@@ -77165,7 +77037,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1241 اسماء احمد محمد 1149004974 1127678173 السلمانيه ث1 بكالوريا - هندسة"
+    "_searchString": "1241 اسماء احمد محمد 1149004974 1127678173 السلمانيه ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1242",
@@ -77259,7 +77131,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1242 محمد فايز فهمي 1225158188 1225543564 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1242 محمد فايز فهمي 1225158188 1225543564 بلقس ث1 بكالوريا - هندسه فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1227",
@@ -77353,7 +77225,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1227 شروق ابراهيم السيد 1226503049  كوم اشفين ث1 بكالوريا - هندسة"
+    "_searchString": "1227 شروق ابراهيم السيد 1226503049 كوم اشفين ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر رياضه ا/ ناصر سعد"
   },
   {
     "code": "1230",
@@ -77412,7 +77284,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1230 سلمي ايمن 1000418996  الزويه ث1 بكالوريا - هندسة"
+    "_searchString": "1230 سلمي ايمن 1000418996 الزويه ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1229",
@@ -77506,7 +77378,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1229 محمد فكري معروف 1021466133  السلمانيه ث1 بكالوريا - طب"
+    "_searchString": "1229 محمد فكري معروف 1021466133 السلمانيه ث1 بكالوريا - طب عربي ا/ احمد عبد القادر فلسفه ا/ ساره مجدي"
   },
   {
     "code": "1231",
@@ -77565,7 +77437,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1231 شيماء محمد صبحي 1505662683  الزاويه ث1 بكالوريا - طب"
+    "_searchString": "1231 شيماء محمد صبحي 1505662683 الزاويه ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1232",
@@ -77624,7 +77496,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1232 صابر ابراهيم قاسم علي 1276701005  السلمانيه ث1 بكالوريا - هندسة"
+    "_searchString": "1232 صابر ابراهيم قاسم علي 1276701005 السلمانيه ث1 بكالوريا - هندسه عربي ا/ سيد عبد العاطي"
   },
   {
     "code": "1233",
@@ -77718,7 +77590,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 90
     },
-    "_searchString": "1233 ريناد خالد ابو العلا 1229189146 1147328890 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1233 ريناد خالد ابو العلا 1229189146 1147328890 بلقس ث1 بكالوريا - طب عربي ا/ احمد عبد القادر فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1234",
@@ -77847,7 +77719,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1234 احمد شعبان سعيد 1110094232  بلقس ث1 بكالوريا - طب"
+    "_searchString": "1234 احمد شعبان سعيد 1110094232 بلقس ث1 بكالوريا - طب برمجه م/ محمد ابراهيم فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1237",
@@ -77941,7 +77813,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 71,
       "averageScore": 0
     },
-    "_searchString": "1237 رحمه حسن فرج 1281465502  بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1237 رحمه حسن فرج 1281465502 بلقس ث1 بكالوريا - هندسه رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1235",
@@ -78070,7 +77942,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1235 آدم ياسر سالم 1223015323  بلقس ث1 بكالوريا - طب"
+    "_searchString": "1235 ادم ياسر سالم 1223015323 بلقس ث1 بكالوريا - طب علوم ا/ علي نور فرنساوي ا/ محمد رجب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1236",
@@ -78164,7 +78036,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1236 صالح محمود عرفه 1015609941 100444311 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1236 صالح محمود عرفه 1015609941 100444311 بلقس ث1 بكالوريا - طب علوم علي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2597",
@@ -78223,7 +78095,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 33,
       "averageScore": 0
     },
-    "_searchString": "2597 طارق احمد بدوي 1204581321 1203642960 . ث2 بكالوريا - طب"
+    "_searchString": "2597 طارق احمد بدوي 1204581321 1203642960 . ث2 بكالوريا - طب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3738",
@@ -78305,7 +78177,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 0
     },
-    "_searchString": "3762 رنا حماده حسن 154863410 966554055679 الزويه ث3 عام"
+    "_searchString": "3762 رنا حماده حسن 154863410 966554055679 الزويه ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "1243",
@@ -78364,7 +78236,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 40,
       "averageScore": 0
     },
-    "_searchString": "1243 منه عبدالله عادل 1210300276 1125731127 عرب الشعاره ث2 بكالوريا - الاداب"
+    "_searchString": "1243 منه عبدالله عادل 1210300276 1125731127 عرب الشعاره ث2 بكالوريا - الاداب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2598",
@@ -78423,7 +78295,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 0
     },
-    "_searchString": "2598 رضا محمود عبد النبي 1110546191  هرب الشعارة ث2 بكالوريا - طب"
+    "_searchString": "2598 رضا محمود عبد النبي 1110546191 هرب الشعاره ث2 بكالوريا - طب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2539",
@@ -78482,7 +78354,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 40,
       "averageScore": 0
     },
-    "_searchString": "2539 اسماء محمد عيد 115354861  عرب الشعاره ث2 بكالوريا - طب"
+    "_searchString": "2539 اسماء محمد عيد 115354861 عرب الشعاره ث2 بكالوريا - طب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "1244",
@@ -78576,7 +78448,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1244 مها عادل حسين 1202918208 1281955050 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1244 مها عادل حسين 1202918208 1281955050 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1245",
@@ -78670,7 +78542,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1245 ريناد وليد ابو الدهب 1069540084 1061001609 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1245 ريناد وليد ابو الدهب 1069540084 1061001609 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1209",
@@ -78799,7 +78671,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 0
     },
-    "_searchString": "1209 ايه حماده الالفي 1278179036 127818247 بلقس ث1 بكالوريا - الاداب"
+    "_searchString": "1209 ايه حماده الالفي 1278179036 127818247 بلقس ث1 بكالوريا - الاداب فلسفه ا/ احمد الليثي رياضه ا/ ناصر سعد عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1210",
@@ -78893,7 +78765,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1210 اسماء محمد حسن 1142487794  بلقس ث1 بكالوريا - طب"
+    "_searchString": "1210 اسماء محمد حسن 1142487794 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1211",
@@ -78987,7 +78859,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1211 وعد محمد احمد 1288198965  بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1211 وعد محمد احمد 1288198965 بلقس ث1 بكالوريا - هندسه فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3756",
@@ -79081,7 +78953,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 82,
       "averageScore": 0
     },
-    "_searchString": "3756 عبد الله جمعه سيد 1500939940 1143439318 بلقس ث3 عام"
+    "_searchString": "3756 عبد الله جمعه سيد 1500939940 1143439318 بلقس ث3 عام فزياء ا/ محمد مختار رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3758",
@@ -79140,7 +79012,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3758 بدر فرج زكي محمد 1114245660 1281013714 زويه ث3 عام"
+    "_searchString": "3758 بدر فرج زكي محمد 1114245660 1281013714 زويه ث3 عام فزياء ا/ محمد مختار"
   },
   {
     "code": "3780",
@@ -79199,7 +79071,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3780 شيماء محمود عرابي 1221867182 1028870740 زاويه النجار ث3 عام"
+    "_searchString": "3780 شيماء محمود عرابي 1221867182 1028870740 زاويه النجار ث3 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3785",
@@ -79258,7 +79130,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 29,
       "averageScore": 0
     },
-    "_searchString": "3785 ياسر سعد 1277530301 1224952424 بلقس ث3 عام"
+    "_searchString": "3785 ياسر سعد 1277530301 1224952424 بلقس ث3 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2546",
@@ -79352,7 +79224,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 86,
       "averageScore": 0
     },
-    "_searchString": "2546 نها السيد 1034405592 110207685 الزاويه ث2 أزهر"
+    "_searchString": "2546 نها السيد 1034405592 110207685 الزاويه ث2 ازهر رياضه ا/ مصطفي صابر فزياء ا/ محمد مختار"
   },
   {
     "code": "3788",
@@ -79411,7 +79283,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 100
     },
-    "_searchString": "3788 محمد صبري 1288231613 1224956304 بلقس ث3 عام"
+    "_searchString": "3788 محمد صبري 1288231613 1224956304 بلقس ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3787",
@@ -79422,7 +79294,7 @@ window.STUDENTS_DATA = [
     "grade": "ث3",
     "specialization": "عام",
     "subjectsSummary": "كيمياء, فرنساوي",
-    "teachersSummary": "كيمياء/ا/ محمد صلاح [حصص: ✓, ✓, ✓, 19/20, _, ✓, _, _] | فرنساوي/ا/ مح��د رجب",
+    "teachersSummary": "كيمياء/ا/ محمد صلاح [حصص: ✓, ✓, ✓, 19/20, _, ✓, _, _] | فرنساوي/ا/ محمد رجب",
     "regDate": "2026-08-20 09:33",
     "academicSubjects": {
       "كيمياء": {
@@ -79461,7 +79333,7 @@ window.STUDENTS_DATA = [
         }
       },
       "فرنساوي": {
-        "teacher": "ا/ مح��د رجب",
+        "teacher": "ا/ محمد رجب",
         "sessions": [
           "",
           "",
@@ -79505,7 +79377,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 95
     },
-    "_searchString": "3787 ادهم نزيه 1210501318 1284886155 بلقس ث3 عام"
+    "_searchString": "3787 ادهم نزيه 1210501318 1284886155 بلقس ث3 عام كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3786",
@@ -79634,7 +79506,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 95
     },
-    "_searchString": "3786 احمد نزيه 112096898 1284886155 بلقس ث3 عام"
+    "_searchString": "3786 احمد نزيه 112096898 1284886155 بلقس ث3 عام كيمياء ا/ محمد صلاح رياضه ا/ مصطفي صابر فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3789",
@@ -79693,7 +79565,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3789 مهاب محمد ربيع 01116916799 01131418755 السلمانيه ث3 عام"
+    "_searchString": "3789 مهاب محمد ربيع 01116916799 01131418755 السلمانيه ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1250",
@@ -79787,7 +79659,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1250 امنيه سيد عبدربابه 1055654264 1285606683 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1250 امنيه سيد عبدربابه 1055654264 1285606683 بلقس ث1 بكالوريا - طب رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1249",
@@ -79797,7 +79669,7 @@ window.STUDENTS_DATA = [
     "parentPhone": "1227677846",
     "grade": "ث1",
     "specialization": "بكالوريا - الاعمال",
-    "subjectsSummary": "رياضة, عرب��",
+    "subjectsSummary": "رياضة, عربي",
     "teachersSummary": "رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, ✓, 4/10, _, _, _] | عربي/ا/ احمد عبد القادر",
     "regDate": "2026-08-20 13:04",
     "academicSubjects": {
@@ -79870,41 +79742,6 @@ window.STUDENTS_DATA = [
             ""
           ]
         }
-      },
-      "عرب��": {
-        "teacher": "مدرس المادة",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
       }
     },
     "_metrics": {
@@ -79916,7 +79753,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 40
     },
-    "_searchString": "1249 حنين حسن علي 1210498090 1227677846 بلقس ث1 بكالوريا - الاعمال"
+    "_searchString": "1249 حنين حسن علي 1210498090 1227677846 بلقس ث1 بكالوريا - الاعمال رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1248",
@@ -80010,7 +79847,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1248 احمد شحاته محمد 1281043913 1099008225 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1248 احمد شحاته محمد 1281043913 1099008225 بلقس ث1 بكالوريا - طب رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1247",
@@ -80104,7 +79941,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1247 مصطفي اشرف مصطفي 1114245791 1065699659 بلقس ث1 بكالوريا - الاداب"
+    "_searchString": "1247 مصطفي اشرف مصطفي 1114245791 1065699659 بلقس ث1 بكالوريا - الاداب رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2600",
@@ -80163,7 +80000,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2600 جني ذكي كامل 123703030 1101553032 بلقس ث2 بكالوريا - الاداب"
+    "_searchString": "2600 جني ذكي كامل 123703030 1101553032 بلقس ث2 بكالوريا - الاداب تاريخ ا/ رضا صلاح"
   },
   {
     "code": "2599",
@@ -80222,7 +80059,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2599 جني هاني رضا 1210125297 1270713628 بلقس ث2 بكالوريا - الاعمال"
+    "_searchString": "2599 جني هاني رضا 1210125297 1270713628 بلقس ث2 بكالوريا - الاعمال تاريخ ا/ رضا صلاح"
   },
   {
     "code": "2601",
@@ -80281,7 +80118,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2601 ايات شعبان 01290017712 01285222913 بلقس ث2 عام"
+    "_searchString": "2601 ايات شعبان 01290017712 01285222913 بلقس ث2 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2603",
@@ -80340,7 +80177,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2603 محمد تامر 01064939718 01005364011 كوم السمن ث2 بكالوريا - طب"
+    "_searchString": "2603 محمد تامر 01064939718 01005364011 كوم السمن ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2602",
@@ -80399,7 +80236,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2602 مروان سعيد 01154876865 01142220970 كوم السمن ث2 بكالوريا - طب"
+    "_searchString": "2602 مروان سعيد 01154876865 01142220970 كوم السمن ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2608",
@@ -80458,7 +80295,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2608 فاطمه اشرف 01141835585 01112361150 الجعافره ث2 بكالوريا - طب"
+    "_searchString": "2608 فاطمه اشرف 01141835585 01112361150 الجعافره ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2607",
@@ -80517,7 +80354,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2607 روان امير 01004716369 01001173275 الجعافره ث2 بكالوريا - طب"
+    "_searchString": "2607 روان امير 01004716369 01001173275 الجعافره ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2606",
@@ -80576,7 +80413,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2606 حبيبه ايمن محمد 01272481799 01142286155 الجعافره ث2 بكالوريا - طب"
+    "_searchString": "2606 حبيبه ايمن محمد 01272481799 01142286155 الجعافره ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2604",
@@ -80635,7 +80472,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2604 جني احمد 01121132606 01110968091 الجعافره ث2 بكالوريا - طب"
+    "_searchString": "2604 جني احمد 01121132606 01110968091 الجعافره ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2605",
@@ -80694,7 +80531,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2605 حنين سيد 01152015804 01103054470 الجعافره ث2 بكالوريا - طب"
+    "_searchString": "2605 حنين سيد 01152015804 01103054470 الجعافره ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "1253",
@@ -80704,8 +80541,8 @@ window.STUDENTS_DATA = [
     "parentPhone": "1061470470",
     "grade": "ث1",
     "specialization": "بكالوريا - هندسة",
-    "subjectsSummary": "عربي, ب��مجة, فلسفة, علوم, تاريخ",
-    "teachersSummary": "عربي/ا/ احمد عبد القادر [حصص: ✓, ✓, ✓, ✓, ✓, ✓, _, _] | برمجة/م/ محمد ابراهيم | فلسفة/ا/ احمد الليثي | علوم/محمد نور | تاريخ/ا/ رضا صلاح",
+    "subjectsSummary": "عربي, برمجة, فلسفة, علوم, تاريخ",
+    "teachersSummary": "عربي/ا/ احمد عبد القادر [حصص: ✓, ✓, ✓, ✓, ✓, ✓, _, _] | برمجة/م/ محمد ابراهيم | فلسفة/ا/ احمد الليثي | علوم/ا/ محمد نور | تاريخ/ا/ رضا صلاح",
     "regDate": "2026-08-22 07:45",
     "academicSubjects": {
       "عربي": {
@@ -80814,7 +80651,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -80882,41 +80719,6 @@ window.STUDENTS_DATA = [
             ""
           ]
         }
-      },
-      "ب��مجة": {
-        "teacher": "مدرس المادة",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
       }
     },
     "_metrics": {
@@ -80928,7 +80730,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1253 دهب محمد عبد الحليم 1007905095 1061470470 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1253 دهب محمد عبد الحليم 1007905095 1061470470 بلقس ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر برمجه م/ محمد ابراهيم فلسفه ا/ احمد الليثي علوم ا/ محمد نور تاريخ ا/ رضا صلاح"
   },
   {
     "code": "1252",
@@ -80987,7 +80789,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1252 محمود حمدي اسماعيل 1119501009 1110399160 السلمانيه ث1 بكالوريا - الاداب"
+    "_searchString": "1252 محمود حمدي اسماعيل 1119501009 1110399160 السلمانيه ث1 بكالوريا - الاداب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1251",
@@ -81046,7 +80848,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 80
     },
-    "_searchString": "1251 عمر محمد شحته 1288786792 1034511570 كوم اشفين ث1 بكالوريا - الاداب"
+    "_searchString": "1251 عمر محمد شحته 1288786792 1034511570 كوم اشفين ث1 بكالوريا - الاداب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3790",
@@ -81105,7 +80907,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3790 اسماعيل اشرف احمد 1202959949 1205451571 بلقس ث3 عام"
+    "_searchString": "3790 اسماعيل اشرف احمد 1202959949 1205451571 بلقس ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3791",
@@ -81164,7 +80966,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3791 ادهم عتره ��بد الونيس 1068029443 1103437262 عرب عبس ث3 عام"
+    "_searchString": "3791 ادهم عتره ع��د الونيس 1068029443 1103437262 عرب عبس ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "،3793",
@@ -81187,7 +80989,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "،3793 هنا حسام شديد 1117253777 1006217133 الزاوية ث3 عام"
+    "_searchString": "،3793 هنا حسام شديد 1117253777 1006217133 الزاويه ث3 عام"
   },
   {
     "code": "1254",
@@ -81246,7 +81048,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1254 مصطفي اسلام سعد 1280348364 1229000712 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1254 مصطفي اسلام سعد 1280348364 1229000712 بلقس ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1255",
@@ -81340,7 +81142,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1255 مصطفي محمد عنتر 1277012225 1208199900 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1255 مصطفي محمد عنتر 1277012225 1208199900 بلقس ث1 بكالوريا - هندسه رياضه ا/ ناصر سعد عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1256",
@@ -81434,7 +81236,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 86,
       "averageScore": 0
     },
-    "_searchString": "1256 احمد سالم سيد 1277012225  بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1256 احمد سالم سيد 1277012225 بلقس ث1 بكالوريا - هندسه رياضه ا/ ناصر سعد عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2609",
@@ -81551,7 +81353,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2611 محمود عمرو جمال 01014214541 01004812902 الزويه ث2 بكالوريا - طب"
+    "_searchString": "2611 محمود عمرو جمال 01014214541 01004812902 الزويه ث2 بكالوريا - طب عربي ا/ احمد عبد القادر فزياء ا/ محمد الجوهري"
   },
   {
     "code": "1257",
@@ -81645,7 +81447,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1257 جني حسام محمد 1041193941  بلقس ث1 بكالوريا - طب"
+    "_searchString": "1257 جني حسام محمد 1041193941 بلقس ث1 بكالوريا - طب رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1258",
@@ -81739,7 +81541,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1258 ردينا خالد سعي�� 1275965161 1208637005 بلقي ث1 بكالوريا - طب"
+    "_searchString": "1258 ردينا خالد سعيد 1275965161 1208637005 بلقي ث1 بكالوريا - طب رياضه ا/ ناصر سعد عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1259",
@@ -81833,7 +81635,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1259 فاطمه فرج ميمي 1200931620 1068748731 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1259 فاطمه فرج ميمي 1200931620 1068748731 بلقس ث1 بكالوريا - طب رياضه ا/ ناصر سعد عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1260",
@@ -81927,7 +81729,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1260 نورهان محمد محمد 1203925015  بلقس ث1 بكالوريا - طب"
+    "_searchString": "1260 نورهان محمد محمد 1203925015 بلقس ث1 بكالوريا - طب رياضه ا/ ناصر سعد عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1261",
@@ -82021,7 +81823,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 83,
       "averageScore": 0
     },
-    "_searchString": "1261 رتاج ابرهيم ابو سريع 1276013450 1117340814 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1261 رتاج ابرهيم ابو سريع 1276013450 1117340814 بلقس ث1 بكالوريا - طب رياضه ا/ ناصر سعد عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1262",
@@ -82115,7 +81917,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1262 علي الدين محمد 1116531054  بلقس ث1 عام"
+    "_searchString": "1262 علي الدين محمد 1116531054 بلقس ث1 عام رياضه ا/ ناصر سعد عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3811",
@@ -82174,7 +81976,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3811 محمد بسام جمال 01154826460 01055289519 عرب الشعاره ث3 عام"
+    "_searchString": "3811 محمد بسام جمال 01154826460 01055289519 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3810",
@@ -82233,7 +82035,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3810 جمال عمرو جمال 01112078727 01130436865 عرب الشراقوه ث3 عام"
+    "_searchString": "3810 جمال عمرو جمال 01112078727 01130436865 عرب الشراقوه ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3806",
@@ -82292,7 +82094,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3806 سفيان فرج 01024980293 01125786389 عرب الشعاره ث3 عام"
+    "_searchString": "3806 سفيان فرج 01024980293 01125786389 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3809",
@@ -82397,7 +82199,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3798 عمر احمد كامل 01025178953 0104288160 الحزانيه ث3 عام"
+    "_searchString": "3798 عمر احمد كامل 01025178953 0104288160 الحزانيه ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3799",
@@ -82491,7 +82293,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 70
     },
-    "_searchString": "3799 سيف حماده 1033762744 1050725960 الصابونيه ث3 عام"
+    "_searchString": "3799 سيف حماده 1033762744 1050725960 الصابونيه ث3 عام انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3797",
@@ -82550,7 +82352,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3797 نورهاني امين 01017249057 01063129663 بلقس ث3 عام"
+    "_searchString": "3797 نورهاني امين 01017249057 01063129663 بلقس ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3801",
@@ -82609,7 +82411,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3801 ملك طارق 01125470089 01114258594 عرب الشعاره ث3 عام"
+    "_searchString": "3801 ملك طارق 01125470089 01114258594 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3795",
@@ -82668,7 +82470,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3795 جنه عادل 01125176560 01114784849 الجعافره ث3 عام"
+    "_searchString": "3795 جنه عادل 01125176560 01114784849 الجعافره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3794",
@@ -82727,7 +82529,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3794 جومانه عادل 01151914263 01114784849 الجعافره ث3 عام"
+    "_searchString": "3794 جومانه عادل 01151914263 01114784849 الجعافره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3802",
@@ -82742,7 +82544,7 @@ window.STUDENTS_DATA = [
     "regDate": "2026-08-23 07:40",
     "academicSubjects": {
       "انجليزي": {
-        "teacher": "ا/ حماده يوسف  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ حماده يوسف",
         "sessions": [
           "✓",
           "",
@@ -82773,6 +82575,16 @@ window.STUDENTS_DATA = [
             "",
             "",
             ""
+          ],
+          "شهر 10 (أكتوبر)": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       }
@@ -82786,7 +82598,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3802 شهد فكري 1156375773 1062069787 كوم السمن ث3 عام"
+    "_searchString": "3802 شهد فكري 1156375773 1062069787 كوم السمن ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3796",
@@ -82845,7 +82657,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3796 جنات محمد محمد 01554796498 01114322132 الجعافره ث3 عام"
+    "_searchString": "3796 جنات ��حمد محمد 01554796498 01114322132 الجعافره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3803",
@@ -82904,7 +82716,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3803 انس هشام 01131334690 01124375707 الصابونيه ث3 عام"
+    "_searchString": "3803 انس هشام 01131334690 01124375707 الصابونيه ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2619",
@@ -82963,7 +82775,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2619 عبدالرحمن زين العابدين 1125155289 1115988510 كوم السمن ث2 بكالوريا - طب"
+    "_searchString": "2619 عبدالرحمن زين العابدين 1125155289 1115988510 كوم السمن ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2620",
@@ -83057,7 +82869,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2620 محمد سالم محمد 1012544340 1124224534 الحزانيه ث2 بكالوريا - طب"
+    "_searchString": "2620 محمد سالم محمد 1012544340 1124224534 الحزانيه ث2 بكالوريا - طب انجليزي ا/ حماده يوسف فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2623",
@@ -83116,7 +82928,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 40,
       "averageScore": 0
     },
-    "_searchString": "2623 ميرنا محمود شحات 1022603928 1014251428 الكلفه ث2 عام"
+    "_searchString": "2623 ميرنا محمود شحات 1022603928 1014251428 الكلفه ث2 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2614",
@@ -83175,7 +82987,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2614 رقيه عبدالمنعم 1223549479 12235490652 السلمانيه ث2 بكالوريا - طب"
+    "_searchString": "2614 رقيه عبدالمنعم 1223549479 12235490652 السلمانيه ث2 بكالوريا - طب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2613",
@@ -83234,7 +83046,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2613 حمدي محمد احمد 01119141067 0104139795 العطاره ث2 بكالوريا - الاداب"
+    "_searchString": "2613 حمدي محمد احمد 01119141067 0104139795 العطاره ث2 بكالوريا - الاداب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2622",
@@ -83293,7 +83105,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2622 فاطمه طارق قاسم 1154590370 1154590370 الجعافره ث2 بكالوريا - الاداب"
+    "_searchString": "2622 فاطمه طارق قاسم 1154590370 1154590370 الجعافره ث2 بكالوريا - الاداب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2627",
@@ -83316,7 +83128,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2627 مريم محمد عبد الخالق قاسم 1156536475  عرب الشارقيه ث2 بكالوريا - طب"
+    "_searchString": "2627 مريم محمد عبد الخالق قاسم 1156536475 عرب الشارقيه ث2 بكالوريا - طب"
   },
   {
     "code": "2628",
@@ -83339,7 +83151,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2628 حازم محمود رزق 1102166049 1102815238 بلقس ث2 بكالوريا - هندسة"
+    "_searchString": "2628 حازم محمود رزق 1102166049 1102815238 بلقس ث2 بكالوريا - هندسه"
   },
   {
     "code": "2629",
@@ -83398,7 +83210,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 20,
       "averageScore": 0
     },
-    "_searchString": "2629 ابراهيم عماد ابراهيم 1108576307 1120238916 بلقس ث2 بكالوريا - الاعمال"
+    "_searchString": "2629 ابراهيم عماد ابراهيم 1108576307 1120238916 بلقس ث2 بكالوريا - الاعمال انجليزي ا/ حماده يوسف"
   },
   {
     "code": "1263",
@@ -83409,11 +83221,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - الاداب",
     "subjectsSummary": "علوم, عربي",
-    "teachersSummary": "علوم/محمد علام | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-23 14:55",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -83492,7 +83304,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1263 يوسف ناجح سيد 1281541768 . بلقس ث1 بكالوريا - الاداب"
+    "_searchString": "1263 يوسف ناجح سيد 1281541768 . بلقس ث1 بكالوريا - الاداب علوم ا/ محمد علام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1264",
@@ -83586,7 +83398,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 90
     },
-    "_searchString": "1264 سعيد محمود جميل 1214506697 1554879929 بلقس ث1 بكالوريا - الاداب"
+    "_searchString": "1264 سعيد محمود جميل 1214506697 1554879929 بلقس ث1 بكالوريا - الاداب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1265",
@@ -83680,7 +83492,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1265 عائشه فرج محمد 1031852082 1099531358 السلمانيه ث1 بكالوريا - الاداب"
+    "_searchString": "1265 عايشه فرج محمد 1031852082 1099531358 السلمانيه ث1 بكالوريا - الاداب انجليزي ا/ محمد صبحي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1266",
@@ -83774,7 +83586,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1266 زينب محمد مصطفى 1229954932 1028083178 السلمانيه ث1 بكالوريا - الاداب"
+    "_searchString": "1266 زينب محمد مصطفي 1229954932 1028083178 السلمانيه ث1 بكالوريا - الاداب انجليزي ا/ محمد صبحي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1267",
@@ -83868,7 +83680,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1267 يوسف حماده محمد ابراهيم 1286128866 . السلمانيه ث1 بكالوريا - طب"
+    "_searchString": "1267 يوسف حماده محمد ابراهيم 1286128866 . السلمانيه ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1268",
@@ -83962,7 +83774,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1268 سلمي محمد صبحي 1227117684 1116213397 بلقس ث1 بكالوريا - الاعمال"
+    "_searchString": "1268 سلمي محمد صبحي 1227117684 1116213397 بلقس ث1 بكالوريا - الاعمال فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1269",
@@ -84056,7 +83868,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1269 جنه عماد عيد 1205471205 1122071640 بلقس ث1 عام"
+    "_searchString": "1269 جنه عماد عيد 1205471205 1122071640 بلقس ث1 عام رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3812",
@@ -84150,7 +83962,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3812 ملك رمضان مجدي 01225703116 01515940221 بلقس ث3 عام"
+    "_searchString": "3812 ملك رمضان مجدي 01225703116 01515940221 بلقس ث3 عام رياضه ا/ مصطفي صابر تاريخ ا/ رضا صلاح"
   },
   {
     "code": "1270",
@@ -84244,7 +84056,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 83,
       "averageScore": 40
     },
-    "_searchString": "1270 مجدي محمد 1115688709 1041231682 بلقس ث1 عام"
+    "_searchString": "1270 مجدي محمد 1115688709 1041231682 بلقس ث1 عام رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1271",
@@ -84259,7 +84071,7 @@ window.STUDENTS_DATA = [
     "regDate": "2026-08-24 12:22",
     "academicSubjects": {
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, ✓, _, _]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -84282,6 +84094,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "",
             "",
             "",
@@ -84338,7 +84160,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1271 منه اشرف احمد 1200346428 1200346428 بلقس ث1 عام"
+    "_searchString": "1271 منه اشرف احمد 1200346428 1200346428 بلقس ث1 عام رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2631",
@@ -84397,7 +84219,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2631 عبدالله وائل 01157037021 01110877596 بلقس ث2 أزهر"
+    "_searchString": "2631 عبدالله وايل 01157037021 01110877596 بلقس ث2 ازهر فزياء ا/ محمد مختار"
   },
   {
     "code": "2632",
@@ -84456,7 +84278,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2632 عمرو تامر سعيد 01145641233 01118962795 بلقس ث2 أزهر"
+    "_searchString": "2632 عمرو تامر سعيد 01145641233 01118962795 بلقس ث2 ازهر فزياء ا/ محمد مختار"
   },
   {
     "code": "2630",
@@ -84515,7 +84337,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2630 يوسف احمد محمد 01108296029 01281853255 بلقس ث2 أزهر"
+    "_searchString": "2630 يوسف احمد محمد 01108296029 01281853255 بلقس ث2 ازهر فزياء ا/ محمد مختار"
   },
   {
     "code": "3813",
@@ -84574,7 +84396,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 83.3
     },
-    "_searchString": "3813 مريم محمد فايق 1096118438 1277265397 بلقس ث3 عام"
+    "_searchString": "3813 مريم محمد فايق 1096118438 1277265397 بلقس ث3 عام احياء ا/ محمد علام"
   },
   {
     "code": "3814",
@@ -84633,7 +84455,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 80
     },
-    "_searchString": "3814 رحمه عربي رجب 1025601759 1011119225 زاويه النجار ث3 عام"
+    "_searchString": "3814 رحمه عربي رجب 1025601759 1011119225 زاويه النجار ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3815",
@@ -84692,7 +84514,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 70
     },
-    "_searchString": "3815 هناء محمد 1034067138 1030230860 زاويه النجار ث3 عام"
+    "_searchString": "3815 هناء محمد 1034067138 1030230860 زاويه النجار ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3816",
@@ -84774,7 +84596,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 71,
       "averageScore": 0
     },
-    "_searchString": "3817 محمد سيد محمد 1274191185 1121070657 عرب عبس ث3 أزهر"
+    "_searchString": "3817 محمد سيد محمد 1274191185 1121070657 عرب عبس ث3 ازهر احياء ا/ محمد نور"
   },
   {
     "code": "2633",
@@ -84833,7 +84655,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2633 مصطفي محمد عفيفي 012045052947 01025823690 زاويه النجار ث2 عام"
+    "_searchString": "2633 مصطفي محمد عفيفي 012045052947 01025823690 زاويه النجار ث2 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3818",
@@ -84892,7 +84714,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 86,
       "averageScore": 0
     },
-    "_searchString": "3818 ابراهيم حسن محمد 1007546092 1091189220 عزبه الزايات ث3 أزهر"
+    "_searchString": "3818 ابراهيم حسن محمد 1007546092 1091189220 عزبه الزايات ث3 ازهر احياء ا/ محمد نور"
   },
   {
     "code": "3821",
@@ -84997,7 +84819,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3819 زياد عربي محمد 1287842197 1055748144 بلقس ث3 عام"
+    "_searchString": "3819 زياد عربي محمد 1287842197 1055748144 بلقس ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "2634",
@@ -85056,7 +84878,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 80.4
     },
-    "_searchString": "2634 امل امير علي 1281097795 1155236241 زاويه النجار ث2 بكالوريا - طب"
+    "_searchString": "2634 امل امير علي 1281097795 1155236241 زاويه النجار ث2 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1272",
@@ -85115,7 +84937,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1272 رحمه ايهاب 1127453020  بلقس ث1 بكالوريا - طب"
+    "_searchString": "1272 رحمه ايهاب 1127453020 بلقس ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1273",
@@ -85174,7 +84996,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 90
     },
-    "_searchString": "1273 محمد صالح عليوه 1550244014 1144110511 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1273 محمد صالح عليوه 1550244014 1144110511 بلقس ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1274",
@@ -85233,7 +85055,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 0
     },
-    "_searchString": "1274 منصور محمد 1015383296 1007710542 عرب عبس ث1 بكالوريا - هندسة"
+    "_searchString": "1274 منصور محمد 1015383296 1007710542 عرب عبس ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1275",
@@ -85244,11 +85066,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "فلسفة, علوم, عربي",
-    "teachersSummary": "فلسفة/أ.احمد الليثي | علوم/أ.علي نور | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "فلسفة/ا/ احمد الليثي | علوم/ا/ علي نور | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-25 13:10",
     "academicSubjects": {
       "فلسفة": {
-        "teacher": "أ.احمد الليثي",
+        "teacher": "ا/ احمد الليثي",
         "sessions": [
           "",
           "",
@@ -85283,7 +85105,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "أ.علي نور",
+        "teacher": "ا/ علي نور",
         "sessions": [
           "",
           "",
@@ -85362,7 +85184,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1275 شروق عادل 1222310671  بلقس ث1 بكالوريا - طب"
+    "_searchString": "1275 شروق عادل 1222310671 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي علوم ا/ علي نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1276",
@@ -85373,11 +85195,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "علوم, فلسفة",
-    "teachersSummary": "علوم/علي نور [حصص: _, _, ✓, _, _, _, _, _] | فلسفة/ا/ احمد الليثي [حصص: غ, ✓, ✓, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ علي نور [حصص: _, _, ✓, _, _, _, _, _] | فلسفة/ا/ احمد الليثي [حصص: غ, ✓, ✓, _, _, _, _, _]",
     "regDate": "2026-08-25 13:11",
     "academicSubjects": {
       "علوم": {
-        "teacher": "علي نور",
+        "teacher": "ا/ علي نور",
         "sessions": [
           "",
           "",
@@ -85456,7 +85278,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "1276 سلمي ماهر 1229623916  بلقس ث1 بكالوريا - طب"
+    "_searchString": "1276 سلمي ماهر 1229623916 بلقس ث1 بكالوريا - طب علوم ا/ علي نور فلسفه ا/ احمد الليثي"
   },
   {
     "code": "1277",
@@ -85467,11 +85289,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "أزهر",
     "subjectsSummary": "علوم, عربي",
-    "teachersSummary": "علوم/محمد علام | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, ✓, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, ✓, _, _, _]",
     "regDate": "2026-08-25 13:13",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -85550,7 +85372,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1277 جني وليد 1044506858 1271756053 بلقس ث1 أزهر"
+    "_searchString": "1277 جني وليد 1044506858 1271756053 بلقس ث1 ازهر علوم ا/ محمد علام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1279",
@@ -85561,11 +85383,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "أزهر",
     "subjectsSummary": "علوم",
-    "teachersSummary": "علوم/محمد علام",
+    "teachersSummary": "علوم/ا/ محمد علام",
     "regDate": "2026-08-25 13:14",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -85609,7 +85431,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1279 هيام هاشم 1223750794  بلقس ث1 أزهر"
+    "_searchString": "1279 هيام هاشم 1223750794 بلقس ث1 ازهر علوم ا/ محمد علام"
   },
   {
     "code": "2641",
@@ -85632,7 +85454,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2641 هيا اشرف محمد 1229621381 1229665623 بلقس ث2 بكالوريا - هندسة"
+    "_searchString": "2641 هيا اشرف محمد 1229621381 1229665623 بلقس ث2 بكالوريا - هندسه"
   },
   {
     "code": "2640",
@@ -85655,7 +85477,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2640 سلمي سليمان 1229324141 1226652303 بلقس ث2 بكالوريا - هندسة"
+    "_searchString": "2640 سلمي سليمان 1229324141 1226652303 بلقس ث2 بكالوريا - هندسه"
   },
   {
     "code": "2637",
@@ -85714,7 +85536,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2637 محمد سيد سليمان 01062068445 01094721445 كوم السمن ث2 بكالوريا - طب"
+    "_searchString": "2637 محمد سيد سليمان 01062068445 01094721445 كوم السمن ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2635",
@@ -85773,7 +85595,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2635 سعيد را��ب سعيد 1284665356 01289898328 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2635 سعيد راغ�� سعيد 1284665356 01289898328 بلقس ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3825",
@@ -85832,7 +85654,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3825 حبيبه هاني عيد 01126935211 01145601569 عرب الشراقوه ث3 عام"
+    "_searchString": "3825 حبيبه هاني عيد 01126935211 01145601569 عرب الشراقوه ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3826",
@@ -85891,7 +85713,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3826 جنات احمد عيد 01018853253 01119437719 عرب الشراقوه ث3 عام"
+    "_searchString": "3826 جنات احمد عيد 01018853253 01119437719 عرب الشراقوه ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3824",
@@ -85950,7 +85772,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3824 منه شحاته عبد العال 1018804067 1024472827 عرب الشعاره ث3 عام"
+    "_searchString": "3824 منه شحاته عبد العال 1018804067 1024472827 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2642",
@@ -86009,7 +85831,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 20,
       "averageScore": 0
     },
-    "_searchString": "2642 ايمان صلاح سالم 1559124768 1559124768 عرب الشراقوه ث2 بكالوريا - هندسة"
+    "_searchString": "2642 ايمان صلاح سالم 1559124768 1559124768 عرب الشراقوه ث2 بكالوريا - هندسه انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3827",
@@ -86032,7 +85854,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3827 احمد محمد فتحي 1145472602 1119560345 الجعافرخ ث3 أزهر"
+    "_searchString": "3827 احمد محمد فتحي 1145472602 1119560345 الجعافرخ ث3 ازهر"
   },
   {
     "code": "1280",
@@ -86126,7 +85948,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1280 فاطمه الزهراء 1149066449 1023860175 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1280 فاطمه الزهراء 1149066449 1023860175 بلقس ث1 بكالوريا - طب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1281",
@@ -86220,7 +86042,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1281 اسماء رفاعي صابر 1276016001 1276016001 بلقس ث1 بكالوريا - الاداب"
+    "_searchString": "1281 اسماء رفاعي صابر 1276016001 1276016001 بلقس ث1 بكالوريا - الاداب فلسفه ا/ احمد الليثي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2643",
@@ -86231,11 +86053,11 @@ window.STUDENTS_DATA = [
     "grade": "ث2",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "تاريخ",
-    "teachersSummary": "تاريخ/ا/ رضا ص��اح [حصص: ✓, _, _, _, _, _, _, _]",
+    "teachersSummary": "تاريخ/ا/ رضا صلاح [حصص: ✓, _, _, _, _, _, _, _]",
     "regDate": "2026-08-27 14:01",
     "academicSubjects": {
       "تاريخ": {
-        "teacher": "ا/ رضا ص��اح",
+        "teacher": "ا/ رضا صلاح",
         "sessions": [
           "✓",
           "",
@@ -86279,7 +86101,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2643 جني فريد ابرهيم 1055450394 1055428049 قليوب ث2 بكالوريا - طب"
+    "_searchString": "2643 جني فريد ابرهيم 1055450394 1055428049 قليوب ث2 بكالوريا - طب تاريخ ا/ رضا صلاح"
   },
   {
     "code": "2563",
@@ -86338,7 +86160,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2563 مريم علاء علي 01229606359 01204787928 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2563 مريم علاء علي 01229606359 01204787928 بلقس ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "2644",
@@ -86397,7 +86219,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2644 محمد سعيد عبد الحليم 01103176277 01103126278 الجعافره ث2 بكالوريا - هندسة"
+    "_searchString": "2644 محمد سعيد عبد الحليم 01103176277 01103126278 الجعافره ث2 بكالوريا - هندسه برمجه م/ محمد ابراهيم"
   },
   {
     "code": "2645",
@@ -86456,7 +86278,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2645 سلمي محمود النوبي 1277391066 1151073420 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2645 سلمي محمود النوبي 1277391066 1151073420 بلقس ث2 بكالوريا - طب فزياء ا/ محمد الجوهري"
   },
   {
     "code": "1282",
@@ -86467,11 +86289,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "بكالوريا - طب",
     "subjectsSummary": "علوم, عربي",
-    "teachersSummary": "علوم/محمد علام | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "علوم/ا/ محمد علام | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-08-28 14:32",
     "academicSubjects": {
       "علوم": {
-        "teacher": "محمد علام",
+        "teacher": "ا/ محمد علام",
         "sessions": [
           "",
           "",
@@ -86550,7 +86372,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1282 مريم محمود عبدالمنعم 1026446905 1107393978 السلمانيه ث1 بكالوريا - طب"
+    "_searchString": "1282 مريم محمود عبدالمنعم 1026446905 1107393978 السلمانيه ث1 بكالوريا - طب علوم ا/ محمد علام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1285",
@@ -86609,7 +86431,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1285 بسمله محمد جمال 1026276429 1026276429 بلقس ث1 بكالوريا - هندسة"
+    "_searchString": "1285 بسمله محمد جمال 1026276429 1026276429 بلقس ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1284",
@@ -86668,7 +86490,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1284 عمر محمد احمد 1225531536 1014935355 كوم اشفين ث1 بكالوريا - هندسة"
+    "_searchString": "1284 عمر محمد احمد 1225531536 1014935355 كوم اشفين ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1283",
@@ -86727,7 +86549,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1283 ملك احمد حنفي 1206411215 1289111215 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1283 ملك احمد حنفي 1206411215 1289111215 بلقس ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3829",
@@ -86856,7 +86678,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 60
     },
-    "_searchString": "3829 حنين محمد ��عيد 1150019571 1118284848 الزاويه ث3 عام"
+    "_searchString": "3829 حنين محمد ��عيد 1150019571 1118284848 الزاويه ث3 عام عربي ا/ احمد عبد القادر احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2646",
@@ -86915,7 +86737,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2646 محمود اشرف محمد 01116318617 01099960205 الزاويه ث2 بكالوريا - الاداب"
+    "_searchString": "2646 محمود اشرف محمد 01116318617 01099960205 الزاويه ث2 بكالوريا - الاداب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3830",
@@ -87079,7 +86901,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 86,
       "averageScore": 0
     },
-    "_searchString": "3830 احمد عبد المنعم 1202963766 1202654460 بلقس ث3 عام"
+    "_searchString": "3830 احمد عبد المنعم 1202963766 1202654460 بلقس ث3 عام احصاء ا/ مصطفي صابر جغرافيا ا/ رضا صلاح تاريخ ا/ رضا صلاح رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3832",
@@ -87094,7 +86916,7 @@ window.STUDENTS_DATA = [
     "regDate": "2026-08-30 07:27",
     "academicSubjects": {
       "انجليزي": {
-        "teacher": "ا/ حماده يوسف  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ حماده يوسف",
         "sessions": [
           "✓",
           "",
@@ -87117,6 +86939,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "✓",
             "",
             "",
@@ -87208,7 +87040,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3832 ابراهيم ماهر ابراهيم 1149006804 1282361722 بلقس ث3 عام"
+    "_searchString": "3832 ابراهيم ماهر ابراهيم 1149006804 1282361722 بلقس ث3 عام انجليزي ا/ حماده يوسف احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3831",
@@ -87267,7 +87099,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3831 اسماء محمود محمد 0111208553866 01115067125 عرب الشراقوه ث3 عام"
+    "_searchString": "3831 اسماء محمود محمد 0111208553866 01115067125 عرب الشراقوه ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2647",
@@ -87361,7 +87193,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 20,
       "averageScore": 0
     },
-    "_searchString": "2647 جني ماهر 1024107644 1111056218 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2647 جني ماهر 1024107644 1111056218 بلقس ث2 بكالوريا - طب فزياء ا/ محمد الجوهري انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3833",
@@ -87420,7 +87252,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3833 محمد ممدوح فتيح 1098770029 1028063821 الزاويه ث3 عام"
+    "_searchString": "3833 محمد ممدوح فتيح 1098770029 1028063821 الزاويه ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "3834",
@@ -87479,7 +87311,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3834 معاذ جمال جميل 1102400654 1222227511 بلقس ث3 عام"
+    "_searchString": "3834 معاذ جمال جميل 1102400654 1222227511 بلقس ث3 عام احصاء ا/ مصطفي صابر"
   },
   {
     "code": "3835",
@@ -87573,7 +87405,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3835 اميره عصام 1107346911 1116730488 بلقس ث3 أزهر"
+    "_searchString": "3835 اميره عصام 1107346911 1116730488 ��لقس ث3 ازهر احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3836",
@@ -87667,7 +87499,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 57,
       "averageScore": 0
     },
-    "_searchString": "3836 مريم محمد عاشور 1154320837 1118450545 السلمانيه ث3 أزهر"
+    "_searchString": "3836 مريم محمد عاشور 1154320837 1118450545 السلمانيه ث3 ازهر احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3837",
@@ -87761,7 +87593,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3837 رودا محمد علي 1271140329 1223799961 سلمنيه ث3 عام"
+    "_searchString": "3837 رودا محمد علي 1271140329 1223799961 سلمنيه ث3 عام احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1286",
@@ -87855,7 +87687,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 86,
       "averageScore": 100
     },
-    "_searchString": "1286 ايات وليد صبحي 1229758366 1226145467 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1286 ايات وليد صبحي 1229758366 1226145467 بلقس ث1 بكالوريا - طب رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1290",
@@ -87866,7 +87698,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "عام",
     "subjectsSummary": "عربي, علوم, رياضة",
-    "teachersSummary": "عربي/ا/ احمد عبد القادر [حصص: غ, ✓, ✓, غ, ✓, ✓, _, _] | علوم/محمد نور | رياضة/ا/ مصطفي صابر [حصص: غ, غ, غ, ✓, ✓, _, _, _]",
+    "teachersSummary": "عربي/ا/ احمد عبد القادر [حصص: غ, ✓, ✓, غ, ✓, ✓, _, _] | علوم/ا/ محمد نور | رياضة/ا/ مصطفي صابر [حصص: غ, غ, غ, ✓, ✓, _, _, _]",
     "regDate": "2026-09-01 11:42",
     "academicSubjects": {
       "عربي": {
@@ -87905,7 +87737,7 @@ window.STUDENTS_DATA = [
         }
       },
       "علوم": {
-        "teacher": "محمد نور",
+        "teacher": "ا/ محمد نور",
         "sessions": [
           "",
           "",
@@ -87984,7 +87816,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 55,
       "averageScore": 0
     },
-    "_searchString": "1290 جني امين محمد 1225680296 1141539455 السلمانيه ث1 عام"
+    "_searchString": "1290 جني امين محمد 1225680296 1141539455 السلمانيه ث1 عام عربي ا/ احمد عبد القادر علوم ا/ محمد نور رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3841",
@@ -88043,7 +87875,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3841 يوسف سعد محمد 1205450910 1288464534 بلقس ث3 عام"
+    "_searchString": "3841 يوسف سعد محمد 1205450910 1288464534 بلقس ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "2649",
@@ -88102,7 +87934,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 20,
       "averageScore": 0
     },
-    "_searchString": "2649 ساره حماده زين الدين  . الزاويه ث2 بكالوريا - طب"
+    "_searchString": "2649 ساره حماده زين الدين . الزاويه ث2 بكالوريا - طب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "1292",
@@ -88112,7 +87944,7 @@ window.STUDENTS_DATA = [
     "parentPhone": "1013105884",
     "grade": "ث1",
     "specialization": "بكالوريا - الاداب",
-    "subjectsSummary": "ا��جليزي, عربي",
+    "subjectsSummary": "انجليزي, عربي",
     "teachersSummary": "انجليزي/ا/ حماده يوسف [حصص: ✓, ✓, ✓, _, _, ✓, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-09-02 12:37",
     "academicSubjects": {
@@ -88185,41 +88017,6 @@ window.STUDENTS_DATA = [
             ""
           ]
         }
-      },
-      "ا��جليزي": {
-        "teacher": "مدرس المادة",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
       }
     },
     "_metrics": {
@@ -88231,7 +88028,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1292 مي احمد عبد الله 1080507843 1013105884 ساريقوس ث1 بكالوريا - الاداب"
+    "_searchString": "1292 مي احمد عبد الله 1080507843 1013105884 ساريقوس ث1 بكالوريا - الاداب انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1293",
@@ -88254,7 +88051,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1293 حبيبه وائل مصطفى 1558471633 1272942184 ساريقوس ث2 بكالوريا - الاداب"
+    "_searchString": "1293 حبيبه وايل مصطفي 1558471633 1272942184 ساريقوس ث2 بكالوريا - الاداب"
   },
   {
     "code": "1294",
@@ -88348,7 +88145,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1294 بسمله سيد عبد العزيز 1044327938 1044234826 ساريقوس ث1 بكالوريا - الاداب"
+    "_searchString": "1294 بسمله سيد عبد العزيز 1044327938 1044234826 ساريقوس ث1 بكالوريا - الاداب انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1296",
@@ -88407,7 +88204,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 90
     },
-    "_searchString": "1296 روضه وليد ناصر 111607923 111607923 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1296 روضه وليد ناصر 111607923 111607923 بلقس ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1297",
@@ -88466,7 +88263,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1297 مني محمود محمد 1146128658 1146128658 السلمانيه ث1 بكالوريا - هندسة"
+    "_searchString": "1297 مني محمود محمد 1146128658 1146128658 السلمانيه ث1 بكالوريا - هندسه عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1291",
@@ -88560,7 +88357,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1291 عبد الرحمن محمد نصار 1050311053 1095223117 السلمانيه ث1 بكالوريا - طب"
+    "_searchString": "1291 عبد الرحمن محمد نصار 1050311053 1095223117 السلمانيه ث1 بكالوريا - طب علوم ا/ علي نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1298",
@@ -88619,7 +88416,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 40
     },
-    "_searchString": "1298 بسنت احمد سيف 1211190866 1211190866 بلقس ث1 بكالوريا - الاداب"
+    "_searchString": "1298 بسنت احمد سيف 1211190866 1211190866 بلقس ث1 بكالوريا - الاداب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1295",
@@ -88748,7 +88545,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 80
     },
-    "_searchString": "1295 سعيد عبد المطلب 1106315319 1147455005 السلمانيه ث1 بكالوريا - طب"
+    "_searchString": "1295 سعيد عبد المطلب 1106315319 1147455005 السلمانيه ث1 بكالوريا - طب عربي ا/ احمد عبد القادر فلسفه ا/ احمد الليثي علوم ا/ علي نور"
   },
   {
     "code": "1299",
@@ -88877,7 +88674,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1299 جني احمد القزاز 1157182047 1157182047 بلقس ث1 عام"
+    "_searchString": "1299 جني احمد القزاز 1157182047 1157182047 بلقس ث1 عام فلسفه ا/ احمد الليثي رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3844",
@@ -88936,7 +88733,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3844 مريم اشرف لطفي 01552168685 01289910103 عرب الشعاره ث3 عام"
+    "_searchString": "3844 مريم اشرف لطفي 01552168685 01289910103 عرب الشعاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3843",
@@ -88995,7 +88792,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3843 نرمين حسن عبدالنبي 1036236123 1117125756 عرب الشعاره 0 ث3 عام"
+    "_searchString": "3843 نرمين حسن عبدالنبي 1036236123 1117125756 عرب الشعاره 0 ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3845",
@@ -89176,13 +88973,13 @@ window.STUDENTS_DATA = [
     "_metrics": {
       "totalScore": 0,
       "totalMax": 0,
-      "totalPresent": 7,
+      "totalPresent": 8,
       "totalAbsent": 5,
-      "totalRecordedSessions": 12,
-      "attendanceRate": 58,
+      "totalRecordedSessions": 13,
+      "attendanceRate": 62,
       "averageScore": 0
     },
-    "_searchString": "3846 محمد هاني السيد 1280038216 1117011597 بلقس ث3 عام"
+    "_searchString": "3846 محمد هاني السيد 1280038216 1117011597 بلقس ث3 عام كيمياء ا/ محمد صلاح عربي ا/ سيد عبد العاطي فزياء ا/ محمد مختار احياء ا/ محمد علام"
   },
   {
     "code": "3847",
@@ -89276,7 +89073,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3847 مريم ناصر حسين 1102813843 106039844 عزبه الزينب ث3 أزهر"
+    "_searchString": "3847 مريم ناصر حسين 1102813843 106039844 عزبه الزينب ث3 ازهر احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3848",
@@ -89370,7 +89167,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3848 رودينا ايمن فكري 1113606775 1289882315 بلقس ث3 أزهر"
+    "_searchString": "3848 رودينا ايمن فكري 1113606775 1289882315 بلقس ث3 ازهر احصاء ا/ مصطفي صابر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2651",
@@ -89380,7 +89177,7 @@ window.STUDENTS_DATA = [
     "parentPhone": "1018306831",
     "grade": "ث2",
     "specialization": "أزهر",
-    "subjectsSummary": "فز��اء, رياضة, عربي",
+    "subjectsSummary": "فزياء, رياضة, عربي",
     "teachersSummary": "فزياء/ا/ محمد مختار | رياضة/ا/ مصطفي صابر [حصص: _, _, _, _, _, _, _, ✓] [شهر 10 (أكتوبر): _, _, _, _, _, _, _, ✓] | عربي/ا/ احمد عبد القادر",
     "regDate": "2026-09-07 11:26",
     "academicSubjects": {
@@ -89420,7 +89217,7 @@ window.STUDENTS_DATA = [
         }
       },
       "رياضة": {
-        "teacher": "ا/ مصطفي صابر  [شهر 10 (أكتوبر): _, _, _, _, _, _, _, ✓]",
+        "teacher": "ا/ مصطفي صابر",
         "sessions": [
           "",
           "",
@@ -89443,6 +89240,16 @@ window.STUDENTS_DATA = [
             "✓"
           ],
           "شهر 1": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "✓"
+          ],
+          "شهر 10 (أكتوبر)": [
             "",
             "",
             "",
@@ -89488,41 +89295,6 @@ window.STUDENTS_DATA = [
             ""
           ]
         }
-      },
-      "فز��اء": {
-        "teacher": "مدرس المادة",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
       }
     },
     "_metrics": {
@@ -89534,7 +89306,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2651 عائشه عماد الشيخ 1033316020 1018306831 بلقس ث2 أزهر"
+    "_searchString": "2651 عايشه عماد الشيخ 1033316020 1018306831 بلقس ث2 ازهر فزياء ا/ محمد مختار رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2652",
@@ -89593,7 +89365,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 71,
       "averageScore": 0
     },
-    "_searchString": "2652 جنات محمد فواد 1501558545 1116368668 بلقس ث2 أزهر"
+    "_searchString": "2652 جنات محمد فواد 1501558545 1116368668 بلقس ث2 ازهر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2653",
@@ -89722,7 +89494,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2653 زينب شعبان احمد 1060179701 1227729989 بلقس ث2 أزهر"
+    "_searchString": "2653 زينب شعبان احمد 1060179701 1227729989 بلقس ث2 ازهر رياضه ا/ مصطفي صابر فزياء ا/ محمد مختار عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1300",
@@ -89816,7 +89588,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 0
     },
-    "_searchString": "1300 حنين منصور صلاح 1113632009 1009773736 بلقس ث1 عام"
+    "_searchString": "1300 حنين منصور صلاح 1113632009 1009773736 بلقس ث1 عام رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1301",
@@ -89910,7 +89682,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 83,
       "averageScore": 70
     },
-    "_searchString": "1301 ساره محمد احمد 1019913857 128047522 بلقس ث1 أزهر"
+    "_searchString": "1301 ساره محمد احمد 1019913857 128047522 بلقس ث1 ازهر رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1303",
@@ -90004,7 +89776,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1303 محمد احمد سعيد 125635075 1211775503 بلقس ث1 عام"
+    "_searchString": "1303 محمد احمد سعيد 125635075 1211775503 بلقس ث1 عام رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1302",
@@ -90063,7 +89835,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 0
     },
-    "_searchString": "1302 اسماء كرم حسن 1285311533 1140948088 بلقس ث1 أزهر"
+    "_searchString": "1302 اسماء كرم حسن 1285311533 1140948088 بلقس ث1 ازهر رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1304",
@@ -90073,7 +89845,7 @@ window.STUDENTS_DATA = [
     "parentPhone": "128894162",
     "grade": "ث1",
     "specialization": "أزهر",
-    "subjectsSummary": "رياضة, عربي",
+    "subjectsSummary": "رياضة, عر��ي",
     "teachersSummary": "رياضة/ا/ مصطفي صابر | عر��ي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-09-07 12:12",
     "academicSubjects": {
@@ -90146,41 +89918,6 @@ window.STUDENTS_DATA = [
             ""
           ]
         }
-      },
-      "عربي": {
-        "teacher": "مدرس المادة",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
       }
     },
     "_metrics": {
@@ -90192,7 +89929,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1304 روضه عبدالمجيد 1228509977 128894162 بلقس ث1 أزهر"
+    "_searchString": "1304 روضه عبدالمجيد 1228509977 128894162 بلقس ث1 ازهر رياضه ا/ مصطفي صابر عر��ي ا/ احمد عبد القادر"
   },
   {
     "code": "2654",
@@ -90215,7 +89952,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2654 فاطمه احمد ابراهيم 1507148805 1114708801 بلقس ث2 أزهر"
+    "_searchString": "2654 فاطمه احمد ابراهيم 1507148805 1114708801 بلقس ث2 ازهر"
   },
   {
     "code": "2657",
@@ -90274,7 +90011,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2657 جني سيد محمد 1211748598 1108296930 بلقس ث2 عام"
+    "_searchString": "2657 جني سيد محمد 1211748598 1108296930 بلقس ث2 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2655",
@@ -90333,7 +90070,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2655 سما محمد سعد 1201490346 1002736532 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2655 سما محمد سعد 1201490346 1002736532 بلقس ث2 بكالوريا - طب رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2658",
@@ -90392,7 +90129,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 25,
       "averageScore": 0
     },
-    "_searchString": "2658 ندي احمد صالح 1203464542 1274818088 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2658 ندي احمد صالح 1203464542 1274818088 بلقس ث2 بكالوريا - طب رياضه ا/ مصطفي صابر"
   },
   {
     "code": "3849",
@@ -90451,7 +90188,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3849 ملك سيد احمد 01272173336 01204024443 السليمانيه ث3 عام"
+    "_searchString": "3849 ملك سيد احمد 01272173336 01204024443 السليمانيه ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3850",
@@ -90510,7 +90247,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3850 مندور ابو الدهب 01203185422 01203185422 عزبه النحاس ث3 عام"
+    "_searchString": "3850 مندور ابو الدهب 01203185422 01203185422 عزبه النحاس ث3 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1305",
@@ -90521,7 +90258,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "عام",
     "subjectsSummary": "رياضة, عربي",
-    "teachersSummary": "رياضة/ا/ مصطفي صابر [حصص: غ, غ, ✓, ✓, ✓, _, _, _] | عرب��/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
+    "teachersSummary": "رياضة/ا/ مصطفي صابر [حصص: غ, غ, ✓, ✓, ✓, _, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _]",
     "regDate": "2026-09-08 15:14",
     "academicSubjects": {
       "رياضة": {
@@ -90559,7 +90296,7 @@ window.STUDENTS_DATA = [
           ]
         }
       },
-      "عرب��": {
+      "عربي": {
         "teacher": "ا/ احمد عبد القادر",
         "sessions": [
           "",
@@ -90593,41 +90330,6 @@ window.STUDENTS_DATA = [
             ""
           ]
         }
-      },
-      "عربي": {
-        "teacher": "مدرس المادة",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
       }
     },
     "_metrics": {
@@ -90639,7 +90341,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 67,
       "averageScore": 0
     },
-    "_searchString": "1305 ياسمين سلامه محمد 1205649073 1121027258 بلقس ث1 عام"
+    "_searchString": "1305 ياسمين سلامه محمد 1205649073 1121027258 بلقس ث1 عام رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3852",
@@ -90698,7 +90400,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3852 محمد احمد حمدي رفاعي 1040536953 1094691694 الزاويه ث3 عام"
+    "_searchString": "3852 محمد احمد حمدي رفاعي 1040536953 1094691694 الزاويه ث3 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3853",
@@ -90757,7 +90459,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3853 عصام عرفات محمد 1557737419 1144299435 الجعافره ث3 عام"
+    "_searchString": "3853 عصام عرفات محمد 1557737419 1144299435 الجعافره ث3 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3854",
@@ -90816,7 +90518,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3854 منه تامر حجازي 1205808189 1144297959 المجزر ث3 عام"
+    "_searchString": "3854 منه تامر حجازي 1205808189 1144297959 المجزر ث3 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "3856",
@@ -90875,7 +90577,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3856 محمد احمد عبد الحكيم 01006099530 1003925622 العطاره ث3 عام"
+    "_searchString": "3856 محمد احمد عبد الحكيم 01006099530 1003925622 العطاره ث3 عام انجليزي ا/ حماده يوسف"
   },
   {
     "code": "3857",
@@ -90934,7 +90636,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3857 عبدالرحمن عوده منصور 01148848786 01148848786 كوم السمن ث3 عام"
+    "_searchString": "3857 عبدالرحمن عوده منصور 01148848786 01148848786 كوم السمن ث3 عام فزياء ا/ محمد الجوهري"
   },
   {
     "code": "1307",
@@ -91028,7 +90730,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1307 سلمي حسين محمد 1039573441 1003021214 ساريقوس ث1 بكالوريا - هندسة"
+    "_searchString": "1307 سلمي حسين محمد 1039573441 1003021214 ساريقوس ث1 بكالوريا - هندسه انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1306",
@@ -91122,7 +90824,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "1306 حنين جمال محمد 1112131330 1156021796 ساريقوس ث1 بكالوريا - هندسة"
+    "_searchString": "1306 حنين جمال محمد 1112131330 1156021796 ساريقوس ث1 بكالوريا - هندسه انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1308",
@@ -91216,7 +90918,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1308 محمد محمود سالم 1557846367 1005888807 عرب الشعاره ث1 بكالوريا - هندسة"
+    "_searchString": "1308 محمد محمود سالم 1557846367 1005888807 عرب الشعاره ث1 بكالوريا - هندسه انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1309",
@@ -91310,7 +91012,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1309 سيف فرج عبد الحميد 1098668334 1024980293 عرب الشعاره ث1 بكالوريا - طب"
+    "_searchString": "1309 سيف فرج عبد الحميد 1098668334 1024980293 عرب الشعاره ث1 بكالوريا - طب انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3859",
@@ -91369,7 +91071,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "3859 زينب محمد سيد 1287572050 1281970808 كوم اشفين ث3 عام"
+    "_searchString": "3859 زينب محمد سيد 1287572050 1281970808 كوم اشفين ث3 عام كيمياء ا/ محمد صلاح"
   },
   {
     "code": "2661",
@@ -91428,7 +91130,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2661 عمر محمد سعيد 01024518238 01026107732 بهتيم ث2 أزهر"
+    "_searchString": "2661 عمر محمد سعيد 01024518238 01026107732 بهتيم ث2 ازهر فزياء ا/ محمد مختار"
   },
   {
     "code": "2660",
@@ -91487,7 +91189,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2660 حمزه عبدالله عبد المنعم 01127153235 01111530104 بهتبم ث2 أزهر"
+    "_searchString": "2660 حمزه عبدالله عبد المنعم 01127153235 01111530104 بهتبم ث2 ازهر فزياء ا/ محمد مختار"
   },
   {
     "code": "2659",
@@ -91546,7 +91248,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2659 احمد محمد عبد المنعم 01069725564 01004248671 بهتيم ث2 أزهر"
+    "_searchString": "2659 احمد محمد عبد المنعم 01069725564 01004248671 بهتيم ث2 ازهر فزياء ا/ محمد مختار"
   },
   {
     "code": "2662",
@@ -91605,7 +91307,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2662 جهاد احمد هدى 01222981364 01222981364 كوم اشفين ث2 أزهر"
+    "_searchString": "2662 جهاد احمد هدي 01222981364 01222981364 كوم اشفين ث2 ازهر فزياء ا/ محمد مختار"
   },
   {
     "code": "2664",
@@ -91664,7 +91366,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2664 سولاف سالم محمد 01065519203 01019108066 بلقس ث2 أزهر"
+    "_searchString": "2664 سولاف سالم محمد 01065519203 01019108066 بلقس ث2 ازهر فزياء ا/ محمد مختار"
   },
   {
     "code": "2663",
@@ -91723,7 +91425,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2663 وفاء احمد ربيع 01558197526 01501515250 بلقس ث2 أزهر"
+    "_searchString": "2663 وفاء احمد ربيع 01558197526 01501515250 بلقس ث2 ازهر فزياء ا/ محمد مختار"
   },
   {
     "code": "2665",
@@ -91782,7 +91484,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2665 ايات سيد عبد النبي 1111312781 1016493957 بلقس ث2 بكالوريا - طب"
+    "_searchString": "2665 ايات سيد عبد النبي 1111312781 1016493957 بلقس ث2 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2666",
@@ -91841,7 +91543,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2666 حسن هلال حسن 01067950944 01155786364 الجعافره ث2 بكالوريا - طب"
+    "_searchString": "2666 حسن هلال حسن 01067950944 01155786364 الجعافره ث2 بكالوريا - طب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2667",
@@ -91900,7 +91602,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2667 رجب مدبولي حسن 1021709388 1007527448 الزاويه ث2 بكالوريا - الاداب"
+    "_searchString": "2667 رجب مدبولي حسن 1021709388 1007527448 الزاويه ث2 بكالوريا - الاداب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3860",
@@ -91994,7 +91696,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 57,
       "averageScore": 0
     },
-    "_searchString": "3860 الاء عبد المنعم عبد العزيز 1024732483 1283305550 بلقس ث3 عام"
+    "_searchString": "3860 الاء عبد المنعم عبد العزيز 1024732483 1283305550 بلقس ث3 عام تاريخ ا/ رضا صلاح انجليزي ا/ حماده يوسف"
   },
   {
     "code": "1310",
@@ -92088,7 +91790,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1310 رضوى شريف سيد 1106315196 1141386551 السلما��يه ث1 أزهر"
+    "_searchString": "1310 رضوي شريف سيد 1106315196 1141386551 السلمان��ه ث1 ازهر علوم علي عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3861",
@@ -92103,7 +91805,7 @@ window.STUDENTS_DATA = [
     "regDate": "2026-09-13 06:47",
     "academicSubjects": {
       "انجليزي": {
-        "teacher": "ا/ حماده يوسف  [شهر 10 (أكتوبر): ✓, _, _, _, _, _, _, _]",
+        "teacher": "ا/ حماده يوسف",
         "sessions": [
           "✓",
           "",
@@ -92126,6 +91828,16 @@ window.STUDENTS_DATA = [
             ""
           ],
           "شهر 1": [
+            "✓",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "شهر 10 (أكتوبر)": [
             "✓",
             "",
             "",
@@ -92182,7 +91894,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3861 مريم احمد رجب 1229700295 1111402636 بلقس ث3 عام"
+    "_searchString": "3861 مريم احمد رجب 1229700295 1111402636 بلقس ث3 عام انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2668",
@@ -92241,7 +91953,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 33,
       "averageScore": 0
     },
-    "_searchString": "2668 عيناء هاني 1060654497 1060654497 عرب الشعارع ث2 بكالوريا - الاداب"
+    "_searchString": "2668 عيناء هاني 1060654497 1060654497 عرب الشعارع ث2 بكالوريا - الاداب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "1313",
@@ -92335,7 +92047,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1313 حنين ربيع ابراهيم 1276421420 1154916697 زاويه النجار ث1 أزهر"
+    "_searchString": "1313 حنين ربيع ابراهيم 1276421420 1154916697 زاويه النجار ث1 ازهر انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1314",
@@ -92429,7 +92141,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1314 نور صالح سالم 1061909166 1061826497 زاويه النجار ث1 أزهر"
+    "_searchString": "1314 نور صالح سالم 1061909166 1061826497 زاويه النجار ث1 ازهر انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1311",
@@ -92558,7 +92270,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1311 دينا سامي حسين 1018871900 1006529187 زاويه النجار ث1 أزهر"
+    "_searchString": "1311 دينا سامي حسين 1018871900 1006529187 زاويه النجار ث1 ازهر انجليزي ا/ حماده يوسف علوم ا/ علي نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1312",
@@ -92569,7 +92281,7 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "أزهر",
     "subjectsSummary": "انجليزي, علوم, عربي",
-    "teachersSummary": "انجليزي/ا/ حماده يوسف [حصص: _, _, ✓, _, _, ✓, _, _] | علوم/ا/ علي نور | عربي/ا/ احمد عبد القاد�� [حصص: _, ✓, _, _, ✓, _, _, _]",
+    "teachersSummary": "انجليزي/ا/ حماده يوسف [حصص: _, _, ✓, _, _, ✓, _, _] | علوم/ا/ علي نور | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, ✓, _, _, _]",
     "regDate": "2026-09-13 13:07",
     "academicSubjects": {
       "انجليزي": {
@@ -92643,7 +92355,7 @@ window.STUDENTS_DATA = [
         }
       },
       "عربي": {
-        "teacher": "ا/ احمد عبد القاد��",
+        "teacher": "ا/ احمد عبد القادر",
         "sessions": [
           "",
           "✓",
@@ -92687,7 +92399,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1312 رحمه عبدالرحمن حنفي 1145118642 11533663229 زاويه النجار ث1 أزهر"
+    "_searchString": "1312 رحمه عبدالرحمن حنفي 1145118642 11533663229 زاويه النجار ث1 ازهر انجليزي ا/ حماده يوسف علوم ا/ علي نور عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1315",
@@ -92781,7 +92493,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 75,
       "averageScore": 0
     },
-    "_searchString": "1315 حنين علاء امين 1031743286 1008746978 زاويه النجار ث1 أزهر"
+    "_searchString": "1315 حنين علاء امين 1031743286 1008746978 زاويه النجار ث1 ازهر انجليزي ا/ حماده يوسف عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2060",
@@ -92875,7 +92587,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 0
     },
-    "_searchString": "2060 شهد بلال حمدي سيد 1024455514 1050108390  ث1 عام"
+    "_searchString": "2060 شهد بلال حمدي سيد 1024455514 1050108390 ث1 عام رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3862",
@@ -92934,7 +92646,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3862 ادم ايمن بركات 1013940567 1012402242 بلقس ث3 عام"
+    "_searchString": "3862 ادم ايمن بركات 1013940567 1012402242 بلقس ث3 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "2234",
@@ -93028,7 +92740,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 0
     },
-    "_searchString": "2234 ضحي مصطفي محمود 1283824997 1125785171  ث1 عام"
+    "_searchString": "2234 ضحي مصطفي محمود 1283824997 1125785171 ث1 عام رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2262",
@@ -93039,11 +92751,11 @@ window.STUDENTS_DATA = [
     "grade": "ث1",
     "specialization": "عام",
     "subjectsSummary": "كيمياء, رياضة, عربي",
-    "teachersSummary": "كيمياء/ا/محمد صلاح | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, ✓, _, _, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, ✓, _, _, _]",
+    "teachersSummary": "كيمياء/ا/ محمد صلاح | رياضة/ا/ مصطفي صابر [حصص: ✓, ✓, ✓, ✓, _, _, _, _] | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, ✓, _, _, _]",
     "regDate": "2026",
     "academicSubjects": {
       "كيمياء": {
-        "teacher": "ا/محمد صلاح",
+        "teacher": "ا/ محمد صلاح",
         "sessions": [
           "",
           "",
@@ -93157,7 +92869,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2262 احمد نزية كمال 1102096898 1284886155  ث1 عام"
+    "_searchString": "2262 احمد نزيه كمال 1102096898 1284886155 ث1 عام كيمياء ا/ محمد صلاح رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2261",
@@ -93251,7 +92963,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 80,
       "averageScore": 0
     },
-    "_searchString": "2261 محمد عربي محمد 1102165715 1102165761  ث2 عام"
+    "_searchString": "2261 محمد عربي محمد 1102165715 1102165761 ث2 عام رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2095",
@@ -93345,7 +93057,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2095 ايتن عبد الخالق سيد 1228912298 1227135633  ث1 عام"
+    "_searchString": "2095 ايتن عبد الخالق سيد 1228912298 1227135633 ث1 عام رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2547",
@@ -93368,7 +93080,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2547 محمد عصام محمد 1097198714  بلقس ث2 بكالوريا - الاداب"
+    "_searchString": "2547 محمد عصام محمد 1097198714 بلقس ث2 بكالوريا - الاداب"
   },
   {
     "code": "2671",
@@ -93427,7 +93139,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2671 محمد احمد محمد فرج 01288328391 01212524999 كوم اشفين ث2 بكالوريا - طب"
+    "_searchString": "2671 محمد احمد محمد فرج 01288328391 01212524999 كوم اشفين ث2 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2670",
@@ -93486,7 +93198,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2670 نور تامر سعيد 01205728436 01227672171 كوم اشفين ث2 بكالوريا - طب"
+    "_searchString": "2670 نور تامر سعيد 01205728436 01227672171 كوم اشفين ث2 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2669",
@@ -93545,7 +93257,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2669 محمد مصطفى محمد 01200709750 01098081028 كوم اشفين ث2 بكالوريا - طب"
+    "_searchString": "2669 محمد مصطفي محمد 01200709750 01098081028 كوم اشفين ث2 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "3654",
@@ -93591,7 +93303,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3050 اية ماهر احمد علي 1055366846 1278057755 بلقس ث3 عام"
+    "_searchString": "3050 ايه ماهر احمد علي 1055366846 1278057755 بلقس ث3 عام"
   },
   {
     "code": "1316",
@@ -93685,7 +93397,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 43,
       "averageScore": 0
     },
-    "_searchString": "1316 بسمله سيد شعبان 1125687123 1125687123 السليمانيه ث1 بكالوريا - الاداب"
+    "_searchString": "1316 بسمله سيد شعبان 1125687123 1125687123 السليمانيه ث1 بكالوريا - الاداب رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1317",
@@ -93779,7 +93491,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1317 حبيبه صلاح عبد النبي 1143711969 1200491379 السلمانية ث1 بكالوريا - هندسة"
+    "_searchString": "1317 حبيبه صلاح عبد النبي 1143711969 1200491379 السلمانيه ث1 بكالوريا - هندسه رياضه ا/ مصطفي صابر عربي ا/ احمد عبد القادر"
   },
   {
     "code": "2672",
@@ -93838,7 +93550,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2672 رحمه حمدي احمد 128515957 128515957 عرب الشعاره ث2 بكالوريا - طب"
+    "_searchString": "2672 رحمه حمدي احمد 128515957 128515957 عرب الشعاره ث2 بكالوريا - طب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "2673",
@@ -93897,265 +93609,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2673 هدس محسن محمد 1040819242 1040819242 عرب الشعاره ث2 بكالوريا - الاداب"
-  },
-  {
-    "code": "TEST-448",
-    "name": "طالب تجريبي (اختبار ربط الشيت)",
-    "area": "سنتر الأرائج التعليمي",
-    "phone": "1000000000",
-    "parentPhone": "1002169889",
-    "grade": "ث1",
-    "specialization": "عام",
-    "subjectsSummary": "ا, عربي, انجليزي",
-    "teachersSummary": "ا/احمد عبد القادر | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _] | انجليزي/ا/ حماده يوسف [حصص: _, _, _, _, _, ✓, _, _]",
-    "regDate": "٢٠‏/٩‏/٢٠٢٦",
-    "academicSubjects": {
-      "ا": {
-        "teacher": "احمد عبد القادر",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      },
-      "عربي": {
-        "teacher": "ا/ احمد عبد القادر",
-        "sessions": [
-          "",
-          "✓",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "✓",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "✓",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      },
-      "انجليزي": {
-        "teacher": "ا/ حماده يوسف",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "✓",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "✓",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "✓",
-            "",
-            ""
-          ]
-        }
-      }
-    },
-    "_metrics": {
-      "totalScore": 0,
-      "totalMax": 0,
-      "totalPresent": 2,
-      "totalAbsent": 0,
-      "totalRecordedSessions": 2,
-      "attendanceRate": 100,
-      "averageScore": 0
-    },
-    "_searchString": "test-448 طالب تجريبي (اختبار ربط الشيت) 1000000000 1002169889 سنتر الأرائج التعليمي ث1 عام"
-  },
-  {
-    "code": "TEST-950",
-    "name": "طالب تجريبي (اختبار ربط الشيت)",
-    "area": "سنتر الأرائج التعليمي",
-    "phone": "1000000000",
-    "parentPhone": "1002169889",
-    "grade": "ث1",
-    "specialization": "عام",
-    "subjectsSummary": "ا, عربي, انجليزي",
-    "teachersSummary": "ا/احمد عبد القادر | عربي/ا/ احمد عبد القادر [حصص: _, ✓, _, _, _, _, _, _] | انجليزي/ا/ حماده يوسف [حصص: _, _, _, _, _, ✓, _, _]",
-    "regDate": "٢٠‏/٩‏/٢٠٢٦",
-    "academicSubjects": {
-      "ا": {
-        "teacher": "احمد عبد القادر",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      },
-      "عربي": {
-        "teacher": "ا/ احمد عبد القادر",
-        "sessions": [
-          "",
-          "✓",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "✓",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "✓",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      },
-      "انجليزي": {
-        "teacher": "ا/ حماده يوسف",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "✓",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "✓",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "✓",
-            "",
-            ""
-          ]
-        }
-      }
-    },
-    "_metrics": {
-      "totalScore": 0,
-      "totalMax": 0,
-      "totalPresent": 2,
-      "totalAbsent": 0,
-      "totalRecordedSessions": 2,
-      "attendanceRate": 100,
-      "averageScore": 0
-    },
-    "_searchString": "test-950 طالب تجريبي (اختبار ربط الشيت) 1000000000 1002169889 سنتر الأرائج التعليمي ث1 عام"
+    "_searchString": "2673 هدس محسن محمد 1040819242 1040819242 عرب الشعاره ث2 بكالوريا - الاداب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "1555",
@@ -94165,8 +93619,8 @@ window.STUDENTS_DATA = [
     "parentPhone": "1002169889",
     "grade": "ث2",
     "specialization": "بكالوريا - طب",
-    "subjectsSummary": "عربي, علم نفس, فرنساوي",
-    "teachersSummary": "عربي/ا/ احمد عبد القادر [حصص: ✓, 10/10, _, _, _, _, _, _] | علم نفس/مدرس المادة | فرنساوي/ا/ محمد رجب",
+    "subjectsSummary": "عربي, فرنساوي",
+    "teachersSummary": "عربي/ا/ احمد عبد القادر [حصص: ✓, 10/10, _, _, _, _, _, _] | فرنساوي/ا/ محمد رجب",
     "regDate": "٢٠‏/٩‏/٢٠٢٦",
     "academicSubjects": {
       "عربي": {
@@ -94195,41 +93649,6 @@ window.STUDENTS_DATA = [
           "شهر 1": [
             "✓",
             "10/10",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      },
-      "علم نفس": {
-        "teacher": "مدرس المادة",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
             "",
             "",
             "",
@@ -94284,7 +93703,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 100
     },
-    "_searchString": "1555 خديجة نور الدين 1 1002169889 بلقس ث2 بكالوريا - طب"
+    "_searchString": "1555 خديجه نور الدين 1 1002169889 بلقس ث2 بكالوريا - طب عربي ا/ احمد عبد القادر فرنساوي ا/ محمد رجب"
   },
   {
     "code": "2555",
@@ -94343,7 +93762,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "2555 روايدا محمد عبد الفتاح 01003577762 01028067896 الحزانيه ث2 بكالوريا - الاداب"
+    "_searchString": "2555 روايدا محمد عبد الفتاح 01003577762 01028067896 الحزانيه ث2 بكالوريا - الاداب انجليزي ا/ حماده يوسف"
   },
   {
     "code": "1556",
@@ -94402,7 +93821,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1556 نور الدين احمد 40 12 بلقس ث1 عام"
+    "_searchString": "1556 نور الدين احمد 40 12 بلقس ث1 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1000",
@@ -94461,7 +93880,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1000 منار ناصر محمد   بلقس ث1 عام"
+    "_searchString": "1000 منار ناصر محمد بلقس ث1 عام تاريخ ا/ رضا صلاح"
   },
   {
     "code": "3581",
@@ -94578,7 +93997,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "3863 جومانه محمد يوسف 1060774245 1007673016 الحزانيه ث3 عام"
+    "_searchString": "3863 جومانه محمد يوسف 1060774245 1007673016 الحزانيه ث3 عام كيمياء ا/ محمد صلاح فرنساوي ا/ محمد رجب"
   },
   {
     "code": "3782",
@@ -94637,136 +94056,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 0,
       "averageScore": 0
     },
-    "_searchString": "3782 ابراهيم محمد سالم 1210114259 1204240187 بلقس ث3 عام"
-  },
-  {
-    "code": "TEST-838",
-    "name": "طالب تجريبي (اخ��بار ربط الشيت)",
-    "area": "سنتر الأرائج التعليمي",
-    "phone": "1000000000",
-    "parentPhone": "1002169889",
-    "grade": "ث1",
-    "specialization": "عام",
-    "subjectsSummary": "عربي, انجليزي",
-    "teachersSummary": "ا/ احمد عبد القادر",
-    "regDate": "٢٢‏/٩‏/٢٠٢٦",
-    "academicSubjects": {
-      "ا": {
-        "teacher": "احمد عبد القادر",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      },
-      "عربي": {
-        "teacher": "مدرس المادة",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      },
-      "انجليزي": {
-        "teacher": "مدرس المادة",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      }
-    },
-    "_metrics": {
-      "totalScore": 0,
-      "totalMax": 0,
-      "totalPresent": 0,
-      "totalAbsent": 0,
-      "totalRecordedSessions": 0,
-      "attendanceRate": 100,
-      "averageScore": 0
-    },
-    "_searchString": "test-838 طالب تجريبي (ا��تبار ربط الشيت) 1000000000 1002169889 سنتر الأرائج التعليمي ث1 عام"
+    "_searchString": "3782 ابراهيم محمد سالم 1210114259 1204240187 بلقس ث3 عام رياضه ا/ مصطفي صابر"
   },
   {
     "code": "1557",
@@ -94825,7 +94115,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1557 ماهر رجب سعيد 1118685953 1206077420 بلقس ث1 عام"
+    "_searchString": "1557 ماهر رجب سعيد 1118685953 1206077420 بلقس ث1 عام عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1558",
@@ -94884,7 +94174,7 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1558 مؤمن محمد ابراهيم 1229892005 1143737033 بلقس ث1 بكالوريا - طب"
+    "_searchString": "1558 مومن محمد ابراهيم 1229892005 1143737033 بلقس ث1 بكالوريا - طب عربي ا/ احمد عبد القادر"
   },
   {
     "code": "1559",
@@ -94943,135 +94233,6 @@ window.STUDENTS_DATA = [
       "attendanceRate": 100,
       "averageScore": 0
     },
-    "_searchString": "1559 محمد حسن صابر 1229295768 1229295768 بلقس ث1 عام"
-  },
-  {
-    "code": "TEST-441",
-    "name": "طالب تجريبي (اختبار ربط الشيت)",
-    "area": "سنتر الأرائج التعليمي",
-    "phone": "1000000000",
-    "parentPhone": "1002169889",
-    "grade": "ث1",
-    "specialization": "عام",
-    "subjectsSummary": "عربي, انجليزي",
-    "teachersSummary": "ا/ احمد عبد القادر",
-    "regDate": "٢٣‏/٩‏/٢٠٢٦",
-    "academicSubjects": {
-      "ا": {
-        "teacher": "احمد عبد القادر",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      },
-      "عربي": {
-        "teacher": "مدرس المادة",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      },
-      "انجليزي": {
-        "teacher": "مدرس المادة",
-        "sessions": [
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          "",
-          ""
-        ],
-        "months": {
-          "شهر 9 (سبتمبر)": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "شهر 1": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      }
-    },
-    "_metrics": {
-      "totalScore": 0,
-      "totalMax": 0,
-      "totalPresent": 0,
-      "totalAbsent": 0,
-      "totalRecordedSessions": 0,
-      "attendanceRate": 100,
-      "averageScore": 0
-    },
-    "_searchString": "test-441 طالب تجريبي (اختبار ربط الشيت) 1000000000 1002169889 سنتر الأرائج التعليمي ث1 عام"
+    "_searchString": "1559 محمد حسن صابر 1229295768 1229295768 بلقس ث1 عام عربي ا/ احمد عبد القادر"
   }
 ];
