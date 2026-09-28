@@ -1276,7 +1276,7 @@ function renderUsersList() {
 // ====================================================
 
 function initData() {
-  const CURRENT_DB_VERSION = 'v4.5_non_destructive_master';
+    const CURRENT_DB_VERSION = 'v4.6_utf8_clean';
   const savedVersion = localStorage.getItem('araij_db_schema_version');
   if (savedVersion !== CURRENT_DB_VERSION) {
     // Purge outdated cache so clean non-destructive data loads seamlessly
