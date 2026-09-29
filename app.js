@@ -4270,53 +4270,58 @@ function generateSelectedPdfReport() {
       return Object.values(subs).some(sub => normalize_arabic(sub.teacher || '').includes(teacherNorm));
     });
 
+    matchedStudents.sort((a, b) => (a.name || '').localeCompare(b.name || '', 'ar'));
+
     container.innerHTML = `
-      <div style="font-family: 'Cairo', sans-serif; direction: rtl; text-align: right; color: #0f172a;">
-        <div style="border-bottom: 2px solid #0284c7; padding-bottom: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+      <div style="font-family: 'Cairo', sans-serif; direction: rtl; text-align: right; color: #0f172a; width: 100%;">
+        <div style="border-bottom: 2px solid #0284c7; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
           <div>
             <h1 style="font-size: 22px; font-weight: 900; color: #0284c7; margin: 0;">سنتر الأرائج التعليمي</h1>
-            <p style="font-size: 13px; color: #64748b; margin: 4px 0 0 0;">كشف وقائمة طلاب الأستاذ / ${selectedTeacher}</p>
+            <p style="font-size: 13px; color: #1e293b; margin: 4px 0 0 0; font-weight: 800;">
+              كشف وقائمة طلاب الأستاذ / <span style="color: #0284c7;">${selectedTeacher}</span>
+            </p>
           </div>
-          <div style="text-align: left; font-size: 11px; color: #64748b;">
-            <div><strong>التاريخ:</strong> ${today}</div>
-            <div><strong>المرحلة:</strong> ${selectedGrade === 'all' ? 'جميع المراحل' : selectedGrade}</div>
-            <div><strong>إجمالي الطلاب:</strong> ${matchedStudents.length} طالب</div>
+          <div style="text-align: left; font-size: 11px; color: #334155; line-height: 1.6;">
+            <div><strong>تاريخ الاستخراج:</strong> ${today}</div>
+            <div><strong>المرحلة الدراسية:</strong> <span style="font-weight: 800; color: #0f172a;">${selectedGrade === 'all' ? 'جميع المراحل' : selectedGrade}</span></div>
+            <div><strong>إجمالي الطلاب المقيدين:</strong> <span style="font-weight: 900; color: #0284c7; font-size: 13px;">${matchedStudents.length}</span> طالب</div>
           </div>
         </div>
 
         <table style="width: 100%; border-collapse: collapse; font-size: 11px; text-align: right;">
           <thead>
-            <tr style="background-color: #0284c7; color: #ffffff;">
-              <th style="padding: 8px; border: 1px solid #cbd5e1; width: 40px; text-align: center;">م</th>
-              <th style="padding: 8px; border: 1px solid #cbd5e1; width: 70px; text-align: center;">الكود</th>
-              <th style="padding: 8px; border: 1px solid #cbd5e1;">اسم الطالب</th>
-              <th style="padding: 8px; border: 1px solid #cbd5e1; width: 60px; text-align: center;">الصف</th>
-              <th style="padding: 8px; border: 1px solid #cbd5e1;">الشعبة / التخصص</th>
-              <th style="padding: 8px; border: 1px solid #cbd5e1;">المنطقة</th>
-              <th style="padding: 8px; border: 1px solid #cbd5e1; width: 95px; text-align: center;">هاتف الطالب</th>
-              <th style="padding: 8px; border: 1px solid #cbd5e1; width: 95px; text-align: center;">ولي الأمر</th>
+            <tr style="background-color: #0369a1; color: #ffffff;">
+              <th style="padding: 8px 4px; border: 1px solid #334155; width: 35px; text-align: center;">م</th>
+              <th style="padding: 8px 6px; border: 1px solid #334155; width: 65px; text-align: center;">الكود</th>
+              <th style="padding: 8px 8px; border: 1px solid #334155;">اسم الطالب</th>
+              <th style="padding: 8px 4px; border: 1px solid #334155; width: 55px; text-align: center;">الصف</th>
+              <th style="padding: 8px 6px; border: 1px solid #334155;">الشعبة / التخصص</th>
+              <th style="padding: 8px 6px; border: 1px solid #334155;">المنطقة</th>
+              <th style="padding: 8px 6px; border: 1px solid #334155; width: 95px; text-align: center;">هاتف الطالب</th>
+              <th style="padding: 8px 6px; border: 1px solid #334155; width: 95px; text-align: center;">ولي الأمر</th>
             </tr>
           </thead>
           <tbody>
             ${matchedStudents.length === 0 ? `
-              <tr><td colspan="8" style="padding: 20px; text-align: center; color: #64748b;">لا يوجد طلاب مسجلين مع هذا المدرس في المرحلة المحددة.</td></tr>
+              <tr><td colspan="8" style="padding: 24px; text-align: center; color: #64748b; font-weight: bold;">لا يوجد طلاب مسجلين مع هذا المدرس في المرحلة المحددة.</td></tr>
             ` : matchedStudents.map((s, idx) => `
-              <tr style="background-color: ${idx % 2 === 0 ? '#ffffff' : '#f8fafc'};">
-                <td style="padding: 6px; border: 1px solid #cbd5e1; text-align: center;">${idx + 1}</td>
-                <td style="padding: 6px; border: 1px solid #cbd5e1; text-align: center; font-weight: bold; color: #0284c7;">#${s.code}</td>
-                <td style="padding: 6px; border: 1px solid #cbd5e1; font-weight: bold;">${s.name}</td>
-                <td style="padding: 6px; border: 1px solid #cbd5e1; text-align: center;">${s.grade || '-'}</td>
-                <td style="padding: 6px; border: 1px solid #cbd5e1;">${s.specialization || 'عام'}</td>
-                <td style="padding: 6px; border: 1px solid #cbd5e1;">${s.area || '-'}</td>
-                <td style="padding: 6px; border: 1px solid #cbd5e1; text-align: center; font-family: monospace;">${s.phone || '-'}</td>
-                <td style="padding: 6px; border: 1px solid #cbd5e1; text-align: center; font-family: monospace; color: #059669; font-weight: bold;">${s.parentPhone || '-'}</td>
+              <tr style="background-color: ${idx % 2 === 0 ? '#ffffff' : '#f8fafc'}; page-break-inside: avoid; break-inside: avoid;">
+                <td style="padding: 6px 4px; border: 1px solid #64748b; text-align: center; font-weight: bold; color: #475569;">${idx + 1}</td>
+                <td style="padding: 6px 4px; border: 1px solid #64748b; text-align: center; font-weight: 800; color: #0284c7; font-family: monospace;">#${s.code}</td>
+                <td style="padding: 6px 8px; border: 1px solid #64748b; font-weight: 800; color: #0f172a;">${s.name}</td>
+                <td style="padding: 6px 4px; border: 1px solid #64748b; text-align: center; font-weight: bold;">${s.grade || '-'}</td>
+                <td style="padding: 6px 6px; border: 1px solid #64748b;">${s.specialization || 'عام'}</td>
+                <td style="padding: 6px 6px; border: 1px solid #64748b;">${s.area || '-'}</td>
+                <td style="padding: 6px 4px; border: 1px solid #64748b; text-align: center; font-family: monospace;">${s.phone || '-'}</td>
+                <td style="padding: 6px 4px; border: 1px solid #64748b; text-align: center; font-family: monospace; color: #059669; font-weight: bold;">${s.parentPhone || '-'}</td>
               </tr>
             `).join('')}
           </tbody>
         </table>
 
-        <div style="margin-top: 30px; padding-top: 15px; border-top: 1px dashed #cbd5e1; display: flex; justify-content: space-between; font-size: 11px; color: #64748b;">
+        <div class="footer-signatures" style="margin-top: 30px; padding-top: 15px; border-top: 2px dashed #94a3b8; display: flex; justify-content: space-between; font-size: 11px; color: #334155; font-weight: bold; page-break-inside: avoid; break-inside: avoid;">
           <div>إشراف: إدارة سنتر الأرائج التعليمي</div>
+          <div>المشرف الأكاديمي: ___________________</div>
           <div>توقيع المدرس: ___________________</div>
           <div>ختم الإدارة: ___________________</div>
         </div>
@@ -4331,6 +4336,8 @@ function generateSelectedPdfReport() {
       const subs = s.academicSubjects || {};
       return Object.values(subs).some(sub => normalize_arabic(sub.teacher || '').includes(teacherNorm));
     });
+
+    matchedStudents.sort((a, b) => (a.name || '').localeCompare(b.name || '', 'ar'));
 
     let sumPresent = 0;
     let sumAbsent = 0;
@@ -4369,7 +4376,7 @@ function generateSelectedPdfReport() {
       const totalStudentRec = pCount + aCount;
       const rate = totalStudentRec > 0 ? Math.round((pCount / totalStudentRec) * 100) : 0;
       const evalText = rate >= 90 ? 'ممتاز' : rate >= 75 ? 'جيد جداً' : rate >= 50 ? 'مقبول' : totalStudentRec > 0 ? 'ضعيف' : 'غير مرصود';
-      const evalColor = rate >= 90 ? '#059669' : rate >= 75 ? '#0284c7' : rate >= 50 ? '#d97706' : '#dc2626';
+      const evalColor = rate >= 90 ? '#047857' : rate >= 75 ? '#0369a1' : rate >= 50 ? '#b45309' : totalStudentRec > 0 ? '#b91c1c' : '#64748b';
 
       return { s, idx, subjName, sessions, pCount, aCount, rate, evalText, evalColor };
     });
@@ -4377,79 +4384,93 @@ function generateSelectedPdfReport() {
     const overallRate = sumRecorded > 0 ? Math.round((sumPresent / sumRecorded) * 100) : 0;
 
     container.innerHTML = `
-      <div style="font-family: 'Cairo', sans-serif; direction: rtl; text-align: right; color: #0f172a;">
-        <div style="border-bottom: 2px solid #059669; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+      <div style="font-family: 'Cairo', sans-serif; direction: rtl; text-align: right; color: #0f172a; width: 100%;">
+        <div style="border-bottom: 2px solid #059669; padding-bottom: 12px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center;">
           <div>
             <h1 style="font-size: 22px; font-weight: 900; color: #059669; margin: 0;">سنتر الأرائج التعليمي</h1>
-            <p style="font-size: 13px; color: #334155; margin: 4px 0 0 0; font-weight: bold;">
+            <p style="font-size: 13px; color: #1e293b; margin: 4px 0 0 0; font-weight: 800;">
               كشف رصد الحضور والغياب والدرجات — <span style="color: #059669;">${selectedMonth}</span> (حصص 1 إلى 8)
             </p>
           </div>
-          <div style="text-align: left; font-size: 11px; color: #64748b;">
-            <div><strong>المدرس:</strong> ${selectedTeacher}</div>
-            <div><strong>التاريخ:</strong> ${today}</div>
-            <div><strong>المرحلة:</strong> ${selectedGrade === 'all' ? 'جميع المراحل' : selectedGrade}</div>
+          <div style="text-align: left; font-size: 11px; color: #334155; line-height: 1.6;">
+            <div><strong>المدرس المشرف:</strong> <span style="font-weight: 800; color: #0f172a;">${selectedTeacher}</span></div>
+            <div><strong>المرحلة الدراسية:</strong> <span style="font-weight: 800; color: #0f172a;">${selectedGrade === 'all' ? 'جميع المراحل' : selectedGrade}</span></div>
+            <div><strong>تاريخ الاستخراج:</strong> ${today}</div>
           </div>
         </div>
 
-        <!-- Summary Banner -->
-        <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; padding: 8px 12px; border-radius: 10px; margin-bottom: 16px; display: flex; justify-content: space-between; font-size: 11px; color: #166534; font-weight: bold;">
-          <div>إجمالي الطلاب: ${matchedStudents.length} طالب</div>
-          <div>إجمالي مرات الحضور: ${sumPresent}</div>
-          <div>إجمالي مرات الغياب: ${sumAbsent}</div>
-          <div>نسبة الحضور العامة: ${overallRate}%</div>
+        <!-- Summary KPI Bar -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px;">
+          <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; border-right: 4px solid #0284c7; padding: 8px 10px; border-radius: 8px;">
+            <div style="font-size: 10px; color: #64748b; font-weight: bold;">إجمالي الطلاب المقيدين</div>
+            <div style="font-size: 16px; font-weight: 900; color: #0284c7;">${matchedStudents.length} <span style="font-size: 11px; font-weight: normal;">طالب</span></div>
+          </div>
+          <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-right: 4px solid #059669; padding: 8px 10px; border-radius: 8px;">
+            <div style="font-size: 10px; color: #166534; font-weight: bold;">إجمالي مرات الحضور</div>
+            <div style="font-size: 16px; font-weight: 900; color: #059669;">${sumPresent}</div>
+          </div>
+          <div style="background-color: #fef2f2; border: 1px solid #fecaca; border-right: 4px solid #dc2626; padding: 8px 10px; border-radius: 8px;">
+            <div style="font-size: 10px; color: #991b1b; font-weight: bold;">إجمالي مرات الغياب</div>
+            <div style="font-size: 16px; font-weight: 900; color: #dc2626;">${sumAbsent}</div>
+          </div>
+          <div style="background-color: #faf5ff; border: 1px solid #e9d5ff; border-right: 4px solid #7c3aed; padding: 8px 10px; border-radius: 8px;">
+            <div style="font-size: 10px; color: #581c87; font-weight: bold;">نسبة الحضور العامة</div>
+            <div style="font-size: 16px; font-weight: 900; color: #7c3aed;">${overallRate}%</div>
+          </div>
         </div>
 
         <table style="width: 100%; border-collapse: collapse; font-size: 10px; text-align: center;">
           <thead>
-            <tr style="background-color: #059669; color: #ffffff;">
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 28px;">م</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 45px;">الكود</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1; text-align: right; width: 140px;">اسم الطالب</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 42px;">ح 1</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 42px;">ح 2</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 42px;">ح 3</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 42px;">ح 4</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 42px;">ح 5</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 42px;">ح 6</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 42px;">ح 7</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 42px;">ح 8</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 38px;">حضور</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 38px;">غياب</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 55px;">التقدير</th>
+            <tr style="background-color: #065f46; color: #ffffff;">
+              <th style="padding: 7px 4px; border: 1px solid #334155; width: 28px;">م</th>
+              <th style="padding: 7px 4px; border: 1px solid #334155; width: 48px;">الكود</th>
+              <th style="padding: 7px 6px; border: 1px solid #334155; text-align: right; width: 150px;">اسم الطالب</th>
+              <th style="padding: 7px 2px; border: 1px solid #334155; width: 34px;">ح 1</th>
+              <th style="padding: 7px 2px; border: 1px solid #334155; width: 34px;">ح 2</th>
+              <th style="padding: 7px 2px; border: 1px solid #334155; width: 34px;">ح 3</th>
+              <th style="padding: 7px 2px; border: 1px solid #334155; width: 34px;">ح 4</th>
+              <th style="padding: 7px 2px; border: 1px solid #334155; width: 34px;">ح 5</th>
+              <th style="padding: 7px 2px; border: 1px solid #334155; width: 34px;">ح 6</th>
+              <th style="padding: 7px 2px; border: 1px solid #334155; width: 34px;">ح 7</th>
+              <th style="padding: 7px 2px; border: 1px solid #334155; width: 34px;">ح 8</th>
+              <th style="padding: 7px 4px; border: 1px solid #334155; width: 36px; background-color: #047857;">حضور</th>
+              <th style="padding: 7px 4px; border: 1px solid #334155; width: 36px; background-color: #991b1b;">غياب</th>
+              <th style="padding: 7px 4px; border: 1px solid #334155; width: 52px; background-color: #1e293b;">التقدير</th>
             </tr>
           </thead>
           <tbody>
             ${studentRosterData.length === 0 ? `
-              <tr><td colspan="14" style="padding: 20px; text-align: center; color: #64748b;">لا يوجد طلاب مسجلين في هذا الكشف.</td></tr>
+              <tr><td colspan="14" style="padding: 24px; text-align: center; color: #64748b; font-weight: bold;">لا يوجد طلاب مسجلين مع هذا المدرس في المرحلة المحددة.</td></tr>
             ` : studentRosterData.map(r => `
-              <tr style="background-color: ${r.idx % 2 === 0 ? '#ffffff' : '#f8fafc'};">
-                <td style="padding: 5px; border: 1px solid #cbd5e1;">${r.idx + 1}</td>
-                <td style="padding: 5px; border: 1px solid #cbd5e1; font-weight: bold; color: #0284c7;">#${r.s.code}</td>
-                <td style="padding: 5px; border: 1px solid #cbd5e1; text-align: right; font-weight: bold;">
-                  <div>${r.s.name}</div>
-                  <div style="font-size: 9px; color: #64748b; font-weight: normal;">${r.s.grade || ''} - ${r.s.area || ''}</div>
+              <tr style="background-color: ${r.idx % 2 === 0 ? '#ffffff' : '#f8fafc'}; page-break-inside: avoid; break-inside: avoid;">
+                <td style="padding: 5px 3px; border: 1px solid #64748b; font-weight: bold; color: #475569;">${r.idx + 1}</td>
+                <td style="padding: 5px 3px; border: 1px solid #64748b; font-weight: 800; font-family: monospace; color: #0369a1;">#${r.s.code}</td>
+                <td style="padding: 5px 6px; border: 1px solid #64748b; text-align: right;">
+                  <div style="font-weight: 900; color: #0f172a; font-size: 11px;">${r.s.name}</div>
+                  <div style="font-size: 9px; color: #64748b; margin-top: 1px;">${r.s.grade || ''}${r.s.area ? ' — ' + r.s.area : ''}</div>
                 </td>
                 ${r.sessions.map(val => {
                   const isP = val === '✓' || val === 'حاضر';
                   const isA = val === 'غ' || val === 'غائب';
                   const isScr = val && !isP && !isA && val !== '-';
-                  const clr = isP ? '#059669' : isA ? '#dc2626' : isScr ? '#0284c7' : '#94a3b8';
+                  const clr = isP ? '#047857' : isA ? '#b91c1c' : isScr ? '#0369a1' : '#94a3b8';
                   const bg = isP ? '#ecfdf5' : isA ? '#fef2f2' : isScr ? '#f0f9ff' : 'transparent';
-                  return `<td style="padding: 5px; border: 1px solid #cbd5e1; color: ${clr}; background-color: ${bg}; font-weight: bold;">${val || '-'}</td>`;
+                  const displayVal = isP ? '✓' : isA ? 'غ' : (val || '-');
+                  return `<td style="padding: 5px 2px; border: 1px solid #64748b; color: ${clr}; background-color: ${bg}; font-weight: 900; font-size: 11px;">${displayVal}</td>`;
                 }).join('')}
-                <td style="padding: 5px; border: 1px solid #cbd5e1; color: #059669; font-weight: bold;">${r.pCount}</td>
-                <td style="padding: 5px; border: 1px solid #cbd5e1; color: #dc2626; font-weight: bold;">${r.aCount}</td>
-                <td style="padding: 5px; border: 1px solid #cbd5e1; color: ${r.evalColor}; font-weight: bold;">${r.evalText}</td>
+                <td style="padding: 5px 3px; border: 1px solid #64748b; color: #047857; font-weight: 900; font-size: 11px; background-color: #f0fdf4;">${r.pCount}</td>
+                <td style="padding: 5px 3px; border: 1px solid #64748b; color: #b91c1c; font-weight: 900; font-size: 11px; background-color: ${r.aCount > 0 ? '#fef2f2' : 'transparent'};">${r.aCount}</td>
+                <td style="padding: 5px 3px; border: 1px solid #64748b; color: ${r.evalColor}; font-weight: 900; font-size: 10px;">${r.evalText}</td>
               </tr>
             `).join('')}
           </tbody>
         </table>
 
-        <div style="margin-top: 30px; padding-top: 15px; border-top: 1px dashed #cbd5e1; display: flex; justify-content: space-between; font-size: 11px; color: #64748b;">
+        <div class="footer-signatures" style="margin-top: 25px; padding-top: 14px; border-top: 2px dashed #94a3b8; display: flex; justify-content: space-between; font-size: 11px; color: #334155; font-weight: bold; page-break-inside: avoid; break-inside: avoid;">
           <div>إشراف: إدارة سنتر الأرائج التعليمي</div>
-          <div>المشرف المسئول: ___________________</div>
+          <div>المشرف الأكاديمي: ___________________</div>
           <div>توقيع مدرس المادة: ___________________</div>
+          <div>ختم الإدارة: ___________________</div>
         </div>
       </div>
     `;
@@ -4460,56 +4481,178 @@ function generateSelectedPdfReport() {
       return true;
     });
 
+    matchedStudents.sort((a, b) => (a.name || '').localeCompare(b.name || '', 'ar'));
+
     container.innerHTML = `
-      <div style="font-family: 'Cairo', sans-serif; direction: rtl; text-align: right; color: #0f172a;">
-        <div style="border-bottom: 2px solid #4f46e5; padding-bottom: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+      <div style="font-family: 'Cairo', sans-serif; direction: rtl; text-align: right; color: #0f172a; width: 100%;">
+        <div style="border-bottom: 2px solid #4f46e5; padding-bottom: 12px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
           <div>
             <h1 style="font-size: 22px; font-weight: 900; color: #4f46e5; margin: 0;">سنتر الأرائج التعليمي</h1>
-            <p style="font-size: 13px; color: #64748b; margin: 4px 0 0 0;">كشف السجل العام لطلاب مرحلة (${selectedGrade === 'all' ? 'جميع المراحل' : selectedGrade})</p>
+            <p style="font-size: 13px; color: #1e293b; margin: 4px 0 0 0; font-weight: 800;">
+              كشف السجل العام لطلاب مرحلة (<span style="color: #4f46e5;">${selectedGrade === 'all' ? 'جميع المراحل' : selectedGrade}</span>)
+            </p>
           </div>
-          <div style="text-align: left; font-size: 11px; color: #64748b;">
-            <div><strong>التاريخ:</strong> ${today}</div>
-            <div><strong>إجمالي المقيدين:</strong> ${matchedStudents.length} طالب</div>
+          <div style="text-align: left; font-size: 11px; color: #334155; line-height: 1.6;">
+            <div><strong>تاريخ الاستخراج:</strong> ${today}</div>
+            <div><strong>إجمالي المقيدين:</strong> <span style="font-weight: 900; color: #4f46e5; font-size: 13px;">${matchedStudents.length}</span> طالب</div>
           </div>
         </div>
 
         <table style="width: 100%; border-collapse: collapse; font-size: 10px; text-align: right;">
           <thead>
-            <tr style="background-color: #4f46e5; color: #ffffff;">
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 35px; text-align: center;">م</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 55px; text-align: center;">الكود</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1;">اسم الطالب</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 45px; text-align: center;">الصف</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1;">الشعبة</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1;">المنطقة</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 90px; text-align: center;">هاتف الطالب</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 90px; text-align: center;">ولي الأمر</th>
-              <th style="padding: 6px; border: 1px solid #cbd5e1; width: 50px; text-align: center;">التقدير</th>
+            <tr style="background-color: #3730a3; color: #ffffff;">
+              <th style="padding: 7px 4px; border: 1px solid #334155; width: 35px; text-align: center;">م</th>
+              <th style="padding: 7px 4px; border: 1px solid #334155; width: 55px; text-align: center;">الكود</th>
+              <th style="padding: 7px 6px; border: 1px solid #334155;">اسم الطالب</th>
+              <th style="padding: 7px 4px; border: 1px solid #334155; width: 45px; text-align: center;">الصف</th>
+              <th style="padding: 7px 6px; border: 1px solid #334155;">الشعبة</th>
+              <th style="padding: 7px 6px; border: 1px solid #334155;">المنطقة</th>
+              <th style="padding: 7px 4px; border: 1px solid #334155; width: 90px; text-align: center;">هاتف الطالب</th>
+              <th style="padding: 7px 4px; border: 1px solid #334155; width: 90px; text-align: center;">ولي الأمر</th>
+              <th style="padding: 7px 4px; border: 1px solid #334155; width: 50px; text-align: center;">التقدير</th>
             </tr>
           </thead>
           <tbody>
             ${matchedStudents.map((s, idx) => `
-              <tr style="background-color: ${idx % 2 === 0 ? '#ffffff' : '#f8fafc'};">
-                <td style="padding: 5px; border: 1px solid #cbd5e1; text-align: center;">${idx + 1}</td>
-                <td style="padding: 5px; border: 1px solid #cbd5e1; text-align: center; font-weight: bold; color: #4f46e5;">#${s.code}</td>
-                <td style="padding: 5px; border: 1px solid #cbd5e1; font-weight: bold;">${s.name}</td>
-                <td style="padding: 5px; border: 1px solid #cbd5e1; text-align: center;">${s.grade || '-'}</td>
-                <td style="padding: 5px; border: 1px solid #cbd5e1;">${s.specialization || 'عام'}</td>
-                <td style="padding: 5px; border: 1px solid #cbd5e1;">${s.area || '-'}</td>
-                <td style="padding: 5px; border: 1px solid #cbd5e1; text-align: center; font-family: monospace;">${s.phone || '-'}</td>
-                <td style="padding: 6px; border: 1px solid #cbd5e1; text-align: center; font-family: monospace; color: #059669; font-weight: bold;">${s.parentPhone || '-'}</td>
-                <td style="padding: 5px; border: 1px solid #cbd5e1; text-align: center; font-weight: bold;">${s._metrics ? s._metrics.gradeEvaluation : '-'}</td>
+              <tr style="background-color: ${idx % 2 === 0 ? '#ffffff' : '#f8fafc'}; page-break-inside: avoid; break-inside: avoid;">
+                <td style="padding: 5px 4px; border: 1px solid #64748b; text-align: center; font-weight: bold; color: #475569;">${idx + 1}</td>
+                <td style="padding: 5px 4px; border: 1px solid #64748b; text-align: center; font-weight: 800; color: #4f46e5; font-family: monospace;">#${s.code}</td>
+                <td style="padding: 5px 6px; border: 1px solid #64748b; font-weight: 800; color: #0f172a;">${s.name}</td>
+                <td style="padding: 5px 4px; border: 1px solid #64748b; text-align: center; font-weight: bold;">${s.grade || '-'}</td>
+                <td style="padding: 5px 6px; border: 1px solid #64748b;">${s.specialization || 'عام'}</td>
+                <td style="padding: 5px 6px; border: 1px solid #64748b;">${s.area || '-'}</td>
+                <td style="padding: 5px 4px; border: 1px solid #64748b; text-align: center; font-family: monospace;">${s.phone || '-'}</td>
+                <td style="padding: 5px 4px; border: 1px solid #64748b; text-align: center; font-family: monospace; color: #059669; font-weight: bold;">${s.parentPhone || '-'}</td>
+                <td style="padding: 5px 4px; border: 1px solid #64748b; text-align: center; font-weight: bold;">${s._metrics ? s._metrics.gradeEvaluation : '-'}</td>
               </tr>
             `).join('')}
           </tbody>
         </table>
+
+        <div class="footer-signatures" style="margin-top: 30px; padding-top: 15px; border-top: 2px dashed #94a3b8; display: flex; justify-content: space-between; font-size: 11px; color: #334155; font-weight: bold; page-break-inside: avoid; break-inside: avoid;">
+          <div>إشراف: إدارة سنتر الأرائج التعليمي</div>
+          <div>المشرف المسئول: ___________________</div>
+          <div>ختم الإدارة: ___________________</div>
+        </div>
       </div>
     `;
   }
 }
 
+// ====================================================
+// UNIVERSAL DEDICATED PRINT HELPER (ISOLATED IFRAME)
+// ====================================================
+
+function printHtmlContent(htmlContent, documentTitle = 'تقرير سنتر الأرائج التعليمي', orientation = 'portrait') {
+  // Mark body for any direct native print fallback
+  if (documentTitle.includes('ولي أمر') || documentTitle.includes('تقرير الطالب')) {
+    document.body.classList.add('printing-parent-card');
+  } else {
+    document.body.classList.add('printing-report');
+  }
+
+  // Remove any previous print iframe to ensure a clean slate
+  let oldIframe = document.getElementById('appDedicatedPrintIframe');
+  if (oldIframe) {
+    try { oldIframe.remove(); } catch (e) {}
+  }
+
+  const printIframe = document.createElement('iframe');
+  printIframe.id = 'appDedicatedPrintIframe';
+  printIframe.setAttribute('style', 'position: fixed; right: -9999px; bottom: -9999px; width: 0; height: 0; border: 0;');
+  document.body.appendChild(printIframe);
+
+  const iframeDoc = printIframe.contentWindow.document;
+  iframeDoc.open();
+  iframeDoc.write(`
+    <!DOCTYPE html>
+    <html lang="ar" dir="rtl">
+    <head>
+      <meta charset="UTF-8">
+      <title>${documentTitle}</title>
+      <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+      <style>
+        @page {
+          size: A4 ${orientation};
+          margin: 8mm 8mm 10mm 8mm;
+        }
+        * {
+          box-sizing: border-box;
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+        html, body {
+          margin: 0;
+          padding: 0;
+          background: #ffffff !important;
+          color: #0f172a !important;
+          font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          direction: rtl;
+          text-align: right;
+          width: 100%;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          page-break-inside: auto;
+          margin-top: 8px;
+        }
+        thead {
+          display: table-header-group;
+        }
+        tfoot {
+          display: table-footer-group;
+        }
+        tr {
+          page-break-inside: avoid;
+          break-inside: avoid;
+        }
+        th, td {
+          border: 1px solid #475569 !important;
+        }
+        .footer-signatures {
+          page-break-inside: avoid;
+          break-inside: avoid;
+        }
+      </style>
+    </head>
+    <body>
+      ${htmlContent}
+    </body>
+    </html>
+  `);
+  iframeDoc.close();
+
+  // Allow browser time to render fonts and CSS before triggering print
+  setTimeout(() => {
+    try {
+      printIframe.contentWindow.focus();
+      printIframe.contentWindow.print();
+    } catch (e) {
+      console.warn('Iframe print failed, falling back to window.print', e);
+      window.print();
+    } finally {
+      setTimeout(() => {
+        document.body.classList.remove('printing-parent-card', 'printing-report');
+      }, 1500);
+    }
+  }, 400);
+}
+
 function printGeneratedReport() {
-  window.print();
+  const container = document.getElementById('printableArea');
+  if (!container || !container.innerHTML.trim()) {
+    showToast('لا يوجد تقرير معروض للطباعة', 'error');
+    return;
+  }
+
+  const reportTitle = currentPdfMode === 'attendance_roster' 
+    ? 'كشف رصد الحضور والغياب - سنتر الأرائج'
+    : currentPdfMode === 'teacher'
+    ? 'كشف قائمة طلاب المدرس - سنتر الأرائج'
+    : 'كشف السجل العام للمرحلة - سنتر الأرائج';
+
+  printHtmlContent(container.innerHTML, reportTitle, 'portrait');
 }
 
 // ====================================================
@@ -4674,48 +4817,8 @@ function printStudentCardReport() {
     logActivity('طباعة تقرير ولي أمر', `تمت طباعة التقرير الأكاديمي للطالب (${activeReportStudent.name})`, activeReportStudent.code, activeReportStudent.name);
   }
 
-  const printWindow = window.open('', '_blank', 'width=900,height=950');
-  if (printWindow) {
-    printWindow.document.write(`
-      <!DOCTYPE html>
-      <html lang="ar" dir="rtl">
-      <head>
-        <meta charset="UTF-8">
-        <title>تقرير الطالب - سنتر الأرائج التعليمي</title>
-        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-        <style>
-          * { box-sizing: border-box; }
-          body {
-            font-family: 'Cairo', sans-serif;
-            direction: rtl;
-            text-align: right;
-            background: #ffffff;
-            color: #0f172a;
-            padding: 25px;
-            margin: 0;
-          }
-          table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-          th, td { border: 1px solid #cbd5e1; padding: 8px 10px; font-size: 12px; }
-          th { background-color: #f1f5f9; color: #1e293b; font-weight: bold; }
-          @media print {
-            body { padding: 10px; }
-            @page { size: A4 portrait; margin: 10mm; }
-          }
-        </style>
-      </head>
-      <body>
-        ${printContent.innerHTML}
-      </body>
-      </html>
-    `);
-    printWindow.document.close();
-    printWindow.focus();
-    setTimeout(() => {
-      printWindow.print();
-    }, 500);
-  } else {
-    window.print();
-  }
+  const title = `تقرير متابعة الطالب (${activeReportStudent ? activeReportStudent.name : ''}) - سنتر الأرائج`;
+  printHtmlContent(printContent.innerHTML, title, 'portrait');
 }
 
 function buildWhatsAppReportMessage(student) {

@@ -622,48 +622,133 @@
 
     /* Print Styles */
     @media print {
-      body { background: #fff !important; color: #000 !important; }
-      body * { visibility: hidden !important; }
-      #printableArea, #printableArea *,
-      #studentPrintCardArea, #studentPrintCardArea * {
-        visibility: visible !important;
+      @page {
+        size: A4 portrait;
+        margin: 8mm 8mm 10mm 8mm;
       }
-      #printableArea {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        color: #000 !important;
-        background: #fff !important;
-        padding: 15px;
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
       }
-      #parentReportModal {
-        position: fixed !important;
-        inset: 0 !important;
-        background: #fff !important;
+      html, body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        overflow: visible !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      
+      /* Hide all UI elements, navigation, controls, headers, floating bars, and modals by default */
+      nav, header, aside, #bottomNav, #syncStatusBanner, #toastNotification,
+      .no-print, #loginScreen, #quickAttendanceModal, #bulkAttendanceModal,
+      #studentModal, #addStudentModal, #addUserModal, #activityLogModal, #statsModal {
+        display: none !important;
+      }
+
+      /* Parent report modal: STRICTLY hide unless explicitly printing parent card */
+      #parentReportModal,
+      #parentReportModal.hidden {
+        display: none !important;
+      }
+
+      body.printing-parent-card * {
+        visibility: hidden;
+      }
+      body.printing-parent-card #parentReportModal {
         display: block !important;
+        position: static !important;
+        background: transparent !important;
         padding: 0 !important;
         margin: 0 !important;
-        z-index: 999999 !important;
       }
-      #parentReportModal > div {
+      body.printing-parent-card #parentReportModal > div {
         box-shadow: none !important;
         border: none !important;
         max-width: 100% !important;
         width: 100% !important;
-        background: #fff !important;
+        background: #ffffff !important;
       }
-      #studentPrintCardArea {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        background: #fff !important;
-        color: #000 !important;
-        padding: 20px;
+      body.printing-parent-card #studentPrintCardArea,
+      body.printing-parent-card #studentPrintCardArea * {
+        visibility: visible !important;
+      }
+      body.printing-parent-card #studentPrintCardArea {
+        position: static !important;
+        display: block !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+        padding: 0 !important;
         border: none !important;
       }
-      .no-print { display: none !important; }
+
+      /* Report printing: printableArea */
+      body.printing-report * {
+        visibility: hidden;
+      }
+      body.printing-report #printableReportContainer {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+      }
+      body.printing-report #printableArea,
+      body.printing-report #printableArea * {
+        visibility: visible !important;
+      }
+      body.printing-report #printableArea {
+        position: static !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        min-height: auto !important;
+      }
+
+      /* Fallback if Ctrl+P is pressed without body classes */
+      body:not(.printing-parent-card):not(.printing-report) * {
+        visibility: hidden;
+      }
+      body:not(.printing-parent-card):not(.printing-report) #printableReportContainer {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+      }
+      body:not(.printing-parent-card):not(.printing-report) #printableArea,
+      body:not(.printing-parent-card):not(.printing-report) #printableArea * {
+        visibility: visible !important;
+      }
+      body:not(.printing-parent-card):not(.printing-report) #printableArea {
+        position: static !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+
+      /* Table pagination rules across pages */
+      table {
+        page-break-inside: auto !important;
+      }
+      thead {
+        display: table-header-group !important;
+      }
+      tfoot {
+        display: table-footer-group !important;
+      }
+      tr {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
     }
   </style>
 </head>
