@@ -396,6 +396,9 @@ function parseSubjectsFromSummary(subjectsSummary, teachersSummary, existingAcad
     if (!mergedMonths['شهر 9 (سبتمبر)'] || mergedMonths['شهر 9 (سبتمبر)'].every(s => !s)) {
       mergedMonths['شهر 9 (سبتمبر)'] = [...sessions];
     }
+    if (!mergedMonths['شهر 10 (أكتوبر)'] || mergedMonths['شهر 10 (أكتوبر)'].every(s => !s)) {
+      mergedMonths['شهر 10 (أكتوبر)'] = [...sessions];
+    }
 
     if (!result[canon]) {
       result[canon] = {
@@ -533,7 +536,7 @@ function getStudentSubjectMonthSessions(student, subject, month = null) {
   }
 
   if (!sub.months) sub.months = {};
-  if (!sub.months[m]) {
+  if (!sub.months[m] || sub.months[m].every(s => !s || !String(s).trim())) {
     if (Array.isArray(sub.sessions) && sub.sessions.some(s => s && String(s).trim())) {
       sub.months[m] = [...sub.sessions];
     } else {
@@ -2154,8 +2157,8 @@ function renderAttendanceMatrix() {
         <td class="p-3 text-slate-400">${st.specialization || 'عام'}</td>
         ${[0, 1, 2, 3, 4, 5, 6, 7].map(sIdx => {
           const val = sessions[sIdx] || '';
-          const isPresent = val === '✓' || val === 'حاضر';
-          const isAbsent = val === 'غ' || val === 'غائب';
+          const isPresent = val === '✓' || val === 'حاضر' || val === 'حضر';
+          const isAbsent = val === 'غ' || val === 'غائب' || val === 'غايب' || val === 'غياب';
           const isScore = val.includes('/') || (!isNaN(parseFloat(val)) && val !== '');
 
           const btnClass = isPresent ? 'bg-emerald-500 text-white font-bold shadow' :

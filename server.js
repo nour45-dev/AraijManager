@@ -774,7 +774,7 @@ async function syncFromGoogleSheets() {
 
       fetchedStudents.forEach(st => {
         const code = String(st.code || '').trim();
-        if (!code || !st.name) return;
+        if (!st.name) return;
         // Ignore test students
         if (st.name.includes('طالب تجريبي') || st.name.includes('اختبار ربط الشيت') || code.startsWith('TEST-')) return;
         if (hasBad(st.name)) { console.warn('[Google Sheets Sync] Skipped corrupted name for code', code); return; }
@@ -782,7 +782,14 @@ async function syncFromGoogleSheets() {
         const academic = parseAcademicSubjectsFromSummary(st.subjectsSummary, st.teachersSummary);
         const metrics = computeStudentMetrics(academic);
 
-        const existingIdx = students.findIndex(s => String(s.code).trim() === code);
+        let existingIdx = -1;
+        if (code) {
+          existingIdx = students.findIndex(s => String(s.code).trim() === code);
+        }
+        if (existingIdx === -1) {
+          const normName = st.name.trim().replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي');
+          existingIdx = students.findIndex(s => s.name && s.name.trim().replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي') === normName);
+        }
         if (existingIdx >= 0) {
           const existing = students[existingIdx];
 
