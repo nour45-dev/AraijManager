@@ -243,8 +243,7 @@ function normalize_grade(grade) {
 // Clean teacher name helper: strips bracketed attendance, normalizes titles, maps to real canonical teacher names, and strips dummy/bogus teachers
 function cleanTeacherName(rawTeacher, rawSubj) {
   if (!rawTeacher || typeof rawTeacher !== 'string') {
-    const canon = canonicalSubjectName(rawSubj) || rawSubj;
-    return (TEACHERS[canon] && TEACHERS[canon][0]) || '';
+    return '';
   }
   let t = rawTeacher.trim();
   // Strip all bracket expressions like [شهر 10 (أكتوبر): _, _, ...] or [حصص: ...]
@@ -287,9 +286,6 @@ function cleanTeacherName(rawTeacher, rawSubj) {
 
   // Check invalid or dummy
   if (!t || t === '.' || t === 'علوم' || t.includes('مدرس المادة') || t.includes('مدرس ماده') || t === 'ا' || t === 'م' || t === 'ا/' || t === 'جديد' || t === 'مدرس آخر' || t.length <= 2) {
-    const canon = canonicalSubjectName(rawSubj) || rawSubj;
-    const defT = (TEACHERS[canon] && TEACHERS[canon][0]) || '';
-    if (defT && !defT.includes('مدرس المادة')) return defT;
     return '';
   }
   return t;
@@ -531,15 +527,9 @@ function getStudentSubjectMonthSessions(student, subject, month = null) {
   if (!student.academicSubjects) student.academicSubjects = {};
   const canon = canonicalSubjectName(subject) || subject;
 
-  // البحث عن المادة سواء بالاسم المباشر أو الكانونيكال
   let sub = getEnrolledSubjectData(student.academicSubjects, subject);
   if (!sub) {
-    sub = {
-      teacher: (TEACHERS[canon] && TEACHERS[canon][0]) || "مدرس المادة",
-      sessions: ["", "", "", "", "", "", "", ""],
-      months: {}
-    };
-    student.academicSubjects[canon] = sub;
+    return ["", "", "", "", "", "", "", ""];
   }
 
   if (!sub.months) sub.months = {};
@@ -2125,17 +2115,16 @@ function renderAttendanceMatrix() {
   const searchQuery = (document.getElementById('matrixSearchInput')?.value || '').trim();
   const searchNorm = normalize_arabic(searchQuery);
 
-  let students = allStudents.filter(s => s.grade === grade);
-
-  if (selectedTeacher !== 'all') {
-    const tNorm = normalize_arabic(selectedTeacher);
-    students = students.filter(s => {
-      const summaryNorm = normalize_arabic(s.teachersSummary || '');
-      if (summaryNorm.includes(tNorm)) return true;
-      const sub = s.academicSubjects && s.academicSubjects[subject];
-      return sub && normalize_arabic(sub.teacher || '').includes(tNorm);
-    });
-  }
+  let students = allStudents.filter(s => {
+    if (s.grade !== grade) return false;
+    const sub = getEnrolledSubjectData(s.academicSubjects, subject);
+    if (!sub || !sub.teacher || sub.teacher.includes('مدرس المادة')) return false;
+    if (selectedTeacher !== 'all') {
+      const tNorm = normalize_arabic(selectedTeacher);
+      if (!normalize_arabic(sub.teacher).includes(tNorm)) return false;
+    }
+    return true;
+  });
 
   if (searchNorm) {
     students = students.filter(s => {
@@ -4347,10 +4336,8 @@ function generateSelectedPdfReport() {
   if (currentPdfMode === 'teacher') {
     const matchedStudents = allStudents.filter(s => {
       if (selectedGrade !== 'all' && s.grade !== selectedGrade) return false;
-      const tSummary = normalize_arabic(s.teachersSummary || '');
-      if (tSummary.includes(teacherNorm)) return true;
       const subs = s.academicSubjects || {};
-      return Object.values(subs).some(sub => normalize_arabic(sub.teacher || '').includes(teacherNorm));
+      return Object.values(subs).some(sub => sub && sub.teacher && normalize_arabic(sub.teacher).includes(teacherNorm));
     });
 
     matchedStudents.sort((a, b) => (a.name || '').localeCompare(b.name || '', 'ar'));
@@ -4414,10 +4401,8 @@ function generateSelectedPdfReport() {
   } else if (currentPdfMode === 'attendance_roster') {
     const matchedStudents = allStudents.filter(s => {
       if (selectedGrade !== 'all' && s.grade !== selectedGrade) return false;
-      const tSummary = normalize_arabic(s.teachersSummary || '');
-      if (tSummary.includes(teacherNorm)) return true;
       const subs = s.academicSubjects || {};
-      return Object.values(subs).some(sub => normalize_arabic(sub.teacher || '').includes(teacherNorm));
+      return Object.values(subs).some(sub => sub && sub.teacher && normalize_arabic(sub.teacher).includes(teacherNorm));
     });
 
     matchedStudents.sort((a, b) => (a.name || '').localeCompare(b.name || '', 'ar'));
@@ -5404,21 +5389,13 @@ function renderBulkStudentsList() {
   const sessionIdx = parseInt(document.getElementById('bulkSessionNumSelect')?.value || '0');
   const targetMonth = document.getElementById('bulkMonthSelect')?.value || currentActiveMonth || 'شهر 9 (سبتمبر)';
 
-  let list = allStudents.filter(s => s.grade === grade);
-
-  // Filter students who take this subject
   const tNorm = normalize_arabic(teacher);
-  list = list.filter(s => {
+  let list = allStudents.filter(s => {
+    if (s.grade !== grade) return false;
     const subData = getEnrolledSubjectData(s.academicSubjects, subject);
-    if (!subData) {
-      const sumNorm = normalize_arabic(s.subjectsSummary || '');
-      if (!sumNorm.includes(normalize_arabic(subject))) return false;
-    }
+    if (!subData || !subData.teacher || subData.teacher.includes('مدرس المادة')) return false;
     if (teacher !== 'all') {
-      const assignedTeacher = subData ? subData.teacher : '';
-      if (!normalize_arabic(assignedTeacher).includes(tNorm) && !normalize_arabic(s.teachersSummary || '').includes(tNorm)) {
-        return false;
-      }
+      if (!normalize_arabic(subData.teacher).includes(tNorm)) return false;
     }
     return true;
   });
@@ -6424,6 +6401,9 @@ function saveCameraScannedAttendance() {
   const modifiedStudents = [];
   const uName = currentUser?.name || 'مشرف';
 
+  const scanTeacherVal = (document.getElementById('scanTeacherSelect')?.value || '').trim();
+  const validScanTeacher = (scanTeacherVal && scanTeacherVal !== 'all' && !scanTeacherVal.includes('مدرس المادة')) ? scanTeacherVal : '';
+
   scannedRecognizedStudents.forEach(item => {
     const student = allStudents.find(s => String(s.code).trim() === String(item.student?.code).trim());
     if (!student) return;
@@ -6434,9 +6414,8 @@ function saveCameraScannedAttendance() {
 
     if (!student.academicSubjects) student.academicSubjects = {};
     if (!student.academicSubjects[subject]) {
-      const canon = canonicalSubjectName(subject) || subject;
       student.academicSubjects[subject] = {
-        teacher: (TEACHERS[canon] && TEACHERS[canon][0]) || "مدرس المادة",
+        teacher: validScanTeacher || "مدرس المادة",
         sessions: ["", "", "", "", "", "", "", ""]
       };
     }
