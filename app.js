@@ -527,7 +527,7 @@ function rebuildStudentSummaries(student) {
 // ==========================================
 
 function getStudentSubjectMonthSessions(student, subject, month = null) {
-  const m = month || currentActiveMonth || 'شهر 9 (سبتمبر)';
+  const m = month || currentActiveMonth || 'شهر 10 (أكتوبر)';
   if (!student.academicSubjects) student.academicSubjects = {};
   const canon = canonicalSubjectName(subject) || subject;
 
@@ -544,32 +544,47 @@ function getStudentSubjectMonthSessions(student, subject, month = null) {
 
   if (!sub.months) sub.months = {};
   if (!sub.months[m]) {
-    if ((m === 'شهر 9 (سبتمبر)' || m === 'شهر 1') && Array.isArray(sub.sessions) && sub.sessions.length > 0) {
+    if (Array.isArray(sub.sessions) && sub.sessions.some(s => s && String(s).trim())) {
       sub.months[m] = [...sub.sessions];
     } else {
-      sub.months[m] = ["", "", "", "", "", "", "", ""];
+      let fallback = null;
+      for (const otherM in sub.months) {
+        if (Array.isArray(sub.months[otherM]) && sub.months[otherM].some(s => s && String(s).trim())) {
+          fallback = [...sub.months[otherM]];
+          break;
+        }
+      }
+      sub.months[m] = fallback ? fallback : ["", "", "", "", "", "", "", ""];
     }
   }
   while (sub.months[m].length < 8) sub.months[m].push("");
 
-  // مزامنة مستمرة مع sessions
-  if (m === currentActiveMonth || m === 'شهر 9 (سبتمبر)' || m === 'شهر 1') {
+  // مزامنة غير إتلافية مع sub.sessions: لا تمسح sessions أبداً إذا كانت تحتوي على بيانات
+  const monthHasContent = sub.months[m].some(s => s && String(s).trim());
+  const sessionsHasContent = Array.isArray(sub.sessions) && sub.sessions.some(s => s && String(s).trim());
+
+  if (monthHasContent) {
+    sub.sessions = [...sub.months[m]];
+  } else if (sessionsHasContent) {
+    sub.months[m] = [...sub.sessions];
+  } else {
     sub.sessions = sub.months[m];
   }
+
   return sub.months[m];
 }
 
 function setStudentSubjectMonthSession(student, subject, month, sessionIdx, val) {
-  const m = month || currentActiveMonth || 'شهر 9 (سبتمبر)';
+  const m = month || currentActiveMonth || 'شهر 10 (أكتوبر)';
   const sessions = getStudentSubjectMonthSessions(student, subject, m);
   sessions[sessionIdx] = val;
   const sub = getEnrolledSubjectData(student.academicSubjects, subject);
   if (sub) {
     if (!sub.months) sub.months = {};
     sub.months[m] = sessions;
-    if (m === currentActiveMonth || m === 'شهر 9 (سبتمبر)' || m === 'شهر 1') {
-      sub.sessions = [...sessions];
-    }
+    if (!sub.sessions || !Array.isArray(sub.sessions)) sub.sessions = ["", "", "", "", "", "", "", ""];
+    while (sub.sessions.length < 8) sub.sessions.push("");
+    sub.sessions[sessionIdx] = val;
   }
   return sessions;
 }
@@ -1335,8 +1350,73 @@ function renderUsersList() {
 // 7. REAL DATA PROCESSING & EXACT METRICS
 // ====================================================
 
+// Deep non-destructive merge of student records on client to preserve all enrolled subjects and multi-month attendance
+function mergeStudentClientDeep(existingSt, incomingSt) {
+  if (!existingSt) return incomingSt;
+  if (!incomingSt) return existingSt;
+
+  const merged = { ...existingSt, ...incomingSt };
+  const exSubs = existingSt.academicSubjects || {};
+  const inSubs = incomingSt.academicSubjects || {};
+  const mergedSubs = { ...exSubs };
+
+  Object.keys(inSubs).forEach(subKey => {
+    const canon = canonicalSubjectName(subKey) || subKey;
+    const inSub = inSubs[subKey];
+    if (!inSub) return;
+
+    if (!mergedSubs[canon]) {
+      mergedSubs[canon] = inSub;
+    } else {
+      const exSub = mergedSubs[canon];
+      const finalTeacher = cleanTeacherName(inSub.teacher || exSub.teacher, canon);
+
+      const sessions = Array.isArray(exSub.sessions) ? [...exSub.sessions] : ["", "", "", "", "", "", "", ""];
+      while (sessions.length < 8) sessions.push("");
+      if (Array.isArray(inSub.sessions)) {
+        for (let i = 0; i < 8; i++) {
+          const val = inSub.sessions[i];
+          if (val !== undefined && val !== null && String(val).trim() !== "" && String(val).trim() !== "_") {
+            sessions[i] = String(val).trim();
+          }
+        }
+      }
+
+      const months = { ...(exSub.months || {}) };
+      if (inSub.months) {
+        Object.keys(inSub.months).forEach(mName => {
+          if (!months[mName] || !Array.isArray(months[mName])) {
+            months[mName] = ["", "", "", "", "", "", "", ""];
+          } else {
+            months[mName] = [...months[mName]];
+          }
+          while (months[mName].length < 8) months[mName].push("");
+
+          if (Array.isArray(inSub.months[mName])) {
+            for (let i = 0; i < 8; i++) {
+              const val = inSub.months[mName][i];
+              if (val !== undefined && val !== null && String(val).trim() !== "" && String(val).trim() !== "_") {
+                months[mName][i] = String(val).trim();
+              }
+            }
+          }
+        });
+      }
+
+      mergedSubs[canon] = {
+        teacher: finalTeacher,
+        sessions,
+        months
+      };
+    }
+  });
+
+  merged.academicSubjects = mergedSubs;
+  return merged;
+}
+
 function initData() {
-  const CURRENT_DB_VERSION = 'v4.7_master_restore';
+  const CURRENT_DB_VERSION = 'v4.8_clean_sync';
   const savedVersion = localStorage.getItem('araij_db_schema_version');
   if (savedVersion !== CURRENT_DB_VERSION) {
     // Purge outdated cache so clean non-destructive data loads seamlessly
@@ -1409,14 +1489,21 @@ function initData() {
               }
             }
             if (!lSub.months) lSub.months = {};
-            if (!lSub.months['شهر 9 (سبتمبر)']) lSub.months['شهر 9 (سبتمبر)'] = [...lSub.sessions];
-            else {
-              for (let i = 0; i < 8; i++) {
-                if (lSub.sessions[i] && !lSub.months['شهر 9 (سبتمبر)'][i]) {
-                  lSub.months['شهر 9 (سبتمبر)'][i] = lSub.sessions[i];
+            if (bSub.months) {
+              Object.keys(bSub.months).forEach(mName => {
+                if (!lSub.months[mName]) lSub.months[mName] = ['', '', '', '', '', '', '', ''];
+                if (Array.isArray(bSub.months[mName])) {
+                  for (let i = 0; i < 8; i++) {
+                    const bVal = (bSub.months[mName][i] || '').trim();
+                    if (bVal && !lSub.months[mName][i]) {
+                      lSub.months[mName][i] = bVal;
+                    }
+                  }
                 }
-              }
+              });
             }
+            if (!lSub.months['شهر 10 (أكتوبر)']) lSub.months['شهر 10 (أكتوبر)'] = [...lSub.sessions];
+            if (!lSub.months['شهر 9 (سبتمبر)']) lSub.months['شهر 9 (سبتمبر)'] = [...lSub.sessions];
             if (!lSub.months['شهر 1']) lSub.months['شهر 1'] = [...lSub.sessions];
           }
         });
@@ -3592,7 +3679,7 @@ function handleIncomingLiveUpdate(msg) {
     const targetCode = String(student.code).trim();
     const idx = allStudents.findIndex(s => String(s.code).trim() === targetCode);
     if (idx >= 0) {
-      allStudents[idx] = { ...allStudents[idx], ...student };
+      allStudents[idx] = mergeStudentClientDeep(allStudents[idx], student);
     } else {
       allStudents.unshift(student);
     }
@@ -3647,7 +3734,7 @@ function handleIncomingLiveUpdate(msg) {
           const targetCode = String(st.code).trim();
           const idx = allStudents.findIndex(s => String(s.code).trim() === targetCode);
           if (idx >= 0) {
-            allStudents[idx] = { ...allStudents[idx], ...st };
+            allStudents[idx] = mergeStudentClientDeep(allStudents[idx], st);
             overrides[st.code] = allStudents[idx];
           } else {
             allStudents.unshift(st);

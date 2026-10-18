@@ -37,8 +37,8 @@ function initDatabase() {
       console.log(`[DB] Loaded ${students.length} valid students from students_db.json`);
     }
 
-    // Fail-safe: If DB had fewer than 1000 students, seed/restore from data.js
-    if (!students || students.length < 1000) {
+    // Fail-safe: If DB had fewer than 500 students, seed/restore from data.js
+    if (!students || students.length < 500) {
       console.warn(`[DB] Warning: DB has only ${students ? students.length : 0} students. Re-seeding master database from data.js...`);
       const dataJsPath = path.join(__dirname, 'data.js');
       if (fs.existsSync(dataJsPath)) {
@@ -255,6 +255,75 @@ wss.on('connection', (ws, req) => {
   });
 });
 
+// Deep non-destructive merge of student records to preserve all enrolled subjects and multi-month attendance
+function mergeStudentDeep(existingSt, incomingSt) {
+  if (!existingSt) return incomingSt;
+  if (!incomingSt) return existingSt;
+
+  const merged = { ...existingSt, ...incomingSt };
+  
+  // Deep merge academicSubjects
+  const exSubs = existingSt.academicSubjects || {};
+  const inSubs = incomingSt.academicSubjects || {};
+  const mergedSubs = { ...exSubs };
+
+  Object.keys(inSubs).forEach(subKey => {
+    const canon = canonicalSubject(subKey) || subKey;
+    const inSub = inSubs[subKey];
+    if (!inSub) return;
+
+    if (!mergedSubs[canon]) {
+      mergedSubs[canon] = inSub;
+    } else {
+      const exSub = mergedSubs[canon];
+      const finalTeacher = (inSub.teacher && !inSub.teacher.includes('مدرس المادة')) ? cleanTeacher(inSub.teacher, canon) : (exSub.teacher || '');
+      
+      // Merge sessions non-destructively
+      const sessions = Array.isArray(exSub.sessions) ? [...exSub.sessions] : ['', '', '', '', '', '', '', ''];
+      while (sessions.length < 8) sessions.push('');
+      if (Array.isArray(inSub.sessions)) {
+        for (let i = 0; i < 8; i++) {
+          const val = inSub.sessions[i];
+          if (val !== undefined && val !== null && String(val).trim() !== '' && String(val).trim() !== '_') {
+            sessions[i] = String(val).trim();
+          }
+        }
+      }
+
+      // Merge months non-destructively
+      const months = { ...(exSub.months || {}) };
+      if (inSub.months) {
+        Object.keys(inSub.months).forEach(mName => {
+          if (!months[mName] || !Array.isArray(months[mName])) {
+            months[mName] = ['', '', '', '', '', '', '', ''];
+          } else {
+            months[mName] = [...months[mName]];
+          }
+          while (months[mName].length < 8) months[mName].push('');
+          
+          if (Array.isArray(inSub.months[mName])) {
+            for (let i = 0; i < 8; i++) {
+              const val = inSub.months[mName][i];
+              if (val !== undefined && val !== null && String(val).trim() !== '' && String(val).trim() !== '_') {
+                months[mName][i] = String(val).trim();
+              }
+            }
+          }
+        });
+      }
+
+      mergedSubs[canon] = {
+        teacher: finalTeacher,
+        sessions,
+        months
+      };
+    }
+  });
+
+  merged.academicSubjects = mergedSubs;
+  return merged;
+}
+
 // Central Handler for Sync Actions (both REST & WS)
 function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null, clientId = '') {
   let updatedCount = 0;
@@ -290,7 +359,7 @@ function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null,
     const code = String(updated.code || '').trim();
     const idx = students.findIndex(s => String(s.code).trim() === code);
     if (idx >= 0) {
-      students[idx] = { ...students[idx], ...updated };
+      students[idx] = mergeStudentDeep(students[idx], updated);
     } else {
       students.unshift(updated);
     }
@@ -333,7 +402,7 @@ function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null,
       const code = String(st.code || '').trim();
       const idx = students.findIndex(s => String(s.code).trim() === code);
       if (idx >= 0) {
-        students[idx] = { ...students[idx], ...st };
+        students[idx] = mergeStudentDeep(students[idx], st);
       } else {
         students.unshift(st);
       }
