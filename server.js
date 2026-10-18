@@ -32,17 +32,22 @@ function initDatabase() {
     if (fs.existsSync(DB_FILE)) {
       const raw = fs.readFileSync(DB_FILE, 'utf8');
       const loaded = JSON.parse(raw);
-      students = (Array.isArray(loaded) ? loaded : []).filter(s => s && s.name && s.name.trim() && s.name.trim().length >= 2 && !s.name.includes('غير مسمى'));
+      const arr = Array.isArray(loaded) ? loaded : Object.values(loaded);
+      students = arr.filter(s => s && s.name && s.name.trim() && s.name.trim().length >= 2 && !s.name.includes('غير مسمى'));
       console.log(`[DB] Loaded ${students.length} valid students from students_db.json`);
-    } else {
-      // Seed from data.js if exists
+    }
+
+    // Fail-safe: If DB had fewer than 1000 students, seed/restore from data.js
+    if (!students || students.length < 1000) {
+      console.warn(`[DB] Warning: DB has only ${students ? students.length : 0} students. Re-seeding master database from data.js...`);
       const dataJsPath = path.join(__dirname, 'data.js');
       if (fs.existsSync(dataJsPath)) {
         const content = fs.readFileSync(dataJsPath, 'utf8');
         const match = content.match(/window\.STUDENTS_DATA\s*=\s*(\[[\s\S]*?\]);/);
         if (match) {
           const rawParsed = JSON.parse(match[1]);
-          students = (Array.isArray(rawParsed) ? rawParsed : []).filter(s => s && s.name && s.name.trim() && s.name.trim().length >= 2 && !s.name.includes('غير مسمى'));
+          const parsedArr = Array.isArray(rawParsed) ? rawParsed : Object.values(rawParsed);
+          students = parsedArr.filter(s => s && s.name && s.name.trim() && s.name.trim().length >= 2 && !s.name.includes('غير مسمى'));
           saveDatabase();
           console.log(`[DB] Seeded ${students.length} valid students from data.js`);
         }
@@ -64,6 +69,10 @@ function initDatabase() {
 
 function saveDatabase() {
   try {
+    if (!Array.isArray(students) || students.length === 0) {
+      console.warn('[DB] Refusing to overwrite students_db.json with empty or invalid array');
+      return;
+    }
     fs.writeFileSync(DB_FILE, JSON.stringify(students, null, 2), 'utf8');
   } catch (err) {
     console.error('[DB] Error saving students_db.json:', err);
@@ -687,6 +696,10 @@ async function syncFromGoogleSheets() {
     }
 
     if (fetchedStudents.length > 0) {
+      if (students.length >= 1000 && fetchedStudents.length < students.length * 0.8) {
+        console.warn(`[Google Sheets Sync] Aborted: fetched only ${fetchedStudents.length} students which is less than 80% of master database (${students.length} students). Refusing to shrink database.`);
+        return;
+      }
       let updatedCount = 0;
       let newCount = 0;
 
@@ -787,9 +800,9 @@ async function syncFromGoogleSheets() {
   }
 }
 
-// Background sync on startup and every 60 seconds
-setTimeout(syncFromGoogleSheets, 5000);
-setInterval(syncFromGoogleSheets, 60000);
+// Background sync: only triggered on manual request to protect master attendance database
+// setTimeout(syncFromGoogleSheets, 5000);
+// setInterval(syncFromGoogleSheets, 60000);
 
 
 // REST Endpoints

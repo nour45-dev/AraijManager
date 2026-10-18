@@ -774,13 +774,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Instant fetch from Railway Central Server on startup (< 300ms)
   try { fetchLatestStudentsFromCentralServer(false); } catch (e) {}
 
-  // Auto-pull fresh students from Google Sheets on startup
-  try { pullFromGoogleSheets(true); } catch (e) {}
-  
-  // Real-time sync: poll Sheets every 15 seconds so all devices stay in sync
-  setInterval(() => {
-    try { pullFromGoogleSheets(true); } catch (e) {}
-  }, 15000);
+  // Master real-time sync is powered directly by Railway WebSockets and Central Server
+  // Manual pull from Google Sheets is available on-demand via the UI button
 });
 
 
@@ -1341,7 +1336,7 @@ function renderUsersList() {
 // ====================================================
 
 function initData() {
-    const CURRENT_DB_VERSION = 'v4.6_utf8_clean';
+  const CURRENT_DB_VERSION = 'v4.7_master_restore';
   const savedVersion = localStorage.getItem('araij_db_schema_version');
   if (savedVersion !== CURRENT_DB_VERSION) {
     // Purge outdated cache so clean non-destructive data loads seamlessly
@@ -2682,8 +2677,9 @@ async function fetchLatestStudentsFromCentralServer(isSilent = false) {
 
     const res = await fetch(url, { cache: 'no-store' });
     if (res.ok) {
-      const serverStudents = await res.json();
-      if (Array.isArray(serverStudents) && serverStudents.length > 0) {
+      const rawData = await res.json();
+      const serverStudents = Array.isArray(rawData) ? rawData : (rawData && Array.isArray(rawData.students) ? rawData.students : []);
+      if (serverStudents.length > 0) {
         window.STUDENTS_DATA = serverStudents;
         
         // Re-init with freshly fetched central server data
