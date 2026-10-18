@@ -838,6 +838,13 @@ async function syncFromGoogleSheets() {
           }
           updatedCount++;
         } else {
+          // Only add new students from sheet if they have recorded attendance/interaction
+          const hasAnyActivity = academic && Object.values(academic).some(sub => {
+            return (Array.isArray(sub.sessions) && sub.sessions.some(v => v && String(v).trim() && v !== '_' && v !== '-')) ||
+                   (sub.months && Object.values(sub.months).some(m => Array.isArray(m) && m.some(v => v && String(v).trim() && v !== '_' && v !== '-')));
+          });
+          if (!hasAnyActivity) return;
+
           const newSt = {
             code,
             name: st.name,
