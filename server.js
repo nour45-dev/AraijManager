@@ -16,6 +16,7 @@ const GOOGLE_APPS_SCRIPT_URL = process.env.SHEETS_URL || 'https://script.google.
 
 const DB_FILE = path.join(__dirname, 'students_db.json');
 const AUDIT_FILE = path.join(__dirname, 'audit_log.json');
+const DELETED_FILE = path.join(__dirname, 'deleted_codes.json');
 
 // Middleware
 app.use(cors());
@@ -25,6 +26,25 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 // In-Memory State
 let students = [];
 let auditLogs = [];
+let deletedCodes = [];
+
+try {
+  if (fs.existsSync(DELETED_FILE)) {
+    deletedCodes = JSON.parse(fs.readFileSync(DELETED_FILE, 'utf8'));
+    if (!Array.isArray(deletedCodes)) deletedCodes = [];
+    console.log(`[DB] Loaded ${deletedCodes.length} deleted student codes`);
+  }
+} catch (e) {
+  deletedCodes = [];
+}
+
+function saveDeletedCodes() {
+  try {
+    fs.writeFileSync(DELETED_FILE, JSON.stringify(deletedCodes, null, 2), 'utf8');
+  } catch (err) {
+    console.error('[DB] Error saving deleted_codes.json:', err);
+  }
+}
 
 // 1. Initialize Students Database
 function initDatabase() {
@@ -33,7 +53,7 @@ function initDatabase() {
       const raw = fs.readFileSync(DB_FILE, 'utf8');
       const loaded = JSON.parse(raw);
       const arr = Array.isArray(loaded) ? loaded : Object.values(loaded);
-      students = arr.filter(s => s && s.name && s.name.trim() && s.name.trim().length >= 2 && !s.name.includes('غير مسمى'));
+      students = arr.filter(s => s && s.name && s.name.trim() && s.name.trim().length >= 2 && !s.name.includes('غير مسمى') && !deletedCodes.includes(String(s.code || '').trim()));
       console.log(`[DB] Loaded ${students.length} valid students from students_db.json`);
     }
 
@@ -255,72 +275,99 @@ wss.on('connection', (ws, req) => {
   });
 });
 
-// Deep non-destructive merge of student records to preserve all enrolled subjects and multi-month attendance
+function cleanPhone(raw) {
+  if (!raw) return '';
+  let str = String(raw).trim();
+  if (/[0-9]E[0-9]/i.test(str)) {
+    try {
+      const num = Math.round(Number(str));
+      str = String(num);
+    } catch(e) {}
+  }
+  str = str.replace(/\.0+$/, '');
+  if (str.length === 10 && (str.startsWith('10') || str.startsWith('11') || str.startsWith('12') || str.startsWith('15'))) {
+    str = '0' + str;
+  }
+  if (str.length === 9 && (str.startsWith('10') || str.startsWith('11') || str.startsWith('12') || str.startsWith('15'))) {
+    str = '0' + str;
+  }
+  return str;
+}
+
+// Deep non-destructive merge of student records to preserve multi-month attendance while honoring subject removals
 function mergeStudentDeep(existingSt, incomingSt) {
   if (!existingSt) return incomingSt;
   if (!incomingSt) return existingSt;
 
   const merged = { ...existingSt, ...incomingSt };
+  if (merged.phone) merged.phone = cleanPhone(merged.phone);
+  if (merged.parentPhone) merged.parentPhone = cleanPhone(merged.parentPhone);
   
   // Deep merge academicSubjects
   const exSubs = existingSt.academicSubjects || {};
-  const inSubs = incomingSt.academicSubjects || {};
-  const mergedSubs = { ...exSubs };
+  const inSubs = incomingSt.academicSubjects;
+  
+  if (inSubs && typeof inSubs === 'object') {
+    const mergedSubs = {};
 
-  Object.keys(inSubs).forEach(subKey => {
-    const canon = canonicalSubject(subKey) || subKey;
-    const inSub = inSubs[subKey];
-    if (!inSub) return;
+    Object.keys(inSubs).forEach(subKey => {
+      const canon = canonicalSubject(subKey) || subKey;
+      const inSub = inSubs[subKey];
+      if (!inSub) return;
 
-    if (!mergedSubs[canon]) {
-      mergedSubs[canon] = inSub;
-    } else {
-      const exSub = mergedSubs[canon];
-      const finalTeacher = (inSub.teacher && !inSub.teacher.includes('مدرس المادة')) ? cleanTeacher(inSub.teacher, canon) : (exSub.teacher || '');
-      
-      // Merge sessions non-destructively
-      const sessions = Array.isArray(exSub.sessions) ? [...exSub.sessions] : ['', '', '', '', '', '', '', ''];
-      while (sessions.length < 8) sessions.push('');
-      if (Array.isArray(inSub.sessions)) {
-        for (let i = 0; i < 8; i++) {
-          const val = inSub.sessions[i];
-          if (val !== undefined && val !== null && String(val).trim() !== '' && String(val).trim() !== '_') {
-            sessions[i] = String(val).trim();
-          }
-        }
-      }
-
-      // Merge months non-destructively
-      const months = { ...(exSub.months || {}) };
-      if (inSub.months) {
-        Object.keys(inSub.months).forEach(mName => {
-          if (!months[mName] || !Array.isArray(months[mName])) {
-            months[mName] = ['', '', '', '', '', '', '', ''];
-          } else {
-            months[mName] = [...months[mName]];
-          }
-          while (months[mName].length < 8) months[mName].push('');
-          
-          if (Array.isArray(inSub.months[mName])) {
-            for (let i = 0; i < 8; i++) {
-              const val = inSub.months[mName][i];
-              if (val !== undefined && val !== null && String(val).trim() !== '' && String(val).trim() !== '_') {
-                months[mName][i] = String(val).trim();
-              }
+      const exSub = exSubs[canon] || exSubs[subKey];
+      if (!exSub) {
+        mergedSubs[canon] = inSub;
+      } else {
+        const finalTeacher = (inSub.teacher && !inSub.teacher.includes('مدرس المادة')) ? cleanTeacher(inSub.teacher, canon) : (exSub.teacher || '');
+        
+        // Merge sessions non-destructively
+        const sessions = Array.isArray(exSub.sessions) ? [...exSub.sessions] : ['', '', '', '', '', '', '', ''];
+        while (sessions.length < 8) sessions.push('');
+        if (Array.isArray(inSub.sessions)) {
+          for (let i = 0; i < 8; i++) {
+            const val = inSub.sessions[i];
+            if (val !== undefined && val !== null && String(val).trim() !== '' && String(val).trim() !== '_') {
+              sessions[i] = String(val).trim();
             }
           }
-        });
+        }
+
+        // Merge months non-destructively
+        const months = { ...(exSub.months || {}) };
+        if (inSub.months) {
+          Object.keys(inSub.months).forEach(mName => {
+            if (!months[mName] || !Array.isArray(months[mName])) {
+              months[mName] = ['', '', '', '', '', '', '', ''];
+            } else {
+              months[mName] = [...months[mName]];
+            }
+            while (months[mName].length < 8) months[mName].push('');
+            
+            if (Array.isArray(inSub.months[mName])) {
+              for (let i = 0; i < 8; i++) {
+                const val = inSub.months[mName][i];
+                if (val !== undefined && val !== null && String(val).trim() !== '' && String(val).trim() !== '_') {
+                  months[mName][i] = String(val).trim();
+                }
+              }
+            }
+          });
+        }
+
+        mergedSubs[canon] = {
+          teacher: finalTeacher,
+          sessions,
+          months
+        };
       }
+    });
 
-      mergedSubs[canon] = {
-        teacher: finalTeacher,
-        sessions,
-        months
-      };
-    }
-  });
+    merged.academicSubjects = mergedSubs;
+  } else {
+    merged.academicSubjects = exSubs;
+  }
 
-  merged.academicSubjects = mergedSubs;
   return merged;
 }
 
@@ -379,6 +426,10 @@ function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null,
 
   } else if (action === 'delete_student') {
     const code = String(payload.code || '').trim();
+    if (code && !deletedCodes.includes(code)) {
+      deletedCodes.push(code);
+      saveDeletedCodes();
+    }
     const target = students.find(s => String(s.code).trim() === code);
     const targetName = target ? target.name : '';
     students = students.filter(s => String(s.code).trim() !== code);
@@ -775,6 +826,7 @@ async function syncFromGoogleSheets() {
       fetchedStudents.forEach(st => {
         const code = String(st.code || '').trim();
         if (!st.name) return;
+        if (code && deletedCodes.includes(code)) return;
         // Ignore test students
         if (st.name.includes('طالب تجريبي') || st.name.includes('اختبار ربط الشيت') || code.startsWith('TEST-')) return;
         if (hasBad(st.name)) { console.warn('[Google Sheets Sync] Skipped corrupted name for code', code); return; }
@@ -902,10 +954,11 @@ app.get('/api/health', (req, res) => {
 
 app.get('/api/students', (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
+  const active = students.filter(s => !deletedCodes.includes(String(s.code || '').trim()));
   res.json({
     status: 'success',
-    count: students.length,
-    students: students
+    count: active.length,
+    students: active
   });
 });
 
@@ -953,7 +1006,8 @@ app.post('/api/sync_local', (req, res) => {
 
 app.get('/api/get_students', (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
-  res.json(students);
+  const active = students.filter(s => !deletedCodes.includes(String(s.code || '').trim()));
+  res.json(active);
 });
 
 // Serve static frontend assets

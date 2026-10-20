@@ -1475,6 +1475,12 @@
               </div>
 
               <div class="flex items-center gap-2.5">
+                <button type="button" onclick="openCollectiveReportModal()" id="btnCollectiveReport" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold flex items-center gap-1.5 shadow-md shadow-blue-600/30 active:scale-95 transition-all cursor-pointer" title="توليد تقرير كشف جماعي للطلاب (PDF / طباعة / واتساب)">
+                  <i data-lucide="printer" class="w-3.5 h-3.5 text-blue-100"></i>
+                  <span>تقرير جماعي (PDF / طباعة)</span>
+                  <span id="bulkReportCountBadge" class="bg-blue-950/60 text-blue-200 text-[10px] px-2 py-0.5 rounded-full font-mono font-black border border-blue-400/40">0</span>
+                </button>
+
                 <button type="button" onclick="openBulkWhatsAppModal()" id="btnBulkWhatsApp" class="px-4 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold flex items-center gap-1.5 shadow-md shadow-emerald-600/30 active:scale-95 transition-all cursor-pointer">
                   <i data-lucide="send" class="w-3.5 h-3.5 text-emerald-100"></i>
                   <span>إرسال تقارير واتساب للمحددين</span>
@@ -2997,6 +3003,140 @@
           <button type="button" onclick="sendNextBulkWhatsApp()" id="btnSendNextBulk" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold flex items-center gap-2 shadow-lg shadow-emerald-600/30 active:scale-95 transition-all">
             <i data-lucide="send" class="w-4 h-4"></i>
             <span id="btnSendNextBulkText">بدء إرسال التقارير (التالي)</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- COLLECTIVE REPORT MODAL (PDF / PRINT / WHATSAPP) -->
+  <div id="collectiveReportModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-5 overflow-y-auto">
+    <div class="relative w-full max-w-5xl bg-slate-900 rounded-3xl border border-blue-500/30 shadow-2xl overflow-hidden my-4 max-h-[94vh] flex flex-col">
+      
+      <!-- Modal Header -->
+      <div class="px-6 py-4 bg-gradient-to-r from-slate-950 via-blue-950 to-slate-950 border-b border-blue-500/20 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-blue-600/20 text-blue-400 flex items-center justify-center border border-blue-500/30">
+            <i data-lucide="printer" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <span>تقرير وكشف جماعي للطلاب</span>
+              <span id="collRepActiveCountBadge" class="bg-blue-600 text-white text-xs px-2.5 py-0.5 rounded-full font-mono font-bold">0 طالب</span>
+            </h3>
+            <p class="text-xs text-blue-300/80">توليد كشوفات جماعية للطباعة الفورية أو التنزيل كملف PDF عالي الجودة أو الإرسال عبر واتساب</p>
+          </div>
+        </div>
+        <button onclick="closeCollectiveReportModal()" class="p-2 rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body (Controls + Live Preview) -->
+      <div class="p-5 overflow-y-auto space-y-4 flex-1 text-xs">
+
+        <!-- Controls Toolbar -->
+        <div class="bg-slate-950/80 p-4 rounded-2xl border border-slate-800 space-y-3.5">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            
+            <!-- Scope Selection -->
+            <div>
+              <label class="block text-slate-300 font-bold mb-1.5 flex items-center gap-1.5">
+                <i data-lucide="users" class="w-3.5 h-3.5 text-blue-400"></i>
+                <span>نطاق التقرير والطلاب:</span>
+              </label>
+              <select id="collRepScopeSelect" onchange="onCollectiveReportScopeChanged()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:ring-1 focus:ring-blue-500">
+                <option value="selected">الطلاب المحددين حالياً (<span id="collRepOptSelectedCount">0</span>)</option>
+                <option value="filtered">كافة الطلاب المعروضين بالفلتر (<span id="collRepOptFilteredCount">0</span>)</option>
+                <option value="custom_count">تحديد عدد معين (أول N طالب)...</option>
+              </select>
+            </div>
+
+            <!-- Custom Count Input (Hidden by default unless selected) -->
+            <div id="collRepCustomCountWrapper" class="hidden">
+              <label class="block text-slate-300 font-bold mb-1.5 flex items-center gap-1.5">
+                <i data-lucide="hash" class="w-3.5 h-3.5 text-amber-400"></i>
+                <span>أدخل عدد الطلاب المطلوب:</span>
+              </label>
+              <input type="number" id="collRepCustomCountInput" min="1" max="1000" value="30" onchange="renderCollectiveReportPreview()" oninput="renderCollectiveReportPreview()" class="w-full bg-slate-900 border border-amber-500/50 rounded-xl px-3 py-2 text-white font-bold font-mono focus:ring-1 focus:ring-amber-500" placeholder="مثال: 30 أو 50">
+            </div>
+
+            <!-- Report Type -->
+            <div>
+              <label class="block text-slate-300 font-bold mb-1.5 flex items-center gap-1.5">
+                <i data-lucide="file-check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>نوع وشكل الكشف:</span>
+              </label>
+              <select id="collRepTypeSelect" onchange="renderCollectiveReportPreview()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:ring-1 focus:ring-blue-500">
+                <option value="attendance_matrix">كشف رصد حضور وغياب ودرجات الحصص (1 إلى 8)</option>
+                <option value="general_roster">كشف السجل العام للبيانات والهواتف والمواد المقيدة</option>
+              </select>
+            </div>
+
+            <!-- Month Select (For Attendance Matrix) -->
+            <div id="collRepMonthWrapper">
+              <label class="block text-slate-300 font-bold mb-1.5 flex items-center gap-1.5">
+                <i data-lucide="calendar" class="w-3.5 h-3.5 text-purple-400"></i>
+                <span>شهر التقرير:</span>
+              </label>
+              <select id="collRepMonthSelect" onchange="renderCollectiveReportPreview()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white font-medium focus:ring-1 focus:ring-blue-500">
+                <option value="شهر 1">شهر 1 (أكتوبر)</option>
+                <option value="شهر 2">شهر 2 (نوفمبر)</option>
+                <option value="شهر 3">شهر 3 (ديسمبر)</option>
+                <option value="شهر 4">شهر 4 (يناير)</option>
+                <option value="شهر 5">شهر 5 (فبراير)</option>
+                <option value="شهر 6">شهر 6 (مارس)</option>
+                <option value="شهر 7">شهر 7 (إبريل)</option>
+                <option value="شهر 8">شهر 8 (مايو)</option>
+                <option value="شهر 9 (سبتمبر)">شهر 9 (سبتمبر)</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Preview Wrapper -->
+        <div class="border border-slate-700 rounded-2xl overflow-hidden bg-slate-950 p-3 sm:p-5">
+          <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800 text-xs">
+            <span class="text-slate-400 font-bold flex items-center gap-1.5">
+              <i data-lucide="eye" class="w-4 h-4 text-sky-400"></i>
+              <span>معاينة حية لشكل الكشف المطبوع:</span>
+            </span>
+            <span class="text-[11px] text-slate-400">متوافق مع مقاس ورق A4 الطباعي وPDF</span>
+          </div>
+
+          <!-- Printable / Render Area -->
+          <div id="collectiveReportPrintableArea" class="bg-white rounded-xl shadow-lg p-4 sm:p-6 text-slate-900 overflow-x-auto min-h-[300px]">
+            <!-- Rendered by JavaScript -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-4 bg-slate-950 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3 shrink-0">
+        <button onclick="closeCollectiveReportModal()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold transition-colors cursor-pointer">
+          إلغاء
+        </button>
+        
+        <div class="flex flex-wrap items-center gap-2.5">
+          <!-- WhatsApp Sharing -->
+          <button type="button" onclick="shareCollectiveReportWhatsApp()" class="px-4 py-2.5 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 hover:text-white font-bold flex items-center gap-2 border border-emerald-500/40 active:scale-95 transition-all cursor-pointer">
+            <i data-lucide="share-2" class="w-4 h-4 text-emerald-400"></i>
+            <span>مشاركة ملخص واتساب</span>
+          </button>
+
+          <!-- Direct Print -->
+          <button type="button" onclick="printCollectiveReport()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold flex items-center gap-2 border border-slate-700 active:scale-95 transition-all cursor-pointer">
+            <i data-lucide="printer" class="w-4 h-4 text-sky-400"></i>
+            <span>طباعة فورية</span>
+          </button>
+
+          <!-- PDF Download -->
+          <button type="button" onclick="downloadCollectiveReportPdf()" id="btnDownloadCollectivePdf" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold flex items-center gap-2 shadow-lg shadow-blue-600/30 active:scale-95 transition-all cursor-pointer">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span>تحميل كـ PDF</span>
           </button>
         </div>
       </div>

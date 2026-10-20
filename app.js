@@ -1343,68 +1343,96 @@ function renderUsersList() {
 // 7. REAL DATA PROCESSING & EXACT METRICS
 // ====================================================
 
-// Deep non-destructive merge of student records on client to preserve all enrolled subjects and multi-month attendance
+function formatPhoneNumber(raw) {
+  if (!raw) return '';
+  let str = String(raw).trim();
+  if (/[0-9]E[0-9]/i.test(str)) {
+    try {
+      const num = Math.round(Number(str));
+      str = String(num);
+    } catch(e) {}
+  }
+  str = str.replace(/\.0+$/, '');
+  if (str.length === 10 && (str.startsWith('10') || str.startsWith('11') || str.startsWith('12') || str.startsWith('15'))) {
+    str = '0' + str;
+  }
+  if (str.length === 9 && (str.startsWith('10') || str.startsWith('11') || str.startsWith('12') || str.startsWith('15'))) {
+    str = '0' + str;
+  }
+  return str;
+}
+
+// Deep non-destructive merge of student records on client to preserve all enrolled subjects and multi-month attendance while honoring subject removals
 function mergeStudentClientDeep(existingSt, incomingSt) {
   if (!existingSt) return incomingSt;
   if (!incomingSt) return existingSt;
 
   const merged = { ...existingSt, ...incomingSt };
+  if (merged.phone) merged.phone = formatPhoneNumber(merged.phone);
+  if (merged.parentPhone) merged.parentPhone = formatPhoneNumber(merged.parentPhone);
+
   const exSubs = existingSt.academicSubjects || {};
-  const inSubs = incomingSt.academicSubjects || {};
-  const mergedSubs = { ...exSubs };
+  const inSubs = incomingSt.academicSubjects;
 
-  Object.keys(inSubs).forEach(subKey => {
-    const canon = canonicalSubjectName(subKey) || subKey;
-    const inSub = inSubs[subKey];
-    if (!inSub) return;
+  if (inSubs && typeof inSubs === 'object') {
+    const mergedSubs = {};
 
-    if (!mergedSubs[canon]) {
-      mergedSubs[canon] = inSub;
-    } else {
-      const exSub = mergedSubs[canon];
-      const finalTeacher = cleanTeacherName(inSub.teacher || exSub.teacher, canon);
+    Object.keys(inSubs).forEach(subKey => {
+      const canon = canonicalSubjectName(subKey) || subKey;
+      const inSub = inSubs[subKey];
+      if (!inSub) return;
 
-      const sessions = Array.isArray(exSub.sessions) ? [...exSub.sessions] : ["", "", "", "", "", "", "", ""];
-      while (sessions.length < 8) sessions.push("");
-      if (Array.isArray(inSub.sessions)) {
-        for (let i = 0; i < 8; i++) {
-          const val = inSub.sessions[i];
-          if (val !== undefined && val !== null && String(val).trim() !== "" && String(val).trim() !== "_") {
-            sessions[i] = String(val).trim();
-          }
-        }
-      }
+      const exSub = exSubs[canon] || exSubs[subKey];
+      if (!exSub) {
+        mergedSubs[canon] = inSub;
+      } else {
+        const finalTeacher = cleanTeacherName(inSub.teacher || exSub.teacher, canon);
 
-      const months = { ...(exSub.months || {}) };
-      if (inSub.months) {
-        Object.keys(inSub.months).forEach(mName => {
-          if (!months[mName] || !Array.isArray(months[mName])) {
-            months[mName] = ["", "", "", "", "", "", "", ""];
-          } else {
-            months[mName] = [...months[mName]];
-          }
-          while (months[mName].length < 8) months[mName].push("");
-
-          if (Array.isArray(inSub.months[mName])) {
-            for (let i = 0; i < 8; i++) {
-              const val = inSub.months[mName][i];
-              if (val !== undefined && val !== null && String(val).trim() !== "" && String(val).trim() !== "_") {
-                months[mName][i] = String(val).trim();
-              }
+        const sessions = Array.isArray(exSub.sessions) ? [...exSub.sessions] : ["", "", "", "", "", "", "", ""];
+        while (sessions.length < 8) sessions.push("");
+        if (Array.isArray(inSub.sessions)) {
+          for (let i = 0; i < 8; i++) {
+            const val = inSub.sessions[i];
+            if (val !== undefined && val !== null && String(val).trim() !== "" && String(val).trim() !== "_") {
+              sessions[i] = String(val).trim();
             }
           }
-        });
+        }
+
+        const months = { ...(exSub.months || {}) };
+        if (inSub.months) {
+          Object.keys(inSub.months).forEach(mName => {
+            if (!months[mName] || !Array.isArray(months[mName])) {
+              months[mName] = ["", "", "", "", "", "", "", ""];
+            } else {
+              months[mName] = [...months[mName]];
+            }
+            while (months[mName].length < 8) months[mName].push("");
+
+            if (Array.isArray(inSub.months[mName])) {
+              for (let i = 0; i < 8; i++) {
+                const val = inSub.months[mName][i];
+                if (val !== undefined && val !== null && String(val).trim() !== "" && String(val).trim() !== "_") {
+                  months[mName][i] = String(val).trim();
+                }
+              }
+            }
+          });
+        }
+
+        mergedSubs[canon] = {
+          teacher: finalTeacher,
+          sessions,
+          months
+        };
       }
+    });
 
-      mergedSubs[canon] = {
-        teacher: finalTeacher,
-        sessions,
-        months
-      };
-    }
-  });
+    merged.academicSubjects = mergedSubs;
+  } else {
+    merged.academicSubjects = exSubs;
+  }
 
-  merged.academicSubjects = mergedSubs;
   return merged;
 }
 
@@ -2650,7 +2678,8 @@ function handleSaveEditStudent(e) {
   } catch(e) {}
 
   closeEditStudentModal();
-  if (activeDetailStudentCode === code) openStudentDetailModal(code);
+  closeStudentDetailModal();
+  switchTab('students');
   applyFilters();
   updateKPIStats();
   showToast(`✅ تم حفظ تعديلات الطالب ${student.name} بنجاح ومزامنتها!`);
@@ -2664,6 +2693,7 @@ function confirmDeleteStudentByCode(code) {
     deleteStudentByCode(student.code);
     closeStudentDetailModal();
     closeEditStudentModal();
+    switchTab('students');
   }
 }
 
@@ -2712,6 +2742,9 @@ function deleteStudentByCode(code) {
   const uName = currentUser?.name || 'مشرف';
   logActivity('حذف طالب', `قام ${uName} بحذف الطالب #${code}`, code, '', {});
 
+  closeStudentDetailModal();
+  closeEditStudentModal();
+  switchTab('students');
   applyFilters();
   updateKPIStats();
   const attendanceTab = document.getElementById('tabContent_attendance_matrix');
@@ -5068,6 +5101,14 @@ function updateSelectionToolbarUI() {
   const badge = document.getElementById('bulkSelectedCountBadge');
   if (badge) badge.textContent = String(count);
 
+  const repBadge = document.getElementById('bulkReportCountBadge');
+  if (repBadge) repBadge.textContent = String(count);
+
+  const optSel = document.getElementById('collRepOptSelectedCount');
+  if (optSel) optSel.textContent = String(count);
+  const optFilt = document.getElementById('collRepOptFilteredCount');
+  if (optFilt) optFilt.textContent = String(filteredStudents ? filteredStudents.length : 0);
+
   const clearBtn = document.getElementById('btnClearSelection');
   if (clearBtn) {
     if (count > 0) clearBtn.classList.remove('hidden');
@@ -5269,6 +5310,403 @@ function copyAllSelectedReportsText() {
     });
   } else {
     prompt('انسخ جميع التقارير:', fullText);
+  }
+}
+
+// ====================================================
+// 16.5 COLLECTIVE STUDENT REPORT (PDF / PRINT / WHATSAPP)
+// ====================================================
+
+function openCollectiveReportModal() {
+  const modal = document.getElementById('collectiveReportModal');
+  if (!modal) return;
+
+  const countSelected = selectedStudentCodes.size;
+  const countFiltered = filteredStudents ? filteredStudents.length : 0;
+
+  const optSel = document.getElementById('collRepOptSelectedCount');
+  if (optSel) optSel.textContent = String(countSelected);
+  const optFilt = document.getElementById('collRepOptFilteredCount');
+  if (optFilt) optFilt.textContent = String(countFiltered);
+
+  const scopeSelect = document.getElementById('collRepScopeSelect');
+  if (scopeSelect) {
+    if (countSelected > 0) {
+      scopeSelect.value = 'selected';
+    } else {
+      scopeSelect.value = 'filtered';
+    }
+  }
+
+  onCollectiveReportScopeChanged();
+  modal.classList.remove('hidden');
+  renderCollectiveReportPreview();
+  initIcons();
+}
+
+function closeCollectiveReportModal() {
+  const modal = document.getElementById('collectiveReportModal');
+  if (modal) modal.classList.add('hidden');
+}
+
+function onCollectiveReportScopeChanged() {
+  const scope = document.getElementById('collRepScopeSelect')?.value || 'filtered';
+  const customWrapper = document.getElementById('collRepCustomCountWrapper');
+  if (customWrapper) {
+    if (scope === 'custom_count') customWrapper.classList.remove('hidden');
+    else customWrapper.classList.add('hidden');
+  }
+  renderCollectiveReportPreview();
+}
+
+function getCollectiveReportStudents() {
+  const scope = document.getElementById('collRepScopeSelect')?.value || 'filtered';
+  let list = [];
+
+  if (scope === 'selected') {
+    list = allStudents.filter(s => selectedStudentCodes.has(String(s.code)));
+    if (list.length === 0 && filteredStudents && filteredStudents.length > 0) {
+      list = [...filteredStudents];
+    }
+  } else if (scope === 'custom_count') {
+    const rawN = parseInt(document.getElementById('collRepCustomCountInput')?.value, 10);
+    const n = (!isNaN(rawN) && rawN > 0) ? rawN : 30;
+    const base = (selectedStudentCodes.size > 0) 
+      ? allStudents.filter(s => selectedStudentCodes.has(String(s.code)))
+      : (filteredStudents || allStudents);
+    list = base.slice(0, n);
+  } else {
+    list = (filteredStudents && filteredStudents.length > 0) ? [...filteredStudents] : [...allStudents];
+  }
+
+  // Sort alphabetically by Arabic name
+  return list.sort((a, b) => (a.name || '').localeCompare(b.name || '', 'ar', { numeric: true, sensitivity: 'base' }));
+}
+
+function renderCollectiveReportPreview() {
+  const container = document.getElementById('collectiveReportPrintableArea');
+  if (!container) return;
+
+  const studentsList = getCollectiveReportStudents();
+  const reportType = document.getElementById('collRepTypeSelect')?.value || 'attendance_matrix';
+  const selectedMonth = document.getElementById('collRepMonthSelect')?.value || currentActiveMonth || 'شهر 1';
+  const monthWrapper = document.getElementById('collRepMonthWrapper');
+  if (monthWrapper) {
+    if (reportType === 'attendance_matrix') monthWrapper.classList.remove('hidden');
+    else monthWrapper.classList.add('hidden');
+  }
+
+  const badge = document.getElementById('collRepActiveCountBadge');
+  if (badge) badge.textContent = `${studentsList.length} طالب`;
+
+  const today = new Date().toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
+
+  if (studentsList.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 40px; color: #64748b; font-family: 'Cairo', sans-serif;">
+        <p style="font-size: 16px; font-weight: bold;">لا يوجد طلاب مطابقين للشروط المحددة لعرض التقرير.</p>
+        <p style="font-size: 12px; margin-top: 6px;">يرجى تحديد طلاب من قائمة الطلاب أو تغيير خيارات الفلتر.</p>
+      </div>
+    `;
+    return;
+  }
+
+  if (reportType === 'attendance_matrix') {
+    // Attendance Roster with 8 sessions
+    let totalPresentOverall = 0;
+    let totalAbsentOverall = 0;
+    let totalSessionsOverall = 0;
+
+    const rowsData = studentsList.map((st, idx) => {
+      const subs = st.academicSubjects || {};
+      const subKeys = Object.keys(subs);
+      const mainSubName = subKeys[0] || 'المادة المقيدة';
+      const mainSubObj = subs[mainSubName] || {};
+      const teacherName = mainSubObj.teacher ? cleanTeacherName(mainSubObj.teacher, mainSubName) : 'مدرس المادة';
+
+      const sessions = getStudentSubjectMonthSessions(st, mainSubName, selectedMonth);
+
+      let p = 0;
+      let a = 0;
+      sessions.forEach(v => {
+        if (!v || v === '-' || v === '') return;
+        totalSessionsOverall++;
+        if (v === '✓' || v === 'حاضر' || (!isNaN(parseFloat(v)) && v !== '0')) {
+          p++;
+          totalPresentOverall++;
+        } else if (v === 'غ' || v === 'غائب' || v === '0') {
+          a++;
+          totalAbsentOverall++;
+        }
+      });
+
+      const totalRecorded = p + a;
+      const rate = totalRecorded > 0 ? Math.round((p / totalRecorded) * 100) : 0;
+      const evalText = rate >= 90 ? 'ممتاز' : rate >= 75 ? 'جيد جداً' : rate >= 50 ? 'مقبول' : totalRecorded > 0 ? 'ضعيف' : 'غير مرصود';
+      const evalColor = rate >= 90 ? '#047857' : rate >= 75 ? '#0284c7' : rate >= 50 ? '#b45309' : totalRecorded > 0 ? '#dc2626' : '#64748b';
+
+      return { st, idx, mainSubName, teacherName, sessions, p, a, rate, evalText, evalColor };
+    });
+
+    const overallRate = totalSessionsOverall > 0 ? Math.round((totalPresentOverall / totalSessionsOverall) * 100) : 0;
+
+    container.innerHTML = `
+      <div style="font-family: 'Cairo', sans-serif; direction: rtl; text-align: right; color: #0f172a; width: 100%;">
+        <!-- Header -->
+        <div style="border-bottom: 2px solid #2563eb; padding-bottom: 12px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <h1 style="font-size: 20px; font-weight: 900; color: #1d4ed8; margin: 0;">سنتر الأرائج التعليمي</h1>
+            <p style="font-size: 13px; color: #1e293b; margin: 4px 0 0 0; font-weight: 800;">
+              كشف رصد الحضور والغياب والدرجات — <span style="color: #2563eb;">${selectedMonth}</span> (حصص 1 إلى 8)
+            </p>
+          </div>
+          <div style="text-align: left; font-size: 11px; color: #334155; line-height: 1.6;">
+            <div><strong>تاريخ الاستخراج:</strong> ${today}</div>
+            <div><strong>إجمالي الطلاب بالكشف:</strong> <span style="font-weight: 900; color: #1d4ed8; font-size: 13px;">${studentsList.length}</span> طالب</div>
+          </div>
+        </div>
+
+        <!-- KPI Summary Cards -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px;">
+          <div style="background-color: #f8fafc; border: 1px solid #cbd5e1; border-right: 4px solid #2563eb; padding: 6px 10px; border-radius: 6px;">
+            <div style="font-size: 10px; color: #64748b; font-weight: bold;">الطلاب المدرجين</div>
+            <div style="font-size: 15px; font-weight: 900; color: #1d4ed8;">${studentsList.length} طالب</div>
+          </div>
+          <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-right: 4px solid #16a34a; padding: 6px 10px; border-radius: 6px;">
+            <div style="font-size: 10px; color: #166534; font-weight: bold;">إجمالي مرات الحضور</div>
+            <div style="font-size: 15px; font-weight: 900; color: #16a34a;">${totalPresentOverall}</div>
+          </div>
+          <div style="background-color: #fef2f2; border: 1px solid #fecaca; border-right: 4px solid #dc2626; padding: 6px 10px; border-radius: 6px;">
+            <div style="font-size: 10px; color: #991b1b; font-weight: bold;">إجمالي مرات الغياب</div>
+            <div style="font-size: 15px; font-weight: 900; color: #dc2626;">${totalAbsentOverall}</div>
+          </div>
+          <div style="background-color: #faf5ff; border: 1px solid #e9d5ff; border-right: 4px solid #9333ea; padding: 6px 10px; border-radius: 6px;">
+            <div style="font-size: 10px; color: #6b21a8; font-weight: bold;">نسبة الحضور العامة</div>
+            <div style="font-size: 15px; font-weight: 900; color: #9333ea;">${overallRate}%</div>
+          </div>
+        </div>
+
+        <!-- Attendance Table -->
+        <table style="width: 100%; border-collapse: collapse; font-size: 10px; text-align: center; border: 1px solid #cbd5e1;">
+          <thead>
+            <tr style="background-color: #1e40af; color: #ffffff;">
+              <th style="padding: 6px 4px; border: 1px solid #334155; width: 30px;">م</th>
+              <th style="padding: 6px 4px; border: 1px solid #334155; width: 50px;">الكود</th>
+              <th style="padding: 6px 6px; border: 1px solid #334155; text-align: right; min-width: 130px;">اسم الطالب</th>
+              <th style="padding: 6px 4px; border: 1px solid #334155; width: 50px;">الصف</th>
+              <th style="padding: 6px 4px; border: 1px solid #334155; width: 85px;">المادة / المدرس</th>
+              <th style="padding: 6px 2px; border: 1px solid #334155; width: 28px;">ح1</th>
+              <th style="padding: 6px 2px; border: 1px solid #334155; width: 28px;">ح2</th>
+              <th style="padding: 6px 2px; border: 1px solid #334155; width: 28px;">ح3</th>
+              <th style="padding: 6px 2px; border: 1px solid #334155; width: 28px;">ح4</th>
+              <th style="padding: 6px 2px; border: 1px solid #334155; width: 28px;">ح5</th>
+              <th style="padding: 6px 2px; border: 1px solid #334155; width: 28px;">ح6</th>
+              <th style="padding: 6px 2px; border: 1px solid #334155; width: 28px;">ح7</th>
+              <th style="padding: 6px 2px; border: 1px solid #334155; width: 28px;">ح8</th>
+              <th style="padding: 6px 3px; border: 1px solid #334155; width: 35px; background-color: #166534;">حضور</th>
+              <th style="padding: 6px 3px; border: 1px solid #334155; width: 35px; background-color: #991b1b;">غياب</th>
+              <th style="padding: 6px 4px; border: 1px solid #334155; width: 45px;">التقييم</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rowsData.map(r => `
+              <tr style="background-color: ${r.idx % 2 === 0 ? '#ffffff' : '#f8fafc'}; page-break-inside: avoid; break-inside: avoid;">
+                <td style="padding: 4px 2px; border: 1px solid #cbd5e1; font-weight: bold; color: #64748b;">${r.idx + 1}</td>
+                <td style="padding: 4px 2px; border: 1px solid #cbd5e1; font-family: monospace; font-weight: 800; color: #1e40af;">#${r.st.code}</td>
+                <td style="padding: 4px 6px; border: 1px solid #cbd5e1; text-align: right; font-weight: 800; color: #0f172a;">${r.st.name}</td>
+                <td style="padding: 4px 2px; border: 1px solid #cbd5e1; font-weight: bold; font-size: 9px;">${r.st.grade || '-'}</td>
+                <td style="padding: 4px 4px; border: 1px solid #cbd5e1; font-size: 9px; color: #334155;">${r.mainSubName}</td>
+                ${r.sessions.map(v => {
+                  const displayVal = (v && v.trim() && v !== '-') ? v.trim() : '—';
+                  const isPresent = v === '✓' || v === 'حاضر' || (!isNaN(parseFloat(v)) && v !== '0');
+                  const isAbsent = v === 'غ' || v === 'غائب' || v === '0';
+                  const bg = isPresent ? '#dcfce7' : isAbsent ? '#fee2e2' : 'transparent';
+                  const clr = isPresent ? '#15803d' : isAbsent ? '#b91c1c' : '#94a3b8';
+                  return `<td style="padding: 4px 1px; border: 1px solid #cbd5e1; color: ${clr}; background-color: ${bg}; font-weight: 900; font-size: 10px;">${displayVal}</td>`;
+                }).join('')}
+                <td style="padding: 4px 2px; border: 1px solid #cbd5e1; color: #166534; font-weight: 900; background-color: #f0fdf4;">${r.p}</td>
+                <td style="padding: 4px 2px; border: 1px solid #cbd5e1; color: #991b1b; font-weight: 900; background-color: ${r.a > 0 ? '#fef2f2' : 'transparent'};">${r.a}</td>
+                <td style="padding: 4px 2px; border: 1px solid #cbd5e1; color: ${r.evalColor}; font-weight: 800; font-size: 9px;">${r.evalText}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+
+        <!-- Signatures Footer -->
+        <div class="footer-signatures" style="margin-top: 22px; padding-top: 12px; border-top: 2px dashed #94a3b8; display: flex; justify-content: space-between; font-size: 10px; color: #334155; font-weight: bold; page-break-inside: avoid; break-inside: avoid;">
+          <div>إشراف: إدارة سنتر الأرائج التعليمي</div>
+          <div>المشرف المسئول: ___________________</div>
+          <div>توقيع المشرف الأكاديمي: ___________________</div>
+          <div>ختم الإدارة: ___________________</div>
+        </div>
+      </div>
+    `;
+
+  } else {
+    // General Roster
+    container.innerHTML = `
+      <div style="font-family: 'Cairo', sans-serif; direction: rtl; text-align: right; color: #0f172a; width: 100%;">
+        <!-- Header -->
+        <div style="border-bottom: 2px solid #4338ca; padding-bottom: 12px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <h1 style="font-size: 20px; font-weight: 900; color: #4338ca; margin: 0;">سنتر الأرائج التعليمي</h1>
+            <p style="font-size: 13px; color: #1e293b; margin: 4px 0 0 0; font-weight: 800;">
+              كشف السجل العام لبيانات الطلاب المقيدين
+            </p>
+          </div>
+          <div style="text-align: left; font-size: 11px; color: #334155; line-height: 1.6;">
+            <div><strong>تاريخ الاستخراج:</strong> ${today}</div>
+            <div><strong>إجمالي الطلاب بالكشف:</strong> <span style="font-weight: 900; color: #4338ca; font-size: 13px;">${studentsList.length}</span> طالب</div>
+          </div>
+        </div>
+
+        <table style="width: 100%; border-collapse: collapse; font-size: 10px; text-align: right; border: 1px solid #cbd5e1;">
+          <thead>
+            <tr style="background-color: #3730a3; color: #ffffff;">
+              <th style="padding: 7px 4px; border: 1px solid #334155; width: 30px; text-align: center;">م</th>
+              <th style="padding: 7px 4px; border: 1px solid #334155; width: 50px; text-align: center;">الكود</th>
+              <th style="padding: 7px 6px; border: 1px solid #334155; min-width: 120px;">اسم الطالب</th>
+              <th style="padding: 7px 4px; border: 1px solid #334155; width: 45px; text-align: center;">الصف</th>
+              <th style="padding: 7px 6px; border: 1px solid #334155;">الشعبة</th>
+              <th style="padding: 7px 6px; border: 1px solid #334155;">المنطقة</th>
+              <th style="padding: 7px 4px; border: 1px solid #334155; width: 90px; text-align: center;">هاتف الطالب</th>
+              <th style="padding: 7px 4px; border: 1px solid #334155; width: 90px; text-align: center;">ولي الأمر</th>
+              <th style="padding: 7px 6px; border: 1px solid #334155;">المواد والمدرسين</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${studentsList.map((s, idx) => `
+              <tr style="background-color: ${idx % 2 === 0 ? '#ffffff' : '#f8fafc'}; page-break-inside: avoid; break-inside: avoid;">
+                <td style="padding: 5px 3px; border: 1px solid #cbd5e1; text-align: center; font-weight: bold; color: #64748b;">${idx + 1}</td>
+                <td style="padding: 5px 3px; border: 1px solid #cbd5e1; text-align: center; font-weight: 800; color: #4338ca; font-family: monospace;">#${s.code}</td>
+                <td style="padding: 5px 6px; border: 1px solid #cbd5e1; font-weight: 800; color: #0f172a;">${s.name}</td>
+                <td style="padding: 5px 3px; border: 1px solid #cbd5e1; text-align: center; font-weight: bold;">${s.grade || '-'}</td>
+                <td style="padding: 5px 4px; border: 1px solid #cbd5e1;">${s.specialization || 'عام'}</td>
+                <td style="padding: 5px 4px; border: 1px solid #cbd5e1;">${s.area || '-'}</td>
+                <td style="padding: 5px 3px; border: 1px solid #cbd5e1; text-align: center; font-family: monospace;">${formatPhoneNumber(s.phone) || '-'}</td>
+                <td style="padding: 5px 3px; border: 1px solid #cbd5e1; text-align: center; font-family: monospace; color: #059669; font-weight: bold;">${formatPhoneNumber(s.parentPhone) || '-'}</td>
+                <td style="padding: 5px 6px; border: 1px solid #cbd5e1; font-size: 9px; color: #334155;">${s.subjectsSummary || '-'}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+
+        <!-- Signatures Footer -->
+        <div class="footer-signatures" style="margin-top: 25px; padding-top: 12px; border-top: 2px dashed #94a3b8; display: flex; justify-content: space-between; font-size: 10px; color: #334155; font-weight: bold; page-break-inside: avoid; break-inside: avoid;">
+          <div>إشراف: إدارة سنتر الأرائج التعليمي</div>
+          <div>المشرف المسئول: ___________________</div>
+          <div>ختم الإدارة: ___________________</div>
+        </div>
+      </div>
+    `;
+  }
+}
+
+function downloadCollectiveReportPdf() {
+  const container = document.getElementById('collectiveReportPrintableArea');
+  if (!container || !container.innerHTML.trim()) {
+    showToast('لا يوجد تقرير معروض للتحميل!', 'error');
+    return;
+  }
+
+  const btn = document.getElementById('btnDownloadCollectivePdf');
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i><span>جاري تجهيز PDF...</span>`;
+  }
+
+  const studentsList = getCollectiveReportStudents();
+  const dateStr = new Date().toISOString().slice(0, 10);
+  const fileName = `تقرير_طلاب_سنتر_الأرائج_${studentsList.length}_طالب_${dateStr}.pdf`;
+
+  if (typeof html2pdf !== 'undefined') {
+    const opt = {
+      margin: [6, 6, 8, 6],
+      filename: fileName,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true, letterRendering: true, logging: false },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+    };
+
+    html2pdf().set(opt).from(container).save().then(() => {
+      showToast('✅ تم تنزيل ملف الـ PDF بنجاح!');
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="download" class="w-4 h-4"></i><span>تحميل كـ PDF</span>`;
+        initIcons();
+      }
+    }).catch(err => {
+      console.warn('html2pdf generation warning, falling back to browser print:', err);
+      printCollectiveReport();
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="download" class="w-4 h-4"></i><span>تحميل كـ PDF</span>`;
+        initIcons();
+      }
+    });
+  } else {
+    printCollectiveReport();
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = `<i data-lucide="download" class="w-4 h-4"></i><span>تحميل كـ PDF</span>`;
+      initIcons();
+    }
+  }
+}
+
+function printCollectiveReport() {
+  const container = document.getElementById('collectiveReportPrintableArea');
+  if (!container || !container.innerHTML.trim()) {
+    showToast('لا يوجد تقرير معروض للطباعة', 'error');
+    return;
+  }
+
+  const title = 'تقرير طلاب سنتر الأرائج التعليمي';
+  printHtmlContent(container.innerHTML, title, 'landscape');
+}
+
+function shareCollectiveReportWhatsApp() {
+  const studentsList = getCollectiveReportStudents();
+  if (studentsList.length === 0) {
+    showToast('لا يوجد طلاب محددين لمشاركة التقرير!', 'error');
+    return;
+  }
+
+  const today = new Date().toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
+  const selectedMonth = document.getElementById('collRepMonthSelect')?.value || currentActiveMonth || 'شهر 1';
+
+  let text = `📋 *تقرير سنتر الأرائج التعليمي*\n`;
+  text += `📅 التاريخ: ${today}\n`;
+  text += `👥 إجمالي الطلاب: ${studentsList.length} طالب\n`;
+  text += `📌 الفترة: ${selectedMonth}\n`;
+  text += `────────────────────\n\n`;
+
+  studentsList.forEach((st, i) => {
+    const rate = st._metrics ? st._metrics.attendanceRate + '%' : '-';
+    const evalText = st._metrics ? st._metrics.gradeEvaluation : '-';
+    text += `${i + 1}. *${st.name}* (#${st.code}) - ${st.grade || 'عام'}\n`;
+    text += `   • نسبة الحضور: ${rate} (${evalText})\n`;
+    if (st.subjectsSummary) text += `   • المواد: ${st.subjectsSummary}\n`;
+    text += `\n`;
+  });
+
+  text += `────────────────────\nسنتر الأرائج التعليمي — إدارة المنظومة`;
+
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast(`✅ تم نسخ ملخص تقرير ${studentsList.length} طالب إلى الحافظة جاهزاً للواتساب!`);
+    }).catch(() => {
+      prompt('انسخ نص تقرير واتساب:', text);
+    });
+  } else {
+    prompt('انسخ نص تقرير واتساب:', text);
+  }
+
+  // Also offer quick WhatsApp open
+  const confirmOpen = confirm(`تم نسخ نص تقرير (${studentsList.length} طالب) إلى الحافظة بنجاح!\n\nهل ترغب في فتح واتساب الآن لمشاركة التقرير؟`);
+  if (confirmOpen) {
+    const encoded = encodeURIComponent(text);
+    window.open(`https://wa.me/?text=${encoded}`, '_blank');
   }
 }
 
