@@ -4718,6 +4718,18 @@ function printHtmlContent(htmlContent, documentTitle = 'تقرير سنتر ال
           page-break-inside: avoid;
           break-inside: avoid;
         }
+        .student-report-card-page {
+          page-break-after: always !important;
+          break-after: page !important;
+          page-break-inside: avoid !important;
+          break-inside: avoid !important;
+          margin-bottom: 0 !important;
+          box-sizing: border-box !important;
+        }
+        .student-report-card-page:last-child {
+          page-break-after: auto !important;
+          break-after: auto !important;
+        }
       </style>
     </head>
     <body>
@@ -5383,17 +5395,308 @@ function getCollectiveReportStudents() {
   return list.sort((a, b) => (a.name || '').localeCompare(b.name || '', 'ar', { numeric: true, sensitivity: 'base' }));
 }
 
+function generateStudentDetailedCardHtml(st, idx, selectedMonth, today, totalStudents) {
+  const m = st._metrics || calculateStudentMetrics(st);
+  const subjects = st.academicSubjects || {};
+  const subKeys = Object.keys(subjects);
+
+  const evalColor = m.gradeEvaluation === 'ممتاز' ? '#15803d' :
+                    m.gradeEvaluation === 'جيد جداً' ? '#0284c7' :
+                    m.gradeEvaluation === 'جيد' ? '#4f46e5' :
+                    m.gradeEvaluation === 'مقبول' ? '#b45309' : '#dc2626';
+
+  const evalBg = m.gradeEvaluation === 'ممتاز' ? '#dcfce7' :
+                 m.gradeEvaluation === 'جيد جداً' ? '#e0f2fe' :
+                 m.gradeEvaluation === 'جيد' ? '#eef2ff' :
+                 m.gradeEvaluation === 'مقبول' ? '#fef3c7' : '#fee2e2';
+
+  const evalIcon = m.gradeEvaluation === 'ممتاز' ? '🌟' :
+                   m.gradeEvaluation === 'جيد جداً' ? '✨' :
+                   m.gradeEvaluation === 'جيد' ? '👍' :
+                   m.gradeEvaluation === 'مقبول' ? '⚖️' : '⚠️';
+
+  let adviceNote = '';
+  if (m.attendanceRate >= 85) {
+    adviceNote = 'الطالب يظهر التزاماً ممتازاً في الحضور والمواظبة داخل السنتر مع تفاعل إيجابي ملحوظ في كافة المواد. نشكر ولي الأمر على المتابعة المستمرة ونوصي بالاستمرار على هذا المستوى الرفيع.';
+  } else if (m.attendanceRate >= 65) {
+    adviceNote = 'مستوى الطالب جيد ومستقر، ولكن يُرجى من ولي الأمر مزيد من المتابعة لتجنب تكرار الغياب، والحرص على مراجعة ما تم تدريسه أولاً بأول لضمان تحقيق أعلى الدرجات.';
+  } else {
+    adviceNote = 'تنبيه هام لولي الأمر: لوحظ تكرار الغياب أو التأخر في بعض الحصص؛ مما يؤثر بشكل مباشر على التحصيل الأكاديمي. يُرجى مراجعة إدارة السنتر للتنسيق وتعويض ما فات الطالب فوراً.';
+  }
+
+  let subjectsRowsHtml = '';
+  if (subKeys.length === 0) {
+    subjectsRowsHtml = `
+      <tr>
+        <td colspan="5" style="padding: 16px; text-align: center; color: #64748b; font-weight: bold; border: 1px solid #cbd5e1;">
+          المواد مسجلة بالسجل الرئيسي للمنظومة (التقييم قائم على الانتظام والمتابعة الميدانية).
+        </td>
+      </tr>
+    `;
+  } else {
+    subjectsRowsHtml = subKeys.map(subName => {
+      const sub = subjects[subName];
+      const sessions = getStudentSubjectMonthSessions(st, subName, selectedMonth);
+      const tName = sub.teacher ? cleanTeacherName(sub.teacher, subName) : 'مدرس المادة';
+
+      let attended = 0;
+      let absent = 0;
+      let subScore = 0;
+      let subMax = 0;
+      let recordedCount = 0;
+
+      const sessionBadges = sessions.map((s, sIdx) => {
+        const val = (s || '').trim();
+        if (!val || val === '-') {
+          return `<span style="display: inline-block; padding: 2px 4px; margin: 1px; border-radius: 4px; font-size: 10px; background: #f1f5f9; color: #94a3b8; border: 1px solid #e2e8f0;">ح${sIdx+1}:—</span>`;
+        }
+        recordedCount++;
+        if (val === '✓' || val === 'حاضر') {
+          attended++;
+          return `<span style="display: inline-block; padding: 2px 5px; margin: 1px; border-radius: 4px; font-size: 10px; font-weight: bold; background: #dcfce7; color: #15803d; border: 1px solid #86efac;">ح${sIdx+1}:✓</span>`;
+        } else if (val === 'غ' || val === 'غائب') {
+          absent++;
+          return `<span style="display: inline-block; padding: 2px 5px; margin: 1px; border-radius: 4px; font-size: 10px; font-weight: bold; background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5;">ح${sIdx+1}:غ</span>`;
+        } else {
+          attended++;
+          const parts = val.split('/');
+          if (parts.length === 2 && !isNaN(parseFloat(parts[0])) && !isNaN(parseFloat(parts[1]))) {
+            subScore += parseFloat(parts[0]);
+            subMax += parseFloat(parts[1]);
+          }
+          return `<span style="display: inline-block; padding: 2px 5px; margin: 1px; border-radius: 4px; font-size: 10px; font-weight: 800; background: #e0f2fe; color: #0284c7; border: 1px solid #7dd3fc;">ح${sIdx+1}:${val}</span>`;
+        }
+      }).join(' ');
+
+      let subRatingText = 'منتظم بالحضور ✅';
+      let subRatingBg = '#dcfce7';
+      let subRatingColor = '#15803d';
+
+      if (subMax > 0) {
+        const pct = Math.round((subScore / subMax) * 100);
+        if (pct >= 85) { subRatingText = `ممتاز (${subScore}/${subMax} - ${pct}%) 🌟`; subRatingBg = '#dcfce7'; subRatingColor = '#15803d'; }
+        else if (pct >= 75) { subRatingText = `جيد جداً (${subScore}/${subMax} - ${pct}%) ✨`; subRatingBg = '#e0f2fe'; subRatingColor = '#0284c7'; }
+        else if (pct >= 50) { subRatingText = `مقبول (${subScore}/${subMax} - ${pct}%)`; subRatingBg = '#fef3c7'; subRatingColor = '#b45309'; }
+        else { subRatingText = `بحاجة لمتابعة (${subScore}/${subMax} - ${pct}%) ⚠️`; subRatingBg = '#fee2e2'; subRatingColor = '#dc2626'; }
+      } else if (absent > 0) {
+        subRatingText = `غياب (${absent} حصص) ⚠️`; subRatingBg = '#fee2e2'; subRatingColor = '#dc2626';
+      } else if (attended > 0) {
+        subRatingText = `حضور كامل (${attended} حصص) 🌟`; subRatingBg = '#dcfce7'; subRatingColor = '#15803d';
+      }
+
+      const attendSummary = recordedCount > 0 ? (absent === 0 ? `حضور كامل (${attended} من ${recordedCount})` : `${attended} حضور | ${absent} غياب`) : 'منتظم';
+
+      return `
+        <tr style="border-bottom: 1px solid #cbd5e1; page-break-inside: avoid; break-inside: avoid;">
+          <td style="padding: 7px 8px; font-weight: 900; color: #1e40af; border: 1px solid #cbd5e1; font-size: 11px;">${subName}</td>
+          <td style="padding: 7px 8px; color: #334155; border: 1px solid #cbd5e1; font-size: 11px; font-weight: 700;">${tName}</td>
+          <td style="padding: 6px 4px; text-align: center; border: 1px solid #cbd5e1;">${sessionBadges}</td>
+          <td style="padding: 7px 8px; text-align: center; font-weight: 800; color: #0f172a; border: 1px solid #cbd5e1; font-size: 10px;">${attendSummary}</td>
+          <td style="padding: 6px 6px; text-align: center; border: 1px solid #cbd5e1;">
+            <span style="display: inline-block; padding: 3px 8px; border-radius: 6px; font-weight: 800; font-size: 10px; background: ${subRatingBg}; color: ${subRatingColor};">
+              ${subRatingText}
+            </span>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  const isLast = idx === totalStudents - 1;
+  const breakStyle = isLast ? '' : 'page-break-after: always; break-after: page;';
+
+  return `
+    <div class="student-report-card-page html2pdf__page-break" style="${breakStyle} page-break-inside: avoid; break-inside: avoid; background: #ffffff; border: 2.5px solid #1e40af; border-radius: 14px; padding: 18px 22px; margin-bottom: 25px; box-sizing: border-box; font-family: 'Cairo', sans-serif; color: #0f172a; min-height: 270mm; display: flex; flex-direction: column; justify-content: space-between;">
+      
+      <!-- Top Decorative Border & Header -->
+      <div>
+        <div style="border-bottom: 3px double #1e40af; padding-bottom: 12px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 50px; height: 50px; border-radius: 12px; background: #1e40af; color: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 20px; box-shadow: 0 4px 10px rgba(30, 64, 175, 0.3);">
+              الأرائج
+            </div>
+            <div>
+              <h1 style="font-size: 20px; font-weight: 900; color: #1e40af; margin: 0; line-height: 1.2;">سنتر الأرائج التعليمي</h1>
+              <p style="font-size: 11px; color: #475569; margin: 3px 0 0 0; font-weight: bold;">صرح تعليمي متكامل — نحو مستقبل دراسي مشرق ومتميز</p>
+            </div>
+          </div>
+
+          <div style="text-align: center; flex: 1; min-width: 200px;">
+            <div style="display: inline-block; background: #1e40af; color: #ffffff; padding: 4px 16px; border-radius: 20px; font-size: 13px; font-weight: 900; letter-spacing: 0.5px;">
+              تقرير المتابعة والتقييم الأكاديمي الشامل
+            </div>
+            <div style="font-size: 11px; color: #1e293b; font-weight: 800; margin-top: 4px;">
+              عن فترة: <span style="color: #1e40af;">${selectedMonth}</span> — العام الدراسي 2025 / 2026
+            </div>
+          </div>
+
+          <div style="text-align: left; font-size: 10px; color: #475569; line-height: 1.6; border: 1px solid #cbd5e1; padding: 6px 10px; border-radius: 8px; background: #f8fafc;">
+            <div><strong>تاريخ الإصدار:</strong> ${today}</div>
+            <div><strong>كود الطالب:</strong> <span style="font-family: monospace; font-weight: 900; color: #1e40af; font-size: 12px;">#${st.code}</span></div>
+            <div><strong>رقم التقرير:</strong> REP-${st.code}-${selectedMonth.replace(/\s+/g,'')}</div>
+          </div>
+        </div>
+
+        <!-- Student Profile Information Box -->
+        <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 10px 14px; margin-bottom: 14px;">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; font-size: 11px;">
+            <div>
+              <span style="color: #64748b; font-weight: bold; display: block; font-size: 10px;">اسم الطالب رباعي:</span>
+              <strong style="color: #0f172a; font-size: 13px; font-weight: 900;">${st.name}</strong>
+            </div>
+            <div>
+              <span style="color: #64748b; font-weight: bold; display: block; font-size: 10px;">المرحلة والصف:</span>
+              <strong style="color: #1e40af; font-weight: 800;">${st.grade || 'غير محدد'} (${st.specialization || 'عام'})</strong>
+            </div>
+            <div>
+              <span style="color: #64748b; font-weight: bold; display: block; font-size: 10px;">رقم هاتف الطالب:</span>
+              <span style="font-family: monospace; font-weight: 800; color: #0f172a;">${formatPhoneNumber(st.phone) || 'غير مسجل'}</span>
+            </div>
+            <div>
+              <span style="color: #64748b; font-weight: bold; display: block; font-size: 10px;">رقم ولي الأمر للمتابعة:</span>
+              <span style="font-family: monospace; font-weight: 900; color: #166534;">${formatPhoneNumber(st.parentPhone) || 'غير مسجل'}</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; font-size: 11px; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #cbd5e1;">
+            <div>
+              <span style="color: #64748b; font-weight: bold; font-size: 10px;">المنطقة / السكن:</span>
+              <strong style="color: #334155;"> ${st.area || 'غير محدد'}</strong>
+            </div>
+            <div>
+              <span style="color: #64748b; font-weight: bold; font-size: 10px;">حالة القيد:</span>
+              <strong style="color: #166534;"> مقيد ومنتظم بالسنتر</strong>
+            </div>
+            <div style="grid-column: span 2;">
+              <span style="color: #64748b; font-weight: bold; font-size: 10px;">المواد المسجلة:</span>
+              <span style="color: #1e40af; font-weight: 700; font-size: 10px;"> ${st.subjectsSummary || 'لا توجد مواد مقيدة'}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPI Performance Summary Cards -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px;">
+          <!-- 1. Overall Evaluation Badge -->
+          <div style="background: ${evalBg}; border: 1.5px solid ${evalColor}; padding: 10px; border-radius: 10px; text-align: center;">
+            <div style="font-size: 10px; color: ${evalColor}; font-weight: bold;">التقييم العام للطالب</div>
+            <div style="font-size: 16px; font-weight: 900; color: ${evalColor}; margin: 2px 0;">
+              ${evalIcon} ${m.gradeEvaluation}
+            </div>
+            <div style="font-size: 10px; color: #475569; font-weight: bold;">مستوى الانضباط والتحصيل</div>
+          </div>
+
+          <!-- 2. Attendance Commitment Rate -->
+          <div style="background: #f0fdf4; border: 1.5px solid #86efac; padding: 10px; border-radius: 10px; text-align: center;">
+            <div style="font-size: 10px; color: #166534; font-weight: bold;">نسبة الحضور والالتزام</div>
+            <div style="font-size: 18px; font-weight: 900; color: #15803d; margin: 2px 0;">
+              ${m.attendanceRate}%
+            </div>
+            <div style="font-size: 10px; color: #166534; font-weight: bold;">
+              ${m.attendanceRate >= 80 ? 'مواظبة ممتازة' : 'بحاجة لتحسين الحضور'}
+            </div>
+          </div>
+
+          <!-- 3. Recorded Sessions Count -->
+          <div style="background: #eff6ff; border: 1.5px solid #93c5fd; padding: 10px; border-radius: 10px; text-align: center;">
+            <div style="font-size: 10px; color: #1e40af; font-weight: bold;">سجل الحصص للشهر</div>
+            <div style="font-size: 16px; font-weight: 900; color: #1d4ed8; margin: 2px 0;">
+              ${m.attendedSessions} <span style="font-size: 11px; font-weight: normal; color: #64748b;">حاضر</span> / ${m.absentSessions} <span style="font-size: 11px; font-weight: normal; color: #64748b;">غياب</span>
+            </div>
+            <div style="font-size: 10px; color: #475569; font-weight: bold;">إجمالي: ${m.totalSessions} حصة مرصودة</div>
+          </div>
+
+          <!-- 4. Academic Exams Performance -->
+          <div style="background: #faf5ff; border: 1.5px solid #d8b4fe; padding: 10px; border-radius: 10px; text-align: center;">
+            <div style="font-size: 10px; color: #6b21a8; font-weight: bold;">متوسط درجات الامتحانات</div>
+            <div style="font-size: 18px; font-weight: 900; color: #7e22ce; margin: 2px 0;">
+              ${m.academicPct !== null ? `${m.academicPct}%` : 'منتظم'}
+            </div>
+            <div style="font-size: 10px; color: #6b21a8; font-weight: bold;">
+              ${m.academicPct !== null ? (m.academicPct >= 75 ? 'تحصيل أكاديمي متفوق' : 'متابعة دورية مستمرة') : 'متابعة الحصص الدورية'}
+            </div>
+          </div>
+        </div>
+
+        <!-- Subjects & Sessions Breakdown Table -->
+        <div style="margin-bottom: 14px;">
+          <div style="font-size: 12px; font-weight: 900; color: #1e40af; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+            <span>تفاصيل المواد الدراسية، حصص الشهر، ورصد الدرجات والغياب:</span>
+            <span style="font-size: 10px; color: #64748b; font-weight: normal;">(✓ = حاضر | غ = غائب | رقم = درجة الامتحان)</span>
+          </div>
+          <table style="width: 100%; border-collapse: collapse; font-size: 11px; text-align: right; border: 1.5px solid #cbd5e1;">
+            <thead>
+              <tr style="background: #1e40af; color: #ffffff;">
+                <th style="padding: 7px 8px; border: 1px solid #334155; width: 110px;">المادة</th>
+                <th style="padding: 7px 8px; border: 1px solid #334155; width: 120px;">مدرس المادة</th>
+                <th style="padding: 7px 6px; border: 1px solid #334155; text-align: center;">رصد الحصص (1 إلى 8)</th>
+                <th style="padding: 7px 8px; border: 1px solid #334155; text-align: center; width: 110px;">نسبة الحضور</th>
+                <th style="padding: 7px 8px; border: 1px solid #334155; text-align: center; width: 130px;">مستوى وتقييم المادة</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${subjectsRowsHtml}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Teacher & Supervisor Notes -->
+        <div style="background: #fffbeb; border: 1.5px solid #fde68a; border-right: 4px solid #f59e0b; border-radius: 8px; padding: 10px 14px; margin-bottom: 14px;">
+          <div style="font-size: 11px; font-weight: 900; color: #92400e; margin-bottom: 3px;">
+            توجيهات وملاحظات إدارة السنتر والمشرف الأكاديمي لولي الأمر:
+          </div>
+          <p style="font-size: 11px; color: #78350f; margin: 0; line-height: 1.6; font-weight: 600;">
+            ${adviceNote}
+          </p>
+        </div>
+      </div>
+
+      <!-- Official Signatures & Seal Block -->
+      <div style="border-top: 2px dashed #94a3b8; padding-top: 14px; margin-top: auto; page-break-inside: avoid; break-inside: avoid;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; font-size: 11px; color: #334155; font-weight: 800;">
+          <div style="text-align: center;">
+            <div style="color: #64748b; font-size: 10px; margin-bottom: 25px;">المشرف الأكاديمي</div>
+            <div style="border-top: 1px solid #94a3b8; width: 120px; margin: 0 auto; padding-top: 4px;">توقيع المشرف</div>
+          </div>
+
+          <div style="text-align: center;">
+            <div style="color: #64748b; font-size: 10px; margin-bottom: 25px;">مدرسو المواد المقيدة</div>
+            <div style="border-top: 1px solid #94a3b8; width: 120px; margin: 0 auto; padding-top: 4px;">اعتماد المدرسين</div>
+          </div>
+
+          <div style="text-align: center;">
+            <div style="color: #64748b; font-size: 10px; margin-bottom: 25px;">توقيع ولي الأمر بالعلم</div>
+            <div style="border-top: 1px solid #94a3b8; width: 120px; margin: 0 auto; padding-top: 4px;">توقيع المستلم</div>
+          </div>
+
+          <!-- Official Stamp Circle -->
+          <div style="text-align: center;">
+            <div style="width: 75px; height: 75px; border: 2px dashed #1e40af; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #1e40af; font-size: 9px; font-weight: 900; margin: 0 auto; background: rgba(30, 64, 175, 0.03);">
+              <span>سنتر الأرائج</span>
+              <span>الختم الرسمي</span>
+              <span>معتمد</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; font-size: 9px; color: #94a3b8; margin-top: 12px; border-top: 1px solid #f1f5f9; padding-top: 4px;">
+          سنتر الأرائج التعليمي — المنظومة الإلكترونية الموحدة لإدارة ومتابعة شؤون الطلاب — صفحة (${idx + 1} من ${totalStudents})
+        </div>
+      </div>
+
+    </div>
+  `;
+}
+
 function renderCollectiveReportPreview() {
   const container = document.getElementById('collectiveReportPrintableArea');
   if (!container) return;
 
   const studentsList = getCollectiveReportStudents();
-  const reportType = document.getElementById('collRepTypeSelect')?.value || 'attendance_matrix';
+  const reportType = document.getElementById('collRepTypeSelect')?.value || 'detailed_cards';
   const selectedMonth = document.getElementById('collRepMonthSelect')?.value || currentActiveMonth || 'شهر 1';
   const monthWrapper = document.getElementById('collRepMonthWrapper');
   if (monthWrapper) {
-    if (reportType === 'attendance_matrix') monthWrapper.classList.remove('hidden');
-    else monthWrapper.classList.add('hidden');
+    if (reportType === 'general_roster') monthWrapper.classList.add('hidden');
+    else monthWrapper.classList.remove('hidden');
   }
 
   const badge = document.getElementById('collRepActiveCountBadge');
@@ -5411,7 +5714,14 @@ function renderCollectiveReportPreview() {
     return;
   }
 
-  if (reportType === 'attendance_matrix') {
+  if (reportType === 'detailed_cards') {
+    // Detailed multi-page cards: each student has their own separate page
+    container.innerHTML = `
+      <div style="font-family: 'Cairo', sans-serif; direction: rtl; text-align: right; width: 100%;">
+        ${studentsList.map((st, idx) => generateStudentDetailedCardHtml(st, idx, selectedMonth, today, studentsList.length)).join('')}
+      </div>
+    `;
+  } else if (reportType === 'attendance_matrix') {
     // Attendance Roster with 8 sessions
     let totalPresentOverall = 0;
     let totalAbsentOverall = 0;
@@ -5609,6 +5919,9 @@ function downloadCollectiveReportPdf() {
     return;
   }
 
+  const reportType = document.getElementById('collRepTypeSelect')?.value || 'detailed_cards';
+  const orientation = (reportType === 'detailed_cards') ? 'portrait' : 'landscape';
+
   const btn = document.getElementById('btnDownloadCollectivePdf');
   if (btn) {
     btn.disabled = true;
@@ -5617,19 +5930,21 @@ function downloadCollectiveReportPdf() {
 
   const studentsList = getCollectiveReportStudents();
   const dateStr = new Date().toISOString().slice(0, 10);
-  const fileName = `تقرير_طلاب_سنتر_الأرائج_${studentsList.length}_طالب_${dateStr}.pdf`;
+  const filePrefix = (reportType === 'detailed_cards') ? 'كروت_تقارير_الطلاب' : 'كشف_طلاب';
+  const fileName = `${filePrefix}_سنتر_الأرائج_${studentsList.length}_طالب_${dateStr}.pdf`;
 
   if (typeof html2pdf !== 'undefined') {
     const opt = {
-      margin: [6, 6, 8, 6],
+      margin: orientation === 'portrait' ? [6, 6, 6, 6] : [6, 6, 8, 6],
       filename: fileName,
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { scale: 2, useCORS: true, letterRendering: true, logging: false },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+      jsPDF: { unit: 'mm', format: 'a4', orientation: orientation },
+      pagebreak: { mode: ['css', 'legacy'], after: '.html2pdf__page-break' }
     };
 
     html2pdf().set(opt).from(container).save().then(() => {
-      showToast('✅ تم تنزيل ملف الـ PDF بنجاح!');
+      showToast(`✅ تم تنزيل ملف الـ PDF بنجاح لـ (${studentsList.length} طالب)!`);
       if (btn) {
         btn.disabled = false;
         btn.innerHTML = `<i data-lucide="download" class="w-4 h-4"></i><span>تحميل كـ PDF</span>`;
@@ -5661,8 +5976,13 @@ function printCollectiveReport() {
     return;
   }
 
-  const title = 'تقرير طلاب سنتر الأرائج التعليمي';
-  printHtmlContent(container.innerHTML, title, 'landscape');
+  const reportType = document.getElementById('collRepTypeSelect')?.value || 'detailed_cards';
+  const orientation = (reportType === 'detailed_cards') ? 'portrait' : 'landscape';
+  const title = (reportType === 'detailed_cards') 
+    ? 'تقارير المتابعة والتقييم الأكاديمي الشامل للطلاب - سنتر الأرائج' 
+    : 'كشف طلاب سنتر الأرائج التعليمي';
+
+  printHtmlContent(container.innerHTML, title, orientation);
 }
 
 function shareCollectiveReportWhatsApp() {
