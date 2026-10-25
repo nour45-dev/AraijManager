@@ -525,68 +525,107 @@ function rebuildStudentSummaries(student) {
 // MONTHLY ATTENDANCE HELPER FUNCTIONS
 // ==========================================
 
+function normalizeMonthKey(name) {
+  if (!name || typeof name !== 'string') return '';
+  const s = name.trim();
+  if (s.includes('10') || s.includes('أكتوبر') || s.includes('اكتوبر')) return 'شهر 10 (أكتوبر)';
+  if (s.includes('11') || s.includes('نوفمبر')) return 'شهر 11 (نوفمبر)';
+  if (s.includes('12') || s.includes('ديسمبر')) return 'شهر 12 (ديسمبر)';
+  if (s.includes('9') || s.includes('سبتمبر')) return 'شهر 9 (سبتمبر)';
+  if (s.includes('يناير') || s === 'شهر 1' || s === '1') return 'شهر 1 (يناير)';
+  if (s.includes('2') || s.includes('فبراير')) return 'شهر 2 (فبراير)';
+  if (s.includes('3') || s.includes('مارس')) return 'شهر 3 (مارس)';
+  if (s.includes('4') || s.includes('أبريل') || s.includes('ابريل')) return 'شهر 4 (أبريل)';
+  if (s.includes('5') || s.includes('مايو')) return 'شهر 5 (مايو)';
+  return s;
+}
+
+function isSameMonthName(m1, m2) {
+  if (!m1 || !m2) return false;
+  if (m1 === m2) return true;
+  return normalizeMonthKey(m1) === normalizeMonthKey(m2);
+}
+
+function findExistingMonthKey(monthsObj, targetMonth) {
+  if (!monthsObj || typeof monthsObj !== 'object') return null;
+  if (monthsObj[targetMonth]) return targetMonth;
+  const targetNorm = normalizeMonthKey(targetMonth);
+  for (const k of Object.keys(monthsObj)) {
+    if (normalizeMonthKey(k) === targetNorm) {
+      return k;
+    }
+  }
+  return null;
+}
+
 function getStudentSubjectMonthSessions(student, subject, month = null) {
   const m = month || currentActiveMonth || 'شهر 10 (أكتوبر)';
   if (!student.academicSubjects) student.academicSubjects = {};
-  const canon = canonicalSubjectName(subject) || subject;
 
   let sub = getEnrolledSubjectData(student.academicSubjects, subject);
   if (!sub) {
     return ["", "", "", "", "", "", "", ""];
   }
 
-  if (!sub.months) sub.months = {};
-  if (!sub.months[m] || sub.months[m].every(s => !s || !String(s).trim())) {
-    if (Array.isArray(sub.sessions) && sub.sessions.some(s => s && String(s).trim())) {
-      sub.months[m] = [...sub.sessions];
-    } else {
-      let fallback = null;
-      for (const otherM in sub.months) {
-        if (Array.isArray(sub.months[otherM]) && sub.months[otherM].some(s => s && String(s).trim())) {
-          fallback = [...sub.months[otherM]];
-          break;
-        }
-      }
-      sub.months[m] = fallback ? fallback : ["", "", "", "", "", "", "", ""];
-    }
+  if (!sub.months || typeof sub.months !== 'object') {
+    sub.months = {};
   }
-  while (sub.months[m].length < 8) sub.months[m].push("");
 
-  // مزامنة غير إتلافية مع sub.sessions: لا تمسح sessions أبداً إذا كانت تحتوي على بيانات
-  const monthHasContent = sub.months[m].some(s => s && String(s).trim());
-  const sessionsHasContent = Array.isArray(sub.sessions) && sub.sessions.some(s => s && String(s).trim());
+  // 1. Check if the month exists in sub.months (either exact key or alias)
+  const existingKey = findExistingMonthKey(sub.months, m);
+  if (existingKey && Array.isArray(sub.months[existingKey])) {
+    const list = sub.months[existingKey];
+    while (list.length < 8) list.push("");
+    return list;
+  }
 
-  if (monthHasContent) {
-    sub.sessions = [...sub.months[m]];
-  } else if (sessionsHasContent) {
+  // 2. Legacy bootstrap ONLY for October / September if no months have data yet:
+  const isStartingMonth = isSameMonthName(m, 'شهر 10 (أكتوبر)') || isSameMonthName(m, 'شهر 9 (سبتمبر)');
+  const hasAnyMonthData = Object.values(sub.months).some(arr => Array.isArray(arr) && arr.some(s => s && String(s).trim()));
+  
+  if (!hasAnyMonthData && isStartingMonth && Array.isArray(sub.sessions) && sub.sessions.some(s => s && String(s).trim())) {
     sub.months[m] = [...sub.sessions];
-  } else {
-    sub.sessions = sub.months[m];
+    while (sub.months[m].length < 8) sub.months[m].push("");
+    return sub.months[m];
   }
 
+  // 3. Any unrecorded/new month (e.g. Month 11) starts fresh with 8 empty slots with NO carryover
+  sub.months[m] = ["", "", "", "", "", "", "", ""];
   return sub.months[m];
 }
 
 function setStudentSubjectMonthSession(student, subject, month, sessionIdx, val) {
   const m = month || currentActiveMonth || 'شهر 10 (أكتوبر)';
-  const sessions = getStudentSubjectMonthSessions(student, subject, m);
-  sessions[sessionIdx] = val;
   const sub = getEnrolledSubjectData(student.academicSubjects, subject);
-  if (sub) {
-    if (!sub.months) sub.months = {};
-    sub.months[m] = sessions;
+  if (!sub) return ["", "", "", "", "", "", "", ""];
+
+  if (!sub.months || typeof sub.months !== 'object') sub.months = {};
+  
+  const existingKey = findExistingMonthKey(sub.months, m) || m;
+  if (!sub.months[existingKey] || !Array.isArray(sub.months[existingKey])) {
+    sub.months[existingKey] = ["", "", "", "", "", "", "", ""];
+  }
+  while (sub.months[existingKey].length < 8) sub.months[existingKey].push("");
+  
+  const cleanVal = (val !== undefined && val !== null) ? String(val).trim() : "";
+  sub.months[existingKey][sessionIdx] = cleanVal;
+
+  // Mirror to sub.sessions ONLY if the modified month is the current active month
+  if (isSameMonthName(m, currentActiveMonth)) {
     if (!sub.sessions || !Array.isArray(sub.sessions)) sub.sessions = ["", "", "", "", "", "", "", ""];
     while (sub.sessions.length < 8) sub.sessions.push("");
-    sub.sessions[sessionIdx] = val;
+    sub.sessions[sessionIdx] = cleanVal;
   }
-  return sessions;
+
+  return sub.months[existingKey];
 }
 
 function populateMonthDropdowns() {
   const selects = [
     document.getElementById('matrixMonthSelect'),
     document.getElementById('bulkMonthSelect'),
-    document.getElementById('pdfMonthSelect')
+    document.getElementById('pdfMonthSelect'),
+    document.getElementById('collRepMonthSelect')
   ];
 
   selects.forEach(sel => {
@@ -604,11 +643,33 @@ function populateMonthDropdowns() {
 function onMatrixMonthChange(month) {
   currentActiveMonth = month;
   localStorage.setItem('araij_active_month', month);
+
   const bulkSel = document.getElementById('bulkMonthSelect');
   if (bulkSel) bulkSel.value = month;
   const pdfSel = document.getElementById('pdfMonthSelect');
   if (pdfSel) pdfSel.value = month;
+  const matrixSel = document.getElementById('matrixMonthSelect');
+  if (matrixSel) matrixSel.value = month;
+  const collSel = document.getElementById('collRepMonthSelect');
+  if (collSel) collSel.value = month;
+
+  // Synchronize active in-memory sub.sessions for all students to match the selected month
+  if (Array.isArray(allStudents)) {
+    allStudents.forEach(st => {
+      if (st.academicSubjects && typeof st.academicSubjects === 'object') {
+        Object.keys(st.academicSubjects).forEach(subKey => {
+          const sub = st.academicSubjects[subKey];
+          if (sub) {
+            sub.sessions = getStudentSubjectMonthSessions(st, subKey, month);
+          }
+        });
+        rebuildStudentSummaries(st);
+      }
+    });
+  }
+
   renderAttendanceMatrix();
+  updateKPIStats();
   showToast(`📅 تم الانتقال إلى رصد (${month})`);
 }
 
@@ -635,11 +696,9 @@ function saveNewCenterMonth() {
     CENTER_MONTHS.push(monthName);
     localStorage.setItem('araij_center_months', JSON.stringify(CENTER_MONTHS));
   }
-  currentActiveMonth = monthName;
-  localStorage.setItem('araij_active_month', monthName);
   populateMonthDropdowns();
   closeNewMonthModal();
-  renderAttendanceMatrix();
+  onMatrixMonthChange(monthName);
   showToast(`🎉 تم فتح (${monthName}) بنجاح ويمكن الآن رصد 8 حصص جديدة!`);
 }
 
@@ -744,13 +803,13 @@ const ACADEMIC_MONTHS = [
   "شهر 5 (مايو)"
 ];
 
-let currentActiveMonth = localStorage.getItem('araij_active_month') || 'شهر 9 (سبتمبر)';
+let currentActiveMonth = localStorage.getItem('araij_active_month') || 'شهر 10 (أكتوبر)';
 let activeDetailMonth = currentActiveMonth;
 let CENTER_MONTHS;
 try {
   const savedMonths = localStorage.getItem('araij_center_months');
   CENTER_MONTHS = savedMonths ? JSON.parse(savedMonths) : [...ACADEMIC_MONTHS];
-  if (!CENTER_MONTHS.some(m => m.includes('سبتمبر') || m.includes('9'))) {
+  if (!CENTER_MONTHS.some(m => m.includes('أكتوبر') || m.includes('10'))) {
     CENTER_MONTHS = [...ACADEMIC_MONTHS];
     localStorage.setItem('araij_center_months', JSON.stringify(CENTER_MONTHS));
   }
@@ -758,7 +817,7 @@ try {
   CENTER_MONTHS = [...ACADEMIC_MONTHS];
 }
 if (!CENTER_MONTHS.includes(currentActiveMonth) || currentActiveMonth === 'شهر 1') {
-  currentActiveMonth = 'شهر 9 (سبتمبر)';
+  currentActiveMonth = 'شهر 10 (أكتوبر)';
   localStorage.setItem('araij_active_month', currentActiveMonth);
 }
 
@@ -1437,7 +1496,7 @@ function mergeStudentClientDeep(existingSt, incomingSt) {
 }
 
 function initData() {
-  const CURRENT_DB_VERSION = 'v4.8_clean_sync';
+  const CURRENT_DB_VERSION = 'v5.0_isolated_months';
   const savedVersion = localStorage.getItem('araij_db_schema_version');
   if (savedVersion !== CURRENT_DB_VERSION) {
     // Purge outdated cache so clean non-destructive data loads seamlessly
@@ -1611,25 +1670,17 @@ function initData() {
       });
     }
 
-    // 2. Rebuild clean teachersSummary and subjectsSummary (including sessions if present)
-    if (st.academicSubjects && Object.keys(st.academicSubjects).length > 0) {
-      const subKeys = Object.keys(st.academicSubjects);
-      st.subjectsSummary = subKeys.join(', ');
-      st.teachersSummary = subKeys.map(k => {
-        const subObj = st.academicSubjects[k];
-        const tName = cleanTeacherName(subObj.teacher, k);
-        const hasSess = subObj.sessions && subObj.sessions.some(s => s && s.trim() !== '');
-        if (hasSess) {
-          const sessStr = subObj.sessions.map(s => (s && s.trim()) ? s.trim() : '_').join(', ');
-          return `${k}/${tName} [حصص: ${sessStr}]`;
+    // 2. Synchronize active sub.sessions to match currentActiveMonth
+    if (st.academicSubjects && typeof st.academicSubjects === 'object') {
+      Object.keys(st.academicSubjects).forEach(subKey => {
+        const sub = st.academicSubjects[subKey];
+        if (sub) {
+          sub.sessions = getStudentSubjectMonthSessions(st, subKey, currentActiveMonth);
         }
-        return `${k}/${tName}`;
-      }).join(' | ');
+      });
     }
 
-    st._metrics = calculateStudentMetrics(st);
-    
-    st._searchString = buildStudentSearchString(st);
+    rebuildStudentSummaries(st);
   });
 
   try {
@@ -2449,7 +2500,7 @@ function applySessionValue(code, subject, sessionIdx, val, month = null) {
   const currentSessions = getStudentSubjectMonthSessions(student, subject, m);
   const filledCount = currentSessions.filter(s => s && s.trim() !== '').length;
   if (sessionIdx === 7 && filledCount === 8) {
-    const currentMonthIdx = CENTER_MONTHS.indexOf(m);
+    const currentMonthIdx = CENTER_MONTHS.findIndex(cm => isSameMonthName(cm, m));
     const nextMonthName = (currentMonthIdx >= 0 && currentMonthIdx + 1 < CENTER_MONTHS.length) 
       ? CENTER_MONTHS[currentMonthIdx + 1] 
       : `شهر ${CENTER_MONTHS.length + 1}`;
