@@ -292,6 +292,61 @@ function cleanTeacherName(rawTeacher, rawSubj) {
 }
 
 // Build comprehensive search string for instant matching by name, code, phone, area, subject, and teacher
+
+// ====================================================
+// SMART TOKEN-BASED ARABIC SEARCH ENGINE
+// ====================================================
+function cleanArabicForSearch(str) {
+  if (!str) return '';
+  return str.toString()
+    .toLowerCase()
+    .replace(/[\u064B-\u065F\u0670ـ]/g, '') // Tashkeel & tatweel
+    .replace(/[أإآٱ]/g, 'ا')
+    .replace(/ة/g, 'ه')
+    .replace(/ى/g, 'ي')
+    .replace(/ؤ/g, 'و')
+    .replace(/ئ/g, 'ي')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function matchStudentSearch(st, rawQuery) {
+  if (!rawQuery || !rawQuery.trim()) return true;
+
+  const q = cleanArabicForSearch(rawQuery);
+  const qWords = q.split(' ').filter(Boolean);
+  if (qWords.length === 0) return true;
+
+  const primaryText = cleanArabicForSearch([
+    st.name || '',
+    st.searchTags || '',
+    st.code || '',
+    st.phone || '',
+    st.parentPhone || ''
+  ].join(' '));
+
+  const secondaryText = cleanArabicForSearch([
+    st.area || '',
+    st.grade || '',
+    st.subjectsSummary || '',
+    st.teachersSummary || ''
+  ].join(' '));
+
+  const allText = primaryText + ' ' + secondaryText;
+  const allNoSpace = allText.replace(/\s+/g, '');
+
+  return qWords.every(w => {
+    // 1. Direct word or substring match
+    if (allText.includes(w)) return true;
+
+    // 2. Compound words (e.g. 'عبد الرحمن' vs 'عبدالرحمن', 'ابو السباع' vs 'ابوالسباع')
+    const wNoSpace = w.replace(/\s+/g, '');
+    if (allNoSpace.includes(wNoSpace)) return true;
+
+    return false;
+  });
+}
+
 function buildStudentSearchString(st) {
   const teachers = Object.values(st.academicSubjects || {}).map(sub => sub.teacher || '').filter(Boolean);
   const teacherVariants = [];
@@ -1508,7 +1563,13 @@ function initData() {
 
   const localOverrides = localStorage.getItem('araij_students_overrides');
   const fullDb = localStorage.getItem('araij_full_students_db');
-  const deletedCodes = JSON.parse(localStorage.getItem('araij_deleted_students') || '[]');
+  let deletedCodes = JSON.parse(localStorage.getItem('araij_deleted_students') || '[]');
+  // Ensure valid registered students in baseData are never suppressed by old deletedCodes
+  if (Array.isArray(baseData) && baseData.length > 0) {
+    const baseCodes = new Set(baseData.map(s => String(s.code || '').trim()));
+    deletedCodes = deletedCodes.filter(c => !baseCodes.has(String(c).trim()));
+    try { localStorage.setItem('araij_deleted_students', JSON.stringify(deletedCodes)); } catch(e) {}
+  }
   const baseData = window.STUDENTS_DATA || [];
 
   let merged = [];
@@ -1859,7 +1920,6 @@ function setPerformanceFilter(perf) {
 
 function applyFilters() {
   const query = (document.getElementById('searchInput')?.value || '').trim();
-  const queryNorm = normalize_arabic(query);
 
   const clearBtn = document.getElementById('clearSearchBtn');
   if (clearBtn) {
@@ -1871,11 +1931,11 @@ function applyFilters() {
   currentAttendanceFilter = document.getElementById('filterAttendance')?.value || 'all';
   currentAreaFilter = document.getElementById('filterArea')?.value || 'all';
 
-  filteredStudents = allStudents.filter(s => {
+  let matches = allStudents.filter(s => {
     if (currentGradeFilter !== 'all' && s.grade !== currentGradeFilter) return false;
 
     if (currentEvaluationFilter !== 'all') {
-      const evalGrade = s._metrics.gradeEvaluation;
+      const evalGrade = s._metrics?.gradeEvaluation;
       if (currentEvaluationFilter === 'excellent' && evalGrade !== 'ممتاز') return false;
       if (currentEvaluationFilter === 'very_good' && evalGrade !== 'جيد جدًا') return false;
       if (currentEvaluationFilter === 'good' && evalGrade !== 'جيد') return false;
@@ -1884,7 +1944,7 @@ function applyFilters() {
     }
 
     if (currentAttendanceFilter !== 'all') {
-      const att = s._metrics.attendanceRate;
+      const att = s._metrics?.attendanceRate ?? 0;
       if (currentAttendanceFilter === 'high' && att < 80) return false;
       if (currentAttendanceFilter === 'medium' && (att < 50 || att >= 80)) return false;
       if (currentAttendanceFilter === 'low' && att >= 50) return false;
@@ -1892,8 +1952,8 @@ function applyFilters() {
 
     if (currentAreaFilter !== 'all' && s.area !== currentAreaFilter) return false;
 
-    if (queryNorm) {
-      if (!s._searchString || !s._searchString.includes(queryNorm)) {
+    if (query) {
+      if (!matchStudentSearch(s, query)) {
         return false;
       }
     }
@@ -1901,6 +1961,27 @@ function applyFilters() {
     return true;
   });
 
+  // Cross-grade fallback: if searching with a query and 0 matches in currentGradeFilter, check other grades
+  if (query && matches.length === 0 && currentGradeFilter !== 'all') {
+    const crossMatches = allStudents.filter(s => matchStudentSearch(s, query));
+    if (crossMatches.length > 0) {
+      matches = crossMatches;
+    }
+  }
+
+  // Name-first ranking
+  if (query) {
+    const qClean = cleanArabicForSearch(query);
+    matches.sort((a, b) => {
+      const aName = cleanArabicForSearch(a.name || '');
+      const bName = cleanArabicForSearch(b.name || '');
+      const aStarts = aName.startsWith(qClean) ? 2 : (aName.includes(qClean) ? 1 : 0);
+      const bStarts = bName.startsWith(qClean) ? 2 : (bName.includes(qClean) ? 1 : 0);
+      return bStarts - aStarts;
+    });
+  }
+
+  filteredStudents = matches;
   currentPage = 1;
   renderStudents();
   updateResultsCount();
