@@ -1552,7 +1552,7 @@ function mergeStudentClientDeep(existingSt, incomingSt) {
 }
 
 function initData() {
-  const CURRENT_DB_VERSION = 'v5.1_full_database_restored';
+  const CURRENT_DB_VERSION = 'v5.3_sheet_truth_and_monthly_sync';
   const savedVersion = localStorage.getItem('araij_db_schema_version');
   if (savedVersion !== CURRENT_DB_VERSION) {
     // Purge outdated cache so clean non-destructive data loads seamlessly
@@ -1763,7 +1763,15 @@ function calculateStudentMetrics(student) {
 
   subjectList.forEach(subKey => {
     const subData = subjects[subKey];
-    const sessions = subData.sessions || [];
+    let sessions = subData.sessions || [];
+    if (subData.months && typeof subData.months === 'object') {
+      const activeSess = subData.months[currentActiveMonth];
+      if (Array.isArray(activeSess) && activeSess.some(s => s && s.trim())) {
+        sessions = activeSess;
+      } else if (Array.isArray(subData.months['شهر 10 (أكتوبر)']) && subData.months['شهر 10 (أكتوبر)'].some(s => s && s.trim())) {
+        sessions = subData.months['شهر 10 (أكتوبر)'];
+      }
+    }
 
     sessions.forEach(val => {
       if (!val || val.trim() === '') return;
