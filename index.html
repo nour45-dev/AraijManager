@@ -3184,15 +3184,62 @@
   </div>
 
   <!-- SCRIPTS -->
-  <script src="data.js?v=20261102_v53"></script>
-  <script src="app.js?v=20261102_v53"></script>
+  <script src="data.js?v=20261102_v54"></script>
+  <script src="app.js?v=20261102_v54"></script>
 
   <!-- PWA & OFFLINE ENGINE SCRIPT -->
   <script>
     // 1. Service Worker Registration & Auto-Update
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
-        navigator.serviceWorker.register('./sw.js?v=20261102_v53"📱 لتثبيت التطبيق على الآيفون:\n1. اضغط على زر المشاركة (Share ⎋) في أسفل متصفح Safari.\n2. اختر 'إضافة إلى الشاشة الرئيسية' (Add to Home Screen ➕).\n3. سيتم تثبيت تطبيق سنتر الأرائج التعليمي والعمل بدون إنترنت!");
+        navigator.serviceWorker.register('./sw.js?v=20261102_v54')
+          .then(function(reg) {
+            console.log('[PWA] Service Worker registered successfully! Scope:', reg.scope);
+            try { reg.update(); } catch(e) {}
+          })
+          .catch(function(err) {
+            console.warn('[PWA] Service Worker registration note:', err);
+          });
+      });
+
+      var refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', function() {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
+        }
+      });
+    }
+
+    // 2. PWA Install Prompt Handler
+    var deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', function(e) {
+      e.preventDefault();
+      deferredPrompt = e;
+      var btn = document.getElementById('btnPwaInstall');
+      if (btn) {
+        btn.classList.remove('hidden');
+        btn.style.display = 'flex';
+      }
+    });
+
+    function installPWAApp() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then(function(choiceResult) {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('[PWA] User accepted the install prompt');
+            if (typeof showToast === 'function') {
+              showToast('🎉 جاري تثبيت تطبيق سنتر الأرائج التعليمي على هاتفك بنجاح!');
+            }
+          }
+          deferredPrompt = null;
+        });
+      } else {
+        // Fallback instructions for iOS or desktop browsers
+        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        if (isIOS) {
+          alert("📱 لتثبيت التطبيق على الآيفون:\n1. اضغط على زر المشاركة (Share ⎋) في أسفل متصفح Safari.\n2. اختر 'إضافة إلى الشاشة الرئيسية' (Add to Home Screen ➕).\n3. سيتم تثبيت تطبيق سنتر الأرائج التعليمي والعمل بدون إنترنت!");
         } else {
           alert("📲 لتثبيت التطبيق على هاتفك:\nاضغط على قائمة خيارات المتصفح (⋮) ثم اختر 'تثبيت التطبيق' أو 'إضافة إلى الشاشة الرئيسية'.\nسيعمل التطبيق بدون إنترنت في أي وقت!");
         }

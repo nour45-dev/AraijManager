@@ -1552,12 +1552,14 @@ function mergeStudentClientDeep(existingSt, incomingSt) {
 }
 
 function initData() {
-  const CURRENT_DB_VERSION = 'v5.3_sheet_truth_and_monthly_sync';
+  const CURRENT_DB_VERSION = 'v5.4_fix_init_tdz_and_smart_search';
+  const baseData = window.STUDENTS_DATA || [];
   const savedVersion = localStorage.getItem('araij_db_schema_version');
   if (savedVersion !== CURRENT_DB_VERSION) {
     // Purge outdated cache so clean non-destructive data loads seamlessly
     localStorage.removeItem('araij_full_students_db');
     localStorage.removeItem('araij_students_overrides');
+    localStorage.removeItem('araij_deleted_students');
     localStorage.setItem('araij_db_schema_version', CURRENT_DB_VERSION);
   }
 
@@ -1570,7 +1572,6 @@ function initData() {
     deletedCodes = deletedCodes.filter(c => !baseCodes.has(String(c).trim()));
     try { localStorage.setItem('araij_deleted_students', JSON.stringify(deletedCodes)); } catch(e) {}
   }
-  const baseData = window.STUDENTS_DATA || [];
 
   let merged = [];
 

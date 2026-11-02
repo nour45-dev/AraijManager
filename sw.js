@@ -3,7 +3,7 @@
  * v4.4 — Fixed: API exclusion, Background Sync, proper cache strategy
  */
 
-const CACHE_NAME = 'araij-manager-v5.3';
+const CACHE_NAME = 'araij-manager-v5.4';
 const CORE_ASSETS = [
   './',
   './index.html',
