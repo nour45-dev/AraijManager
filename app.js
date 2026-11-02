@@ -316,6 +316,7 @@ function buildStudentSearchString(st) {
     st.specialization || '',
     st.subjectsSummary || '',
     st.teachersSummary || '',
+    st.searchTags || '',
     ...teacherVariants
   ].join(' '));
 }
@@ -1496,7 +1497,7 @@ function mergeStudentClientDeep(existingSt, incomingSt) {
 }
 
 function initData() {
-  const CURRENT_DB_VERSION = 'v5.0_isolated_months';
+  const CURRENT_DB_VERSION = 'v5.1_full_database_restored';
   const savedVersion = localStorage.getItem('araij_db_schema_version');
   if (savedVersion !== CURRENT_DB_VERSION) {
     // Purge outdated cache so clean non-destructive data loads seamlessly
