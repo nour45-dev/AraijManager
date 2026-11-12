@@ -912,7 +912,164 @@ function initIcons() {
 // 5. TAB NAVIGATION
 // ====================================================
 
-function switchTab(tabId) {
+// ====================================================
+// 5. NAVIGATION HISTORY & SMART BACK BUTTON SYSTEM
+// ====================================================
+
+let currentActiveTab = 'dashboard';
+const navigationHistory = [];
+let isNavigatingHistory = false;
+
+function canAppGoBack() {
+  const modals = [
+    'studentDetailModal', 'editStudentModal', 'parentReportModal',
+    'collectiveReportModal', 'bulkWhatsAppModal', 'bulkSessionModal',
+    'sessionGradeModal', 'addUserModal', 'newMonthModal',
+    'cameraScanModal', 'sheetsSyncModal'
+  ];
+  for (const id of modals) {
+    const el = document.getElementById(id);
+    if (el && !el.classList.contains('hidden') && el.style.display !== 'none') {
+      return true;
+    }
+  }
+  if (navigationHistory.length > 0) return true;
+  if (currentActiveTab && currentActiveTab !== 'dashboard') return true;
+  return false;
+}
+
+function updateBackButtonUI() {
+  const btn = document.getElementById('globalBackBtn');
+  if (!btn) return;
+  if (canAppGoBack()) {
+    btn.classList.remove('hidden');
+    btn.classList.add('flex');
+    btn.style.display = 'inline-flex';
+  } else {
+    btn.classList.add('hidden');
+    btn.classList.remove('flex');
+    btn.style.display = 'none';
+  }
+  try { initIcons(); } catch(e) {}
+}
+
+function pushBrowserHistoryState(title = '') {
+  try {
+    if (window.history && typeof window.history.pushState === 'function') {
+      window.history.pushState({ appNav: true, time: Date.now() }, title);
+    }
+  } catch(e) {}
+}
+
+function pushNavigation(entry) {
+  if (isNavigatingHistory) return;
+  if (entry.type === 'tab') {
+    const last = navigationHistory[navigationHistory.length - 1];
+    if (last && last.type === 'tab' && last.tabId === entry.tabId) return;
+  }
+  navigationHistory.push(entry);
+  if (navigationHistory.length > 30) navigationHistory.shift();
+  updateBackButtonUI();
+  pushBrowserHistoryState();
+}
+
+function appGoBack(fromPopState = false) {
+  isNavigatingHistory = true;
+  try {
+    // 1. Check open modals in order of priority
+    const editModal = document.getElementById('editStudentModal');
+    if (editModal && !editModal.classList.contains('hidden') && editModal.style.display !== 'none') {
+      closeEditStudentModal(true);
+      return;
+    }
+
+    const parentModal = document.getElementById('parentReportModal');
+    if (parentModal && !parentModal.classList.contains('hidden') && parentModal.style.display !== 'none') {
+      closeParentReportModal(true);
+      return;
+    }
+
+    const detailModal = document.getElementById('studentDetailModal');
+    if (detailModal && !detailModal.classList.contains('hidden') && detailModal.style.display !== 'none') {
+      closeStudentDetailModal();
+      return;
+    }
+
+    const otherModals = [
+      { id: 'collectiveReportModal', fn: closeCollectiveReportModal },
+      { id: 'bulkWhatsAppModal', fn: closeBulkWhatsAppModal },
+      { id: 'bulkSessionModal', fn: closeBulkSessionModal },
+      { id: 'sessionGradeModal', fn: closeSessionGradeModal },
+      { id: 'addUserModal', fn: closeAddUserModal },
+      { id: 'newMonthModal', fn: closeNewMonthModal },
+      { id: 'cameraScanModal', fn: closeCameraScanModal },
+      { id: 'sheetsSyncModal', fn: closeSheetsSyncModal },
+    ];
+    for (const m of otherModals) {
+      const el = document.getElementById(m.id);
+      if (el && !el.classList.contains('hidden') && el.style.display !== 'none') {
+        if (typeof m.fn === 'function') m.fn();
+        else el.classList.add('hidden');
+        if (navigationHistory.length > 0 && navigationHistory[navigationHistory.length - 1].modalId === m.id) {
+          navigationHistory.pop();
+        }
+        updateBackButtonUI();
+        return;
+      }
+    }
+
+    // 2. Tab navigation history
+    while (navigationHistory.length > 0) {
+      const prev = navigationHistory.pop();
+      if (prev && prev.type === 'tab' && prev.tabId && prev.tabId !== currentActiveTab) {
+        switchTab(prev.tabId, false);
+        return;
+      }
+    }
+
+    // 3. Fallback to dashboard
+    if (currentActiveTab !== 'dashboard') {
+      switchTab('dashboard', false);
+      return;
+    }
+  } finally {
+    isNavigatingHistory = false;
+    updateBackButtonUI();
+  }
+}
+window.appGoBack = appGoBack;
+window.canAppGoBack = canAppGoBack;
+window.updateBackButtonUI = updateBackButtonUI;
+window.getCurrentActiveTab = () => currentActiveTab;
+window.getNavigationHistory = () => navigationHistory;
+window.switchTab = switchTab;
+window.openStudentDetailModal = openStudentDetailModal;
+window.closeStudentDetailModal = closeStudentDetailModal;
+window.openEditStudentModalDirect = openEditStudentModalDirect;
+window.openEditStudentModalFromDetail = openEditStudentModalFromDetail;
+window.closeEditStudentModal = closeEditStudentModal;
+
+// Listen to browser popstate (Back button / swipe)
+window.addEventListener('popstate', (e) => {
+  if (canAppGoBack()) {
+    appGoBack(true);
+  }
+});
+
+// Listen to Android hardware back button (Capacitor)
+if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.App) {
+  try {
+    window.Capacitor.Plugins.App.addListener('backButton', () => {
+      if (canAppGoBack()) {
+        appGoBack();
+      } else {
+        window.Capacitor.Plugins.App.exitApp();
+      }
+    });
+  } catch(e) {}
+}
+
+function switchTab(tabId, pushToHistory = true) {
   if (tabId === 'users_mgmt') {
     const isMasterAdmin = currentUser && (
       (currentUser.name && (currentUser.name.includes('وفاء') || currentUser.name.includes('wafa'))) || 
@@ -924,6 +1081,11 @@ function switchTab(tabId) {
       return;
     }
   }
+
+  if (pushToHistory && tabId !== currentActiveTab) {
+    pushNavigation({ type: 'tab', tabId: currentActiveTab });
+  }
+  currentActiveTab = tabId;
 
   const allTabs = ['dashboard', 'students', 'attendance_matrix', 'register', 'analytics', 'pdf_reports', 'users_mgmt'];
   allTabs.forEach(t => {
@@ -981,6 +1143,7 @@ function switchTab(tabId) {
   }
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  updateBackButtonUI();
   try { initIcons(); } catch (e) {}
 }
 
@@ -1395,6 +1558,8 @@ function openAddUserModal() {
 
 function closeAddUserModal() {
   document.getElementById('addUserModal')?.classList.add('hidden');
+  if (navigationHistory.length > 0 && navigationHistory[navigationHistory.length - 1].modalId === 'addUserModal') navigationHistory.pop();
+  updateBackButtonUI();
 }
 
 function handleSaveNewUser(e) {
@@ -2354,8 +2519,8 @@ function renderAttendanceMatrix() {
 // 10. STUDENT DETAILS & INTERACTIVE SESSIONS
 // ====================================================
 
-function openStudentDetailModal(code) {
-  const student = allStudents.find(s => s.code === code);
+function openStudentDetailModal(code, pushToHistory = true) {
+  const student = allStudents.find(s => String(s.code).trim() === String(code).trim());
   if (!student) return;
 
   activeDetailStudentCode = code;
@@ -2475,18 +2640,25 @@ function openStudentDetailModal(code) {
   const openBtn = document.getElementById('openReportFromDetailBtn');
   if (openBtn) {
     openBtn.onclick = () => {
-      closeStudentDetailModal();
-      openParentReportModal(code);
+      openParentReportModal(code, true, true);
     };
   }
 
   document.getElementById('studentDetailModal')?.classList.remove('hidden');
+  if (pushToHistory) {
+    pushNavigation({ type: 'modal', modalId: 'studentDetailModal', code: code, sourceTab: currentActiveTab });
+  }
+  updateBackButtonUI();
   initIcons();
 }
 
 function closeStudentDetailModal() {
   document.getElementById('studentDetailModal')?.classList.add('hidden');
   activeDetailStudentCode = null;
+  if (navigationHistory.length > 0 && navigationHistory[navigationHistory.length - 1].modalId === 'studentDetailModal') {
+    navigationHistory.pop();
+  }
+  updateBackButtonUI();
 }
 
 function addDefaultSubjectsToStudent(code) {
@@ -2624,11 +2796,17 @@ function applySessionValue(code, subject, sessionIdx, val, month = null) {
 // 12. EDIT STUDENT (FULL DATA, SUBJECTS & TEACHERS)
 // ====================================================
 
-function openEditStudentModalDirect(code) {
+function openEditStudentModalDirect(code, pushToHistory = true, fromDetail = false) {
   const student = allStudents.find(s => String(s.code).trim() === String(code).trim());
   if (!student) return;
 
   activeDetailStudentCode = code;
+
+  const detailEl = document.getElementById('studentDetailModal');
+  const wasDetailOpen = fromDetail || (detailEl && !detailEl.classList.contains('hidden') && detailEl.style.display !== 'none');
+  if (wasDetailOpen && detailEl) {
+    detailEl.classList.add('hidden');
+  }
 
   document.getElementById('editCodeHidden').value = student.code;
   const codeDisplay = document.getElementById('editCodeDisplay');
@@ -2649,6 +2827,10 @@ function openEditStudentModalDirect(code) {
   renderEditSubjectsList(normGrade, student.academicSubjects || {});
 
   document.getElementById('editStudentModal')?.classList.remove('hidden');
+  if (pushToHistory) {
+    pushNavigation({ type: 'modal', modalId: 'editStudentModal', code: code, fromDetail: wasDetailOpen, sourceTab: currentActiveTab });
+  }
+  updateBackButtonUI();
   initIcons();
 }
 
@@ -2729,12 +2911,27 @@ function toggleEditTeacherSelect(idx) {
 
 function openEditStudentModalFromDetail() {
   if (activeDetailStudentCode) {
-    openEditStudentModalDirect(activeDetailStudentCode);
+    openEditStudentModalDirect(activeDetailStudentCode, true, true);
   }
 }
 
-function closeEditStudentModal() {
+function closeEditStudentModal(reopenDetail = true) {
   document.getElementById('editStudentModal')?.classList.add('hidden');
+  let reopened = false;
+  if (navigationHistory.length > 0 && navigationHistory[navigationHistory.length - 1].modalId === 'editStudentModal') {
+    const top = navigationHistory.pop();
+    if (reopenDetail && top.fromDetail && top.code) {
+      openStudentDetailModal(top.code, false);
+      reopened = true;
+    }
+  }
+  if (!reopened && activeDetailStudentCode && reopenDetail) {
+    const detailEl = document.getElementById('studentDetailModal');
+    if (detailEl && detailEl.classList.contains('hidden')) {
+      openStudentDetailModal(activeDetailStudentCode, false);
+    }
+  }
+  updateBackButtonUI();
 }
 
 function clearEditStudentPhone() {
@@ -2819,11 +3016,23 @@ function handleSaveEditStudent(e) {
     logActivity('تعديل بيانات طالب', `قام ${uName} بتعديل بيانات الطالب "${student.name}" (#${student.code})`);
   } catch(e) {}
 
-  closeEditStudentModal();
-  closeStudentDetailModal();
-  switchTab('students');
-  applyFilters();
+  closeEditStudentModal(false);
+
+  // If student detail modal was viewing this student, refresh it with latest data
+  if (activeDetailStudentCode && String(activeDetailStudentCode) === String(student.code)) {
+    openStudentDetailModal(student.code, false);
+  }
+
+  // Refresh data view based on user's current active tab without kicking them out
+  if (currentActiveTab === 'attendance_matrix') {
+    renderAttendanceMatrix();
+  } else if (currentActiveTab === 'analytics') {
+    renderAnalyticsDashboard();
+  } else {
+    applyFilters();
+  }
   updateKPIStats();
+  updateBackButtonUI();
   showToast(`✅ تم حفظ تعديلات الطالب ${student.name} بنجاح ومزامنتها!`);
 }
 
@@ -2834,8 +3043,7 @@ function confirmDeleteStudentByCode(code) {
   if (confirm(`هل أنت متأكد من حذف الطالب "${student.name}" (كود #${student.code}) نهائياً من المنظومة؟`)) {
     deleteStudentByCode(student.code);
     closeStudentDetailModal();
-    closeEditStudentModal();
-    switchTab('students');
+    closeEditStudentModal(false);
   }
 }
 
@@ -2885,12 +3093,18 @@ function deleteStudentByCode(code) {
   logActivity('حذف طالب', `قام ${uName} بحذف الطالب #${code}`, code, '', {});
 
   closeStudentDetailModal();
-  closeEditStudentModal();
-  switchTab('students');
-  applyFilters();
+  closeEditStudentModal(false);
+
+  // Refresh current view without forcing switchTab('students')
+  if (currentActiveTab === 'attendance_matrix') {
+    renderAttendanceMatrix();
+  } else if (currentActiveTab === 'analytics') {
+    renderAnalyticsDashboard();
+  } else {
+    applyFilters();
+  }
   updateKPIStats();
-  const attendanceTab = document.getElementById('tabContent_attendance_matrix');
-  if (attendanceTab && !attendanceTab.classList.contains('hidden')) renderAttendanceMatrix();
+  updateBackButtonUI();
 
   showToast(`✅ تم حذف الطالب #${code} بنجاح وتمت المزامنة الفورية على كافة الأجهزة.`);
 }
@@ -4917,9 +5131,15 @@ function printGeneratedReport() {
 // 16. PARENT REPORT CARD & WHATSAPP
 // ====================================================
 
-function openParentReportModal(code) {
-  const student = allStudents.find(s => s.code === code);
+function openParentReportModal(code, pushToHistory = true, fromDetail = false) {
+  const student = allStudents.find(s => String(s.code).trim() === String(code).trim());
   if (!student) return;
+
+  const detailEl = document.getElementById('studentDetailModal');
+  const wasDetailOpen = fromDetail || (detailEl && !detailEl.classList.contains('hidden') && detailEl.style.display !== 'none');
+  if (wasDetailOpen && detailEl) {
+    detailEl.classList.add('hidden');
+  }
 
   activeReportStudent = student;
   const m = student._metrics;
@@ -5056,12 +5276,29 @@ function openParentReportModal(code) {
   if (elNotes) elNotes.textContent = noteText;
 
   document.getElementById('parentReportModal')?.classList.remove('hidden');
+  if (pushToHistory) {
+    pushNavigation({ type: 'modal', modalId: 'parentReportModal', code: code, fromDetail: wasDetailOpen, sourceTab: currentActiveTab });
+  }
+  updateBackButtonUI();
   initIcons();
 }
 
-function closeParentReportModal() {
+function closeParentReportModal(reopenDetail = true) {
   document.getElementById('parentReportModal')?.classList.add('hidden');
+  const targetCode = activeReportStudent?.code || activeDetailStudentCode;
   activeReportStudent = null;
+  let reopened = false;
+  if (navigationHistory.length > 0 && navigationHistory[navigationHistory.length - 1].modalId === 'parentReportModal') {
+    const top = navigationHistory.pop();
+    if (reopenDetail && top.fromDetail && top.code) {
+      openStudentDetailModal(top.code, false);
+      reopened = true;
+    }
+  }
+  if (!reopened && targetCode && reopenDetail && activeDetailStudentCode === targetCode) {
+    openStudentDetailModal(targetCode, false);
+  }
+  updateBackButtonUI();
 }
 
 function printStudentCardReport() {
@@ -6238,11 +6475,15 @@ function openBulkSessionModal() {
 
   populateBulkSubjects(curGrade, curSubject, curTeacher);
   document.getElementById('bulkSessionModal')?.classList.remove('hidden');
+  pushNavigation({ type: 'modal', modalId: 'bulkSessionModal' });
+  updateBackButtonUI();
   initIcons();
 }
 
 function closeBulkSessionModal() {
   document.getElementById('bulkSessionModal')?.classList.add('hidden');
+  if (navigationHistory.length > 0 && navigationHistory[navigationHistory.length - 1].modalId === 'bulkSessionModal') navigationHistory.pop();
+  updateBackButtonUI();
 }
 
 function onBulkGradeChange() {

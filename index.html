@@ -830,8 +830,12 @@
     <header class="sticky top-0 z-40 glass-panel border-b border-slate-200 bg-white/95">
       <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
         
-        <!-- Brand Logo & Title -->
+        <!-- Back Button & Brand Logo & Title -->
         <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+          <button id="globalBackBtn" onclick="appGoBack()" class="hidden items-center gap-1.5 px-3 py-1.5 sm:py-2 rounded-xl bg-gradient-to-r from-sky-50 to-blue-50 hover:from-sky-100 hover:to-blue-100 text-sky-800 hover:text-sky-950 text-xs sm:text-sm font-black transition-all border border-sky-300 shadow-sm shrink-0 cursor-pointer active:scale-95" title="رجوع للصفحة السابقة">
+            <i data-lucide="arrow-right" class="w-4 h-4 text-sky-700"></i>
+            <span>رجوع</span>
+          </button>
           <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl overflow-hidden bg-white flex items-center justify-center shadow-lg shadow-sky-500/15 ring-2 ring-sky-400/20 p-0.5 shrink-0">
             <img src="logo.png" alt="سنتر الأرائج التعليمي" class="w-full h-full object-contain">
           </div>
@@ -2001,9 +2005,15 @@
             <p class="text-xs text-sky-400 font-medium">جاهز للإرسال الفوري عبر واتساب أو الطباعة</p>
           </div>
         </div>
-        <button onclick="closeParentReportModal()" class="p-2 rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
+        <div class="flex items-center gap-2">
+          <button onclick="closeParentReportModal()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer">
+            <i data-lucide="arrow-right" class="w-4 h-4 text-sky-400"></i>
+            <span>رجوع</span>
+          </button>
+          <button onclick="closeParentReportModal()" class="p-2 rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white cursor-pointer">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
       </div>
 
       <div class="p-6 overflow-y-auto flex-1" id="studentPrintCardWrapper">
@@ -2148,9 +2158,15 @@
             <p class="text-xs text-slate-500 font-medium" id="detailStudentSub">-</p>
           </div>
         </div>
-        <button onclick="closeStudentDetailModal()" class="p-2 rounded-xl hover:bg-slate-100 text-slate-400 hover:text-slate-700">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
+        <div class="flex items-center gap-2">
+          <button onclick="closeStudentDetailModal()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer border border-slate-700">
+            <i data-lucide="arrow-right" class="w-4 h-4 text-sky-400"></i>
+            <span>رجوع</span>
+          </button>
+          <button onclick="closeStudentDetailModal()" class="p-2 rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white cursor-pointer">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
       </div>
 
       <div class="p-6 overflow-y-auto flex-1 space-y-6">
@@ -2236,9 +2252,15 @@
           </div>
           <span>تعديل بيانات الطالب والمواد الدراسية</span>
         </h3>
-        <button type="button" onclick="closeEditStudentModal()" class="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-all cursor-pointer">
-          <i data-lucide="x" class="w-4 h-4"></i>
-        </button>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="closeEditStudentModal()" class="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold flex items-center gap-1 transition-all cursor-pointer">
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-slate-600"></i>
+            <span>رجوع</span>
+          </button>
+          <button type="button" onclick="closeEditStudentModal()" class="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-all cursor-pointer">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
       </div>
 
       <!-- Form with scrollable body and sticky action footer -->
@@ -2322,8 +2344,9 @@
           </button>
           
           <div class="order-1 sm:order-2 flex items-center gap-2 w-full sm:w-auto justify-end">
-            <button type="button" onclick="closeEditStudentModal()" class="px-4 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs transition-all cursor-pointer">
-              إلغاء
+            <button type="button" onclick="closeEditStudentModal()" class="px-4 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs transition-all cursor-pointer flex items-center gap-1.5">
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              <span>إلغاء ورجوع</span>
             </button>
             <button type="submit" class="flex-1 sm:flex-none px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-black text-xs shadow-lg shadow-amber-500/25 transition-all cursor-pointer active:scale-95 flex items-center justify-center gap-1.5">
               <i data-lucide="check" class="w-4 h-4"></i>
@@ -3184,8 +3207,8 @@
   </div>
 
   <!-- SCRIPTS -->
-  <script src="data.js?v=20261102_v54"></script>
-  <script src="app.js?v=20261102_v54"></script>
+  <script src="data.js?v=20261112_v55"></script>
+  <script src="app.js?v=20261112_v55"></script>
 
   <!-- PWA & OFFLINE ENGINE SCRIPT -->
   <script>
