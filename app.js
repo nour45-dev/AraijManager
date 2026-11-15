@@ -447,26 +447,27 @@ function parseSubjectsFromSummary(subjectsSummary, teachersSummary, existingAcad
         }
       });
     }
-    const novList = mergedMonths['شهر 11 (نوفمبر)'];
-    const isSessionsSameAsNov = Array.isArray(novList) && novList.some(Boolean) && JSON.stringify(sessions) === JSON.stringify(novList);
-    if (!mergedMonths['شهر 10 (أكتوبر)'] || mergedMonths['شهر 10 (أكتوبر)'].every(s => !s)) {
-      if (!isSessionsSameAsNov) {
-        mergedMonths['شهر 10 (أكتوبر)'] = [...sessions];
-      } else {
-        mergedMonths['شهر 10 (أكتوبر)'] = ["", "", "", "", "", "", "", ""];
+    if (explicitSessions && Array.isArray(explicitSessions)) {
+      if (!mergedMonths['شهر 11 (نوفمبر)']) mergedMonths['شهر 11 (نوفمبر)'] = Array(8).fill('');
+      for (let i = 0; i < 8; i++) {
+        if (explicitSessions[i] && !mergedMonths['شهر 11 (نوفمبر)'][i]) {
+          mergedMonths['شهر 11 (نوفمبر)'][i] = explicitSessions[i];
+        }
       }
     }
-    if (!mergedMonths['شهر 9 (سبتمبر)'] || mergedMonths['شهر 9 (سبتمبر)'].every(s => !s)) {
-      mergedMonths['شهر 9 (سبتمبر)'] = [...mergedMonths['شهر 10 (أكتوبر)']];
-    }
-    if (!mergedMonths['شهر 1'] || mergedMonths['شهر 1'].every(s => !s)) {
-      mergedMonths['شهر 1'] = [...mergedMonths['شهر 10 (أكتوبر)']];
-    }
+    const novFinal = mergedMonths['شهر 11 (نوفمبر)'] || Array(8).fill('');
+    const octFinal = mergedMonths['شهر 10 (أكتوبر)'] || Array(8).fill('');
+    mergedMonths['شهر 11 (نوفمبر)'] = novFinal;
+    mergedMonths['شهر 10 (أكتوبر)'] = octFinal;
+    if (!mergedMonths['شهر 9 (سبتمبر)']) mergedMonths['شهر 9 (سبتمبر)'] = [...octFinal];
+    if (!mergedMonths['شهر 1']) mergedMonths['شهر 1'] = [...octFinal];
+
+    const finalSessions = novFinal.some(Boolean) ? [...novFinal] : (octFinal.some(Boolean) ? [...octFinal] : [...sessions]);
 
     if (!result[canon]) {
       result[canon] = {
         teacher: finalTeacher,
-        sessions: sessions,
+        sessions: finalSessions,
         months: mergedMonths
       };
     } else {
@@ -511,10 +512,17 @@ function parseSubjectsFromSummary(subjectsSummary, teachersSummary, existingAcad
           const parsed = rawSess.map(s => (s === '_' || s === '-' || !s) ? '' : s);
           while (parsed.length < 8) parsed.push('');
 
-          if (tag === 'حصص' || tag === 'شهر 1' || tag === 'شهر 9 (سبتمبر)' || tag === 'شهر 9') {
+          if (tag === 'حصص') {
             parsedSessions = parsed;
-            parsedMonths['شهر 9 (سبتمبر)'] = [...parsed];
-            parsedMonths['شهر 1'] = [...parsed];
+            if (!parsedMonths['شهر 11 (نوفمبر)']) parsedMonths['شهر 11 (نوفمبر)'] = [...parsed];
+            else {
+              for (let i = 0; i < 8; i++) {
+                if (parsed[i]) parsedMonths['شهر 11 (نوفمبر)'][i] = parsed[i];
+              }
+            }
+          } else if (tag === 'شهر 1' || tag === 'شهر 9 (سبتمبر)' || tag === 'شهر 9') {
+            if (!parsedMonths['شهر 9 (سبتمبر)']) parsedMonths['شهر 9 (سبتمبر)'] = [...parsed];
+            if (!parsedMonths['شهر 1']) parsedMonths['شهر 1'] = [...parsed];
           } else {
             const normTag = normalizeMonthKey(tag) || tag;
             parsedMonths[normTag] = parsed;
@@ -907,21 +915,21 @@ const ACADEMIC_MONTHS = [
   "شهر 5 (مايو)"
 ];
 
-let currentActiveMonth = localStorage.getItem('araij_active_month') || 'شهر 10 (أكتوبر)';
+let currentActiveMonth = localStorage.getItem('araij_active_month') || 'شهر 11 (نوفمبر)';
 let activeDetailMonth = currentActiveMonth;
 let CENTER_MONTHS;
 try {
   const savedMonths = localStorage.getItem('araij_center_months');
   CENTER_MONTHS = savedMonths ? JSON.parse(savedMonths) : [...ACADEMIC_MONTHS];
-  if (!CENTER_MONTHS.some(m => m.includes('أكتوبر') || m.includes('10'))) {
+  if (!CENTER_MONTHS.some(m => m.includes('نوفمبر') || m.includes('11'))) {
     CENTER_MONTHS = [...ACADEMIC_MONTHS];
     localStorage.setItem('araij_center_months', JSON.stringify(CENTER_MONTHS));
   }
 } catch(e) {
   CENTER_MONTHS = [...ACADEMIC_MONTHS];
 }
-if (!CENTER_MONTHS.includes(currentActiveMonth) || currentActiveMonth === 'شهر 1') {
-  currentActiveMonth = 'شهر 10 (أكتوبر)';
+if (!CENTER_MONTHS.includes(currentActiveMonth) || currentActiveMonth === 'شهر 1' || currentActiveMonth === 'شهر 10 (أكتوبر)') {
+  currentActiveMonth = 'شهر 11 (نوفمبر)';
   localStorage.setItem('araij_active_month', currentActiveMonth);
 }
 

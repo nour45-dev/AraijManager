@@ -673,13 +673,20 @@ function parseAcademicSubjectsFromSummary(subjectsSummary, teachersSummary) {
           for (let i = 0; i < 8; i++) {
             parsed[i] = (i < rawSess.length && rawSess[i] !== '_' && rawSess[i] !== '-') ? rawSess[i] : '';
           }
-          if (tag === 'حصص' || tag === 'شهر 1' || tag === 'شهر 9 (سبتمبر)' || tag === 'شهر 9') {
+          if (tag === 'حصص') {
             primarySessions = [...parsed];
+            if (!months['شهر 11 (نوفمبر)']) months['شهر 11 (نوفمبر)'] = ['', '', '', '', '', '', '', ''];
+            for (let i = 0; i < 8; i++) {
+              if (parsed[i]) months['شهر 11 (نوفمبر)'][i] = parsed[i];
+            }
+          } else if (tag === 'شهر 1' || tag === 'شهر 9 (سبتمبر)' || tag === 'شهر 9') {
+            if (!months['شهر 9 (سبتمبر)']) months['شهر 9 (سبتمبر)'] = [...parsed];
+            if (!months['شهر 1']) months['شهر 1'] = [...parsed];
           } else {
             const normTag = normalizeMonthKeyServer(tag);
             if (!months[normTag]) months[normTag] = ['', '', '', '', '', '', '', ''];
             for (let i = 0; i < 8; i++) {
-              if (parsed[i] && !months[normTag][i]) months[normTag][i] = parsed[i];
+              if (parsed[i]) months[normTag][i] = parsed[i];
             }
           }
         }
@@ -689,21 +696,21 @@ function parseAcademicSubjectsFromSummary(subjectsSummary, teachersSummary) {
         // Only keep if cleanT is a real non-dummy teacher
         if (cleanT && !cleanT.includes('مدرس المادة')) {
           if (primarySessions && primarySessions.some(Boolean)) {
-            const novArr = months['شهر 11 (نوفمبر)'];
-            const octArr = months['شهر 10 (أكتوبر)'];
-            const isIdenticalToNov = novArr && JSON.stringify(novArr) === JSON.stringify(primarySessions);
-            if (!octArr && !isIdenticalToNov) {
-              months['شهر 10 (أكتوبر)'] = [...primarySessions];
+            if (!months['شهر 11 (نوفمبر)']) months['شهر 11 (نوفمبر)'] = ['', '', '', '', '', '', '', ''];
+            for (let i = 0; i < 8; i++) {
+              if (primarySessions[i] && !months['شهر 11 (نوفمبر)'][i]) {
+                months['شهر 11 (نوفمبر)'][i] = primarySessions[i];
+              }
             }
           }
           const octFinal = months['شهر 10 (أكتوبر)'] || ['', '', '', '', '', '', '', ''];
           const novFinal = months['شهر 11 (نوفمبر)'] || ['', '', '', '', '', '', '', ''];
           months['شهر 10 (أكتوبر)'] = octFinal;
           months['شهر 11 (نوفمبر)'] = novFinal;
-          months['شهر 9 (سبتمبر)'] = [...octFinal];
-          months['شهر 1'] = [...octFinal];
+          if (!months['شهر 9 (سبتمبر)']) months['شهر 9 (سبتمبر)'] = [...octFinal];
+          if (!months['شهر 1']) months['شهر 1'] = [...octFinal];
 
-          const sessions = octFinal.some(Boolean) ? [...octFinal] : (novFinal.some(Boolean) ? [...novFinal] : (primarySessions || ['', '', '', '', '', '', '', '']));
+          const sessions = novFinal.some(Boolean) ? [...novFinal] : (octFinal.some(Boolean) ? [...octFinal] : (primarySessions || ['', '', '', '', '', '', '', '']));
 
           if (!result[canon]) {
             result[canon] = {
