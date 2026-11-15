@@ -294,6 +294,17 @@ function cleanPhone(raw) {
   return str;
 }
 
+function normalizeMonthKeyServer(name) {
+  if (!name || typeof name !== 'string') return '';
+  const s = name.trim();
+  if (s.includes('10') || s.includes('أكتوبر') || s.includes('اكتوبر')) return 'شهر 10 (أكتوبر)';
+  if (s.includes('11') || s.includes('نوفمبر')) return 'شهر 11 (نوفمبر)';
+  if (s.includes('12') || s.includes('ديسمبر')) return 'شهر 12 (ديسمبر)';
+  if (s.includes('9') || s.includes('سبتمبر')) return 'شهر 9 (سبتمبر)';
+  if (s.includes('يناير') || s === 'شهر 1' || s === '1') return 'شهر 1';
+  return s;
+}
+
 // Deep non-destructive merge of student records to preserve multi-month attendance while honoring subject removals
 function mergeStudentDeep(existingSt, incomingSt) {
   if (!existingSt) return incomingSt;
@@ -317,7 +328,18 @@ function mergeStudentDeep(existingSt, incomingSt) {
 
       const exSub = exSubs[canon] || exSubs[subKey];
       if (!exSub) {
-        mergedSubs[canon] = inSub;
+        const months = {};
+        if (inSub.months && typeof inSub.months === 'object') {
+          Object.keys(inSub.months).forEach(mk => {
+            const normM = normalizeMonthKeyServer(mk);
+            months[normM] = Array.isArray(inSub.months[mk]) ? [...inSub.months[mk]] : ['', '', '', '', '', '', '', ''];
+          });
+        }
+        mergedSubs[canon] = {
+          ...inSub,
+          teacher: cleanTeacher(inSub.teacher) || inSub.teacher,
+          months
+        };
       } else {
         const finalTeacher = (inSub.teacher && !inSub.teacher.includes('مدرس المادة')) ? cleanTeacher(inSub.teacher, canon) : (exSub.teacher || '');
         
@@ -334,21 +356,27 @@ function mergeStudentDeep(existingSt, incomingSt) {
         }
 
         // Merge months non-destructively
-        const months = { ...(exSub.months || {}) };
+        const months = {};
+        Object.keys(exSub.months || {}).forEach(mName => {
+          const normM = normalizeMonthKeyServer(mName);
+          months[normM] = Array.isArray(exSub.months[mName]) ? [...exSub.months[mName]] : ['', '', '', '', '', '', '', ''];
+          while (months[normM].length < 8) months[normM].push('');
+        });
         if (inSub.months) {
           Object.keys(inSub.months).forEach(mName => {
-            if (!months[mName] || !Array.isArray(months[mName])) {
-              months[mName] = ['', '', '', '', '', '', '', ''];
+            const normM = normalizeMonthKeyServer(mName);
+            if (!months[normM] || !Array.isArray(months[normM])) {
+              months[normM] = ['', '', '', '', '', '', '', ''];
             } else {
-              months[mName] = [...months[mName]];
+              months[normM] = [...months[normM]];
             }
-            while (months[mName].length < 8) months[mName].push('');
+            while (months[normM].length < 8) months[normM].push('');
             
             if (Array.isArray(inSub.months[mName])) {
               for (let i = 0; i < 8; i++) {
                 const val = inSub.months[mName][i];
                 if (val !== undefined && val !== null && String(val).trim() !== '' && String(val).trim() !== '_') {
-                  months[mName][i] = String(val).trim();
+                  months[normM][i] = String(val).trim();
                 }
               }
             }
@@ -368,8 +396,12 @@ function mergeStudentDeep(existingSt, incomingSt) {
     merged.academicSubjects = exSubs;
   }
 
+  rebuildStudentSummary(merged);
   return merged;
 }
+
+// Track recent Google Sheets forwards to prevent duplicate row appends
+const _recentSheetForwards = new Map();
 
 // Central Handler for Sync Actions (both REST & WS)
 function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null, clientId = '') {
@@ -383,8 +415,9 @@ function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null,
     const code = String(newSt.code || '').trim();
     const existingIdx = students.findIndex(s => String(s.code).trim() === code);
     if (existingIdx >= 0) {
-      students[existingIdx] = { ...students[existingIdx], ...newSt };
+      students[existingIdx] = mergeStudentDeep(students[existingIdx], newSt);
     } else {
+      rebuildStudentSummary(newSt);
       students.unshift(newSt);
     }
     updatedCount = 1;
@@ -408,6 +441,7 @@ function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null,
     if (idx >= 0) {
       students[idx] = mergeStudentDeep(students[idx], updated);
     } else {
+      rebuildStudentSummary(updated);
       students.unshift(updated);
     }
     updatedCount = 1;
@@ -455,6 +489,7 @@ function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null,
       if (idx >= 0) {
         students[idx] = mergeStudentDeep(students[idx], st);
       } else {
+        rebuildStudentSummary(st);
         students.unshift(st);
       }
     });
@@ -494,9 +529,16 @@ function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null,
     sound: true   // 🔔 علامة تشغيل الصوت عند المستلمين
   }, sourceWs);
 
-  // Forward to Google Sheets Webhook asynchronously in background
+  // Forward to Google Sheets Webhook asynchronously in background (with deduplication)
   if (GOOGLE_APPS_SCRIPT_URL) {
-    forwardToGoogleSheets(action, payload, byUser);
+    const stObj = payload && (payload.student || payload);
+    const stCode = stObj && stObj.code ? String(stObj.code).trim() : '';
+    const dedupKey = stCode ? `${stCode}_${stObj.teachersSummary || ''}` : '';
+    const lastSent = dedupKey ? (_recentSheetForwards.get(dedupKey) || 0) : 0;
+    if (!dedupKey || (Date.now() - lastSent > 4000) || action === 'delete_student') {
+      if (dedupKey) _recentSheetForwards.set(dedupKey, Date.now());
+      forwardToGoogleSheets(action, payload, byUser);
+    }
   }
 
   return { status: 'success', action, updatedCount, totalStudents: students.length };
@@ -619,11 +661,8 @@ function parseAcademicSubjectsFromSummary(subjectsSummary, teachersSummary) {
         const canon = canonicalSubject(rawSub);
         if (!canon || hasBad(canon)) return;
         let tPart = p.substring(slash + 1).trim();
-        let sessions = ['', '', '', '', '', '', '', ''];
-        const months = {
-          'شهر 9 (سبتمبر)': ['', '', '', '', '', '', '', ''],
-          'شهر 1': ['', '', '', '', '', '', '', '']
-        };
+        let primarySessions = null;
+        const months = {};
 
         const sessRegex = /\[(شهر\s*[^:]+|حصص):\s*([^\]]*)\]/g;
         let sessMatch;
@@ -635,11 +674,13 @@ function parseAcademicSubjectsFromSummary(subjectsSummary, teachersSummary) {
             parsed[i] = (i < rawSess.length && rawSess[i] !== '_' && rawSess[i] !== '-') ? rawSess[i] : '';
           }
           if (tag === 'حصص' || tag === 'شهر 1' || tag === 'شهر 9 (سبتمبر)' || tag === 'شهر 9') {
-            sessions = [...parsed];
-            months['شهر 9 (سبتمبر)'] = [...parsed];
-            months['شهر 1'] = [...parsed];
+            primarySessions = [...parsed];
           } else {
-            months[tag] = [...parsed];
+            const normTag = normalizeMonthKeyServer(tag);
+            if (!months[normTag]) months[normTag] = ['', '', '', '', '', '', '', ''];
+            for (let i = 0; i < 8; i++) {
+              if (parsed[i] && !months[normTag][i]) months[normTag][i] = parsed[i];
+            }
           }
         }
         tPart = tPart.replace(/\[(شهر\s*[^:]+|حصص):\s*([^\]]*)\]/g, '').replace(/\[.*$/, '').trim();
@@ -647,11 +688,40 @@ function parseAcademicSubjectsFromSummary(subjectsSummary, teachersSummary) {
         const cleanT = cleanTeacher(tPart);
         // Only keep if cleanT is a real non-dummy teacher
         if (cleanT && !cleanT.includes('مدرس المادة')) {
-          result[canon] = {
-            teacher: cleanT,
-            sessions: sessions,
-            months: months
-          };
+          if (primarySessions && primarySessions.some(Boolean)) {
+            const novArr = months['شهر 11 (نوفمبر)'];
+            const octArr = months['شهر 10 (أكتوبر)'];
+            const isIdenticalToNov = novArr && JSON.stringify(novArr) === JSON.stringify(primarySessions);
+            if (!octArr && !isIdenticalToNov) {
+              months['شهر 10 (أكتوبر)'] = [...primarySessions];
+            }
+          }
+          const octFinal = months['شهر 10 (أكتوبر)'] || ['', '', '', '', '', '', '', ''];
+          const novFinal = months['شهر 11 (نوفمبر)'] || ['', '', '', '', '', '', '', ''];
+          months['شهر 10 (أكتوبر)'] = octFinal;
+          months['شهر 11 (نوفمبر)'] = novFinal;
+          months['شهر 9 (سبتمبر)'] = [...octFinal];
+          months['شهر 1'] = [...octFinal];
+
+          const sessions = octFinal.some(Boolean) ? [...octFinal] : (novFinal.some(Boolean) ? [...novFinal] : (primarySessions || ['', '', '', '', '', '', '', '']));
+
+          if (!result[canon]) {
+            result[canon] = {
+              teacher: cleanT,
+              sessions: sessions,
+              months: months
+            };
+          } else {
+            result[canon].teacher = cleanT || result[canon].teacher;
+            Object.keys(months).forEach(mk => {
+              if (!result[canon].months[mk]) result[canon].months[mk] = ['', '', '', '', '', '', '', ''];
+              for (let i = 0; i < 8; i++) {
+                if (months[mk][i] && !result[canon].months[mk][i]) {
+                  result[canon].months[mk][i] = months[mk][i];
+                }
+              }
+            });
+          }
         }
       }
     });
@@ -823,7 +893,7 @@ async function syncFromGoogleSheets() {
       let updatedCount = 0;
       let newCount = 0;
 
-      fetchedStudents.forEach(st => {
+      fetchedStudents.forEach((st, rowIdx) => {
         const code = String(st.code || '').trim();
         if (!st.name) return;
         if (code && deletedCodes.includes(code)) return;
@@ -853,7 +923,7 @@ async function syncFromGoogleSheets() {
           if (st.specialization && !hasBad(st.specialization)) existing.specialization = st.specialization;
           if (st.regDate) existing.regDate = st.regDate;
 
-          // ✅ FIX: دمج غير إتلافي — لا نمسح الحصص المسجلة حياً في السيستم بحصص فارغة من الشيت
+          // ✅ FIX: دمج غير إتلافي لكل المواد ولكل الشهور (شهر 10 وشهر 11)
           if (academic && Object.keys(academic).length > 0) {
             if (!existing.academicSubjects) existing.academicSubjects = {};
             Object.keys(academic).forEach(subKey => {
@@ -865,21 +935,37 @@ async function syncFromGoogleSheets() {
                 if (shSub.teacher && (!exSub.teacher || exSub.teacher.includes('مدرس المادة') || exSub.teacher.includes('مدرس ماده'))) {
                   exSub.teacher = shSub.teacher;
                 }
+                if (!exSub.months) exSub.months = {};
+                if (shSub.months && typeof shSub.months === 'object') {
+                  Object.keys(shSub.months).forEach(mName => {
+                    const normM = normalizeMonthKeyServer(mName);
+                    if (!exSub.months[normM] || !Array.isArray(exSub.months[normM])) {
+                      exSub.months[normM] = ['', '', '', '', '', '', '', ''];
+                    }
+                    while (exSub.months[normM].length < 8) exSub.months[normM].push('');
+                    if (Array.isArray(shSub.months[mName])) {
+                      shSub.months[mName].forEach((val, sIdx) => {
+                        if (val && String(val).trim() && val !== '_' && (!exSub.months[normM][sIdx] || !String(exSub.months[normM][sIdx]).trim())) {
+                          exSub.months[normM][sIdx] = String(val).trim();
+                        }
+                      });
+                    }
+                  });
+                }
                 if (shSub.sessions && Array.isArray(shSub.sessions)) {
                   if (!exSub.sessions || !Array.isArray(exSub.sessions)) {
                     exSub.sessions = ['', '', '', '', '', '', '', ''];
                   }
                   while (exSub.sessions.length < 8) exSub.sessions.push('');
                   shSub.sessions.forEach((val, sIdx) => {
-                    // فقط إذا كانت الحصة في السيرفر فارغة والشيت فيه قيمة نأخذها
                     if (val && val.trim() && (!exSub.sessions[sIdx] || !exSub.sessions[sIdx].trim())) {
                       exSub.sessions[sIdx] = val.trim();
                     }
                   });
                 }
-                if (!exSub.months) exSub.months = {};
-                exSub.months['شهر 9 (سبتمبر)'] = [...exSub.sessions];
-                exSub.months['شهر 1'] = [...exSub.sessions];
+                const octSessions = exSub.months['شهر 10 (أكتوبر)'] || exSub.sessions || ['', '', '', '', '', '', '', ''];
+                exSub.months['شهر 9 (سبتمبر)'] = [...octSessions];
+                exSub.months['شهر 1'] = [...octSessions];
               }
             });
             existing._metrics = computeStudentMetrics(existing.academicSubjects);
@@ -890,12 +976,14 @@ async function syncFromGoogleSheets() {
           }
           updatedCount++;
         } else {
-          // Only add new students from sheet if they have recorded attendance/interaction
-          const hasAnyActivity = academic && Object.values(academic).some(sub => {
+          // Add new students from sheet if they have valid teacher/subjects AND (either recorded activity OR recently registered row)
+          const hasValidTeacher = academic && Object.keys(academic).length > 0;
+          const hasAnyActivity = hasValidTeacher && Object.values(academic).some(sub => {
             return (Array.isArray(sub.sessions) && sub.sessions.some(v => v && String(v).trim() && v !== '_' && v !== '-')) ||
                    (sub.months && Object.values(sub.months).some(m => Array.isArray(m) && m.some(v => v && String(v).trim() && v !== '_' && v !== '-')));
           });
-          if (!hasAnyActivity) return;
+          const isRecentRow = rowIdx >= 1050 || (st.regDate && (String(st.regDate).includes('/11/') || String(st.regDate).includes('/١١/') || String(st.regDate).includes('-11-')));
+          if (!hasValidTeacher || (!hasAnyActivity && !isRecentRow)) return;
 
           const newSt = {
             code,
@@ -912,6 +1000,7 @@ async function syncFromGoogleSheets() {
             _metrics: metrics,
             _searchString: `${code} ${st.name} ${st.phone || ''} ${st.parentPhone || ''} ${st.area || ''} ${normG} ${st.specialization || ''}`.toLowerCase()
           };
+          rebuildStudentSummary(newSt);
           students.push(newSt);
           newCount++;
         }
@@ -935,9 +1024,9 @@ async function syncFromGoogleSheets() {
   }
 }
 
-// Background sync: only triggered on manual request to protect master attendance database
-// setTimeout(syncFromGoogleSheets, 5000);
-// setInterval(syncFromGoogleSheets, 60000);
+// Non-destructive startup & periodic sync from Google Sheets so Railway container restarts never lose newly registered students
+setTimeout(syncFromGoogleSheets, 4000);
+setInterval(syncFromGoogleSheets, 180000);
 
 
 // REST Endpoints

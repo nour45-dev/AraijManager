@@ -430,30 +430,37 @@ function parseSubjectsFromSummary(subjectsSummary, teachersSummary, existingAcad
 
     if (explicitMonths && typeof explicitMonths === 'object') {
       Object.keys(explicitMonths).forEach(mName => {
+        const normM = normalizeMonthKey(mName) || mName;
         const incomingM = explicitMonths[mName];
         if (Array.isArray(incomingM)) {
-          if (!mergedMonths[mName] || !Array.isArray(mergedMonths[mName])) {
-            mergedMonths[mName] = [...incomingM];
-            while (mergedMonths[mName].length < 8) mergedMonths[mName].push("");
+          if (!mergedMonths[normM] || !Array.isArray(mergedMonths[normM])) {
+            mergedMonths[normM] = [...incomingM];
+            while (mergedMonths[normM].length < 8) mergedMonths[normM].push("");
           } else {
             for (let i = 0; i < 8; i++) {
               const val = (incomingM[i] !== undefined && incomingM[i] !== null) ? String(incomingM[i]).trim() : "";
               if (val !== "" && val !== "_" && val !== "-") {
-                mergedMonths[mName][i] = val;
+                mergedMonths[normM][i] = val;
               }
             }
           }
         }
       });
     }
-    if (!mergedMonths['شهر 1'] || mergedMonths['شهر 1'].every(s => !s)) {
-      mergedMonths['شهر 1'] = [...sessions];
+    const novList = mergedMonths['شهر 11 (نوفمبر)'];
+    const isSessionsSameAsNov = Array.isArray(novList) && novList.some(Boolean) && JSON.stringify(sessions) === JSON.stringify(novList);
+    if (!mergedMonths['شهر 10 (أكتوبر)'] || mergedMonths['شهر 10 (أكتوبر)'].every(s => !s)) {
+      if (!isSessionsSameAsNov) {
+        mergedMonths['شهر 10 (أكتوبر)'] = [...sessions];
+      } else {
+        mergedMonths['شهر 10 (أكتوبر)'] = ["", "", "", "", "", "", "", ""];
+      }
     }
     if (!mergedMonths['شهر 9 (سبتمبر)'] || mergedMonths['شهر 9 (سبتمبر)'].every(s => !s)) {
-      mergedMonths['شهر 9 (سبتمبر)'] = [...sessions];
+      mergedMonths['شهر 9 (سبتمبر)'] = [...mergedMonths['شهر 10 (أكتوبر)']];
     }
-    if (!mergedMonths['شهر 10 (أكتوبر)'] || mergedMonths['شهر 10 (أكتوبر)'].every(s => !s)) {
-      mergedMonths['شهر 10 (أكتوبر)'] = [...sessions];
+    if (!mergedMonths['شهر 1'] || mergedMonths['شهر 1'].every(s => !s)) {
+      mergedMonths['شهر 1'] = [...mergedMonths['شهر 10 (أكتوبر)']];
     }
 
     if (!result[canon]) {
@@ -464,8 +471,22 @@ function parseSubjectsFromSummary(subjectsSummary, teachersSummary, existingAcad
       };
     } else {
       if (explicitTeacher) result[canon].teacher = finalTeacher;
-      result[canon].sessions = sessions;
-      result[canon].months = Object.assign(result[canon].months || {}, mergedMonths);
+      if (!result[canon].sessions) result[canon].sessions = ["", "", "", "", "", "", "", ""];
+      for (let i = 0; i < 8; i++) {
+        if (sessions[i] && !result[canon].sessions[i]) result[canon].sessions[i] = sessions[i];
+      }
+      if (!result[canon].months) result[canon].months = {};
+      Object.keys(mergedMonths).forEach(mKey => {
+        if (!result[canon].months[mKey]) {
+          result[canon].months[mKey] = [...mergedMonths[mKey]];
+        } else {
+          for (let i = 0; i < 8; i++) {
+            if (mergedMonths[mKey][i] && !result[canon].months[mKey][i]) {
+              result[canon].months[mKey][i] = mergedMonths[mKey][i];
+            }
+          }
+        }
+      });
     }
   }
 
@@ -495,9 +516,10 @@ function parseSubjectsFromSummary(subjectsSummary, teachersSummary, existingAcad
             parsedMonths['شهر 9 (سبتمبر)'] = [...parsed];
             parsedMonths['شهر 1'] = [...parsed];
           } else {
-            parsedMonths[tag] = parsed;
-            if (typeof CENTER_MONTHS !== 'undefined' && !CENTER_MONTHS.includes(tag)) {
-              CENTER_MONTHS.push(tag);
+            const normTag = normalizeMonthKey(tag) || tag;
+            parsedMonths[normTag] = parsed;
+            if (typeof CENTER_MONTHS !== 'undefined' && !CENTER_MONTHS.includes(normTag)) {
+              CENTER_MONTHS.push(normTag);
               try { localStorage.setItem('araij_center_months', JSON.stringify(CENTER_MONTHS)); } catch(e) {}
             }
           }
@@ -627,8 +649,34 @@ function getStudentSubjectMonthSessions(student, subject, month = null) {
     sub.months = {};
   }
 
-  // 1. Check if the month exists in sub.months (either exact key or alias)
+  // Self-heal October if it was blanked while 'شهر 9 (سبتمبر)', 'شهر 1', or sub.sessions held the October marks
+  const isOct = isSameMonthName(m, 'شهر 10 (أكتوبر)');
   const existingKey = findExistingMonthKey(sub.months, m);
+  if (isOct) {
+    const curOct = (existingKey && Array.isArray(sub.months[existingKey])) ? sub.months[existingKey] : [];
+    const hasOctVal = curOct.some(s => s && String(s).trim());
+    if (!hasOctVal) {
+      const novKey = findExistingMonthKey(sub.months, 'شهر 11 (نوفمبر)');
+      const novArr = (novKey && Array.isArray(sub.months[novKey])) ? sub.months[novKey] : [];
+      const candidates = [
+        sub.months['شهر 9 (سبتمبر)'],
+        sub.months['شهر 1'],
+        sub.sessions
+      ];
+      for (const cand of candidates) {
+        if (Array.isArray(cand) && cand.some(s => s && String(s).trim())) {
+          if (JSON.stringify(cand) !== JSON.stringify(novArr)) {
+            const targetK = existingKey || 'شهر 10 (أكتوبر)';
+            sub.months[targetK] = [...cand];
+            while (sub.months[targetK].length < 8) sub.months[targetK].push("");
+            return sub.months[targetK];
+          }
+        }
+      }
+    }
+  }
+
+  // 1. Check if the month exists in sub.months (either exact key or alias)
   if (existingKey && Array.isArray(sub.months[existingKey])) {
     const list = sub.months[existingKey];
     while (list.length < 8) list.push("");
@@ -636,7 +684,7 @@ function getStudentSubjectMonthSessions(student, subject, month = null) {
   }
 
   // 2. Legacy bootstrap ONLY for October / September if no months have data yet:
-  const isStartingMonth = isSameMonthName(m, 'شهر 10 (أكتوبر)') || isSameMonthName(m, 'شهر 9 (سبتمبر)');
+  const isStartingMonth = isOct || isSameMonthName(m, 'شهر 9 (سبتمبر)');
   const hasAnyMonthData = Object.values(sub.months).some(arr => Array.isArray(arr) && arr.some(s => s && String(s).trim()));
   
   if (!hasAnyMonthData && isStartingMonth && Array.isArray(sub.sessions) && sub.sessions.some(s => s && String(s).trim())) {
@@ -1643,7 +1691,7 @@ function formatPhoneNumber(raw) {
 }
 
 // Deep non-destructive merge of student records on client to preserve all enrolled subjects and multi-month attendance while honoring subject removals
-function mergeStudentClientDeep(existingSt, incomingSt) {
+function mergeStudentClientDeep(existingSt, incomingSt, honorSubjectRemoval = false) {
   if (!existingSt) return incomingSt;
   if (!incomingSt) return existingSt;
 
@@ -1657,14 +1705,36 @@ function mergeStudentClientDeep(existingSt, incomingSt) {
   if (inSubs && typeof inSubs === 'object') {
     const mergedSubs = {};
 
+    // If not an explicit subject removal edit, start by keeping existing subjects
+    if (!honorSubjectRemoval && !incomingSt._explicitSubjectEdit) {
+      Object.keys(exSubs).forEach(subKey => {
+        const canon = canonicalSubjectName(subKey) || subKey;
+        if (exSubs[subKey]) {
+          mergedSubs[canon] = JSON.parse(JSON.stringify(exSubs[subKey]));
+        }
+      });
+    }
+
     Object.keys(inSubs).forEach(subKey => {
       const canon = canonicalSubjectName(subKey) || subKey;
       const inSub = inSubs[subKey];
       if (!inSub) return;
 
-      const exSub = exSubs[canon] || exSubs[subKey];
+      const exSub = mergedSubs[canon] || exSubs[canon] || exSubs[subKey];
       if (!exSub) {
-        mergedSubs[canon] = inSub;
+        const months = {};
+        if (inSub.months && typeof inSub.months === 'object') {
+          Object.keys(inSub.months).forEach(mName => {
+            const normM = normalizeMonthKey(mName) || mName;
+            months[normM] = Array.isArray(inSub.months[mName]) ? [...inSub.months[mName]] : ["", "", "", "", "", "", "", ""];
+            while (months[normM].length < 8) months[normM].push("");
+          });
+        }
+        mergedSubs[canon] = {
+          teacher: cleanTeacherName(inSub.teacher, canon),
+          sessions: Array.isArray(inSub.sessions) ? [...inSub.sessions] : ["", "", "", "", "", "", "", ""],
+          months
+        };
       } else {
         const finalTeacher = cleanTeacherName(inSub.teacher || exSub.teacher, canon);
 
@@ -1679,21 +1749,27 @@ function mergeStudentClientDeep(existingSt, incomingSt) {
           }
         }
 
-        const months = { ...(exSub.months || {}) };
+        const months = {};
+        Object.keys(exSub.months || {}).forEach(mName => {
+          const normM = normalizeMonthKey(mName) || mName;
+          months[normM] = Array.isArray(exSub.months[mName]) ? [...exSub.months[mName]] : ["", "", "", "", "", "", "", ""];
+          while (months[normM].length < 8) months[normM].push("");
+        });
         if (inSub.months) {
           Object.keys(inSub.months).forEach(mName => {
-            if (!months[mName] || !Array.isArray(months[mName])) {
-              months[mName] = ["", "", "", "", "", "", "", ""];
+            const normM = normalizeMonthKey(mName) || mName;
+            if (!months[normM] || !Array.isArray(months[normM])) {
+              months[normM] = ["", "", "", "", "", "", "", ""];
             } else {
-              months[mName] = [...months[mName]];
+              months[normM] = [...months[normM]];
             }
-            while (months[mName].length < 8) months[mName].push("");
+            while (months[normM].length < 8) months[normM].push("");
 
             if (Array.isArray(inSub.months[mName])) {
               for (let i = 0; i < 8; i++) {
                 const val = inSub.months[mName][i];
                 if (val !== undefined && val !== null && String(val).trim() !== "" && String(val).trim() !== "_") {
-                  months[mName][i] = String(val).trim();
+                  months[normM][i] = String(val).trim();
                 }
               }
             }
@@ -1717,13 +1793,11 @@ function mergeStudentClientDeep(existingSt, incomingSt) {
 }
 
 function initData() {
-  const CURRENT_DB_VERSION = 'v5.4_fix_init_tdz_and_smart_search';
+  const CURRENT_DB_VERSION = 'v5.5_unified_master_non_destructive';
   const baseData = window.STUDENTS_DATA || [];
   const savedVersion = localStorage.getItem('araij_db_schema_version');
   if (savedVersion !== CURRENT_DB_VERSION) {
-    // Purge outdated cache so clean non-destructive data loads seamlessly
-    localStorage.removeItem('araij_full_students_db');
-    localStorage.removeItem('araij_students_overrides');
+    // Non-destructive upgrade: ONLY clear stale deleted_students list, NEVER wipe local overrides or full_students_db!
     localStorage.removeItem('araij_deleted_students');
     localStorage.setItem('araij_db_schema_version', CURRENT_DB_VERSION);
   }
@@ -1754,9 +1828,9 @@ function initData() {
   } else if (localOverrides) {
     try {
       const overridesMap = JSON.parse(localOverrides);
-      merged = baseData.map(st => overridesMap[st.code] ? { ...st, ...overridesMap[st.code] } : st);
+      merged = baseData.map(st => overridesMap[st.code] ? mergeStudentClientDeep(st, overridesMap[st.code]) : st);
       Object.keys(overridesMap).forEach(code => {
-        if (!merged.find(s => s.code === code)) {
+        if (!merged.find(s => String(s.code).trim() === String(code).trim())) {
           merged.unshift(overridesMap[code]);
         }
       });
@@ -1772,71 +1846,50 @@ function initData() {
     merged = [...baseData];
   }
 
-  // Merge real attendance sessions from baseData slot-by-slot so no recorded sessions are lost
+  // Deep merge baseData with merged so every student and every month (Oct & Nov) in baseData is preserved non-destructively
   if (baseData.length > 0) {
     const baseMap = new Map();
     baseData.forEach(bs => {
       if (bs && bs.code) baseMap.set(String(bs.code).trim(), bs);
     });
 
-    merged.forEach(st => {
+    merged = merged.map(st => {
       const c = String(st.code || '').trim();
       const baseSt = baseMap.get(c);
-      if (baseSt && baseSt.academicSubjects && st.academicSubjects) {
-        Object.keys(baseSt.academicSubjects).forEach(subK => {
-          const canon = canonicalSubjectName(subK) || subK;
-          const bSub = baseSt.academicSubjects[subK];
-          const lSub = getEnrolledSubjectData(st.academicSubjects, canon);
-          if (lSub && bSub && Array.isArray(bSub.sessions)) {
-            if (!lSub.sessions || !Array.isArray(lSub.sessions)) lSub.sessions = ["", "", "", "", "", "", "", ""];
-            while (lSub.sessions.length < 8) lSub.sessions.push("");
-            for (let i = 0; i < 8; i++) {
-              const bVal = (bSub.sessions[i] || '').trim();
-              if (bVal && !lSub.sessions[i]) {
-                lSub.sessions[i] = bVal;
-              }
-            }
-            if (!lSub.months) lSub.months = {};
-            if (bSub.months) {
-              Object.keys(bSub.months).forEach(mName => {
-                if (!lSub.months[mName]) lSub.months[mName] = ['', '', '', '', '', '', '', ''];
-                if (Array.isArray(bSub.months[mName])) {
-                  for (let i = 0; i < 8; i++) {
-                    const bVal = (bSub.months[mName][i] || '').trim();
-                    if (bVal && !lSub.months[mName][i]) {
-                      lSub.months[mName][i] = bVal;
-                    }
-                  }
-                }
-              });
-            }
-            if (!lSub.months['شهر 10 (أكتوبر)']) lSub.months['شهر 10 (أكتوبر)'] = [...lSub.sessions];
-            if (!lSub.months['شهر 9 (سبتمبر)']) lSub.months['شهر 9 (سبتمبر)'] = [...lSub.sessions];
-            if (!lSub.months['شهر 1']) lSub.months['شهر 1'] = [...lSub.sessions];
-          }
-        });
-        rebuildStudentSummaries(st);
+      if (baseSt) {
+        const mSt = mergeStudentClientDeep(baseSt, st);
+        rebuildStudentSummaries(mSt);
+        return mSt;
       }
+      return st;
     });
-  }
 
-  // If baseData has students missing in merged, merge them in
-  if (baseData.length > merged.length) {
-    const existing = new Set(merged.map(s => String(s.code || '').trim()));
+    const existingCodes = new Set(merged.map(s => String(s.code || '').trim()));
     baseData.forEach(s => {
       const c = String(s.code || '').trim();
-      if (c && !existing.has(c) && !deletedCodes.includes(c)) {
+      if (c && !existingCodes.has(c) && !deletedCodes.includes(c)) {
         merged.push(s);
-        existing.add(c);
+        existingCodes.add(c);
       }
     });
   }
 
-  // Also apply overrides on top to guarantee persistence
+  // Also apply overrides on top non-destructively to guarantee persistence
   if (localOverrides) {
     try {
       const overridesMap = JSON.parse(localOverrides);
-      merged = merged.map(st => overridesMap[st.code] ? { ...st, ...overridesMap[st.code] } : st);
+      merged = merged.map(st => {
+        const c = String(st.code || '').trim();
+        return overridesMap[c] ? mergeStudentClientDeep(st, overridesMap[c]) : st;
+      });
+      const existingAfterOv = new Set(merged.map(s => String(s.code || '').trim()));
+      Object.keys(overridesMap).forEach(code => {
+        const c = String(code || '').trim();
+        if (c && !existingAfterOv.has(c) && !deletedCodes.includes(c) && overridesMap[code]) {
+          merged.unshift(overridesMap[code]);
+          existingAfterOv.add(c);
+        }
+      });
     } catch(e) {}
   }
 
@@ -2742,13 +2795,16 @@ function applySessionValue(code, subject, sessionIdx, val, month = null) {
   student.lastActionTime = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }) + ' ' + new Date().toLocaleDateString('ar-EG');
 
   rebuildStudentSummaries(student);
-  saveStudentOverride(student);
+  saveStudentOverride(student, true);
 
-  // 1. Send to Google Sheets (both sheet update and session log)
-  syncToGoogleSheets('update_student', { student: student }, true);
+  // 1. Send to Google Sheets (session log + update if no central server)
   syncToGoogleSheets('mark_session', { code, subject, sessionIdx, value: val, month: m, byUser: uName });
+  if (!getRailwayServerUrl()) {
+    syncToGoogleSheets('update_student', { student: student }, true);
+  }
 
-  // 2. Send to Live Railway Server for 0ms multi-device broadcast
+  // 2. Send to Live Railway Server for 0ms multi-device broadcast (Railway also forwards update_student to Google Sheets)
+  sendToLanServer('update_student', { student });
   sendToRailwayServer('update_student', { student: student });
 
   // 3. Log to Audit Trail Sheet (سجل العمليات والرقابة)
@@ -2971,9 +3027,13 @@ function handleSaveEditStudent(e) {
         const rawTeacher = document.getElementById(`edit_teacher_val_${idx}`)?.value || (TEACHERS[subj] && TEACHERS[subj][0]) || 'مدرس المادة';
         const teacher = cleanTeacherName(rawTeacher, canon);
         const oldSub = getEnrolledSubjectData(updatedAcademicSubjects, subj);
+        const preservedMonths = (oldSub && oldSub.months && typeof oldSub.months === 'object')
+          ? JSON.parse(JSON.stringify(oldSub.months))
+          : {};
         updatedAcademicSubjects[canon] = {
           teacher: teacher,
-          sessions: (oldSub && Array.isArray(oldSub.sessions) && oldSub.sessions.length > 0) ? [...oldSub.sessions] : ["", "", "", "", "", "", "", ""]
+          sessions: (oldSub && Array.isArray(oldSub.sessions) && oldSub.sessions.length > 0) ? [...oldSub.sessions] : ["", "", "", "", "", "", "", ""],
+          months: preservedMonths
         };
       } else {
         // Explicitly unchecked: remove this subject and all its naming variants
@@ -2986,21 +3046,9 @@ function handleSaveEditStudent(e) {
     }
   });
 
-  const selectedSubjects = Object.keys(updatedAcademicSubjects);
   student.academicSubjects = updatedAcademicSubjects;
-  student.subjectsSummary = selectedSubjects.join(', ');
-  student.teachersSummary = selectedSubjects.map(k => {
-    const subObj = updatedAcademicSubjects[k];
-    const tName = cleanTeacherName(subObj.teacher, k);
-    const hasSess = subObj.sessions && subObj.sessions.some(s => s && s.trim() !== '');
-    if (hasSess) {
-      const sessStr = subObj.sessions.map(s => (s && s.trim()) ? s.trim() : '_').join(', ');
-      return `${k}/${tName} [حصص: ${sessStr}]`;
-    }
-    return `${k}/${tName}`;
-  }).join(' | ');
-  student._metrics = calculateStudentMetrics(student);
-  student._searchString = buildStudentSearchString(student);
+  student._explicitSubjectEdit = true;
+  rebuildStudentSummaries(student);
 
   // Audit Hint for Eng. Wafaa and Supervisors
   const uName = currentUser?.name || 'م. وفاء ناصر';
@@ -3008,8 +3056,11 @@ function handleSaveEditStudent(e) {
   student.lastAction = 'تعديل بيانات الطالب والمواد';
   student.lastActionTime = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }) + ' ' + new Date().toLocaleDateString('ar-EG');
 
-  saveStudentOverride(student);
-  syncToGoogleSheets('update_student', { student: student }, true);
+  saveStudentOverride(student, true);
+  if (!getRailwayServerUrl()) {
+    syncToGoogleSheets('update_student', { student: student }, true);
+  }
+  sendToLanServer('update_student', { student: student });
   sendToRailwayServer('update_student', { student: student });
 
   try {
@@ -3162,45 +3213,41 @@ async function fetchLatestStudentsFromCentralServer(isSilent = false) {
           try { overridesMap = JSON.parse(localOverrides); } catch (e) {}
         }
 
-        let merged = serverStudents.map(serverSt => {
-          const code = String(serverSt.code || '').trim();
-          // If there is an unsynced offline edit for this student on THIS device, keep local changes until synced
-          if (pendingCodes.has(code) && overridesMap[code]) {
-            return { ...serverSt, ...overridesMap[code] };
-          }
-          // Non-destructive merge of local recorded sessions with central server
-          if (overridesMap[code]) {
-            const localSt = overridesMap[code];
-            if (localSt.academicSubjects && serverSt.academicSubjects) {
-              Object.keys(localSt.academicSubjects).forEach(subK => {
-                const canon = canonicalSubjectName(subK) || subK;
-                const lSub = localSt.academicSubjects[subK];
-                const sSub = getEnrolledSubjectData(serverSt.academicSubjects, canon);
-                if (sSub && lSub && Array.isArray(lSub.sessions)) {
-                  if (!sSub.sessions || !Array.isArray(sSub.sessions)) sSub.sessions = ["", "", "", "", "", "", "", ""];
-                  while (sSub.sessions.length < 8) sSub.sessions.push("");
-                  for (let i = 0; i < 8; i++) {
-                    const lVal = (lSub.sessions[i] || '').trim();
-                    if (lVal && (!sSub.sessions[i] || !sSub.sessions[i].trim())) {
-                      sSub.sessions[i] = lVal;
-                    }
-                  }
-                  if (!sSub.months) sSub.months = {};
-                  sSub.months['شهر 9 (سبتمبر)'] = [...sSub.sessions];
-                  sSub.months['شهر 1'] = [...sSub.sessions];
-                }
-              });
-              rebuildStudentSummaries(serverSt);
-            }
-          }
-          overridesMap[code] = serverSt;
-          return serverSt;
+        // Also include any in-memory allStudents in overridesMap so recent changes are never lost
+        const inMemoryMap = new Map();
+        (allStudents || []).forEach(st => {
+          if (st && st.code) inMemoryMap.set(String(st.code).trim(), st);
         });
 
-        // Also preserve newly added students created offline that are not yet on the server
+        let merged = serverStudents.map(serverSt => {
+          const code = String(serverSt.code || '').trim();
+          const localSt = overridesMap[code] || inMemoryMap.get(code);
+          if (!localSt) {
+            overridesMap[code] = serverSt;
+            return serverSt;
+          }
+          // If there is a pending offline edit or a very recent local save (< 60s), local scalar fields take priority
+          const isRecentLocalEdit = pendingCodes.has(code) || (localSt._lastLocalSaveTime && (Date.now() - localSt._lastLocalSaveTime < 60000));
+          const mergedSt = isRecentLocalEdit
+            ? mergeStudentClientDeep(serverSt, localSt, !!localSt._explicitSubjectEdit)
+            : mergeStudentClientDeep(localSt, serverSt, false);
+          rebuildStudentSummaries(mergedSt);
+          overridesMap[code] = mergedSt;
+          return mergedSt;
+        });
+
+        // Preserve any valid local student not yet on the server (and push to server if missing!)
+        const serverCodeSet = new Set(merged.map(s => String(s.code || '').trim()));
         Object.keys(overridesMap).forEach(code => {
-          if (pendingCodes.has(code) && !merged.find(s => String(s.code).trim() === code)) {
-            merged.unshift(overridesMap[code]);
+          const c = String(code || '').trim();
+          const locSt = overridesMap[code];
+          if (c && !serverCodeSet.has(c) && !deletedCodes.includes(c) && locSt && locSt.name && String(locSt.name).trim().length >= 2 && !String(locSt.name).includes('غير مسمى')) {
+            merged.unshift(locSt);
+            serverCodeSet.add(c);
+            // Heal the server if this student was registered recently or is in pendingCodes
+            if (pendingCodes.has(c) || (locSt._lastLocalSaveTime && (Date.now() - locSt._lastLocalSaveTime < 600000))) {
+              sendToRailwayServer('add_student', { student: locSt });
+            }
           }
         });
 
@@ -3234,6 +3281,8 @@ async function fetchLatestStudentsFromCentralServer(isSilent = false) {
             Object.keys(st.academicSubjects).forEach(sub => {
               const canon = canonicalSubjectName(sub) || sub;
               st.academicSubjects[sub].teacher = cleanTeacherName(st.academicSubjects[sub].teacher, canon);
+              // Synchronize sub.sessions with currentActiveMonth so UI cards & matrix stay in sync without wiping months
+              st.academicSubjects[sub].sessions = [...getStudentSubjectMonthSessions(st, sub, currentActiveMonth)];
             });
           }
           rebuildStudentSummaries(st);
@@ -3266,6 +3315,7 @@ window.addEventListener('focus', () => {
 });
 
 function saveStudentOverride(student, skipSync = false) {
+  student._lastLocalSaveTime = Date.now();
   student._metrics = calculateStudentMetrics(student);
 
   const targetCode = String(student.code || '').trim();
@@ -3273,7 +3323,7 @@ function saveStudentOverride(student, skipSync = false) {
   // 1. Update in-memory allStudents
   const idx = allStudents.findIndex(s => String(s.code || '').trim() === targetCode);
   if (idx >= 0) {
-    allStudents[idx] = { ...allStudents[idx], ...student };
+    allStudents[idx] = mergeStudentClientDeep(allStudents[idx], student, !!student._explicitSubjectEdit);
   } else {
     allStudents.unshift(student);
   }
@@ -3282,7 +3332,7 @@ function saveStudentOverride(student, skipSync = false) {
   if (window.STUDENTS_DATA) {
     const bIdx = window.STUDENTS_DATA.findIndex(s => String(s.code || '').trim() === targetCode);
     if (bIdx >= 0) {
-      window.STUDENTS_DATA[bIdx] = { ...window.STUDENTS_DATA[bIdx], ...student };
+      window.STUDENTS_DATA[bIdx] = mergeStudentClientDeep(window.STUDENTS_DATA[bIdx], student, !!student._explicitSubjectEdit);
     } else {
       window.STUDENTS_DATA.unshift(student);
     }
@@ -3293,7 +3343,9 @@ function saveStudentOverride(student, skipSync = false) {
   try {
     overrides = JSON.parse(localStorage.getItem('araij_students_overrides') || '{}');
   } catch (err) {}
-  overrides[student.code] = student;
+  overrides[student.code] = overrides[student.code]
+    ? mergeStudentClientDeep(overrides[student.code], student, !!student._explicitSubjectEdit)
+    : student;
   localStorage.setItem('araij_students_overrides', JSON.stringify(overrides));
 
   // 4. Save full db
@@ -3649,28 +3701,26 @@ function handleWizardSubmit(e) {
   if (existingIdx >= 0) {
     syncAction = 'update_student';
     const existingSt = allStudents[existingIdx];
-    // Preserve any existing sessions for subjects
-    if (existingSt.academicSubjects) {
-      Object.keys(newStudent.academicSubjects).forEach(sub => {
-        const oldSub = getEnrolledSubjectData(existingSt.academicSubjects, sub);
-        if (oldSub && Array.isArray(oldSub.sessions) && oldSub.sessions.length > 0) {
-          newStudent.academicSubjects[sub].sessions = [...oldSub.sessions];
-        }
-      });
-    }
-    allStudents[existingIdx] = { ...existingSt, ...newStudent };
+    const mergedWizardSt = mergeStudentClientDeep(existingSt, newStudent, false);
+    rebuildStudentSummaries(mergedWizardSt);
+    Object.assign(newStudent, mergedWizardSt);
+    allStudents[existingIdx] = newStudent;
   } else {
+    rebuildStudentSummaries(newStudent);
     allStudents.unshift(newStudent);
   }
   allStudents.sort((a, b) => (a.name || '').localeCompare(b.name || '', 'ar', { numeric: true, sensitivity: 'base' }));
 
-  // Save locally + to central LAN server & Railway
-  saveStudentOverride(newStudent);
+  // Save locally without triggering a duplicate update_student call
+  saveStudentOverride(newStudent, true);
 
-  // Sync to Google Sheets
-  syncToGoogleSheets(syncAction, { student: newStudent }, true);
+  // Sync to Google Sheets directly only if Railway server is not configured (Railway server forwards automatically)
+  if (!getRailwayServerUrl()) {
+    syncToGoogleSheets(syncAction, { student: newStudent }, true);
+  }
 
-  // Sync to Live Railway Server
+  // Sync to LAN & Live Railway Server
+  sendToLanServer(syncAction, { student: newStudent });
   sendToRailwayServer(syncAction, { student: newStudent });
 
   // Log activity in central audit log & Google Sheets audit sheet
@@ -4378,23 +4428,44 @@ async function pullFromGoogleSheets(isAuto = false) {
       let updatedCount = 0;
       const overrides = JSON.parse(localStorage.getItem('araij_students_overrides') || '{}');
 
-      // Deduplicate incoming rows from Google Sheets (handles cases where sheet has duplicate rows)
-      const seenCodesFromSheet = new Set();
+      // Merge duplicate rows from Google Sheets for the same code so all subjects/sessions across rows are preserved
+      const sheetByCode = new Map();
       const uniqueSheetStudents = [];
       data.students.forEach(st => {
+        if (!st) return;
         const c = String(st.code || '').trim();
-        if (c && seenCodesFromSheet.has(c)) return; // Skip duplicate sheet rows!
-        if (c) seenCodesFromSheet.add(c);
-        uniqueSheetStudents.push(st);
+        if (!c) {
+          uniqueSheetStudents.push({ ...st });
+          return;
+        }
+        if (!sheetByCode.has(c)) {
+          const clone = { ...st };
+          sheetByCode.set(c, clone);
+          uniqueSheetStudents.push(clone);
+        } else {
+          const prev = sheetByCode.get(c);
+          if (st.subjectsSummary) {
+            prev.subjectsSummary = prev.subjectsSummary ? `${prev.subjectsSummary}, ${st.subjectsSummary}` : st.subjectsSummary;
+          }
+          if (st.teachersSummary) {
+            prev.teachersSummary = prev.teachersSummary ? `${prev.teachersSummary} | ${st.teachersSummary}` : st.teachersSummary;
+          }
+          ['name', 'phone', 'parentPhone', 'area', 'grade', 'specialization', 'regDate'].forEach(k => {
+            if (!prev[k] && st[k]) prev[k] = st[k];
+          });
+        }
       });
 
       uniqueSheetStudents.forEach(sheetStudent => {
         if (!sheetStudent || !sheetStudent.name || String(sheetStudent.name).trim().length < 2 || String(sheetStudent.name).includes('غير مسمى')) return;
         const code = String(sheetStudent.code || '').trim();
+        if (sheetStudent.name.includes('طالب تجريبي') || sheetStudent.name.includes('اختبار ربط الشيت') || code.startsWith('TEST-')) return;
         // Match by code only
         const existingLocal = allStudents.find(s => String(s.code).trim() === code);
 
         if (!existingLocal) {
+          const parsedAcad = parseSubjectsFromSummary(sheetStudent.subjectsSummary, sheetStudent.teachersSummary);
+          if (!parsedAcad || Object.keys(parsedAcad).length === 0) return;
           const newSt = {
             code: code || ('GS-' + Math.floor(1000 + Math.random() * 9000)),
             name: sheetStudent.name || 'طالب جديد',
@@ -4406,14 +4477,13 @@ async function pullFromGoogleSheets(isAuto = false) {
             subjectsSummary: sheetStudent.subjectsSummary || '',
             teachersSummary: sheetStudent.teachersSummary || '',
             regDate: sheetStudent.regDate || new Date().toLocaleDateString('ar-EG'),
-            academicSubjects: parseSubjectsFromSummary(sheetStudent.subjectsSummary, sheetStudent.teachersSummary),
+            academicSubjects: parsedAcad,
             createdBy: sheetStudent.createdBy || 'منار ناصر',
             lastModifiedBy: sheetStudent.lastModifiedBy || sheetStudent.createdBy || 'منار ناصر',
             lastAction: sheetStudent.lastAction || 'مسجل بالسحابة',
             lastActionTime: sheetStudent.lastActionTime || sheetStudent.regDate || ''
           };
-          newSt._metrics = calculateStudentMetrics(newSt);
-          newSt._searchString = buildStudentSearchString(newSt);
+          rebuildStudentSummaries(newSt);
           overrides[newSt.code] = newSt;
           allStudents.unshift(newSt);
           newCount++;
@@ -4452,38 +4522,7 @@ async function pullFromGoogleSheets(isAuto = false) {
         }
       });
 
-      // ✅ CROSS-DEVICE DELETE SYNC
-      // Students in Sheets are authoritative. If a student exists locally
-      // but is NOT in Sheets → it was deleted by another user → remove it here too.
-      const sheetCodes = new Set(data.students.map(s => String(s.code || '').trim()).filter(Boolean));
-      const pendingAddCodes = new Set(
-        getOfflineSyncQueue()
-          .filter(q => q.action === 'add_student')
-          .map(q => String(q.payload?.student?.code || '').trim())
-      );
-      // Only check students that have codes (skip base data students without codes or pre-loaded data.js)
-      const localOnlyCodes = allStudents
-        .filter(s => {
-          const c = String(s.code || '').trim();
-          // Has a code, not in Sheets, not pending upload, and code looks like a manually-added code (not base data)
-          return c && !sheetCodes.has(c) && !pendingAddCodes.has(c) && overrides[c];
-        })
-        .map(s => s.code);
-
-      let deletedCount = 0;
-      if (localOnlyCodes.length > 0) {
-        // Add to deleted list so they don't come back
-        let deletedList = JSON.parse(localStorage.getItem('araij_deleted_students') || '[]');
-        localOnlyCodes.forEach(code => {
-          if (!deletedList.includes(code)) deletedList.push(code);
-          delete overrides[code];
-        });
-        localStorage.setItem('araij_deleted_students', JSON.stringify(deletedList));
-        allStudents = allStudents.filter(s => !localOnlyCodes.includes(s.code));
-        deletedCount = localOnlyCodes.length;
-      }
-
-      if (newCount > 0 || updatedCount > 0 || deletedCount > 0) {
+      if (newCount > 0 || updatedCount > 0) {
         localStorage.setItem('araij_students_overrides', JSON.stringify(overrides));
         try { localStorage.setItem('araij_full_students_db', JSON.stringify(allStudents)); } catch(e) {}
 
