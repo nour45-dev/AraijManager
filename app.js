@@ -1801,12 +1801,14 @@ function mergeStudentClientDeep(existingSt, incomingSt, honorSubjectRemoval = fa
 }
 
 function initData() {
-  const CURRENT_DB_VERSION = 'v5.5_unified_master_non_destructive';
+  const CURRENT_DB_VERSION = 'v6.0_sqlite_clean_enrollments';
   const baseData = window.STUDENTS_DATA || [];
   const savedVersion = localStorage.getItem('araij_db_schema_version');
   if (savedVersion !== CURRENT_DB_VERSION) {
-    // Non-destructive upgrade: ONLY clear stale deleted_students list, NEVER wipe local overrides or full_students_db!
+    // Flush stale pre-v6.0 bloated localStorage cache so clean SQLite DB enrollments take effect
     localStorage.removeItem('araij_deleted_students');
+    localStorage.removeItem('araij_full_students_db');
+    localStorage.removeItem('araij_students_overrides');
     localStorage.setItem('araij_db_schema_version', CURRENT_DB_VERSION);
   }
 
@@ -3238,7 +3240,7 @@ async function fetchLatestStudentsFromCentralServer(isSilent = false) {
           const isRecentLocalEdit = pendingCodes.has(code) || (localSt._lastLocalSaveTime && (Date.now() - localSt._lastLocalSaveTime < 60000));
           const mergedSt = isRecentLocalEdit
             ? mergeStudentClientDeep(serverSt, localSt, !!localSt._explicitSubjectEdit)
-            : mergeStudentClientDeep(localSt, serverSt, false);
+            : mergeStudentClientDeep(localSt, serverSt, true);
           rebuildStudentSummaries(mergedSt);
           overridesMap[code] = mergedSt;
           return mergedSt;

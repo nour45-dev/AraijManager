@@ -2,15 +2,16 @@ const fs = require('fs');
 const path = require('path');
 const { AraijDatabase } = require('./db.js');
 
-console.log('=== Starting Master Database Migration ===');
+console.log('=== Rebuilding Master Database (Resolving Code Collisions) ===');
 
-const sheetRaw = JSON.parse(fs.readFileSync('snap_today/sheet_api.json', 'utf8')).students;
-const rwStudents = JSON.parse(fs.readFileSync('snap_today/railway_students.json', 'utf8'));
+const SNAP_DIR = 'C:\\Users\\Nour Eldin\\.gemini\\antigravity\\brain\\3567ee56-185d-4728-a309-9248c2e96721\\scratch\\snap';
+const sheetRaw = JSON.parse(fs.readFileSync(path.join(SNAP_DIR, 'sheet_api.json'), 'utf8')).students;
+const rwStudents = JSON.parse(fs.readFileSync(path.join(SNAP_DIR, 'railway.json'), 'utf8'));
 
-// Delete old sqlite db if exists to start fresh
+// Delete old sqlite db + wal/shm if exist
 const dbFile = path.join(__dirname, 'araij.db');
-if (fs.existsSync(dbFile)) {
-  fs.unlinkSync(dbFile);
+for (const ext of ['', '-wal', '-shm']) {
+  if (fs.existsSync(dbFile + ext)) fs.unlinkSync(dbFile + ext);
 }
 
 const db = new AraijDatabase(dbFile);
@@ -50,16 +51,46 @@ function canonTeacher(t) {
   return 'ا/ ' + t;
 }
 
-// 1. Build authentic enrollments and student details from Google Sheet
-const sheetStudentsByCode = new Map();
+// Known unique code resolutions for the 8 colliding sheet codes
+const COLLISION_CODE_MAP = {
+  '1566|انس رضا محمد': '2566',
+  '1566|حماده اسماعيل اسماعيل': '2568',
+  '1567|مهاب رضا محمود': '2567',
+  '1567|منه عماد': '2570',
+  '1568|ملك ابراهيم محمد': '2576',
+  '1569|ملك ابراهيم حامد': '2577',
+  '1570|رويدا سمير عبد الحمديد': '2579',
+  '2684|فرحه سيد عواد': '3686',
+  '2684|ملك حسن عويس': '3695',
+  '2685|علي احمد عبد الرحمن': '3687',
+  '2685|ياسمين هشام': '3696',
+  '2686|حسن رامي حسن': '3694'
+};
+
+// Track distinct people by code + norm(name)
+const sheetPeople = new Map();
+const usedCodes = new Set();
 
 sheetRaw.forEach(s => {
-  const code = String(s.code || '').trim();
-  if (!code) return;
-  if (!sheetStudentsByCode.has(code)) {
-    sheetStudentsByCode.set(code, {
-      code,
-      name: s.name,
+  const rawCode = String(s.code || '').trim();
+  const nName = norm(s.name);
+  if (!rawCode || !nName) return;
+
+  const collisionKey = `${rawCode}|${nName}`;
+  const personKey = collisionKey;
+  let finalCode = COLLISION_CODE_MAP[collisionKey] || rawCode;
+
+  if (!sheetPeople.has(personKey)) {
+    // Ensure finalCode isn't already claimed by a different person
+    while (usedCodes.has(finalCode)) {
+      finalCode = finalCode + '_dup';
+    }
+    usedCodes.add(finalCode);
+
+    sheetPeople.set(personKey, {
+      code: finalCode,
+      rawCode,
+      name: s.name.trim(),
       area: s.area || '',
       phone: s.phone || '',
       parentPhone: s.parentPhone || '',
@@ -70,8 +101,8 @@ sheetRaw.forEach(s => {
     });
   }
 
-  const st = sheetStudentsByCode.get(code);
-  if (s.name && s.name.trim() && s.name.length > (st.name || '').length) st.name = s.name.trim();
+  const st = sheetPeople.get(personKey);
+  if (s.name && s.name.trim().length > st.name.length) st.name = s.name.trim();
   if (s.phone && s.phone.trim()) st.phone = s.phone.trim();
   if (s.parentPhone && s.parentPhone.trim()) st.parentPhone = s.parentPhone.trim();
   if (s.area && s.area.trim()) st.area = s.area.trim();
@@ -83,8 +114,7 @@ sheetRaw.forEach(s => {
   parts.forEach(p => {
     const slash = p.indexOf('/');
     if (slash === -1) return;
-    const rawSub = p.substring(0, slash).trim();
-    const sub = canonSub(rawSub);
+    const sub = canonSub(p.substring(0, slash).trim());
     const teacher = canonTeacher(p.substring(slash + 1));
     if (!sub || !teacher) return;
 
@@ -103,51 +133,37 @@ sheetRaw.forEach(s => {
     const mOct = p.match(/\[شهر 10(?:\s*\(أكتوبر\))?:\s*([^\]]+)\]/);
     const mNov = p.match(/\[شهر 11(?:\s*\(نوفمبر\))?:\s*([^\]]+)\]/);
 
-    if (mHissas) {
-      mHissas[1].split(',').forEach((v, i) => {
-        v = v.trim();
-        if (v && v !== '_' && v !== '-' && i < 8) entry.hissas[i] = v;
-      });
-    }
-    if (mOct) {
-      mOct[1].split(',').forEach((v, i) => {
-        v = v.trim();
-        if (v && v !== '_' && v !== '-' && i < 8) entry.oct[i] = v;
-      });
-    }
-    if (mNov) {
-      mNov[1].split(',').forEach((v, i) => {
-        v = v.trim();
-        if (v && v !== '_' && v !== '-' && i < 8) entry.nov[i] = v;
-      });
-    }
+    if (mHissas) mHissas[1].split(',').forEach((v, i) => { v = v.trim(); if (v && v !== '_' && v !== '-' && i < 8) entry.hissas[i] = v; });
+    if (mOct) mOct[1].split(',').forEach((v, i) => { v = v.trim(); if (v && v !== '_' && v !== '-' && i < 8) entry.oct[i] = v; });
+    if (mNov) mNov[1].split(',').forEach((v, i) => { v = v.trim(); if (v && v !== '_' && v !== '-' && i < 8) entry.nov[i] = v; });
   });
 });
 
-// Map railway students for baseline attendance
-const rwMap = new Map();
-rwStudents.forEach(s => rwMap.set(String(s.code).trim(), s));
+// Map railway students by code AND by norm(name)
+const rwByCode = new Map();
+const rwByName = new Map();
+rwStudents.forEach(s => {
+  rwByCode.set(String(s.code).trim(), s);
+  if (s.name) rwByName.set(norm(s.name), s);
+});
 
-let studentsInserted = 0;
-let enrollmentsInserted = 0;
-let octMarksInserted = 0;
-let novMarksInserted = 0;
+let studentsInserted = 0, enrollmentsInserted = 0, octMarks = 0, novMarks = 0;
 
-for (const [code, st] of sheetStudentsByCode.entries()) {
+for (const st of sheetPeople.values()) {
   db.upsertStudent(st);
   studentsInserted++;
 
-  const rw = rwMap.get(code);
+  const rw = rwByCode.get(st.code) || rwByName.get(norm(st.name));
 
   for (const [subName, subData] of st.subjects.entries()) {
-    db.setEnrollment(code, subName, subData.teacher);
+    db.setEnrollment(st.code, subName, subData.teacher);
     enrollmentsInserted++;
 
     const rwSub = rw && rw.academicSubjects && rw.academicSubjects[subName];
     const rwOct = (rwSub && rwSub.months && rwSub.months['شهر 10 (أكتوبر)']) || Array(8).fill('');
     const rwNov = (rwSub && rwSub.months && rwSub.months['شهر 11 (نوفمبر)']) || Array(8).fill('');
 
-    // 1. October marks:
+    // October: pristine baseline from rwOct (if not /15) or sheet oct
     for (let i = 0; i < 8; i++) {
       let mark = '';
       if (rwOct[i] && rwOct[i].trim() && !rwOct[i].includes('/15')) {
@@ -156,59 +172,39 @@ for (const [code, st] of sheetStudentsByCode.entries()) {
         mark = subData.oct[i].trim();
       }
       if (mark) {
-        db.recordAttendance(code, subName, 'شهر 10 (أكتوبر)', i + 1, mark);
-        octMarksInserted++;
+        db.recordAttendance(st.code, subName, 'شهر 10 (أكتوبر)', i + 1, mark);
+        octMarks++;
       }
     }
 
-    // 2. November marks:
+    // November: sheet nov + sheet hissas (only if not identical to oct, or if nov is empty) + rwNov
+    const hissasIsOct = subData.hissas.some(Boolean) && subData.oct.some(Boolean) && subData.hissas.every((v, i) => v === subData.oct[i]);
     for (let i = 0; i < 8; i++) {
-      const h = subData.hissas[i];
       const n = subData.nov[i];
+      const h = hissasIsOct ? '' : subData.hissas[i];
       const r = rwNov[i];
-      const mark = (h || n || r || '').trim();
+      const mark = (n || h || r || '').trim();
       if (mark) {
-        db.recordAttendance(code, subName, 'شهر 11 (نوفمبر)', i + 1, mark);
-        novMarksInserted++;
+        db.recordAttendance(st.code, subName, 'شهر 11 (نوفمبر)', i + 1, mark);
+        novMarks++;
       }
     }
   }
 }
 
-console.log(`✅ Inserted ${studentsInserted} students.`);
-console.log(`✅ Inserted ${enrollmentsInserted} enrollments.`);
-console.log(`✅ Recorded ${octMarksInserted} October marks.`);
-console.log(`✅ Recorded ${novMarksInserted} November marks.`);
+console.log(`✅ Students: ${studentsInserted}, Enrollments: ${enrollmentsInserted}, Oct marks: ${octMarks}, Nov marks: ${novMarks}`);
 
-// Verify via getAllStudents()
 const allStudents = db.getAllStudents('شهر 11 (نوفمبر)');
-console.log(`\nVerification via db.getAllStudents(): ${allStudents.length} students retrieved.`);
-
-// Compute teacher totals from DB
-const teacherCounts = {};
+const byTG = {};
 allStudents.forEach(s => {
-  for (const [sub, d] of Object.entries(s.academicSubjects)) {
-    const t = d.teacher;
-    teacherCounts[t] = (teacherCounts[t] || 0) + 1;
-  }
+  Object.entries(s.academicSubjects || {}).forEach(([sub, d]) => {
+    const k = `${d.teacher} | ${s.grade}`;
+    byTG[k] = (byTG[k] || 0) + 1;
+  });
 });
+console.log('\n--- VERIFIED TEACHER+GRADE COUNTS ---');
+Object.entries(byTG).sort().forEach(([k, v]) => console.log(k.padEnd(32), v));
 
-console.log('\n--- VERIFIED TEACHER COUNTS FROM DB ---');
-console.table(Object.entries(teacherCounts).sort((a,b) => b[1] - a[1]).map(([t, count]) => ({ Teacher: t, Students: count })));
-
-// Check sample students
-const sampleCodes = ['3222', '3596', '3594', '3595', '3160', '3178'];
-console.log('\n--- SAMPLE STUDENTS CHECK ---');
-sampleCodes.forEach(code => {
-  const s = allStudents.find(x => x.code == code);
-  if (s && s.academicSubjects && s.academicSubjects['انجليزي']) {
-    console.log(`#${code} ${s.name}:`);
-    console.log('  Oct:', s.academicSubjects['انجليزي'].months['شهر 10 (أكتوبر)'].slice(0, 6));
-    console.log('  Nov:', s.academicSubjects['انجليزي'].months['شهر 11 (نوفمبر)'].slice(0, 6));
-  }
-});
-
-// Write to students_db.json and data.js
 fs.writeFileSync('students_db.json', JSON.stringify(allStudents, null, 2), 'utf8');
 fs.writeFileSync('data.js', `window.STUDENTS_DATA = ${JSON.stringify(allStudents, null, 2)};\n`, 'utf8');
-console.log('\n✅ Successfully synced clean DB export to students_db.json and data.js!');
+console.log('\n✅ Saved araij.db, students_db.json, and data.js!');
