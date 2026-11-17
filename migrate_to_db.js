@@ -1,30 +1,23 @@
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 const { AraijDatabase } = require('./db.js');
 
-console.log('=== Rebuilding Master Database (Resolving Code Collisions) ===');
+console.log('=== Rebuilding Master Database (Full Oct & Nov Fidelity) ===');
 
 const SNAP_DIR = 'C:\\Users\\Nour Eldin\\.gemini\\antigravity\\brain\\3567ee56-185d-4728-a309-9248c2e96721\\scratch\\snap';
 const sheetRaw = JSON.parse(fs.readFileSync(path.join(SNAP_DIR, 'sheet_api.json'), 'utf8')).students;
 const rwStudents = JSON.parse(fs.readFileSync(path.join(SNAP_DIR, 'railway.json'), 'utf8'));
+const g5c = JSON.parse(execSync('git show 5cd6bf9:students_db.json', { cwd: __dirname, maxBuffer: 300 * 1024 * 1024 }));
+const g941 = JSON.parse(execSync('git show 941308b:students_db.json', { cwd: __dirname, maxBuffer: 300 * 1024 * 1024 }));
 
-// Delete old sqlite db + wal/shm if exist
 const dbFile = path.join(__dirname, 'araij.db');
 for (const ext of ['', '-wal', '-shm']) {
   if (fs.existsSync(dbFile + ext)) fs.unlinkSync(dbFile + ext);
 }
-
 const db = new AraijDatabase(dbFile);
 
-function norm(s) {
-  return (s || '')
-    .replace(/[أإآ]/g, 'ا')
-    .replace(/[ة]/g, 'ه')
-    .replace(/[ى]/g, 'ي')
-    .replace(/[\s\-_]+/g, ' ')
-    .trim()
-    .toLowerCase();
-}
+const norm = s => (s || '').replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').replace(/[\s\-_]+/g, ' ').trim().toLowerCase();
 
 function canonSub(n) {
   n = norm(n);
@@ -44,14 +37,12 @@ function canonSub(n) {
 }
 
 function canonTeacher(t) {
-  t = norm(t).replace(/\[.*$/, '').trim();
-  t = t.replace(/^(ا|م|أ)\s*\/\s*/, '').trim();
+  t = norm(t).replace(/\[.*$/, '').trim().replace(/^(ا|م|أ)\s*\/\s*/, '').trim();
   if (t === 'علي' || t === 'علي نور') return 'ا/ علي نور';
   if (t === 'محمد نور') return 'ا/ محمد نور';
   return 'ا/ ' + t;
 }
 
-// Known unique code resolutions for the 8 colliding sheet codes
 const COLLISION_CODE_MAP = {
   '1566|انس رضا محمد': '2566',
   '1566|حماده اسماعيل اسماعيل': '2568',
@@ -67,7 +58,6 @@ const COLLISION_CODE_MAP = {
   '2686|حسن رامي حسن': '3694'
 };
 
-// Track distinct people by code + norm(name)
 const sheetPeople = new Map();
 const usedCodes = new Set();
 
@@ -77,31 +67,20 @@ sheetRaw.forEach(s => {
   if (!rawCode || !nName) return;
 
   const collisionKey = `${rawCode}|${nName}`;
-  const personKey = collisionKey;
   let finalCode = COLLISION_CODE_MAP[collisionKey] || rawCode;
 
-  if (!sheetPeople.has(personKey)) {
-    // Ensure finalCode isn't already claimed by a different person
-    while (usedCodes.has(finalCode)) {
-      finalCode = finalCode + '_dup';
-    }
+  if (!sheetPeople.has(collisionKey)) {
+    while (usedCodes.has(finalCode)) finalCode = finalCode + '_dup';
     usedCodes.add(finalCode);
-
-    sheetPeople.set(personKey, {
-      code: finalCode,
-      rawCode,
-      name: s.name.trim(),
-      area: s.area || '',
-      phone: s.phone || '',
-      parentPhone: s.parentPhone || '',
-      grade: s.grade || '',
-      specialization: s.specialization || '',
-      regDate: s.regDate || '',
+    sheetPeople.set(collisionKey, {
+      code: finalCode, rawCode, name: s.name.trim(),
+      area: s.area || '', phone: s.phone || '', parentPhone: s.parentPhone || '',
+      grade: s.grade || '', specialization: s.specialization || '', regDate: s.regDate || '',
       subjects: new Map()
     });
   }
 
-  const st = sheetPeople.get(personKey);
+  const st = sheetPeople.get(collisionKey);
   if (s.name && s.name.trim().length > st.name.length) st.name = s.name.trim();
   if (s.phone && s.phone.trim()) st.phone = s.phone.trim();
   if (s.parentPhone && s.parentPhone.trim()) st.parentPhone = s.parentPhone.trim();
@@ -109,9 +88,7 @@ sheetRaw.forEach(s => {
   if (s.grade && s.grade.trim()) st.grade = s.grade.trim();
   if (s.specialization && s.specialization.trim()) st.specialization = s.specialization.trim();
 
-  const ts = s.teachersSummary || '';
-  const parts = ts.split('|').map(x => x.trim()).filter(Boolean);
-  parts.forEach(p => {
+  (s.teachersSummary || '').split('|').map(x => x.trim()).filter(Boolean).forEach(p => {
     const slash = p.indexOf('/');
     if (slash === -1) return;
     const sub = canonSub(p.substring(0, slash).trim());
@@ -119,33 +96,38 @@ sheetRaw.forEach(s => {
     if (!sub || !teacher) return;
 
     if (!st.subjects.has(sub)) {
-      st.subjects.set(sub, {
-        teacher,
-        hissas: Array(8).fill(''),
-        oct: Array(8).fill(''),
-        nov: Array(8).fill('')
-      });
+      st.subjects.set(sub, { teacher, hissas: Array(8).fill(''), oct: Array(8).fill(''), nov: Array(8).fill('') });
     }
     const entry = st.subjects.get(sub);
     entry.teacher = teacher;
 
-    const mHissas = p.match(/\[حصص:\s*([^\]]+)\]/);
-    const mOct = p.match(/\[شهر 10(?:\s*\(أكتوبر\))?:\s*([^\]]+)\]/);
-    const mNov = p.match(/\[شهر 11(?:\s*\(نوفمبر\))?:\s*([^\]]+)\]/);
-
-    if (mHissas) mHissas[1].split(',').forEach((v, i) => { v = v.trim(); if (v && v !== '_' && v !== '-' && i < 8) entry.hissas[i] = v; });
-    if (mOct) mOct[1].split(',').forEach((v, i) => { v = v.trim(); if (v && v !== '_' && v !== '-' && i < 8) entry.oct[i] = v; });
-    if (mNov) mNov[1].split(',').forEach((v, i) => { v = v.trim(); if (v && v !== '_' && v !== '-' && i < 8) entry.nov[i] = v; });
+    const mH = p.match(/\[حصص:\s*([^\]]+)\]/);
+    const mO = p.match(/\[شهر 10(?:\s*\(أكتوبر\))?:\s*([^\]]+)\]/);
+    const mN = p.match(/\[شهر 11(?:\s*\(نوفمبر\))?:\s*([^\]]+)\]/);
+    if (mH) mH[1].split(',').forEach((v, i) => { v = v.trim(); if (v && v !== '_' && v !== '-' && i < 8) entry.hissas[i] = v; });
+    if (mO) mO[1].split(',').forEach((v, i) => { v = v.trim(); if (v && v !== '_' && v !== '-' && i < 8) entry.oct[i] = v; });
+    if (mN) mN[1].split(',').forEach((v, i) => { v = v.trim(); if (v && v !== '_' && v !== '-' && i < 8) entry.nov[i] = v; });
   });
 });
 
-// Map railway students by code AND by norm(name)
-const rwByCode = new Map();
-const rwByName = new Map();
-rwStudents.forEach(s => {
-  rwByCode.set(String(s.code).trim(), s);
-  if (s.name) rwByName.set(norm(s.name), s);
-});
+const idxMap = (arr) => {
+  const byCode = new Map(), byName = new Map();
+  arr.forEach(s => { byCode.set(String(s.code).trim(), s); if (s.name) byName.set(norm(s.name), s); });
+  return { byCode, byName };
+};
+const m5c = idxMap(g5c);
+const m941 = idxMap(g941);
+const mRw = idxMap(rwStudents);
+
+const findSub = (mapObj, code, name, subName) => {
+  const s = mapObj.byCode.get(code) || mapObj.byName.get(norm(name));
+  if (!s || !s.academicSubjects) return null;
+  if (s.academicSubjects[subName]) return s.academicSubjects[subName];
+  for (const [k, v] of Object.entries(s.academicSubjects)) {
+    if (canonSub(k) === subName) return v;
+  }
+  return null;
+};
 
 let studentsInserted = 0, enrollmentsInserted = 0, octMarks = 0, novMarks = 0;
 
@@ -153,23 +135,31 @@ for (const st of sheetPeople.values()) {
   db.upsertStudent(st);
   studentsInserted++;
 
-  const rw = rwByCode.get(st.code) || rwByName.get(norm(st.name));
-
   for (const [subName, subData] of st.subjects.entries()) {
     db.setEnrollment(st.code, subName, subData.teacher);
     enrollmentsInserted++;
 
-    const rwSub = rw && rw.academicSubjects && rw.academicSubjects[subName];
-    const rwOct = (rwSub && rwSub.months && rwSub.months['شهر 10 (أكتوبر)']) || Array(8).fill('');
-    const rwNov = (rwSub && rwSub.months && rwSub.months['شهر 11 (نوفمبر)']) || Array(8).fill('');
+    const sub5 = findSub(m5c, st.code, st.name, subName);
+    const sub941 = findSub(m941, st.code, st.name, subName);
+    const subRw = findSub(mRw, st.code, st.name, subName);
 
-    // October: pristine baseline from rwOct (if not /15) or sheet oct
+    const o5 = (sub5 && sub5.months && sub5.months['شهر 10 (أكتوبر)']) || Array(8).fill('');
+    const rwOct = (subRw && subRw.months && subRw.months['شهر 10 (أكتوبر)']) || Array(8).fill('');
+    const n941 = (sub941 && sub941.months && sub941.months['شهر 11 (نوفمبر)']) || Array(8).fill('');
+    const rwNov = (subRw && subRw.months && subRw.months['شهر 11 (نوفمبر)']) || Array(8).fill('');
+
+    // Check if sheet [شهر 10] was contaminated by November (e.g. Hamada /15 where 5cd6bf9 had ✓/غ)
+    const sheetOctIsContaminated = subData.oct.some((v, i) => v && v.includes('/15') && o5[i] && !o5[i].includes('/15'));
+
+    // 1. OCTOBER: 5cd6bf9 (pure Oct 18 baseline) > sheet [شهر 10] (if not contaminated) > rwOct
     for (let i = 0; i < 8; i++) {
-      let mark = '';
-      if (rwOct[i] && rwOct[i].trim() && !rwOct[i].includes('/15')) {
-        mark = rwOct[i].trim();
-      } else if (subData.oct[i] && subData.oct[i].trim() && !subData.oct[i].includes('/15')) {
-        mark = subData.oct[i].trim();
+      let mark = (o5[i] || '').trim();
+      if (!mark) {
+        if (subData.oct[i] && (!sheetOctIsContaminated || !subData.oct[i].includes('/15'))) {
+          mark = subData.oct[i].trim();
+        } else if (rwOct[i] && !rwOct[i].includes('/15')) {
+          mark = rwOct[i].trim();
+        }
       }
       if (mark) {
         db.recordAttendance(st.code, subName, 'شهر 10 (أكتوبر)', i + 1, mark);
@@ -177,13 +167,15 @@ for (const st of sheetPeople.values()) {
       }
     }
 
-    // November: sheet nov + sheet hissas (only if not identical to oct, or if nov is empty) + rwNov
-    const hissasIsOct = subData.hissas.some(Boolean) && subData.oct.some(Boolean) && subData.hissas.every((v, i) => v === subData.oct[i]);
+    // 2. NOVEMBER:
+    // Use sheet [شهر 11] as primary; fill missing slots from [حصص] ONLY if [حصص] is NOT pure October
+    const hissasMatchesTrueOct = subData.hissas.some(Boolean) && subData.hissas.every((v, i) => !v || v === (o5[i] || subData.oct[i] || ''));
     for (let i = 0; i < 8; i++) {
-      const n = subData.nov[i];
-      const h = hissasIsOct ? '' : subData.hissas[i];
-      const r = rwNov[i];
-      const mark = (n || h || r || '').trim();
+      const n = (subData.nov[i] || '').trim();
+      const h = (hissasMatchesTrueOct && !sheetOctIsContaminated) ? '' : (subData.hissas[i] || '').trim();
+      const r941 = (n941[i] || '').trim();
+      const rRw = (rwNov[i] || '').trim();
+      const mark = n || h || rRw || r941 || '';
       if (mark) {
         db.recordAttendance(st.code, subName, 'شهر 11 (نوفمبر)', i + 1, mark);
         novMarks++;
@@ -195,16 +187,6 @@ for (const st of sheetPeople.values()) {
 console.log(`✅ Students: ${studentsInserted}, Enrollments: ${enrollmentsInserted}, Oct marks: ${octMarks}, Nov marks: ${novMarks}`);
 
 const allStudents = db.getAllStudents('شهر 11 (نوفمبر)');
-const byTG = {};
-allStudents.forEach(s => {
-  Object.entries(s.academicSubjects || {}).forEach(([sub, d]) => {
-    const k = `${d.teacher} | ${s.grade}`;
-    byTG[k] = (byTG[k] || 0) + 1;
-  });
-});
-console.log('\n--- VERIFIED TEACHER+GRADE COUNTS ---');
-Object.entries(byTG).sort().forEach(([k, v]) => console.log(k.padEnd(32), v));
-
 fs.writeFileSync('students_db.json', JSON.stringify(allStudents, null, 2), 'utf8');
 fs.writeFileSync('data.js', `window.STUDENTS_DATA = ${JSON.stringify(allStudents, null, 2)};\n`, 'utf8');
-console.log('\n✅ Saved araij.db, students_db.json, and data.js!');
+console.log('✅ Saved araij.db, students_db.json, and data.js!');
