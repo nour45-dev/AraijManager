@@ -8,6 +8,9 @@ const WebSocket = require('ws');
 const app = express();
 const server = http.createServer(app);
 
+const { AraijDatabase } = require('./db.js');
+const dbInstance = new AraijDatabase();
+
 // ✅ FIX 1: تحديد مسار /ws بشكل صريح لضمان عمل الـ reverse proxy على Railway
 const wss = new WebSocket.Server({ server, path: '/ws' });
 
@@ -49,12 +52,17 @@ function saveDeletedCodes() {
 // 1. Initialize Students Database
 function initDatabase() {
   try {
-    if (fs.existsSync(DB_FILE)) {
+    const fromDb = dbInstance.getAllStudents('شهر 11 (نوفمبر)');
+    if (fromDb && fromDb.length >= 500) {
+      students = fromDb.filter(s => s && s.name && !deletedCodes.includes(String(s.code || '').trim()));
+      console.log(`[DB] Loaded ${students.length} valid students from SQLite database`);
+    } else if (fs.existsSync(DB_FILE)) {
       const raw = fs.readFileSync(DB_FILE, 'utf8');
       const loaded = JSON.parse(raw);
       const arr = Array.isArray(loaded) ? loaded : Object.values(loaded);
       students = arr.filter(s => s && s.name && s.name.trim() && s.name.trim().length >= 2 && !s.name.includes('غير مسمى') && !deletedCodes.includes(String(s.code || '').trim()));
       console.log(`[DB] Loaded ${students.length} valid students from students_db.json`);
+      students.forEach(st => dbInstance.syncFullStudent(st));
     }
 
     // Fail-safe: If DB had fewer than 500 students, seed/restore from data.js
@@ -69,6 +77,7 @@ function initDatabase() {
           const parsedArr = Array.isArray(rawParsed) ? rawParsed : Object.values(rawParsed);
           students = parsedArr.filter(s => s && s.name && s.name.trim() && s.name.trim().length >= 2 && !s.name.includes('غير مسمى'));
           saveDatabase();
+          students.forEach(st => dbInstance.syncFullStudent(st));
           console.log(`[DB] Seeded ${students.length} valid students from data.js`);
         }
       }
@@ -94,8 +103,11 @@ function saveDatabase() {
       return;
     }
     fs.writeFileSync(DB_FILE, JSON.stringify(students, null, 2), 'utf8');
+    const dataJsPath = path.join(__dirname, 'data.js');
+    fs.writeFileSync(dataJsPath, `window.STUDENTS_DATA = ${JSON.stringify(students, null, 2)};\n`, 'utf8');
+    students.forEach(st => dbInstance.syncFullStudent(st));
   } catch (err) {
-    console.error('[DB] Error saving students_db.json:', err);
+    console.error('[DB] Error saving students_db.json / data.js:', err);
   }
 }
 
@@ -467,6 +479,7 @@ function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null,
     const target = students.find(s => String(s.code).trim() === code);
     const targetName = target ? target.name : '';
     students = students.filter(s => String(s.code).trim() !== code);
+    dbInstance.deleteStudent(code);
     updatedCount = 1;
 
     auditLogs.unshift({
@@ -1031,9 +1044,8 @@ async function syncFromGoogleSheets() {
   }
 }
 
-// Non-destructive startup & periodic sync from Google Sheets so Railway container restarts never lose newly registered students
-setTimeout(syncFromGoogleSheets, 4000);
-setInterval(syncFromGoogleSheets, 180000);
+// Note: Automatic sheet overwrites disabled to ensure SQLite / JSON database acts as the single source of truth.
+// Manual sync remains available via /api/force_sync_sheets
 
 
 // REST Endpoints
