@@ -96,7 +96,7 @@ function initDatabase() {
   }
 }
 
-function saveDatabase() {
+function saveDatabase(changedStudents = null) {
   try {
     if (!Array.isArray(students) || students.length === 0) {
       console.warn('[DB] Refusing to overwrite students_db.json with empty or invalid array');
@@ -105,7 +105,11 @@ function saveDatabase() {
     fs.writeFileSync(DB_FILE, JSON.stringify(students, null, 2), 'utf8');
     const dataJsPath = path.join(__dirname, 'data.js');
     fs.writeFileSync(dataJsPath, `window.STUDENTS_DATA = ${JSON.stringify(students, null, 2)};\n`, 'utf8');
-    students.forEach(st => dbInstance.syncFullStudent(st));
+    const targets = Array.isArray(changedStudents) && changedStudents.length > 0 ? changedStudents : students;
+    targets.forEach(st => dbInstance.syncFullStudent(st));
+    if (dbInstance.hasPostgres && Array.isArray(changedStudents) && changedStudents.length > 0) {
+      dbInstance.pgSyncStudents(changedStudents).catch(err => console.error('[DB/PG] Async sync error:', err.message));
+    }
   } catch (err) {
     console.error('[DB] Error saving students_db.json / data.js:', err);
   }
@@ -418,6 +422,8 @@ const _recentSheetForwards = new Map();
 // Central Handler for Sync Actions (both REST & WS)
 function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null, clientId = '') {
   let updatedCount = 0;
+  const changedStudents = [];
+  let addedAuditLog = false;
   const now = new Date();
   const dateStr = now.toLocaleDateString('ar-EG');
   const timeStr = now.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -428,9 +434,11 @@ function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null,
     const existingIdx = students.findIndex(s => String(s.code).trim() === code);
     if (existingIdx >= 0) {
       students[existingIdx] = mergeStudentDeep(students[existingIdx], newSt);
+      changedStudents.push(students[existingIdx]);
     } else {
       rebuildStudentSummary(newSt);
       students.unshift(newSt);
+      changedStudents.push(newSt);
     }
     updatedCount = 1;
 
@@ -445,6 +453,7 @@ function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null,
       timeStr,
       fullTime: `${dateStr} - ${timeStr}`
     });
+    addedAuditLog = true;
 
   } else if (action === 'update_student') {
     const updated = payload.student || payload;
@@ -452,9 +461,11 @@ function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null,
     const idx = students.findIndex(s => String(s.code).trim() === code);
     if (idx >= 0) {
       students[idx] = mergeStudentDeep(students[idx], updated);
+      changedStudents.push(students[idx]);
     } else {
       rebuildStudentSummary(updated);
       students.unshift(updated);
+      changedStudents.push(updated);
     }
     updatedCount = 1;
 
@@ -469,6 +480,7 @@ function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null,
       timeStr,
       fullTime: `${dateStr} - ${timeStr}`
     });
+    addedAuditLog = true;
 
   } else if (action === 'delete_student') {
     const code = String(payload.code || '').trim();
@@ -493,6 +505,7 @@ function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null,
       timeStr,
       fullTime: `${dateStr} - ${timeStr}`
     });
+    addedAuditLog = true;
 
   } else if (action === 'batch_update_students' || action === 'bulk_session') {
     const batchList = payload.students || [];
@@ -501,9 +514,11 @@ function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null,
       const idx = students.findIndex(s => String(s.code).trim() === code);
       if (idx >= 0) {
         students[idx] = mergeStudentDeep(students[idx], st);
+        changedStudents.push(students[idx]);
       } else {
         rebuildStudentSummary(st);
         students.unshift(st);
+        changedStudents.push(st);
       }
     });
     updatedCount = batchList.length;
@@ -519,14 +534,19 @@ function handleSyncAction(action, payload, byUser = 'مشرف', sourceWs = null,
       timeStr,
       fullTime: `${dateStr} - ${timeStr}`
     });
+    addedAuditLog = true;
 
   } else if (action === 'log_activity') {
     const log = payload.log || payload;
     auditLogs.unshift(log);
+    addedAuditLog = true;
   }
 
-  saveDatabase();
+  saveDatabase(changedStudents);
   saveAuditLogs();
+  if (addedAuditLog && auditLogs[0] && dbInstance.hasPostgres) {
+    dbInstance.pgAddAuditLog(auditLogs[0]).catch(err => console.error('[DB/PG] audit log error:', err.message));
+  }
 
   // ✅ FIX 4: Broadcast مع sound: true لتشغيل الصوت عند كل المشرفين
   broadcast({
@@ -1053,7 +1073,8 @@ app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
     app: 'Araij Manager Pro',
-    version: '4.1.0',
+    version: '6.3.0',
+    dbEngine: dbInstance.engine,
     clientsCount: wss.clients.size,
     studentsCount: students.length,
     time: new Date().toISOString()
@@ -1126,12 +1147,42 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Start Server
-server.listen(PORT, '0.0.0.0', () => {
-  console.log(`====================================================`);
-  console.log(`🚀 Araij Manager Live Server running on port ${PORT}`);
-  console.log(`🌐 Web App: http://localhost:${PORT}`);
-  console.log(`⚡ WebSocket Server: Ready at ws://localhost:${PORT}/ws`);
-  console.log(`💥 Loaded ${students.length} students into memory`);
-  console.log(`====================================================`);
-});
+// Start Server (initialize PostgreSQL if DATABASE_URL is configured)
+async function startServer() {
+  await dbInstance.init();
+  if (dbInstance.hasPostgres) {
+    try {
+      const pgStudents = await dbInstance.pgGetAllStudents('شهر 11 (نوفمبر)');
+      if (pgStudents && pgStudents.length > 0) {
+        const pgDeleted = await dbInstance.pgGetDeletedCodes();
+        if (pgDeleted.length > 0) {
+          deletedCodes = [...new Set([...deletedCodes, ...pgDeleted])];
+          saveDeletedCodes();
+        }
+        students = pgStudents.filter(s => s && s.name && !deletedCodes.includes(String(s.code || '').trim()));
+        const pgLogs = await dbInstance.pgGetAuditLogs(500);
+        if (pgLogs && pgLogs.length > 0) {
+          auditLogs = pgLogs;
+        }
+        saveDatabase();
+        console.log(`[DB/PG] Loaded ${students.length} students from PostgreSQL!`);
+      } else if (students && students.length > 0) {
+        await dbInstance.pgSeedInitial(students, auditLogs, deletedCodes);
+      }
+    } catch (err) {
+      console.error('[DB/PG] Startup load/seed error:', err.message);
+    }
+  }
+
+  server.listen(PORT, '0.0.0.0', () => {
+    console.log(`====================================================`);
+    console.log(`🚀 Araij Manager Live Server running on port ${PORT}`);
+    console.log(`🌐 Web App: http://localhost:${PORT}`);
+    console.log(`⚡ WebSocket Server: Ready at ws://localhost:${PORT}/ws`);
+    console.log(`🗄️ Database Engine: ${dbInstance.engine}`);
+    console.log(`💥 Loaded ${students.length} students into memory`);
+    console.log(`====================================================`);
+  });
+}
+
+startServer();
