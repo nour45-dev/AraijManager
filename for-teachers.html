@@ -70,11 +70,11 @@
       box-shadow: 0 10px 25px rgba(245, 158, 11, 0.28);
     }
     html {
-      font-size: 17.5px;
+      font-size: 18px;
     }
     @media (min-width: 1024px) {
       html {
-        font-size: 18.5px;
+        font-size: 19px;
       }
     }
     .bg-grid {
@@ -97,13 +97,14 @@
   <!-- Navbar -->
   <header class="sticky top-0 z-50 glass border-b border-slate-200/80 dark:border-slate-800/80 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-3 flex items-center justify-between gap-3">
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="relative h-12 sm:h-14 rounded-2xl bg-white px-2 py-1 flex items-center justify-center shadow-md ring-1 ring-slate-200 dark:ring-slate-700 group-hover:scale-105 transition overflow-hidden">
-          <img src="/elm-logo.png" alt="منصة عِلم ينتفع به" class="h-full w-auto object-contain" />
+      <a href="#" class="flex items-center gap-3.5 group">
+        <div class="relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#0D1B2A] p-0.5 flex items-center justify-center shadow-lg ring-1 ring-amber-400/50 group-hover:scale-105 transition overflow-hidden shrink-0">
+          <img src="/elm-logo-light.png" alt="منصة عِلم ينتفع به" class="w-full h-full object-cover rounded-xl dark:hidden" />
+          <img src="/elm-logo.png" alt="منصة عِلم ينتفع به" class="w-full h-full object-cover rounded-xl hidden dark:block" />
         </div>
         <div>
-          <span class="font-black text-xl sm:text-2xl block leading-tight tracking-tight">منصة عِلم <span class="text-amber-600 dark:text-amber-400">للأعمال</span></span>
-          <span class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-bold">يَنتَفِعُ بِهِ • بتطوير Nour Tech</span>
+          <span class="font-black text-2xl sm:text-[1.65rem] block leading-tight tracking-tight">منصة عِلم <span class="text-[#D4A017]">للأعمال</span></span>
+          <span class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-bold">عِلمٌ يُنتَفَعُ بِهِ • بتطوير Nour Tech</span>
         </div>
       </a>
 
@@ -156,23 +157,23 @@
           </div>
 
           <!-- Partner Trust Strip -->
-          <div class="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl glass border border-slate-200 dark:border-slate-800 shadow-sm">
-            <img src="/elm-logo.png" alt="منصة عِلم" class="h-10 w-auto rounded-xl bg-white p-1 object-contain shrink-0 ring-1 ring-slate-200" />
+          <div class="inline-flex items-center gap-3.5 px-4 py-3 rounded-2xl glass border border-slate-200 dark:border-slate-800 shadow-sm">
+            <img src="/elm-logo.png" alt="منصة عِلم" class="w-11 h-11 rounded-xl bg-[#0D1B2A] object-cover shrink-0 ring-1 ring-amber-400/50 shadow" />
             <div class="text-right">
-              <div class="text-sm font-black text-slate-800 dark:text-slate-100">منظومة عِلم مُجربة وتعمل يومياً في أكبر السناتر</div>
-              <div class="text-xs font-bold text-slate-500 dark:text-slate-400">أكثر من 5,000 طالب نشط • بث مباشر + امتحانات + متابعة ولي الأمر</div>
+              <div class="text-sm sm:text-base font-black text-slate-800 dark:text-slate-100">منظومة عِلم مُجربة وتعمل يومياً في أكبر السناتر</div>
+              <div class="text-xs sm:text-sm font-bold text-slate-500 dark:text-slate-400">أكثر من 5,000 طالب نشط • بث مباشر + امتحانات + متابعة ولي الأمر</div>
             </div>
           </div>
         </div>
 
         <!-- Executive Dashboard Mockup Preview -->
         <div class="lg:col-span-5">
-          <div class="relative rounded-3xl bg-slate-900 text-white p-5 sm:p-6 border border-slate-700/80 shadow-2xl shadow-slate-900/30 overflow-hidden">
+          <div class="relative rounded-3xl bg-[#0D1B2A] text-white p-5 sm:p-6 border border-slate-700/80 shadow-2xl shadow-slate-900/40 overflow-hidden">
             <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
-              <div class="flex items-center gap-2.5">
-                <img src="/elm-logo.png" alt="منصة عِلم" class="h-9 w-auto rounded-xl bg-white px-1.5 py-0.5 object-contain shadow" />
+              <div class="flex items-center gap-3">
+                <img src="/elm-logo.png" alt="منصة عِلم" class="w-11 h-11 rounded-xl bg-[#0D1B2A] object-cover ring-1 ring-amber-400/50 shadow" />
                 <div>
-                  <div class="text-sm font-black text-white">منصة عِلم التعليمية • PRO</div>
+                  <div class="text-sm sm:text-base font-black text-white">منصة عِلم التعليمية • PRO</div>
                   <div class="text-xs text-emerald-400 font-bold flex items-center gap-1">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> متصل لحظياً بقاعدة البيانات
                   </div>
@@ -494,11 +495,11 @@
   <!-- Footer -->
   <footer class="border-t border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 py-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm font-bold text-slate-500 dark:text-slate-400">
-      <div class="flex items-center gap-3">
-        <img src="/elm-logo.png" alt="منصة عِلم" class="h-11 w-auto rounded-xl bg-white px-2 py-1 border border-slate-200 object-contain" />
+      <div class="flex items-center gap-3.5">
+        <img src="/elm-logo.png" alt="منصة عِلم" class="w-12 h-12 rounded-xl bg-[#0D1B2A] object-cover ring-1 ring-amber-400/50 shadow" />
         <div>
-          <p class="text-slate-800 dark:text-slate-200 font-black text-base">منصة عِلم للأعمال — بتطوير Nour Tech</p>
-          <p class="text-xs">جميع الحقوق محفوظة © 2026</p>
+          <p class="text-slate-800 dark:text-slate-200 font-black text-base sm:text-lg">منصة عِلم للأعمال — بتطوير Nour Tech</p>
+          <p class="text-xs sm:text-sm">جميع الحقوق محفوظة © 2026</p>
         </div>
       </div>
       <div class="flex flex-wrap items-center gap-4 text-xs sm:text-sm">
