@@ -118,10 +118,10 @@
       </a>
 
       <nav class="hidden lg:flex items-center gap-5 xl:gap-6 text-sm font-bold text-slate-600 dark:text-slate-300 shrink-0">
-        <a href="#interactive-demo" class="hover:text-amber-600 transition whitespace-nowrap">استعراض المميزات</a>
-        <a href="#all-features" class="hover:text-amber-600 transition whitespace-nowrap">كل الإمكانيات</a>
-        <a href="#roi-calc" class="hover:text-amber-600 transition whitespace-nowrap">حاسبة العائد</a>
-        <a href="#pricing" class="hover:text-amber-600 transition whitespace-nowrap">الباقات والأسعار</a>
+        <a href="/for-teachers/features" data-scroll-target="interactive-demo" class="hover:text-amber-600 transition whitespace-nowrap">استعراض المميزات</a>
+        <a href="/for-teachers/capabilities" data-scroll-target="all-features" class="hover:text-amber-600 transition whitespace-nowrap">كل الإمكانيات</a>
+        <a href="/for-teachers/roi" data-scroll-target="roi-calc" class="hover:text-amber-600 transition whitespace-nowrap">حاسبة العائد</a>
+        <a href="/for-teachers/pricing" data-scroll-target="pricing" class="hover:text-amber-600 transition whitespace-nowrap">الباقات والأسعار</a>
       </nav>
 
       <div class="flex items-center gap-2 shrink-0">
@@ -129,7 +129,7 @@
           <span>معاينة لايف ↗</span>
         </a>
         <button id="themeToggle" class="p-2 sm:p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-sm font-bold transition" title="تبديل الوضع الليلي">🌙</button>
-        <a href="#demo-form" class="px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-black text-xs sm:text-sm shadow-md shadow-amber-500/20 transition whitespace-nowrap">
+        <a href="/for-teachers/order" data-scroll-target="demo-form" class="px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-black text-xs sm:text-sm shadow-md shadow-amber-500/20 transition whitespace-nowrap">
           <span class="sm:hidden">اطلب الآن</span>
           <span class="hidden sm:inline">اطلب منصتك الآن</span>
         </a>
@@ -160,7 +160,7 @@
           </p>
 
           <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center lg:justify-start gap-3 mb-7">
-            <a href="#demo-form" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-black text-sm sm:text-base shadow-xl animate-pulseGlow transition transform hover:-translate-y-0.5 text-center">
+            <a href="/for-teachers/order" data-scroll-target="demo-form" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-black text-sm sm:text-base shadow-xl animate-pulseGlow transition transform hover:-translate-y-0.5 text-center">
               احجز نسختك التجريبية مجاناً 🚀
             </a>
             <a href="https://elm.up.railway.app/?demo=1" target="_blank" class="px-6 py-3.5 rounded-2xl glass border border-slate-300 dark:border-slate-700 hover:border-blue-500 font-extrabold text-sm sm:text-base transition transform hover:-translate-y-0.5 text-center">
@@ -705,13 +705,45 @@
     studentsRange.addEventListener('input', updateROI);
     feeRange.addEventListener('input', updateROI);
 
-    // Package Select
+    // Clean Slash-URL Navigation (no #hashes in address bar)
+    const SLASH_SECTION_MAP = {
+      '/for-teachers/features': 'interactive-demo',
+      '/for-teachers/capabilities': 'all-features',
+      '/for-teachers/roi': 'roi-calc',
+      '/for-teachers/pricing': 'pricing',
+      '/for-teachers/order': 'demo-form'
+    };
+
+    document.querySelectorAll('a[data-scroll-target]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('data-scroll-target');
+        const nextUrl = link.getAttribute('href');
+        const el = document.getElementById(targetId);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        if (nextUrl && window.location.pathname !== nextUrl) {
+          try { window.history.pushState(null, '', nextUrl); } catch (err) {}
+        }
+      });
+    });
+
+    // Auto-scroll if user opened a clean path directly (e.g. /for-teachers/pricing)
+    window.addEventListener('DOMContentLoaded', () => {
+      const targetId = SLASH_SECTION_MAP[window.location.pathname];
+      if (targetId) {
+        const el = document.getElementById(targetId);
+        if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 150);
+      }
+    });
+
+    // Package Select (updates clean slash URL /for-teachers/order)
     function selectPackage(pkgName) {
       const pkgSelect = document.getElementById('selectedPkg');
       if (pkgName.includes('الانطلاق')) pkgSelect.selectedIndex = 0;
       else if (pkgName.includes('الذكية')) pkgSelect.selectedIndex = 1;
       else if (pkgName.includes('النخبة')) pkgSelect.selectedIndex = 2;
       else pkgSelect.value = pkgName;
+      try { window.history.pushState(null, '', '/for-teachers/order'); } catch (err) {}
       document.getElementById('demo-form').scrollIntoView({ behavior: 'smooth' });
     }
 
