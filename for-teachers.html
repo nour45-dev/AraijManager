@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>منصة عِلم للأعمال | امتلك منصتك التعليمية المتكاملة بالذكاء الاصطناعي</title>
   <meta name="description" content="نظام متكامل للمدرسين وأصحاب السناتر في مصر: بث مباشر، امتحانات إلكترونية بتصحيح فوري، مجلدات منظمة، حماية فيديو Anti-Leak، شحن InstaPay، وبوتات AI." />
-  <link rel="icon" type="image/png" href="/logo.png" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%230f172a'/%3E%3Cpath d='M20 6L32 12V21C32 28.2 26.8 33.6 20 35.5C13.2 33.6 8 28.2 8 21V12L20 6Z' fill='%23f59e0b' fill-opacity='0.22' stroke='%23f59e0b' stroke-width='2.2'/%3E%3Cpath d='M20 13L27 16.8L20 20.6L13 16.8L20 13Z' fill='%23fbbf24'/%3E%3C/svg%3E" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -89,7 +89,7 @@
   <!-- Navbar -->
   <header class="sticky top-0 z-50 glass border-b border-slate-200/80 dark:border-slate-800/80 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-3 flex items-center justify-between gap-3">
-      <a href="/" class="flex items-center gap-3 group">
+      <a href="#" class="flex items-center gap-3 group">
         <div class="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-amber-500 dark:to-orange-600 p-1.5 flex items-center justify-center shadow-lg ring-1 ring-amber-400/40 group-hover:scale-105 transition">
           <svg viewBox="0 0 40 40" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M20 4L34 11V21C34 29.2 28 35.4 20 37.5C12 35.4 6 29.2 6 21V11L20 4Z" fill="url(#elmGrad)" fill-opacity="0.2" stroke="url(#elmGrad)" stroke-width="2.2"/>
@@ -105,11 +105,7 @@
         </div>
         <div>
           <span class="font-black text-lg block leading-tight tracking-tight">منصة عِلم <span class="text-amber-600 dark:text-amber-400">للأعمال</span></span>
-          <span class="text-[11px] text-slate-500 dark:text-slate-400 font-bold flex items-center gap-1.5">
-            <span>بتطوير Nour Tech</span>
-            <span class="text-slate-300 dark:text-slate-600">•</span>
-            <span class="text-sky-600 dark:text-sky-400">شريك سنتر الأرائج</span>
-          </span>
+          <span class="text-[11px] text-slate-500 dark:text-slate-400 font-bold">بتطوير Nour Tech • حلول التعليم الذكي</span>
         </div>
       </a>
 
@@ -121,9 +117,8 @@
       </nav>
 
       <div class="flex items-center gap-2">
-        <a href="/" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-extrabold text-slate-600 dark:text-slate-300 transition">
-          <img src="/logo.png" alt="سنتر الأرائج" class="w-4 h-4 rounded object-contain" />
-          <span>العودة للمنصة</span>
+        <a href="https://elm.up.railway.app/" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-extrabold text-slate-600 dark:text-slate-300 transition">
+          <span>معاينة لايف ↗</span>
         </a>
         <button id="themeToggle" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-sm font-bold transition" title="تبديل الوضع الليلي">🌙</button>
         <a href="#demo-form" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-black text-xs sm:text-sm shadow-md shadow-amber-500/20 transition">اطلب منصتك الآن</a>
@@ -164,10 +159,15 @@
 
           <!-- Partner Trust Strip -->
           <div class="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl glass border border-slate-200 dark:border-slate-800 shadow-sm">
-            <img src="/logo.png" alt="سنتر الأرائج التعليمي" class="w-8 h-8 rounded-lg object-contain bg-white p-0.5 shadow-sm" />
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-slate-900 to-slate-800 p-1.5 flex items-center justify-center shrink-0 ring-1 ring-amber-400/40">
+              <svg viewBox="0 0 40 40" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 4L34 11V21C34 29.2 28 35.4 20 37.5C12 35.4 6 29.2 6 21V11L20 4Z" fill="#f59e0b" fill-opacity="0.2" stroke="#fbbf24" stroke-width="2.2"/>
+                <path d="M20 12L28 16.2L20 20.4L12 16.2L20 12Z" fill="#fbbf24"/>
+              </svg>
+            </div>
             <div class="text-right">
-              <div class="text-xs font-black text-slate-800 dark:text-slate-100">مُعتمدة وتعمل يومياً في سنتر الأرائج التعليمي</div>
-              <div class="text-[11px] font-bold text-slate-500 dark:text-slate-400">أكثر من 1,069 طالب مسجل + 17 مدرس بنظام حضور ودرجات لحظي</div>
+              <div class="text-xs font-black text-slate-800 dark:text-slate-100">منظومة عِلم مُجربة وتعمل يومياً في أكبر السناتر</div>
+              <div class="text-[11px] font-bold text-slate-500 dark:text-slate-400">أكثر من 5,000 طالب نشط • بث مباشر + امتحانات + متابعة ولي الأمر</div>
             </div>
           </div>
         </div>
@@ -177,9 +177,14 @@
           <div class="relative rounded-3xl bg-slate-900 text-white p-5 sm:p-6 border border-slate-700/80 shadow-2xl shadow-slate-900/30 overflow-hidden">
             <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
               <div class="flex items-center gap-2.5">
-                <img src="/logo.png" alt="لوجو السنتر" class="w-8 h-8 rounded-xl bg-white p-0.5 object-contain" />
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 p-1.5 flex items-center justify-center shadow">
+                  <svg viewBox="0 0 40 40" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 10L30 15.2L20 20.4L10 15.2L20 10Z" fill="#ffffff"/>
+                    <path d="M13 18.5V24C13 26.2 16.1 28 20 28C23.9 28 27 26.2 27 24V18.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+                  </svg>
+                </div>
                 <div>
-                  <div class="text-xs font-black text-white">منصتك التعليمية • PRO</div>
+                  <div class="text-xs font-black text-white">منصة عِلم التعليمية • PRO</div>
                   <div class="text-[10px] text-emerald-400 font-bold flex items-center gap-1">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> متصل لحظياً بقاعدة البيانات
                   </div>
@@ -502,14 +507,19 @@
   <footer class="border-t border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 py-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm font-bold text-slate-500 dark:text-slate-400">
       <div class="flex items-center gap-3">
-        <img src="/logo.png" alt="سنتر الأرائج" class="w-9 h-9 rounded-xl bg-white p-0.5 border border-slate-200 object-contain" />
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-900 to-slate-800 p-1.5 flex items-center justify-center ring-1 ring-amber-400/40">
+          <svg viewBox="0 0 40 40" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4L34 11V21C34 29.2 28 35.4 20 37.5C12 35.4 6 29.2 6 21V11L20 4Z" fill="#f59e0b" fill-opacity="0.2" stroke="#fbbf24" stroke-width="2.2"/>
+            <path d="M20 12L28 16.2L20 20.4L12 16.2L20 12Z" fill="#fbbf24"/>
+          </svg>
+        </div>
         <div>
           <p class="text-slate-800 dark:text-slate-200 font-black">منصة عِلم للأعمال — بتطوير Nour Tech</p>
           <p class="text-xs">جميع الحقوق محفوظة © 2026</p>
         </div>
       </div>
       <div class="flex flex-wrap items-center gap-4 text-xs sm:text-sm">
-        <a href="/" class="hover:text-sky-600 transition">العودة لسنتر الأرائج</a>
+        <a href="https://elm.up.railway.app/" target="_blank" class="hover:text-amber-600 transition">معاينة المنصة لايف ↗</a>
         <span class="text-slate-300 dark:text-slate-700">|</span>
         <a href="https://wa.me/201002169889" class="text-emerald-600 dark:text-emerald-400 hover:underline">واتساب المبيعات: 01002169889</a>
       </div>
