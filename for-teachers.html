@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>منصة عِلم للأعمال | امتلك منصتك التعليمية المتكاملة بالذكاء الاصطناعي</title>
   <meta name="description" content="نظام متكامل للمدرسين وأصحاب السناتر في مصر: بث مباشر، امتحانات إلكترونية بتصحيح فوري، مجلدات منظمة، حماية فيديو Anti-Leak، شحن InstaPay، وبوتات AI." />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%230f172a'/%3E%3Cpath d='M20 6L32 12V21C32 28.2 26.8 33.6 20 35.5C13.2 33.6 8 28.2 8 21V12L20 6Z' fill='%23f59e0b' fill-opacity='0.22' stroke='%23f59e0b' stroke-width='2.2'/%3E%3Cpath d='M20 13L27 16.8L20 20.6L13 16.8L20 13Z' fill='%23fbbf24'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/png" href="/elm-logo.png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -69,6 +69,14 @@
       border-color: transparent;
       box-shadow: 0 10px 25px rgba(245, 158, 11, 0.28);
     }
+    html {
+      font-size: 17.5px;
+    }
+    @media (min-width: 1024px) {
+      html {
+        font-size: 18.5px;
+      }
+    }
     .bg-grid {
       background-image:
         linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
@@ -90,22 +98,12 @@
   <header class="sticky top-0 z-50 glass border-b border-slate-200/80 dark:border-slate-800/80 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-3 flex items-center justify-between gap-3">
       <a href="#" class="flex items-center gap-3 group">
-        <div class="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-amber-500 dark:to-orange-600 p-1.5 flex items-center justify-center shadow-lg ring-1 ring-amber-400/40 group-hover:scale-105 transition">
-          <svg viewBox="0 0 40 40" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 4L34 11V21C34 29.2 28 35.4 20 37.5C12 35.4 6 29.2 6 21V11L20 4Z" fill="url(#elmGrad)" fill-opacity="0.2" stroke="url(#elmGrad)" stroke-width="2.2"/>
-            <path d="M20 12L28 16.2L20 20.4L12 16.2L20 12Z" fill="url(#elmGrad)"/>
-            <path d="M14.5 18.8V23.5C14.5 25.4 17 27 20 27C23 27 25.5 25.4 25.5 23.5V18.8" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
-            <defs>
-              <linearGradient id="elmGrad" x1="6" y1="4" x2="34" y2="37.5" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#FBBF24"/>
-                <stop offset="1" stop-color="#F97316"/>
-              </linearGradient>
-            </defs>
-          </svg>
+        <div class="relative h-12 sm:h-14 rounded-2xl bg-white px-2 py-1 flex items-center justify-center shadow-md ring-1 ring-slate-200 dark:ring-slate-700 group-hover:scale-105 transition overflow-hidden">
+          <img src="/elm-logo.png" alt="منصة عِلم ينتفع به" class="h-full w-auto object-contain" />
         </div>
         <div>
-          <span class="font-black text-lg block leading-tight tracking-tight">منصة عِلم <span class="text-amber-600 dark:text-amber-400">للأعمال</span></span>
-          <span class="text-[11px] text-slate-500 dark:text-slate-400 font-bold">بتطوير Nour Tech • حلول التعليم الذكي</span>
+          <span class="font-black text-xl sm:text-2xl block leading-tight tracking-tight">منصة عِلم <span class="text-amber-600 dark:text-amber-400">للأعمال</span></span>
+          <span class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-bold">يَنتَفِعُ بِهِ • بتطوير Nour Tech</span>
         </div>
       </a>
 
@@ -159,15 +157,10 @@
 
           <!-- Partner Trust Strip -->
           <div class="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl glass border border-slate-200 dark:border-slate-800 shadow-sm">
-            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-slate-900 to-slate-800 p-1.5 flex items-center justify-center shrink-0 ring-1 ring-amber-400/40">
-              <svg viewBox="0 0 40 40" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 4L34 11V21C34 29.2 28 35.4 20 37.5C12 35.4 6 29.2 6 21V11L20 4Z" fill="#f59e0b" fill-opacity="0.2" stroke="#fbbf24" stroke-width="2.2"/>
-                <path d="M20 12L28 16.2L20 20.4L12 16.2L20 12Z" fill="#fbbf24"/>
-              </svg>
-            </div>
+            <img src="/elm-logo.png" alt="منصة عِلم" class="h-10 w-auto rounded-xl bg-white p-1 object-contain shrink-0 ring-1 ring-slate-200" />
             <div class="text-right">
-              <div class="text-xs font-black text-slate-800 dark:text-slate-100">منظومة عِلم مُجربة وتعمل يومياً في أكبر السناتر</div>
-              <div class="text-[11px] font-bold text-slate-500 dark:text-slate-400">أكثر من 5,000 طالب نشط • بث مباشر + امتحانات + متابعة ولي الأمر</div>
+              <div class="text-sm font-black text-slate-800 dark:text-slate-100">منظومة عِلم مُجربة وتعمل يومياً في أكبر السناتر</div>
+              <div class="text-xs font-bold text-slate-500 dark:text-slate-400">أكثر من 5,000 طالب نشط • بث مباشر + امتحانات + متابعة ولي الأمر</div>
             </div>
           </div>
         </div>
@@ -177,20 +170,15 @@
           <div class="relative rounded-3xl bg-slate-900 text-white p-5 sm:p-6 border border-slate-700/80 shadow-2xl shadow-slate-900/30 overflow-hidden">
             <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
               <div class="flex items-center gap-2.5">
-                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 p-1.5 flex items-center justify-center shadow">
-                  <svg viewBox="0 0 40 40" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20 10L30 15.2L20 20.4L10 15.2L20 10Z" fill="#ffffff"/>
-                    <path d="M13 18.5V24C13 26.2 16.1 28 20 28C23.9 28 27 26.2 27 24V18.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
-                  </svg>
-                </div>
+                <img src="/elm-logo.png" alt="منصة عِلم" class="h-9 w-auto rounded-xl bg-white px-1.5 py-0.5 object-contain shadow" />
                 <div>
-                  <div class="text-xs font-black text-white">منصة عِلم التعليمية • PRO</div>
-                  <div class="text-[10px] text-emerald-400 font-bold flex items-center gap-1">
+                  <div class="text-sm font-black text-white">منصة عِلم التعليمية • PRO</div>
+                  <div class="text-xs text-emerald-400 font-bold flex items-center gap-1">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> متصل لحظياً بقاعدة البيانات
                   </div>
                 </div>
               </div>
-              <span class="px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 text-[10px] font-black">Anti-Leak 🛡️</span>
+              <span class="px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 text-xs font-black">Anti-Leak 🛡️</span>
             </div>
 
             <!-- Simulated Video Player with Watermark -->
@@ -507,14 +495,9 @@
   <footer class="border-t border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 py-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm font-bold text-slate-500 dark:text-slate-400">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-slate-900 to-slate-800 p-1.5 flex items-center justify-center ring-1 ring-amber-400/40">
-          <svg viewBox="0 0 40 40" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 4L34 11V21C34 29.2 28 35.4 20 37.5C12 35.4 6 29.2 6 21V11L20 4Z" fill="#f59e0b" fill-opacity="0.2" stroke="#fbbf24" stroke-width="2.2"/>
-            <path d="M20 12L28 16.2L20 20.4L12 16.2L20 12Z" fill="#fbbf24"/>
-          </svg>
-        </div>
+        <img src="/elm-logo.png" alt="منصة عِلم" class="h-11 w-auto rounded-xl bg-white px-2 py-1 border border-slate-200 object-contain" />
         <div>
-          <p class="text-slate-800 dark:text-slate-200 font-black">منصة عِلم للأعمال — بتطوير Nour Tech</p>
+          <p class="text-slate-800 dark:text-slate-200 font-black text-base">منصة عِلم للأعمال — بتطوير Nour Tech</p>
           <p class="text-xs">جميع الحقوق محفوظة © 2026</p>
         </div>
       </div>
