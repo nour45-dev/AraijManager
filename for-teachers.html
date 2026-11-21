@@ -70,12 +70,21 @@
       box-shadow: 0 10px 25px rgba(245, 158, 11, 0.28);
     }
     html {
-      font-size: 18px;
+      font-size: 15px;
+      scroll-behavior: smooth;
     }
-    @media (min-width: 1024px) {
+    @media (min-width: 640px) {
       html {
-        font-size: 19px;
+        font-size: 16px;
       }
+    }
+    @media (min-width: 1280px) {
+      html {
+        font-size: 16.5px;
+      }
+    }
+    body, button, input, select, textarea {
+      font-family: 'Cairo', sans-serif;
     }
     .bg-grid {
       background-image:
@@ -96,31 +105,31 @@
 
   <!-- Navbar -->
   <header class="sticky top-0 z-50 glass border-b border-slate-200/80 dark:border-slate-800/80 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-3 flex items-center justify-between gap-3">
-      <a href="#" class="flex items-center gap-3.5 group">
-        <div class="relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#0D1B2A] p-0.5 flex items-center justify-center shadow-lg ring-1 ring-amber-400/50 group-hover:scale-105 transition overflow-hidden shrink-0">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-2 sm:gap-4">
+      <a href="#" class="flex items-center gap-2.5 sm:gap-3.5 group min-w-0">
+        <div class="relative w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#0D1B2A] p-0.5 flex items-center justify-center shadow-lg ring-1 ring-amber-400/50 group-hover:scale-105 transition overflow-hidden shrink-0">
           <img src="/elm-logo-light.png" alt="منصة عِلم ينتفع به" class="w-full h-full object-cover rounded-xl dark:hidden" />
           <img src="/elm-logo.png" alt="منصة عِلم ينتفع به" class="w-full h-full object-cover rounded-xl hidden dark:block" />
         </div>
-        <div>
-          <span class="font-black text-2xl sm:text-[1.65rem] block leading-tight tracking-tight">منصة عِلم <span class="text-[#D4A017]">للأعمال</span></span>
-          <span class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-bold">عِلمٌ يُنتَفَعُ بِهِ • بتطوير Nour Tech</span>
+        <div class="min-w-0">
+          <span class="font-black text-lg sm:text-xl lg:text-2xl block leading-tight tracking-tight truncate">منصة عِلم <span class="text-[#D4A017]">للأعمال</span></span>
+          <span class="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-bold block truncate">عِلمٌ يُنتَفَعُ بِهِ • بتطوير Nour Tech</span>
         </div>
       </a>
 
-      <nav class="hidden lg:flex items-center gap-6 text-sm font-bold text-slate-600 dark:text-slate-300">
-        <a href="#interactive-demo" class="hover:text-amber-600 transition">استعراض المميزات</a>
-        <a href="#all-features" class="hover:text-amber-600 transition">كل الإمكانيات</a>
-        <a href="#roi-calc" class="hover:text-amber-600 transition">حاسبة العائد</a>
-        <a href="#pricing" class="hover:text-amber-600 transition">الباقات والأسعار</a>
+      <nav class="hidden lg:flex items-center gap-5 xl:gap-6 text-sm font-bold text-slate-600 dark:text-slate-300 shrink-0">
+        <a href="#interactive-demo" class="hover:text-amber-600 transition whitespace-nowrap">استعراض المميزات</a>
+        <a href="#all-features" class="hover:text-amber-600 transition whitespace-nowrap">كل الإمكانيات</a>
+        <a href="#roi-calc" class="hover:text-amber-600 transition whitespace-nowrap">حاسبة العائد</a>
+        <a href="#pricing" class="hover:text-amber-600 transition whitespace-nowrap">الباقات والأسعار</a>
       </nav>
 
-      <div class="flex items-center gap-2">
-        <a href="https://elm.up.railway.app/" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-extrabold text-slate-600 dark:text-slate-300 transition">
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="https://elm.up.railway.app/" target="_blank" class="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-extrabold text-slate-600 dark:text-slate-300 transition whitespace-nowrap">
           <span>معاينة لايف ↗</span>
         </a>
-        <button id="themeToggle" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-sm font-bold transition" title="تبديل الوضع الليلي">🌙</button>
-        <a href="#demo-form" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-black text-xs sm:text-sm shadow-md shadow-amber-500/20 transition">اطلب منصتك الآن</a>
+        <button id="themeToggle" class="p-2 sm:p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-sm font-bold transition" title="تبديل الوضع الليلي">🌙</button>
+        <a href="#demo-form" class="px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-black text-xs sm:text-sm shadow-md shadow-amber-500/20 transition whitespace-nowrap">اطلب منصتك الآن</a>
       </div>
     </div>
   </header>
@@ -139,19 +148,19 @@
             <span>عرض الإطلاق: ابدأ من 650 ج.م/شهر — 0% عمولة على مبيعاتك</span>
           </div>
 
-          <h1 class="text-3xl sm:text-5xl lg:text-[3.35rem] font-black tracking-tight leading-[1.18] mb-6">
+          <h1 class="text-2xl sm:text-4xl lg:text-[3.1rem] font-black tracking-tight leading-[1.22] mb-5">
             منصتك التعليمية الخاصة <span class="gradient-text">باسمك ولوجو سنترك</span>
           </h1>
 
-          <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-semibold mb-8">
+          <p class="text-sm sm:text-base lg:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-semibold mb-7">
             نظام مصري متكامل للمدرسين وأصحاب السناتر: بث مباشر تفاعلي، امتحانات إلكترونية بتصحيح فوري، شحن <strong>InstaPay وفودافون كاش</strong>، حماية فيديو <strong>Anti-Leak</strong>، بوابة ولي الأمر، ومساعد ذكي 24/7.
           </p>
 
-          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3.5 mb-8">
-            <a href="#demo-form" class="px-7 py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-black text-base shadow-xl animate-pulseGlow transition transform hover:-translate-y-0.5">
+          <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center lg:justify-start gap-3 mb-7">
+            <a href="#demo-form" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-slate-950 font-black text-sm sm:text-base shadow-xl animate-pulseGlow transition transform hover:-translate-y-0.5 text-center">
               احجز نسختك التجريبية مجاناً 🚀
             </a>
-            <a href="https://elm.up.railway.app/" target="_blank" class="px-7 py-4 rounded-2xl glass border border-slate-300 dark:border-slate-700 hover:border-blue-500 font-extrabold text-base transition transform hover:-translate-y-0.5">
+            <a href="https://elm.up.railway.app/" target="_blank" class="px-6 py-3.5 rounded-2xl glass border border-slate-300 dark:border-slate-700 hover:border-blue-500 font-extrabold text-sm sm:text-base transition transform hover:-translate-y-0.5 text-center">
               شاهد المنصة شغالة لايف ↗
             </a>
           </div>
