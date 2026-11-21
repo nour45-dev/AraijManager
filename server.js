@@ -1139,6 +1139,11 @@ app.get('/api/get_students', (req, res) => {
   res.json(active);
 });
 
+// B2B Landing Page for Teachers
+app.get('/for-teachers', (req, res) => {
+  res.sendFile(path.join(__dirname, 'for-teachers.html'));
+});
+
 // Serve static frontend assets
 app.use(express.static(__dirname));
 

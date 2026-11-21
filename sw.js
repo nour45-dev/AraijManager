@@ -3,7 +3,7 @@
  * v4.4 — Fixed: API exclusion, Background Sync, proper cache strategy
  */
 
-const CACHE_NAME = 'araij-manager-v6.2';
+const CACHE_NAME = 'araij-manager-v6.4';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -27,6 +27,7 @@ const CDN_ASSETS = [
 // ✅ مسارات يجب استثناؤها من الكاش دائماً (API calls تُعيد دايماً من الشبكة)
 const BYPASS_CACHE_PATTERNS = [
   /\/api\//,
+  /\/for-teachers/,
   /\/ws$/,
   /script\.google\.com/,
   /docs\.google\.com/,
