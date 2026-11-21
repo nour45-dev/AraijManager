@@ -183,19 +183,22 @@
             </div>
 
             <!-- Simulated Video Player with Watermark -->
-            <div class="relative rounded-2xl bg-gradient-to-br from-slate-800 via-slate-900 to-blue-950 border border-slate-700 p-4 mb-4">
-              <div class="flex items-center justify-between text-[11px] text-slate-400 font-bold mb-2">
-                <span>📡 بث مباشر الآن • مراجعة الفصل الثالث</span>
+            <a href="https://elm.up.railway.app/" target="_blank" class="block relative rounded-2xl bg-gradient-to-br from-slate-800 via-slate-900 to-blue-950 border border-slate-700 hover:border-amber-400/60 p-4 mb-4 transition group">
+              <div class="flex items-center justify-between text-[11px] text-slate-300 font-bold mb-2">
+                <span>🎬 مراجعة الوحدة الأولى • البرمجة (م. نور الدين)</span>
                 <span class="text-rose-400 font-black">● LIVE 412 طالب</span>
               </div>
-              <div class="h-24 rounded-xl bg-slate-950/70 border border-slate-800 flex items-center justify-center relative overflow-hidden">
-                <div class="w-12 h-12 rounded-full bg-amber-500/20 border border-amber-400/50 flex items-center justify-center text-amber-400 text-xl">▶</div>
-                <span class="absolute bottom-2 left-3 text-[10px] font-mono text-white/30 select-none">ID #3596 • 01002169889</span>
+              <div class="h-36 sm:h-40 rounded-xl bg-slate-950/90 border border-slate-800 flex items-center justify-center relative overflow-hidden">
+                <img src="https://pub-dbe9f40fb807406bbd61ea234a334559.r2.dev/thumbnails/1793723413013-WhatsApp%20Image%202026-11-03%20at%206.13.56%20PM.jpeg" alt="مراجعة الوحدة الأولى - م. نور الدين" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition duration-500" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/35 to-transparent"></div>
+                <div class="relative z-10 w-12 h-12 rounded-full bg-amber-500/90 border-2 border-amber-300 flex items-center justify-center text-slate-950 text-xl shadow-lg group-hover:scale-110 transition">▶</div>
+                <span class="relative z-10 absolute bottom-2 left-3 text-[10px] font-mono text-white/70 bg-slate-950/60 px-2 py-0.5 rounded select-none">ID #3596 • 01002169889</span>
+                <span class="relative z-10 absolute bottom-2 right-3 text-[10px] font-bold text-amber-300 bg-slate-950/70 px-2 py-0.5 rounded border border-amber-400/30">مشاهدة على المنصة ↗</span>
               </div>
-            </div>
+            </a>
 
             <!-- Simulated Mini Stats -->
-            <div class="grid grid-cols-3 gap-2.5 text-center">
+            <div class="grid grid-cols-3 gap-2.5 text-center mb-4">
               <div class="rounded-xl bg-slate-800/80 border border-slate-700/70 p-2.5">
                 <div class="text-base font-black text-emerald-400">94%</div>
                 <div class="text-[10px] text-slate-400 font-bold">نسبة الحضور</div>
@@ -209,6 +212,12 @@
                 <div class="text-[10px] text-slate-400 font-bold">مساعد الطالب</div>
               </div>
             </div>
+
+            <!-- Live Platform Link Bar -->
+            <a href="https://elm.up.railway.app/" target="_blank" class="flex items-center justify-between gap-2 px-3.5 py-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-amber-500/30 text-xs font-bold transition">
+              <span class="text-amber-300 font-black">🌐 رابط المنصة الحية:</span>
+              <span class="font-mono text-slate-200 dir-ltr truncate">elm.up.railway.app ↗</span>
+            </a>
           </div>
         </div>
       </div>
