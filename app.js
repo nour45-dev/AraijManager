@@ -4735,20 +4735,43 @@ function initPdfReportSelects() {
 
   teacherSelect.innerHTML = Array.from(allTeachersSet).sort().map(t => `
     <option value="${t}">${t}</option>
-  `).join('');
+  `).join('') + `<option value="ALL_TEACHERS">📊 جميع المدرسين (كل مدرس في كل مرحلة منفصلة)</option>`;
 }
 
 function setPdfReportMode(mode) {
   currentPdfMode = mode;
-  ['teacher', 'attendance_roster', 'grade_summary'].forEach(m => {
-    const btn = document.getElementById(`pdf_btn_${m}`);
+  [
+    { m: 'teacher', id: 'pdf_btn_teacher' },
+    { m: 'attendance_roster', id: 'pdf_btn_roster' },
+    { m: 'grade_summary', id: 'pdf_btn_summary' },
+    { m: 'teacher_ranking', id: 'pdf_btn_ranking' }
+  ].forEach(({ id }) => {
+    const btn = document.getElementById(id);
     if (btn) btn.className = 'p-4 rounded-2xl bg-slate-800/80 hover:bg-slate-800 text-slate-300 font-bold text-xs text-right space-y-1 transition-all border border-slate-700';
   });
 
-  const activeBtnId = mode === 'teacher' ? 'pdf_btn_teacher' : mode === 'attendance_roster' ? 'pdf_btn_roster' : 'pdf_btn_summary';
+  const activeBtnId = mode === 'teacher' ? 'pdf_btn_teacher'
+    : mode === 'attendance_roster' ? 'pdf_btn_roster'
+    : mode === 'teacher_ranking' ? 'pdf_btn_ranking'
+    : 'pdf_btn_summary';
   const activeBtn = document.getElementById(activeBtnId);
   if (activeBtn) {
-    activeBtn.className = 'p-4 rounded-2xl bg-sky-600 text-white font-bold text-xs text-right space-y-1 shadow-lg transition-all border border-sky-400/30';
+    activeBtn.className = mode === 'teacher_ranking'
+      ? 'p-4 rounded-2xl bg-amber-600 text-white font-bold text-xs text-right space-y-1 shadow-lg transition-all border border-amber-400/40'
+      : 'p-4 rounded-2xl bg-sky-600 text-white font-bold text-xs text-right space-y-1 shadow-lg transition-all border border-sky-400/30';
+  }
+
+  const monthSelect = document.getElementById('pdfMonthSelect');
+  if (monthSelect) {
+    const hasAllMonths = Array.from(monthSelect.options).some(o => o.value === 'ALL_MONTHS');
+    if (mode === 'teacher_ranking' && !hasAllMonths) {
+      const opt = document.createElement('option');
+      opt.value = 'ALL_MONTHS';
+      opt.textContent = 'كل الشهور (التراكمي)';
+      monthSelect.insertBefore(opt, monthSelect.firstChild);
+    } else if (mode !== 'teacher_ranking' && monthSelect.value === 'ALL_MONTHS') {
+      monthSelect.value = currentActiveMonth || 'شهر 11 (نوفمبر)';
+    }
   }
 
   const teacherGroup = document.getElementById('pdfTeacherSelectGroup');
@@ -5045,7 +5068,212 @@ function generateSelectedPdfReport() {
         </div>
       </div>
     `;
+  } else if (currentPdfMode === 'teacher_ranking') {
+    const teacherList = selectedTeacher === 'ALL_TEACHERS'
+      ? Array.from(new Set(Object.values(TEACHERS).flat())).sort()
+      : [selectedTeacher];
+    const gradesToRender = selectedGrade === 'all' ? ['ث1', 'ث2', 'ث3'] : [selectedGrade];
+    const gradeLabels = { 'ث1': 'الصف الأول الثانوي (ث1)', 'ث2': 'الصف الثاني الثانوي (ث2)', 'ث3': 'الصف الثالث الثانوي (ث3)' };
+    const monthLabel = selectedMonth === 'ALL_MONTHS' ? 'كل الشهور (التراكمي)' : selectedMonth;
+
+    const sectionsHtml = [];
+    teacherList.forEach(tName => {
+      const tNorm = normalize_arabic(tName);
+      gradesToRender.forEach(gCode => {
+        const rows = [];
+        allStudents.forEach(s => {
+          if (s.grade !== gCode) return;
+          const subs = s.academicSubjects || {};
+          Object.keys(subs).forEach(subKey => {
+            const subObj = subs[subKey];
+            if (!subObj || !subObj.teacher || !normalize_arabic(subObj.teacher).includes(tNorm)) return;
+            const stats = computeSubjectGradeAndAttendance(s, subKey, selectedMonth);
+            rows.push({ s, subKey, ...stats });
+          });
+        });
+
+        if (rows.length === 0) return;
+
+        // Sort descending by totalScore, then scorePct, then presentCount, then absentCount asc, then Arabic name
+        rows.sort((a, b) => {
+          const aHas = a.totalMax > 0 ? 1 : 0;
+          const bHas = b.totalMax > 0 ? 1 : 0;
+          if (bHas !== aHas) return bHas - aHas;
+          if (b.totalScore !== a.totalScore) return b.totalScore - a.totalScore;
+          if ((b.scorePct || 0) !== (a.scorePct || 0)) return (b.scorePct || 0) - (a.scorePct || 0);
+          if (b.presentCount !== a.presentCount) return b.presentCount - a.presentCount;
+          if (a.absentCount !== b.absentCount) return a.absentCount - b.absentCount;
+          return (a.s.name || '').localeCompare(b.s.name || '', 'ar');
+        });
+
+        let totalPresentAll = 0;
+        let totalAbsentAll = 0;
+        let gradedSumPct = 0;
+        let gradedCount = 0;
+        rows.forEach(r => {
+          totalPresentAll += r.presentCount;
+          totalAbsentAll += r.absentCount;
+          if (r.totalMax > 0 && r.scorePct !== null) {
+            gradedSumPct += r.scorePct;
+            gradedCount++;
+          }
+        });
+        const avgPct = gradedCount > 0 ? Math.round(gradedSumPct / gradedCount) : 0;
+        const topRow = rows[0];
+        const topDisplay = topRow && topRow.totalMax > 0
+          ? `${topRow.s.name} (${topRow.totalScore}/${topRow.totalMax})`
+          : (topRow ? topRow.s.name : '-');
+
+        sectionsHtml.push(`
+          <div class="student-report-card-page" style="font-family: 'Cairo', sans-serif; direction: rtl; text-align: right; color: #0f172a; width: 100%; margin-bottom: 28px; padding-bottom: 16px;">
+            <div style="border-bottom: 3px solid #d97706; padding-bottom: 12px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <h1 style="font-size: 21px; font-weight: 900; color: #0369a1; margin: 0;">سنتر الأرائج التعليمي</h1>
+                <p style="font-size: 13px; color: #1e293b; margin: 4px 0 0 0; font-weight: 800;">
+                  تقرير ترتيب ونتائج الطلاب — الأستاذ / <span style="color: #b45309;">${tName}</span>
+                </p>
+              </div>
+              <div style="text-align: left; font-size: 11px; color: #334155; line-height: 1.7;">
+                <div><strong>المرحلة:</strong> <span style="font-weight: 900; color: #0369a1;">${gradeLabels[gCode] || gCode}</span></div>
+                <div><strong>الفترة:</strong> <span style="font-weight: 800; color: #059669;">${monthLabel}</span></div>
+                <div><strong>تاريخ الاستخراج:</strong> ${today}</div>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px;">
+              <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-right: 4px solid #0284c7; padding: 7px 10px; border-radius: 8px;">
+                <div style="font-size: 10px; color: #64748b; font-weight: bold;">عدد الطلاب</div>
+                <div style="font-size: 15px; font-weight: 900; color: #0284c7;">${rows.length} طالب</div>
+              </div>
+              <div style="background: #fffbeb; border: 1px solid #fde68a; border-right: 4px solid #d97706; padding: 7px 10px; border-radius: 8px;">
+                <div style="font-size: 10px; color: #92400e; font-weight: bold;">الأول على المرحلة</div>
+                <div style="font-size: 11px; font-weight: 900; color: #b45309; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">🥇 ${topDisplay}</div>
+              </div>
+              <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-right: 4px solid #059669; padding: 7px 10px; border-radius: 8px;">
+                <div style="font-size: 10px; color: #166534; font-weight: bold;">إجمالي الحضور</div>
+                <div style="font-size: 15px; font-weight: 900; color: #059669;">${totalPresentAll}</div>
+              </div>
+              <div style="background: #fef2f2; border: 1px solid #fecaca; border-right: 4px solid #dc2626; padding: 7px 10px; border-radius: 8px;">
+                <div style="font-size: 10px; color: #991b1b; font-weight: bold;">إجمالي الغياب (متوسط الدرجات ${avgPct}%)</div>
+                <div style="font-size: 15px; font-weight: 900; color: #dc2626;">${totalAbsentAll}</div>
+              </div>
+            </div>
+
+            <table style="width: 100%; border-collapse: collapse; font-size: 10.5px; text-align: center;">
+              <thead>
+                <tr style="background-color: #1e293b; color: #ffffff;">
+                  <th style="padding: 7px 4px; border: 1px solid #334155; width: 46px;">الترتيب</th>
+                  <th style="padding: 7px 4px; border: 1px solid #334155; width: 52px;">الكود</th>
+                  <th style="padding: 7px 8px; border: 1px solid #334155; text-align: right;">اسم الطالب</th>
+                  <th style="padding: 7px 5px; border: 1px solid #334155; width: 58px;">المادة</th>
+                  <th style="padding: 7px 6px; border: 1px solid #334155;">الدرجات المرصودة</th>
+                  <th style="padding: 7px 6px; border: 1px solid #334155; width: 92px; background-color: #b45309;">مجموع الدرجات</th>
+                  <th style="padding: 7px 4px; border: 1px solid #334155; width: 48px; background-color: #047857;">الحضور</th>
+                  <th style="padding: 7px 4px; border: 1px solid #334155; width: 48px; background-color: #991b1b;">الغياب</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${rows.map((r, idx) => {
+                  const rank = idx + 1;
+                  const rankBadge = rank === 1 ? '🥇 1' : rank === 2 ? '🥈 2' : rank === 3 ? '🥉 3' : `${rank}`;
+                  const rowBg = rank === 1 ? '#fef9c3' : rank === 2 ? '#f1f5f9' : rank === 3 ? '#ffedd5' : (idx % 2 === 0 ? '#ffffff' : '#f8fafc');
+                  const scoreText = r.totalMax > 0 ? `${r.totalScore} / ${r.totalMax} (${r.scorePct}%)` : '—';
+                  const gradesText = r.gradesList.length > 0 ? r.gradesList.join(' • ') : 'لم تُرصد درجات';
+                  return `
+                    <tr style="background-color: ${rowBg}; page-break-inside: avoid; break-inside: avoid;">
+                      <td style="padding: 6px 4px; border: 1px solid #64748b; font-weight: 900; color: ${rank <= 3 ? '#b45309' : '#334155'};">${rankBadge}</td>
+                      <td style="padding: 6px 4px; border: 1px solid #64748b; font-weight: 800; color: #0284c7; font-family: monospace;">#${r.s.code}</td>
+                      <td style="padding: 6px 8px; border: 1px solid #64748b; text-align: right; font-weight: 800; color: #0f172a;">${r.s.name}</td>
+                      <td style="padding: 6px 5px; border: 1px solid #64748b; font-weight: 700;">${r.subKey}</td>
+                      <td style="padding: 6px 6px; border: 1px solid #64748b; font-size: 9.5px; color: #334155; font-family: monospace;">${gradesText}</td>
+                      <td style="padding: 6px 6px; border: 1px solid #64748b; font-weight: 900; color: ${r.totalMax > 0 ? '#92400e' : '#94a3b8'}; font-family: monospace;">${scoreText}</td>
+                      <td style="padding: 6px 4px; border: 1px solid #64748b; font-weight: 900; color: #047857;">${r.presentCount}</td>
+                      <td style="padding: 6px 4px; border: 1px solid #64748b; font-weight: 900; color: ${r.absentCount > 0 ? '#dc2626' : '#64748b'};">${r.absentCount}</td>
+                    </tr>
+                  `;
+                }).join('')}
+              </tbody>
+            </table>
+
+            <div class="footer-signatures" style="margin-top: 18px; padding-top: 10px; border-top: 2px dashed #94a3b8; display: flex; justify-content: space-between; font-size: 11px; color: #334155; font-weight: bold; page-break-inside: avoid; break-inside: avoid;">
+              <div>إشراف: إدارة سنتر الأرائج التعليمي</div>
+              <div>توقيع المدرس (${tName}): ___________________</div>
+              <div>ختم الإدارة: ___________________</div>
+            </div>
+          </div>
+        `);
+      });
+    });
+
+    container.innerHTML = sectionsHtml.length > 0
+      ? sectionsHtml.join('<hr style="border: 0; border-top: 2px dashed #cbd5e1; margin: 20px 0;">')
+      : `<div style="padding: 40px; text-align: center; color: #64748b; font-weight: bold;">لا يوجد طلاب مسجلين مطابقين لهذا الاختيار.</div>`;
   }
+}
+
+function computeSubjectGradeAndAttendance(student, subjName, selectedMonth) {
+  let totalScore = 0;
+  let totalMax = 0;
+  let presentCount = 0;
+  let absentCount = 0;
+  const gradesList = [];
+
+  const subObj = student && student.academicSubjects ? student.academicSubjects[subjName] : null;
+  if (!subObj) return { totalScore: 0, totalMax: 0, scorePct: null, presentCount: 0, absentCount: 0, gradesList };
+
+  let monthArrays = [];
+  if (selectedMonth === 'ALL_MONTHS') {
+    const monthsObj = subObj.months || {};
+    const validKeys = Object.keys(monthsObj).filter(k => k !== 'شهر 1' && k !== 'شهر 9 (سبتمبر)');
+    if (validKeys.length > 0) {
+      validKeys.forEach(k => { if (Array.isArray(monthsObj[k])) monthArrays.push(monthsObj[k]); });
+    } else {
+      monthArrays.push(getStudentSubjectMonthSessions(student, subjName, currentActiveMonth));
+    }
+  } else {
+    monthArrays.push(getStudentSubjectMonthSessions(student, subjName, selectedMonth));
+  }
+
+  monthArrays.forEach(sessions => {
+    (sessions || []).forEach(rawVal => {
+      const v = rawVal !== undefined && rawVal !== null ? String(rawVal).trim() : '';
+      if (!v || v === '-' || v === '_') return;
+
+      if (v === '✓' || v === 'حاضر') {
+        presentCount++;
+      } else if (v === 'غ' || v === 'غائب' || v === '0') {
+        absentCount++;
+      } else {
+        const slashMatch = v.match(/^(\d+(?:\.\d+)?)\s*\/\s*(\d+(?:\.\d+)?)$/);
+        if (slashMatch) {
+          const earned = parseFloat(slashMatch[1]);
+          const max = parseFloat(slashMatch[2]);
+          if (!isNaN(earned) && !isNaN(max) && max > 0) {
+            totalScore += earned;
+            totalMax += max;
+            gradesList.push(v);
+            presentCount++;
+          }
+        } else if (!isNaN(parseFloat(v))) {
+          const num = parseFloat(v);
+          if (num > 0) {
+            totalScore += num;
+            totalMax += 20;
+            gradesList.push(`${num}/20`);
+            presentCount++;
+          } else {
+            absentCount++;
+          }
+        }
+      }
+    });
+  });
+
+  totalScore = Math.round(totalScore * 10) / 10;
+  totalMax = Math.round(totalMax * 10) / 10;
+  const scorePct = totalMax > 0 ? Math.round((totalScore / totalMax) * 100) : null;
+
+  return { totalScore, totalMax, scorePct, presentCount, absentCount, gradesList };
 }
 
 // ====================================================
@@ -5171,6 +5399,8 @@ function printGeneratedReport() {
     ? 'كشف رصد الحضور والغياب - سنتر الأرائج'
     : currentPdfMode === 'teacher'
     ? 'كشف قائمة طلاب المدرس - سنتر الأرائج'
+    : currentPdfMode === 'teacher_ranking'
+    ? 'تقرير ترتيب ونتائج الطلاب بالدرجات - سنتر الأرائج'
     : 'كشف السجل العام للمرحلة - سنتر الأرائج';
 
   printHtmlContent(container.innerHTML, reportTitle, 'portrait');

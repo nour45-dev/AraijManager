@@ -1838,7 +1838,7 @@
           </div>
 
           <!-- Report Type Selector -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             <button onclick="setPdfReportMode('teacher')" id="pdf_btn_teacher" class="p-4 rounded-2xl bg-sky-600 text-white font-bold text-xs text-right space-y-1 shadow-lg transition-all border border-sky-400/30">
               <div class="flex items-center justify-between">
                 <span class="text-sm">1. تقرير كشف طلاب المدرس</span>
@@ -1861,6 +1861,14 @@
                 <i data-lucide="layers" class="w-4 h-4"></i>
               </div>
               <p class="text-[11px] text-slate-400 font-normal">تصدير جميع طلاب الصف (ث1 أو ث2 أو ث3) بكامل بياناتهم</p>
+            </button>
+
+            <button onclick="setPdfReportMode('teacher_ranking')" id="pdf_btn_ranking" class="p-4 rounded-2xl bg-slate-800/80 hover:bg-slate-800 text-slate-300 font-bold text-xs text-right space-y-1 transition-all border border-slate-700">
+              <div class="flex items-center justify-between">
+                <span class="text-sm">4. ترتيب ونتائج الطلاب بالدرجات</span>
+                <i data-lucide="trophy" class="w-4 h-4 text-amber-400"></i>
+              </div>
+              <p class="text-[11px] text-slate-400 font-normal">تقرير كل مدرس في كل مرحلة منفصلة: مجموع الدرجات والحضور والغياب والترتيب</p>
             </button>
           </div>
 
@@ -3073,7 +3081,7 @@
 
         <!-- Controls Toolbar -->
         <div class="bg-slate-950/80 p-4 rounded-2xl border border-slate-800 space-y-3.5">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             
             <!-- Scope Selection -->
             <div>
@@ -3219,8 +3227,8 @@
   </div>
 
   <!-- SCRIPTS -->
-  <script src="data.js?v=20261117_v62"></script>
-  <script src="app.js?v=20261117_v62"></script>
+  <script src="data.js?v=20261123_v65"></script>
+  <script src="app.js?v=20261123_v65"></script>
 
   <!-- PWA & OFFLINE ENGINE SCRIPT -->
   <script>
