@@ -5007,7 +5007,7 @@ function generateSelectedPdfReport() {
       </div>
     `;
 
-  } else {
+  } else if (currentPdfMode === 'grade_summary') {
     const matchedStudents = allStudents.filter(s => {
       if (selectedGrade !== 'all' && s.grade !== selectedGrade) return false;
       return true;
